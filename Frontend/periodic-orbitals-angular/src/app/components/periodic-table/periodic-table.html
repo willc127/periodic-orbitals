@@ -1,6 +1,6 @@
 <div class="periodic-table">
   @for (elem of elements; track elem) {
-    <div [style.gridColumn]="elem.group" [style.gridRow]="elem.period">
+    <div class="element" [style.gridColumn]="elem.group" [style.gridRow]="elem.period">
       <strong>{{ elem.symbol }}</strong
       ><br />
       <small>{{ elem.atomicNumber }}</small>

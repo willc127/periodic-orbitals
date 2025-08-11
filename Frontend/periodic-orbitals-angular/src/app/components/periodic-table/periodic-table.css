@@ -1,0 +1,26 @@
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 60px);
+  grid-template-rows: repeat(10, 60px);
+  gap: 4px;
+  padding: 10px;
+}
+
+.element {
+  background: #737373;
+  border: 1px solid #555;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.element:hover {
+  background: #444;
+  transform: scale(1.05);
+}
