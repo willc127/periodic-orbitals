@@ -28,6 +28,9 @@ body {
 	position: relative;
 	width: 8em;
 	height: 8em;
+	background: #031030;
+	border: 1px solid #555;
+	border-radius: 10px;
 }
 .pl__nucleus,
 .pl__nucleus-particle {
