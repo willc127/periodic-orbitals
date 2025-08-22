@@ -1,25 +1,7 @@
-.figure-content {
-  background: #000;
-  overflow: hidden;
-}
-
-body {
-  height: 100vh;
-  background-color: #111;
-  /* font-family: 'Roboto', sans-serif; */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.figure-content {
-  width: 600px;
-  height: 350px;
+canvas {
+  display: block;
+  margin: 0 auto;
+  background: #111;
   border: 1px solid #222;
-  border-radius: 2px;
-  overflow: hidden;
-  user-select: none;
-  cursor: default;
+  border-radius: 8px;
 }

@@ -5,17 +5,8 @@ import { Distributor } from './electron-distributor';
 
 @Component({
   selector: 'app-electron-distribution',
-  template: `<canvas #canvas width="400" height="400"></canvas>`,
-  styles: [
-    `
-      canvas {
-        display: block;
-        margin: 0 auto;
-        background: #111;
-        border: 1px solid #222;
-      }
-    `,
-  ],
+  templateUrl: './electron-distribution.html',
+  styleUrls: ['./electron-distribution.css'],
 })
 export class ElectronDistribution implements AfterViewInit {
   @ViewChild('canvas', { static: true })
@@ -35,9 +26,9 @@ export class ElectronDistribution implements AfterViewInit {
     this.scope = {
       orbitColor: '#DDD',
       textColor: '#FFF',
-      atomicNumber: 118,
+      atomicNumber: 18,
       shells: [],
-      size: (Math.max(canvas.width, canvas.height) * 8) / 20,
+      size: (Math.max(canvas.width, canvas.height) * 4) / 20,
       offset: 0,
       animate: true,
     };
@@ -87,7 +78,7 @@ export class ElectronDistribution implements AfterViewInit {
     const { symbol, name, color } = this.getChemical(atomicNumber);
 
     const ctx = this.ctx2D;
-    const originX = this.canvasRef.nativeElement.width / 2;
+    const originX = this.canvasRef.nativeElement.width/1.5;
     const originY = this.canvasRef.nativeElement.height / 2;
     const alpha = 2 * Math.PI;
 
@@ -158,18 +149,25 @@ export class ElectronDistribution implements AfterViewInit {
     ctx.arc(originX, originY, nucleusRadius, 0, alpha);
     ctx.fill();
 
-    ctx.font = '32px sans-serif';
+    // Escrever símbolo
+    ctx.font = '20px sans-serif';
     ctx.fillStyle = color;
-    ctx.fillText('[', 16, 42);
     ctx.fillStyle = textColor;
     ctx.fillText(symbol, 28, 45);
     const symbolWidth = ctx.measureText(symbol).width;
+
+    // Colchetes
     ctx.fillStyle = color;
+    ctx.fillText('[', 16, 42);
     ctx.fillText(']', 30 + symbolWidth, 42);
+
+    // Número atômico
     ctx.font = '16px sans-serif';
     ctx.fillStyle = textColor;
     ctx.fillText(atomicNumber.toString(), 42 + symbolWidth, 28);
-    ctx.font = '22px sans-serif';
+
+    // Nome
+    ctx.font = '16px sans-serif';
     ctx.fillText(name, 16, 75);
     ctx.font = 'italic 16px sans-serif';
 
