@@ -1,0 +1,970 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>periodic-orbitals-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">periodic-orbitals-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ElectronDistribution</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/electron-distribution/electron-distribution.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-electron-distribution</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./electron-distribution.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./electron-distribution.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#canvasRef" >canvasRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#ctx2D" >ctx2D</a>
+                            </li>
+                            <li>
+                                <a href="#scope" >scope</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#beforeInit" >beforeInit</a>
+                            </li>
+                            <li>
+                                <a href="#draw" >draw</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getChemical" >getChemical</a>
+                            </li>
+                            <li>
+                                <a href="#loop" >loop</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizeString" >normalizeString</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="beforeInit"></a>
+                    <span class="name">
+                        <span ><b>beforeInit</b></span>
+                        <a href="#beforeInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>beforeInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draw"></a>
+                    <span class="name">
+                        <span ><b>draw</b></span>
+                        <a href="#draw"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>draw()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getChemical"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getChemical</b></span>
+                        <a href="#getChemical"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getChemical(search: number | string)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>search</td>
+                                            <td>
+                                                        <code>number | string</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ symbol: any; atomicNumber: any; name: any; color: any; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loop"></a>
+                    <span class="name">
+                        <span ><b>loop</b></span>
+                        <a href="#loop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loop()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeString"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizeString</b></span>
+                        <a href="#normalizeString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizeString(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canvasRef"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>canvasRef</b></span>
+                        <a href="#canvasRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Element.html" target="_self" >ElementRef&lt;HTMLCanvasElement&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;canvas&#x27;, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ctx2D"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>ctx2D</b></span>
+                        <a href="#ctx2D"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanvasRenderingContext2D</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scope"></a>
+                    <span class="name">
+                        <span ><b>scope</b></span>
+                        <a href="#scope"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ScopeConfig.html" target="_self" >ScopeConfig</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/electron-distribution/electron-distribution.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, ViewChild, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { chemicals, chemicalColors, Chemical } from &#x27;../../types/chemicals&#x27;;
+import { ScopeConfig } from &#x27;../../types/scopeConfig&#x27;;
+import { Distributor } from &#x27;./electron-distributor&#x27;;
+
+@Component({
+  selector: &#x27;app-electron-distribution&#x27;,
+  templateUrl: &#x27;./electron-distribution.html&#x27;,
+  styleUrls: [&#x27;./electron-distribution.css&#x27;],
+})
+export class ElectronDistribution implements AfterViewInit {
+  @ViewChild(&#x27;canvas&#x27;, { static: true })
+  canvasRef!: ElementRef&lt;HTMLCanvasElement&gt;;
+  private ctx2D!: CanvasRenderingContext2D;
+  scope!: ScopeConfig;
+
+  ngAfterViewInit() {
+    const canvas &#x3D; this.canvasRef.nativeElement;
+    this.ctx2D &#x3D; canvas.getContext(&#x27;2d&#x27;)!;
+    this.beforeInit();
+    this.loop();
+  }
+
+  beforeInit() {
+    const canvas &#x3D; this.canvasRef.nativeElement;
+    this.scope &#x3D; {
+      orbitColor: &#x27;#DDD&#x27;,
+      textColor: &#x27;#FFF&#x27;,
+      atomicNumber: 18,
+      shells: [],
+      size: (Math.max(canvas.width, canvas.height) * 4) / 20,
+      offset: 0,
+      animate: true,
+    };
+
+    const distributeElectrons &#x3D; (atomicNumber: number) &#x3D;&gt; {
+      const atom &#x3D; new Distributor(atomicNumber);
+      this.scope.shells &#x3D; atom.shells;
+    };
+    distributeElectrons(this.scope.atomicNumber);
+  }
+
+  private normalizeString(name: string): string {
+    return name.toLowerCase();
+  }
+
+  private getChemical(search: number | string) {
+    let chemical: Chemical | undefined;
+
+    if (typeof search &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; chemicals[search - 1]) {
+      chemical &#x3D; chemicals[search - 1];
+    } else {
+      const normSearch &#x3D; this.normalizeString(search.toString());
+      chemical &#x3D; chemicals.find((ch) &#x3D;&gt; {
+        if (!ch) return false;
+        for (let i &#x3D; 0; i &lt; ch.length - 1; i++) {
+          const element &#x3D; ch[i];
+          if (typeof element !&#x3D;&#x3D; &#x27;string&#x27;) continue;
+          if (this.normalizeString(element).startsWith(normSearch)) return true;
+        }
+        return false;
+      });
+    }
+
+    if (!chemical)
+      throw new Error(&#x60;Elemento químico não encontrado:  {search}&#x60;);
+
+    const [symbol, name, colorCode] &#x3D; chemical;
+    const atomicNumber &#x3D; chemicals.indexOf(chemical) + 1;
+    const color &#x3D; chemicalColors[colorCode];
+
+    return { symbol, atomicNumber, name, color };
+  }
+
+  draw() {
+    const { orbitColor, textColor, atomicNumber, shells, size, offset } &#x3D;
+      this.scope;
+    const { symbol, name, color } &#x3D; this.getChemical(atomicNumber);
+
+    const ctx &#x3D; this.ctx2D;
+    const originX &#x3D; this.canvasRef.nativeElement.width/1.5;
+    const originY &#x3D; this.canvasRef.nativeElement.height / 2;
+    const alpha &#x3D; 2 * Math.PI;
+
+    const minOrbitRadius &#x3D; size / 3;
+    const orbitLineWidth &#x3D; size / 2 ** 7;
+    const electronRadius &#x3D; size / 30;
+    const electronClearRadius &#x3D; electronRadius * 2;
+    const nucleusRadius &#x3D; size / 6;
+
+    let layerRotationSpeed &#x3D; 1;
+
+    ctx.clearRect(
+      0,
+      0,
+      this.canvasRef.nativeElement.width,
+      this.canvasRef.nativeElement.height,
+    );
+
+    ctx.save();
+    ctx.fillStyle &#x3D; color;
+    ctx.strokeStyle &#x3D; orbitColor;
+    ctx.lineWidth &#x3D; orbitLineWidth;
+    ctx.lineCap &#x3D; &#x27;round&#x27;;
+
+    shells.forEach((electrons, i) &#x3D;&gt; {
+      const radius &#x3D;
+        (i / (shells.length - 1)) * (size - minOrbitRadius) + minOrbitRadius;
+      const layerRotation &#x3D; offset * layerRotationSpeed;
+
+      if (electrons &#x3D;&#x3D;&#x3D; 0) {
+        ctx.globalAlpha &#x3D; 0.1;
+        ctx.beginPath();
+        ctx.arc(originX, originY, radius, 0, alpha);
+        ctx.stroke();
+        return;
+      }
+
+      ctx.globalAlpha &#x3D; 1;
+
+      for (let j &#x3D; 0; j &lt; electrons; j++) {
+        const phi1 &#x3D; (j / electrons) * alpha + layerRotation;
+        const phi2 &#x3D; phi1 + (1 / electrons) * alpha;
+        const posX &#x3D; originX + radius * Math.cos(phi1);
+        const posY &#x3D; originY + radius * Math.sin(phi1);
+        const orbitalSpacing &#x3D; electronClearRadius / radius;
+
+        if (phi2 - phi1 - 2 * orbitalSpacing &gt; 0) {
+          ctx.beginPath();
+          ctx.arc(
+            originX,
+            originY,
+            radius,
+            phi1 + orbitalSpacing,
+            phi2 - orbitalSpacing,
+          );
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.arc(posX, posY, electronRadius, 0, alpha);
+        ctx.fill();
+      }
+      layerRotationSpeed *&#x3D; -1;
+    });
+
+    ctx.globalAlpha &#x3D; 1;
+    ctx.beginPath();
+    ctx.arc(originX, originY, nucleusRadius, 0, alpha);
+    ctx.fill();
+
+    // Escrever símbolo
+    ctx.font &#x3D; &#x27;20px sans-serif&#x27;;
+    ctx.fillStyle &#x3D; color;
+    ctx.fillStyle &#x3D; textColor;
+    ctx.fillText(symbol, 28, 45);
+    const symbolWidth &#x3D; ctx.measureText(symbol).width;
+
+    // Colchetes
+    ctx.fillStyle &#x3D; color;
+    ctx.fillText(&#x27;[&#x27;, 16, 42);
+    ctx.fillText(&#x27;]&#x27;, 30 + symbolWidth, 42);
+
+    // Número atômico
+    ctx.font &#x3D; &#x27;16px sans-serif&#x27;;
+    ctx.fillStyle &#x3D; textColor;
+    ctx.fillText(atomicNumber.toString(), 42 + symbolWidth, 28);
+
+    // Nome
+    ctx.font &#x3D; &#x27;16px sans-serif&#x27;;
+    ctx.fillText(name, 16, 75);
+    ctx.font &#x3D; &#x27;italic 16px sans-serif&#x27;;
+
+    ctx.restore();
+  }
+
+  loop() {
+    if (!this.scope.animate) return;
+    this.scope.offset &#x3D; (this.scope.offset + 2 ** -8) % (2 * Math.PI);
+    this.draw();
+    requestAnimationFrame(() &#x3D;&gt; this.loop());
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;canvas #canvas width&#x3D;&quot;240&quot; height&#x3D;&quot;120&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./electron-distribution.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">canvas {
+  display: block;
+  margin: 0 auto;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 8px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><canvas #canvas width="240" height="120"></canvas></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AtomAnimation', 'selector': 'app-atom-animation'},{'name': 'ElectronDistribution', 'selector': 'app-electron-distribution'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'PeriodicTable', 'selector': 'app-periodic-table'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ElectronDistribution'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ElectronDistribution.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
