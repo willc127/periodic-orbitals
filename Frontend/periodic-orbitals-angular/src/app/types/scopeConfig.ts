@@ -1,5 +1,4 @@
 export interface ScopeConfig {
-  background: string;
   orbitColor: string;
   textColor: string;
   atomicNumber: number;

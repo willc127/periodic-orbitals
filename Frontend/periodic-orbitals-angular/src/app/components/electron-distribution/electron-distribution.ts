@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { chemicals, chemicalColors, Chemical } from '../../types/chemicals';
 import { ScopeConfig } from '../../types/scopeConfig';
+import { Distributor } from './electron-distributor';
 
 @Component({
-  selector: 'app-my-painting',
+  selector: 'app-electron-distribution',
   template: `<canvas #canvas width="400" height="400"></canvas>`,
   styles: [
     `
@@ -16,32 +17,36 @@ import { ScopeConfig } from '../../types/scopeConfig';
     `,
   ],
 })
-export class MyPainting implements AfterViewInit {
+export class ElectronDistribution implements AfterViewInit {
   @ViewChild('canvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
   private ctx2D!: CanvasRenderingContext2D;
-  $scope!: ScopeConfig;
+  scope!: ScopeConfig;
 
   ngAfterViewInit() {
     const canvas = this.canvasRef.nativeElement;
     this.ctx2D = canvas.getContext('2d')!;
-    this.initScope();
     this.beforeInit();
     this.loop();
   }
 
-  private initScope() {
+  beforeInit() {
     const canvas = this.canvasRef.nativeElement;
-    this.$scope = {
-      background: '#333',
+    this.scope = {
       orbitColor: '#DDD',
       textColor: '#FFF',
-      atomicNumber: 2,
+      atomicNumber: 118,
       shells: [],
-      size: (Math.max(canvas.width, canvas.height) * 9) / 20,
+      size: (Math.max(canvas.width, canvas.height) * 8) / 20,
       offset: 0,
       animate: true,
     };
+
+    const distributeElectrons = (atomicNumber: number) => {
+      const atom = new Distributor(atomicNumber);
+      this.scope.shells = atom.shells;
+    };
+    distributeElectrons(this.scope.atomicNumber);
   }
 
   private normalizeString(name: string): string {
@@ -67,26 +72,19 @@ export class MyPainting implements AfterViewInit {
     }
 
     if (!chemical)
-      throw new Error(`Elemento químico não encontrado: ${search}`);
+      throw new Error(`Elemento químico não encontrado:  {search}`);
 
-    const [symbol, latin, name, colorCode] = chemical;
+    const [symbol, name, colorCode] = chemical;
     const atomicNumber = chemicals.indexOf(chemical) + 1;
     const color = chemicalColors[colorCode];
 
-    return { symbol, atomicNumber, latin, name, color };
+    return { symbol, atomicNumber, name, color };
   }
 
   draw() {
-    const {
-      background,
-      orbitColor,
-      textColor,
-      atomicNumber,
-      shells,
-      size,
-      offset,
-    } = this.$scope;
-    const { symbol, latin, name, color } = this.getChemical(atomicNumber);
+    const { orbitColor, textColor, atomicNumber, shells, size, offset } =
+      this.scope;
+    const { symbol, name, color } = this.getChemical(atomicNumber);
 
     const ctx = this.ctx2D;
     const originX = this.canvasRef.nativeElement.width / 2;
@@ -174,18 +172,13 @@ export class MyPainting implements AfterViewInit {
     ctx.font = '22px sans-serif';
     ctx.fillText(name, 16, 75);
     ctx.font = 'italic 16px sans-serif';
-    ctx.fillText(latin, 16, 95);
 
     ctx.restore();
   }
 
-  beforeInit() {
-    this.$scope.shells = [1, 0]; // shells de teste
-  }
-
   loop() {
-    if (!this.$scope.animate) return;
-    this.$scope.offset = (this.$scope.offset + 2 ** -8) % (2 * Math.PI);
+    if (!this.scope.animate) return;
+    this.scope.offset = (this.scope.offset + 2 ** -8) % (2 * Math.PI);
     this.draw();
     requestAnimationFrame(() => this.loop());
   }
