@@ -24,7 +24,7 @@ export class PeriodicTable {
       atomicNumber: 2,
       group: 18,
       period: 1,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
     {
       symbol: 'Li',
@@ -32,7 +32,7 @@ export class PeriodicTable {
       atomicNumber: 3,
       group: 1,
       period: 2,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Be',
@@ -40,7 +40,7 @@ export class PeriodicTable {
       atomicNumber: 4,
       group: 2,
       period: 2,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
     {
       symbol: 'B',
@@ -80,7 +80,7 @@ export class PeriodicTable {
       atomicNumber: 9,
       group: 17,
       period: 2,
-      type: 'Halogen',
+      type: 'Nonmetal',
     },
     {
       symbol: 'Ne',
@@ -88,7 +88,7 @@ export class PeriodicTable {
       atomicNumber: 10,
       group: 18,
       period: 2,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
 
     {
@@ -97,7 +97,7 @@ export class PeriodicTable {
       atomicNumber: 11,
       group: 1,
       period: 3,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Mg',
@@ -105,7 +105,7 @@ export class PeriodicTable {
       atomicNumber: 12,
       group: 2,
       period: 3,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
     {
       symbol: 'Al',
@@ -113,7 +113,7 @@ export class PeriodicTable {
       atomicNumber: 13,
       group: 13,
       period: 3,
-      type: 'Post-Transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Si',
@@ -145,7 +145,7 @@ export class PeriodicTable {
       atomicNumber: 17,
       group: 17,
       period: 3,
-      type: 'Halogen',
+      type: 'Nonmetal',
     },
     {
       symbol: 'Ar',
@@ -153,7 +153,7 @@ export class PeriodicTable {
       atomicNumber: 18,
       group: 18,
       period: 3,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
 
     {
@@ -162,7 +162,7 @@ export class PeriodicTable {
       atomicNumber: 19,
       group: 1,
       period: 4,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Ca',
@@ -170,7 +170,7 @@ export class PeriodicTable {
       atomicNumber: 20,
       group: 2,
       period: 4,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
     {
       symbol: 'Sc',
@@ -178,7 +178,7 @@ export class PeriodicTable {
       atomicNumber: 21,
       group: 3,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ti',
@@ -186,7 +186,7 @@ export class PeriodicTable {
       atomicNumber: 22,
       group: 4,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'V',
@@ -194,7 +194,7 @@ export class PeriodicTable {
       atomicNumber: 23,
       group: 5,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Cr',
@@ -202,7 +202,7 @@ export class PeriodicTable {
       atomicNumber: 24,
       group: 6,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Mn',
@@ -210,7 +210,7 @@ export class PeriodicTable {
       atomicNumber: 25,
       group: 7,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Fe',
@@ -218,7 +218,7 @@ export class PeriodicTable {
       atomicNumber: 26,
       group: 8,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Co',
@@ -226,7 +226,7 @@ export class PeriodicTable {
       atomicNumber: 27,
       group: 9,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ni',
@@ -234,7 +234,7 @@ export class PeriodicTable {
       atomicNumber: 28,
       group: 10,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Cu',
@@ -242,7 +242,7 @@ export class PeriodicTable {
       atomicNumber: 29,
       group: 11,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Zn',
@@ -250,7 +250,7 @@ export class PeriodicTable {
       atomicNumber: 30,
       group: 12,
       period: 4,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ga',
@@ -258,7 +258,7 @@ export class PeriodicTable {
       atomicNumber: 31,
       group: 13,
       period: 4,
-      type: 'Post-Transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Ge',
@@ -290,7 +290,7 @@ export class PeriodicTable {
       atomicNumber: 35,
       group: 17,
       period: 4,
-      type: 'Halogen',
+      type: 'Nonmetal',
     },
     {
       symbol: 'Kr',
@@ -298,7 +298,7 @@ export class PeriodicTable {
       atomicNumber: 36,
       group: 18,
       period: 4,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
 
     {
@@ -307,7 +307,7 @@ export class PeriodicTable {
       atomicNumber: 37,
       group: 1,
       period: 5,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Sr',
@@ -315,7 +315,7 @@ export class PeriodicTable {
       atomicNumber: 38,
       group: 2,
       period: 5,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
     {
       symbol: 'Y',
@@ -323,7 +323,7 @@ export class PeriodicTable {
       atomicNumber: 39,
       group: 3,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Zr',
@@ -331,7 +331,7 @@ export class PeriodicTable {
       atomicNumber: 40,
       group: 4,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Nb',
@@ -339,7 +339,7 @@ export class PeriodicTable {
       atomicNumber: 41,
       group: 5,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Mo',
@@ -347,7 +347,7 @@ export class PeriodicTable {
       atomicNumber: 42,
       group: 6,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Tc',
@@ -355,7 +355,7 @@ export class PeriodicTable {
       atomicNumber: 43,
       group: 7,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ru',
@@ -363,7 +363,7 @@ export class PeriodicTable {
       atomicNumber: 44,
       group: 8,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Rh',
@@ -371,7 +371,7 @@ export class PeriodicTable {
       atomicNumber: 45,
       group: 9,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Pd',
@@ -379,7 +379,7 @@ export class PeriodicTable {
       atomicNumber: 46,
       group: 10,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ag',
@@ -387,7 +387,7 @@ export class PeriodicTable {
       atomicNumber: 47,
       group: 11,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Cd',
@@ -395,7 +395,7 @@ export class PeriodicTable {
       atomicNumber: 48,
       group: 12,
       period: 5,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'In',
@@ -403,7 +403,7 @@ export class PeriodicTable {
       atomicNumber: 49,
       group: 13,
       period: 5,
-      type: 'Post-Transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Sn',
@@ -411,7 +411,7 @@ export class PeriodicTable {
       atomicNumber: 50,
       group: 14,
       period: 5,
-      type: 'Post-Transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Sb',
@@ -435,7 +435,7 @@ export class PeriodicTable {
       atomicNumber: 53,
       group: 17,
       period: 5,
-      type: 'Halogen',
+      type: 'Nonmetal',
     },
     {
       symbol: 'Xe',
@@ -443,7 +443,7 @@ export class PeriodicTable {
       atomicNumber: 54,
       group: 18,
       period: 5,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
 
     {
@@ -452,7 +452,7 @@ export class PeriodicTable {
       atomicNumber: 55,
       group: 1,
       period: 6,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Ba',
@@ -460,7 +460,7 @@ export class PeriodicTable {
       atomicNumber: 56,
       group: 2,
       period: 6,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
     {
       symbol: 'La',
@@ -581,7 +581,7 @@ export class PeriodicTable {
       atomicNumber: 71,
       group: 18,
       period: 8,
-      type: 'Transition Metal',
+      type: 'Lanthanide',
     },
     {
       symbol: 'Hf',
@@ -589,7 +589,7 @@ export class PeriodicTable {
       atomicNumber: 72,
       group: 4,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ta',
@@ -597,7 +597,7 @@ export class PeriodicTable {
       atomicNumber: 73,
       group: 5,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'W',
@@ -605,7 +605,7 @@ export class PeriodicTable {
       atomicNumber: 74,
       group: 6,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Re',
@@ -613,7 +613,7 @@ export class PeriodicTable {
       atomicNumber: 75,
       group: 7,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Os',
@@ -621,7 +621,7 @@ export class PeriodicTable {
       atomicNumber: 76,
       group: 8,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Ir',
@@ -629,7 +629,7 @@ export class PeriodicTable {
       atomicNumber: 77,
       group: 9,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Pt',
@@ -637,7 +637,7 @@ export class PeriodicTable {
       atomicNumber: 78,
       group: 10,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Au',
@@ -645,7 +645,7 @@ export class PeriodicTable {
       atomicNumber: 79,
       group: 11,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Hg',
@@ -653,7 +653,7 @@ export class PeriodicTable {
       atomicNumber: 80,
       group: 12,
       period: 6,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Tl',
@@ -661,7 +661,7 @@ export class PeriodicTable {
       atomicNumber: 81,
       group: 13,
       period: 6,
-      type: 'Post-transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Pb',
@@ -669,7 +669,7 @@ export class PeriodicTable {
       atomicNumber: 82,
       group: 14,
       period: 6,
-      type: 'Post-transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Bi',
@@ -677,7 +677,7 @@ export class PeriodicTable {
       atomicNumber: 83,
       group: 15,
       period: 6,
-      type: 'Post-transition Metal',
+      type: 'Post-Transition-Metal',
     },
     {
       symbol: 'Po',
@@ -693,7 +693,7 @@ export class PeriodicTable {
       atomicNumber: 85,
       group: 17,
       period: 6,
-      type: 'Halogen',
+      type: 'Metalloid',
     },
     {
       symbol: 'Rn',
@@ -701,7 +701,7 @@ export class PeriodicTable {
       atomicNumber: 86,
       group: 18,
       period: 6,
-      type: 'Noble Gas',
+      type: 'Noble-Gas',
     },
     {
       symbol: 'Fr',
@@ -709,7 +709,7 @@ export class PeriodicTable {
       atomicNumber: 87,
       group: 1,
       period: 7,
-      type: 'Alkali Metal',
+      type: 'Alkali-Metal',
     },
     {
       symbol: 'Ra',
@@ -717,7 +717,7 @@ export class PeriodicTable {
       atomicNumber: 88,
       group: 2,
       period: 7,
-      type: 'Alkaline Earth Metal',
+      type: 'Alkali-Earth-Metal',
     },
 
     {
@@ -838,7 +838,7 @@ export class PeriodicTable {
       atomicNumber: 103,
       group: 18,
       period: 9,
-      type: 'Transition Metal',
+      type: 'Actinide',
     },
     {
       symbol: 'Rf',
@@ -846,7 +846,7 @@ export class PeriodicTable {
       atomicNumber: 104,
       group: 4,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Db',
@@ -854,7 +854,7 @@ export class PeriodicTable {
       atomicNumber: 105,
       group: 5,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Sg',
@@ -862,7 +862,7 @@ export class PeriodicTable {
       atomicNumber: 106,
       group: 6,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Bh',
@@ -870,7 +870,7 @@ export class PeriodicTable {
       atomicNumber: 107,
       group: 7,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Hs',
@@ -878,7 +878,7 @@ export class PeriodicTable {
       atomicNumber: 108,
       group: 8,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Transition-Metal',
     },
     {
       symbol: 'Mt',
@@ -886,7 +886,7 @@ export class PeriodicTable {
       atomicNumber: 109,
       group: 9,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Ds',
@@ -894,7 +894,7 @@ export class PeriodicTable {
       atomicNumber: 110,
       group: 10,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Rg',
@@ -902,7 +902,7 @@ export class PeriodicTable {
       atomicNumber: 111,
       group: 11,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Cn',
@@ -910,7 +910,7 @@ export class PeriodicTable {
       atomicNumber: 112,
       group: 12,
       period: 7,
-      type: 'Transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Nh',
@@ -918,7 +918,7 @@ export class PeriodicTable {
       atomicNumber: 113,
       group: 13,
       period: 7,
-      type: 'Post-transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Fl',
@@ -926,7 +926,7 @@ export class PeriodicTable {
       atomicNumber: 114,
       group: 14,
       period: 7,
-      type: 'Post-transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Mc',
@@ -934,7 +934,7 @@ export class PeriodicTable {
       atomicNumber: 115,
       group: 15,
       period: 7,
-      type: 'Post-transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Lv',
@@ -942,7 +942,7 @@ export class PeriodicTable {
       atomicNumber: 116,
       group: 16,
       period: 7,
-      type: 'Post-transition Metal',
+      type: 'Undefined',
     },
     {
       symbol: 'Ts',
@@ -950,7 +950,7 @@ export class PeriodicTable {
       atomicNumber: 117,
       group: 17,
       period: 7,
-      type: 'Halogen',
+      type:'Undefined',
     },
     {
       symbol: 'Og',
@@ -958,7 +958,8 @@ export class PeriodicTable {
       atomicNumber: 118,
       group: 18,
       period: 7,
-      type: 'Noble Gas',
+      type: 'Undefined',
     },
   ];
+
 }

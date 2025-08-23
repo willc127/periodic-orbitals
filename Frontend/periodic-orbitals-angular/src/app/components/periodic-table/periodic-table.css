@@ -1,3 +1,10 @@
+
+:root {
+  --dessat: 60%;
+  --sat: 100%;
+}
+
+
 .periodic-table {
   display: grid;
   grid-template-columns: repeat(18, 60px);
@@ -7,20 +14,96 @@
 }
 
 .element {
-  background: #9c7a7a;
   border: 1px solid #555;
   text-align: center;
-  color: white;
+  color: black;
   font-size: 16px;
   padding-top: 15px;
   cursor: pointer;
   border-radius: 4px;
-  transition:
-    transform 0.2s,
-    background 0.2s;
+  transition: transform 0.2s, background 0.2s;
 }
 
 .element:hover {
-  background: #444;
-  transform: scale(1.3);
+  transform: scale(1.35);
+}
+
+/* Classes para cada tipo de elemento */
+.Hydrogen {
+  background: hsl(330, var(--dessat), 50%)  ;
+}
+.Hydrogen:hover {
+  background: hsl(330, var(--sat), 50%) ;
+}
+
+.Noble-Gas {
+  background: hsl(270, var(--dessat), 77%);
+}
+.Noble-Gas:hover {
+  background: hsl(270, var(--sat), 77%);
+}
+
+.Alkali-Metal {
+  background: hsl(156, var(--dessat), 43%);
+}
+.Alkali-Metal:hover {
+  background: hsl(156, var(--sat), 43%);
+}
+
+.Alkali-Earth-Metal {
+  background: hsl(45, var(--dessat), 68%);
+}
+.Alkali-Earth-Metal:hover {
+  background: hsl(45, var(--sat), 68%);
+}
+
+.Transition-Metal {
+  background: hsl(5, var(--dessat), 56%);
+}
+.Transition-Metal:hover {
+  background: hsl(5, var(--sat), 56%);
+}
+
+.Metalloid {
+  background: 	hsl(203, var(--dessat), 69%);
+}
+.Metalloid:hover {
+  background: 	hsl(203, var(--sat), 69%);
+}
+
+.Nonmetal {
+  background: hsl(163, var(--dessat), 54%);
+}
+.Nonmetal:hover {
+  background: hsl(163, var(--sat), 54%);
+}
+
+.Actinide {
+  background: 	hsl(33, var(--dessat), 57%);
+}
+.Actinide:hover {
+  background: 	hsl(33, var(--sat), 57%);
+}
+
+
+.Lanthanide {
+  background: 	hsl(73, var(--dessat), 40%);
+}
+.Lanthanide:hover {
+  background: 	hsl(73, var(--sat), 40%);
+}
+
+
+.Post-Transition-Metal {
+  background: hsl(222,var(--dessat), 50%);
+}
+.Post-Transition-Metal:hover {
+  background: hsl(222,var(--sat), 50%);
+}
+
+.Undefined {
+  background: 	hsl(0, 0%, 75%);
+}
+.Undefined:hover {
+  background: 	hsl(0, 0%, 100%);
 }
