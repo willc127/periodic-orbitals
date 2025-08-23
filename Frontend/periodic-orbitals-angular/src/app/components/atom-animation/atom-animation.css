@@ -26,11 +26,9 @@ body {
 	--dur: 3s;
 	margin: auto;
 	position: relative;
-	width: 8em;
-	height: 8em;
+	width: 4.0625em;
+	height: 4.0625em;
 	background: #031030;
-	border: 1px solid #555;
-	border-radius: 10px;
 }
 .pl__nucleus,
 .pl__nucleus-particle {
@@ -52,10 +50,10 @@ body {
 	background-image: radial-gradient(37.5% 37.5% at 37.5% 37.5%,hsla(var(--hue),10%,90%,0.25) 48%,hsla(var(--hue),10%,90%,0) 50%);
 	border-radius: 50%;
 	box-shadow: -0.125em -0.125em 0 hsla(var(--hue),10%,10%,0.25) inset;
-	top: calc(50% - 0.5em);
-	left: calc(50% - 0.5em);
-	width: 1em;
-	height: 1em;
+	top: calc(50% - 0.25em);
+	left: calc(50% - 0.25em);
+	width: 0.5em;
+	height: 0.5em;
 	transition: background-color var(--trans-dur);
 }
 .pl__nucleus-particle:nth-child(2n) {
