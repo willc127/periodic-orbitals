@@ -4,4 +4,5 @@ export interface Element {
   atomicNumber: number;
   group: number;
   period: number;
+  type: string;
 }

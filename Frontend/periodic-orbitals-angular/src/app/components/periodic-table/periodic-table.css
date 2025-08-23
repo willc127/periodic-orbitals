@@ -7,12 +7,12 @@
 }
 
 .element {
-  background: #737373;
+  background: #9c7a7a;
   border: 1px solid #555;
   text-align: center;
   color: white;
   font-size: 16px;
-  padding: 5px;
+  padding-top: 15px;
   cursor: pointer;
   border-radius: 4px;
   transition:
@@ -22,5 +22,5 @@
 
 .element:hover {
   background: #444;
-  transform: scale(1.05);
+  transform: scale(1.3);
 }
