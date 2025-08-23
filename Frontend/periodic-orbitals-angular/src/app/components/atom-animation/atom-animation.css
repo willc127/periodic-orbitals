@@ -26,8 +26,8 @@ body {
 	--dur: 3s;
 	margin: auto;
 	position: relative;
-	width: 4.0625em;
-	height: 4.0625em;
+	width: 4rem;
+	height: 4rem;
 	background: #031030;
 }
 .pl__nucleus,
@@ -44,6 +44,7 @@ body {
 .pl__orbit,
 .pl__electron {
 	animation: particleTop var(--dur) linear infinite;
+	border: 1px solid #031030;
 }
 .pl__nucleus-particle {
 	background-color: var(--primary);
@@ -55,15 +56,19 @@ body {
 	width: 0.5em;
 	height: 0.5em;
 	transition: background-color var(--trans-dur);
+	border: 1px solid #031030;
 }
 .pl__nucleus-particle:nth-child(2n) {
 	background-color: hsl(var(--hue),90%,70%);
+	border: 1px solid #031030;
 }
 .pl__nucleus-particle:nth-child(n + 4):nth-child(-n + 9) {
 	animation-name: particleMiddle;
+	border: 1px solid #031030;
 }
 .pl__nucleus-particle:nth-child(n + 10):nth-child(-n + 12) {
 	animation-name: particleBottom;
+	border: 1px solid #031030;
 }
 .pl__nucleus-particle:nth-child(2) { animation-delay: calc(var(--dur) * -0.33); }
 .pl__nucleus-particle:nth-child(3) { animation-delay: calc(var(--dur) * -0.67); }
@@ -90,6 +95,7 @@ body {
 }
 .pl__orbit,
 .pl__electron {
+	border: 1px solid #031030;
 	animation-name: orbit;
 	transition: stroke var(--trans-dur);
 }
