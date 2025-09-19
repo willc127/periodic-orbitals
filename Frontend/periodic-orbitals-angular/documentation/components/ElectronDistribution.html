@@ -840,11 +840,13 @@ export class ElectronDistribution implements AfterViewInit {
                     <code>./electron-distribution.css</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">canvas {
-  display: block;
-  margin: 0 auto;
+  display: grid;
   background: #111;
   border: 1px solid #222;
   border-radius: 8px;
+  margin: 1rem auto;
+  grid-area: electron;
+
 }
 </code></pre>
     </div>
@@ -875,7 +877,7 @@ export class ElectronDistribution implements AfterViewInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><canvas #canvas width="240" height="120"></canvas></div>'
-    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AtomAnimation', 'selector': 'app-atom-animation'},{'name': 'ElectronDistribution', 'selector': 'app-electron-distribution'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'PeriodicTable', 'selector': 'app-periodic-table'}];
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AtomAnimation', 'selector': 'app-atom-animation'},{'name': 'ElectronDistribution', 'selector': 'app-electron-distribution'},{'name': 'ElementProperties', 'selector': 'app-element-properties'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'PeriodicTable', 'selector': 'app-periodic-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ElectronDistribution'};
 </script>

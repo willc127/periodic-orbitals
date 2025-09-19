@@ -63,6 +63,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ElectronDistribution.html" data-type="entity-link" >ElectronDistribution</a>
                             </li>
                             <li class="link">
+                                <a href="components/ElementProperties.html" data-type="entity-link" >ElementProperties</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/Footer.html" data-type="entity-link" >Footer</a>
                             </li>
                             <li class="link">

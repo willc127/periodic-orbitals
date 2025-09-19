@@ -89,7 +89,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  Footer</li>
+  ElementProperties</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,7 +116,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/components/footer/footer.ts</code>
+    <code>src/app/components/element-properties/element-properties.ts</code>
 </p>
 
 
@@ -142,7 +142,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-footer</code></td>
+                <td class="col-md-9"><code>app-element-properties</code></td>
             </tr>
 
 
@@ -152,14 +152,14 @@
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./footer.html</code></td>
+                <td class="col-md-9"><code>./element-properties.html</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./footer.css</code></td>
+                <td class="col-md-9"><code>./element-properties.css</code></td>
             </tr>
 
 
@@ -185,21 +185,19 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
 @Component({
-  selector: &#x27;app-footer&#x27;,
+  selector: &#x27;app-element-properties&#x27;,
   imports: [],
-  templateUrl: &#x27;./footer.html&#x27;,
-  styleUrl: &#x27;./footer.css&#x27;
+  templateUrl: &#x27;./element-properties.html&#x27;,
+  styleUrl: &#x27;./element-properties.css&#x27;
 })
-export class Footer {
+export class ElementProperties {
 
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;footer&quot;&gt;
-  &lt;p class&#x3D;&quot;footer-text&quot;&gt;Made by William Cesar&lt;/p&gt;
-&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;nome&quot;&gt;Nome do Elemento&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -229,10 +227,10 @@ export class Footer {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="footer">  <p class="footer-text">Made by William Cesar</p></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="nome">Nome do Elemento</div></div>'
     var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'AtomAnimation', 'selector': 'app-atom-animation'},{'name': 'ElectronDistribution', 'selector': 'app-electron-distribution'},{'name': 'ElementProperties', 'selector': 'app-element-properties'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'PeriodicTable', 'selector': 'app-periodic-table'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'Footer'};
+    var ACTUAL_COMPONENT = {'name': 'ElementProperties'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -278,7 +276,7 @@ export class Footer {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'Footer.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ElementProperties.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
