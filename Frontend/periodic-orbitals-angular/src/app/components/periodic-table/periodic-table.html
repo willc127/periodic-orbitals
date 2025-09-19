@@ -1,9 +1,19 @@
 <div class="periodic-table">
-  @for (elem of elements; track elem) {
-    <div class="element" [style.gridColumn]="elem.group" [style.gridRow]="elem.period" [ngClass]= elem.type>
-      <strong>{{ elem.symbol }}</strong
-      ><br />
-      <small>{{ elem.atomicNumber }}</small>
-    </div>
+  @for (elem of elements; track elem) { 
+    @if (elem.type != "LaAcBlock") {
+  <div
+    class="element"
+    [style.gridColumn]="elem.group"
+    [style.gridRow]="elem.period"
+    [ngClass]="elem.type"
+  >
+    <strong>{{ elem.symbol }}</strong>
+    <small>{{ elem.atomicNumber }}</small>
+  </div>
+  } @else {
+    <div
+    class="element"
+    [ngClass]="elem.type"
+  ></div>}
   }
 </div>

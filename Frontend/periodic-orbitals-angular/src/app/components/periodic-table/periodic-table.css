@@ -1,24 +1,25 @@
-
 :root {
   --dessat: 60%;
   --sat: 100%;
 }
 
-
 .periodic-table {
   display: grid;
-  grid-template-columns: repeat(18, 60px);
-  grid-template-rows: repeat(10, 60px);
+  grid-template-columns: repeat(18, 3.5rem);
+  grid-template-rows: repeat(9, 3.5rem);
   gap: 4px;
-  padding: 10px;
+  justify-content: center;
+  padding: 3rem;
 }
 
 .element {
   border: 1px solid #555;
   text-align: center;
   color: black;
-  font-size: 16px;
-  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.25rem;
   cursor: pointer;
   border-radius: 4px;
   transition: transform 0.2s, background 0.2s;
@@ -30,10 +31,10 @@
 
 /* Classes para cada tipo de elemento */
 .Hydrogen {
-  background: hsl(330, var(--dessat), 50%)  ;
+  background: hsl(330, var(--dessat), 50%);
 }
 .Hydrogen:hover {
-  background: hsl(330, var(--sat), 50%) ;
+  background: hsl(330, var(--sat), 50%);
 }
 
 .Noble-Gas {
@@ -65,10 +66,10 @@
 }
 
 .Metalloid {
-  background: 	hsl(203, var(--dessat), 69%);
+  background: hsl(203, var(--dessat), 69%);
 }
 .Metalloid:hover {
-  background: 	hsl(203, var(--sat), 69%);
+  background: hsl(203, var(--sat), 69%);
 }
 
 .Nonmetal {
@@ -78,32 +79,39 @@
   background: hsl(163, var(--sat), 54%);
 }
 
-.Actinide {
-  background: 	hsl(33, var(--dessat), 57%);
-}
-.Actinide:hover {
-  background: 	hsl(33, var(--sat), 57%);
-}
-
-
 .Lanthanide {
-  background: 	hsl(73, var(--dessat), 40%);
+  background: hsl(33, var(--dessat), 57%);
 }
 .Lanthanide:hover {
-  background: 	hsl(73, var(--sat), 40%);
+  background: hsl(33, var(--sat), 57%);
 }
 
+.Actinide {
+  background: hsl(73, var(--dessat), 40%);
+}
+.Actinide:hover {
+  background: hsl(73, var(--sat), 40%);
+}
 
 .Post-Transition-Metal {
-  background: hsl(222,var(--dessat), 50%);
+  background: hsl(222, var(--dessat), 50%);
 }
 .Post-Transition-Metal:hover {
-  background: hsl(222,var(--sat), 50%);
+  background: hsl(222, var(--sat), 50%);
 }
 
 .Undefined {
-  background: 	hsl(0, 0%, 75%);
+  background: hsl(0, 0%, 75%);
 }
 .Undefined:hover {
-  background: 	hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 100%);
+}
+.LaAcBlock {
+  display: flex;
+  background: linear-gradient(#d39850, #89a329);
+  grid-column: 3;
+  grid-row: 6 / 8;
+}
+.LaAcBlock:hover {
+  background: linear-gradient(#ff9d23, #8aa624);
 }

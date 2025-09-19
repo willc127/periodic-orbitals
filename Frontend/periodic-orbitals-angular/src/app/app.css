@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-areas: 
+  "table electron"
+  "properties properties";
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+}
+
+app-periodic-table {
+    grid-area: table;
+  display: flex;
+  width: 50%;
+}
+
+app-element-properties{
+    grid-area: properties;
+}

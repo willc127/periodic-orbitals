@@ -5,6 +5,7 @@ import { Footer } from './components/footer/footer';
 import { PeriodicTable } from './components/periodic-table/periodic-table';
 import { AtomAnimation } from './components/atom-animation/atom-animation';
 import { ElectronDistribution } from './components/electron-distribution/electron-distribution';
+import { ElementProperties } from './components/element-properties/element-properties';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { ElectronDistribution } from './components/electron-distribution/electro
     PeriodicTable,
     AtomAnimation,
     ElectronDistribution,
+    ElementProperties
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

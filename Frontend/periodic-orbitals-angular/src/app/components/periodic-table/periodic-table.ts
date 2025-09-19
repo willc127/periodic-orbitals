@@ -950,7 +950,7 @@ export class PeriodicTable {
       atomicNumber: 117,
       group: 17,
       period: 7,
-      type:'Undefined',
+      type: 'Undefined',
     },
     {
       symbol: 'Og',
@@ -960,6 +960,13 @@ export class PeriodicTable {
       period: 7,
       type: 'Undefined',
     },
+    {
+      symbol: '',
+      name: '',
+      atomicNumber: 0,
+      group: 0,
+      period: 0,
+      type: 'LaAcBlock',
+    },
   ];
-
 }
