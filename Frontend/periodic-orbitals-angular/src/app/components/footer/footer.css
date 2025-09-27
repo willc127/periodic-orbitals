@@ -11,9 +11,10 @@
   width: 100%;
 }
 
-p {
+a {
   color: #ededed;
   font-family: "Rubik Mono One", monospace;
   font-size: 10px;
   font-weight: 400;
+  text-decoration: none;
 }
