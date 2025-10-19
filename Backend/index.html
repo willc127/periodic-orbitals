@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Upload e Visualização de Imagem</title>
+	</head>
+	<body>
+		<h1>Enviar Imagem para API e Visualizar</h1>
+		<form id="uploadForm">
+			<input type="file" name="file" accept="image/*" required />
+			<button type="submit">Enviar</button>
+		</form>
+
+		<h2>Imagem enviada:</h2>
+		<img id="preview" style="max-width: 500px; max-height: 500px" />
+
+		<script>
+			const form = document.getElementById('uploadForm');
+			const preview = document.getElementById('preview');
+
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const formData = new FormData(form);
+
+				try {
+					const response = await fetch('http://127.0.0.1:8000/upload-image/', {
+						method: 'POST',
+						body: formData,
+					});
+
+					const contentType = response.headers.get('content-type') || '';
+
+					if (contentType.includes('application/json')) {
+						// backend retorna JSON com chave image_base64
+						const data = await response.json();
+						if (data.image_base64 && data.content_type) {
+							preview.src = `data:${data.content_type};base64,${data.image_base64}`;
+						} else if (data.image_base64) {
+							preview.src = `data:image/png;base64,${data.image_base64}`;
+						} else {
+							console.error('JSON recebido sem image_base64:', data);
+						}
+					} else if (contentType.startsWith('image/')) {
+						// backend envia bytes da imagem
+						const blob = await response.blob();
+						preview.src = URL.createObjectURL(blob);
+					} else {
+						// debug: mostrar texto de erro/resposta
+						const text = await response.text();
+						console.error('Resposta inesperada:', response.status, text);
+					}
+				} catch (err) {
+					console.error('Erro ao enviar a imagem:', err);
+				}
+			});
+		</script>
+	</body>
+</html>
