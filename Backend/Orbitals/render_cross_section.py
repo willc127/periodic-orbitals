@@ -5,7 +5,7 @@ from hydrogen import cartesian_prob
 from get_render_radius import get_render_radius
 
 
-def render_cross_section(n: int, l: int, m: int, filename=None):
+def render_cross_section(n: int, l: int, m: int, filename: str = 'None') -> str:
     print(
         "Rendering cross section for (" + str(n) + ", " + str(l) + ", " + str(m) + ")"
     )
@@ -60,7 +60,7 @@ def render_cross_section(n: int, l: int, m: int, filename=None):
 
     # save
     print("Saving")
-    if filename is None:
+    if filename == 'None':
         filename = f"cross_{n}_{l}_{m}.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     plt.savefig(filename, dpi=600, bbox_inches="tight")
