@@ -11,20 +11,38 @@ def radial_function(r: float, n: int = 1, l: int = 0) -> float:
     return coeff * np.exp(-r / n) * (2.0 * r / n) ** l * laguerre
 
 
-# wave function
+# wave function complex
 def psi(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) -> float:
-    # sph_harm gets azimuthal angle first, then zenith
-    return spe.sph_harm(m, l, azimuth, zenith) * radial_function(r, n, l)
+    """
+    Função de onda complexa original
+    """
+    Y = spe.sph_harm(m, l, azimuth, zenith)
+    radial = radial_function(r, n, l)
+    
+    if m < 0:
+        return (-1) ** m * np.imag(Y * radial) * (2**0.5)
+    elif m > 0:
+        return (-1) ** m * np.real(Y * radial) * (2**0.5)
+    else:  # m == 0
+        return Y * radial
 
 
 # wave function, for real orbitals (used in chemistry)
 def psi_real(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) -> float:
-    if m < 0:
-        return (-1) ** m * np.imag(psi(n, l, abs(m), r, azimuth, zenith)) * (2**0.5)
+    """
+    Orbitais reais padrão da química
+    """
+    if m == 0:
+        return spe.sph_harm(0, l, azimuth, zenith).real * radial_function(r, n, l)
     elif m > 0:
-        return (-1) ** m * np.real(psi(n, l, abs(m), r, azimuth, zenith)) * (2**0.5)
-    else:  # m == 0
-        return psi(n, l, abs(m), r, azimuth, zenith)
+        y_plus = spe.sph_harm(m, l, azimuth, zenith)
+        y_minus = spe.sph_harm(-m, l, azimuth, zenith)
+        return (1/np.sqrt(2)) * (y_plus + (-1)**m * y_minus).real * radial_function(r, n, l)
+    else:  # m < 0
+        m_abs = abs(m)
+        y_plus = spe.sph_harm(m_abs, l, azimuth, zenith)
+        y_minus = spe.sph_harm(-m_abs, l, azimuth, zenith)
+        return (1/np.sqrt(2)) * (y_plus - (-1)**m_abs * y_minus).imag * radial_function(r, n, l)
 
 
 # probability given wave function output
@@ -55,3 +73,15 @@ def cartesian_prob_real(n: int, l: int, m: int, x: float, y: float, z: float) ->
     # use arccos for more stable theta near poles
     zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
     return prob(psi_real(n, l, m, r, azimuth, zenith))
+
+
+
+
+
+
+
+
+
+
+
+

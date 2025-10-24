@@ -4,6 +4,9 @@ import numpy as np
 import os
 from hydrogen import cartesian_prob, cartesian_prob_real
 from get_render_radius import get_render_radius
+from colorama import Fore, Back, Style, init
+
+init()
 
 
 def render_3d(n, l, m, mode, filename=None):
@@ -20,7 +23,6 @@ def render_3d(n, l, m, mode, filename=None):
     # Arrays para armazenar dados
     x_data, y_data, z_data, p_data = [], [], [], []
 
-    
     # Calcula probabilidades
     for x in axis_set:
         for y in axis_set:
@@ -93,13 +95,12 @@ def render_3d(n, l, m, mode, filename=None):
     ax.view_init(elev=20, azim=45)  # rotação para melhor visualização
 
     # Salva a figura
-    print("Saving")
+    print("Saving...")
     if filename is None:
         filename = f"images/{n}_{l}_{m}_{mode}_3d.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     plt.savefig(filename, dpi=600, bbox_inches="tight", facecolor="black")
 
     plt.close()
-    print("Done")
+    print("{0}Done{1}".format(Fore.GREEN, Style.RESET_ALL))
     return filename
-

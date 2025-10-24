@@ -2,9 +2,12 @@ from save_figure import save_figure
 from typing import Optional
 
 from render_3d import render_3d
-from hydrogen import cartesian_prob
+from hydrogen import cartesian_prob_real
 from get_render_radius import get_render_radius
 import numpy as np
+
+from colorama import Fore, Back, Style, init
+init()
 
 
 def render_cross_section_xz(
@@ -17,10 +20,10 @@ def render_cross_section_xz(
 ) -> str:
     """
     Seção XZ (y = plane_offset). Retorna o caminho do arquivo salvo.
-    Eixos aumentados internamente em 15%.
+
     """
     render_radius = get_render_radius(n, l)
-    # aumenta os eixos 
+    # aumenta os eixos
     render_radius_eff = render_radius * 3.5
     s = samples
     step = 2 * render_radius_eff / s
@@ -28,7 +31,7 @@ def render_cross_section_xz(
     # linhas -> z, colunas -> x (horizontal = x, vertical = z)
     arr = [
         [
-            cartesian_prob(
+            cartesian_prob_real(
                 n,
                 l,
                 m,
@@ -41,15 +44,13 @@ def render_cross_section_xz(
         for z in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"XZ: {n}-{l}-{m} Done")
+    print(f"XZ: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
 
     if not filename:
         filename = f"images/{n}-{l}-{m}-cross-section-xz.png"
 
     title = f"XZ Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
-    save_figure(
-        arr, render_radius_eff, r"x ($a_{0}$)", r"z ($a_{0}$)", title, filename
-    )
+    save_figure(arr, render_radius_eff, r"x ($a_{0}$)", r"z ($a_{0}$)", title, filename)
     return filename
 
 
@@ -63,7 +64,7 @@ def render_cross_section_xy(
 ) -> str:
     """
     Seção XY (z = plane_offset). Retorna o caminho do arquivo salvo.
-    Eixos aumentados internamente em 15%.
+
     """
     render_radius = get_render_radius(n, l)
     render_radius_eff = render_radius * 3.5
@@ -73,7 +74,7 @@ def render_cross_section_xy(
     # linhas -> y, colunas -> x (horizontal = x, vertical = y)
     arr = [
         [
-            cartesian_prob(
+            cartesian_prob_real(
                 n,
                 l,
                 m,
@@ -86,15 +87,13 @@ def render_cross_section_xy(
         for y in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"XY: {n}-{l}-{m} Done")
+    print(f"XY: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
 
     if not filename:
         filename = f"images/{n}-{l}-{m}-cross-section-xy.png"
 
     title = f"XY Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
-    save_figure(
-        arr, render_radius_eff, r"x ($a_{0}$)", r"y ($a_{0}$)", title, filename
-    )
+    save_figure(arr, render_radius_eff, r"x ($a_{0}$)", r"y ($a_{0}$)", title, filename)
     return filename
 
 
@@ -108,7 +107,7 @@ def render_cross_section_yz(
 ) -> str:
     """
     Seção YZ (x = plane_offset). Retorna o caminho do arquivo salvo.
-    Eixos aumentados internamente em 15%.
+ 
     """
     render_radius = get_render_radius(n, l)
     render_radius_eff = render_radius * 3.5
@@ -118,7 +117,7 @@ def render_cross_section_yz(
     # linhas -> z, colunas -> y (horizontal = y, vertical = z)
     arr = [
         [
-            cartesian_prob(
+            cartesian_prob_real(
                 n,
                 l,
                 m,
@@ -131,15 +130,13 @@ def render_cross_section_yz(
         for z in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"YZ: {n}-{l}-{m} Done")
+    print(f"YZ: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
 
     if not filename:
         filename = f"images/{n}-{l}-{m}-cross-section-yz.png"
 
     title = f"YZ Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
-    save_figure(
-        arr, render_radius_eff, r"y ($a_{0}$)", r"z ($a_{0}$)", title, filename
-    )
+    save_figure(arr, render_radius_eff, r"y ($a_{0}$)", r"z ($a_{0}$)", title, filename)
     return filename
 
 
@@ -172,5 +169,7 @@ def render_orbital(
             n, l, m, filename=filename, samples=samples, plane_offset=plane_offset
         )
     if plane == "3d":
-        return render_3d(n, l, m, mode="real", filename=f"images/{n}-{l}-{m}/{n}-{l}-{m}-3d-real.png")
-    raise ValueError("Invalid plane. Use 'xz', 'xy' or 'yz'.")
+        return render_3d(
+            n, l, m, mode="real", filename=f"images/{n}-{l}-{m}/{n}-{l}-{m}-3d-real.png"
+        )
+    raise ValueError("{0}Invalid plane. Use 'xz', 'xy' or 'yz'.".format(Fore.RED))
