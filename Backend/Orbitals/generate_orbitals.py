@@ -1,9 +1,41 @@
+from typing import Optional
 from render_cross_section import render_cross_section
 
 
-def orbitals_generator(n: int, l: int, m: int) -> str:
-
+def orbitals_generator(
+    n: int,
+    l: int,
+    m: int,
+    projection: str,
+    plane_offset: float = 0.0,
+    samples: int = 400,
+    filename: Optional[str] = None,
+) -> str:
+    """
+    Gera seção do orbital no plano projection in {"xz","xy","yz"}.
+    plane_offset: deslocamento na coordenada perpendicular ao plano
+      - plane='xy' -> plane_offset é z
+      - plane='xz' -> plane_offset é y
+      - plane='yz' -> plane_offset é x
+    Retorna o caminho do arquivo gerado.
+    """
+    if filename is None:
+        filename = f"images/{n}-{l}-{m}-cross-section/{n}-{l}-{m}-cross-section-{projection}.png"
     return render_cross_section(
-        n, l, m, f"Orbitals/images/{n}-{l}-{m}-cross-section.png"
+        n,
+        l,
+        m,
+        plane=projection,
+        filename=filename,
+        samples=samples,
+        plane_offset=plane_offset,
     )
 
+
+# exemplo de teste (não roda em import quando usar API; execute manualmente se quiser)
+if __name__ == "__main__":
+    # gera fatias XZ e YZ normais e uma fatia XY deslocada para visualizar o p_z
+    n,l,m = 2,1,0
+    orbitals_generator(n, l, m, "xz", plane_offset=0.0)
+    orbitals_generator(n, l, m, "yz", plane_offset=0.0)
+    orbitals_generator(n, l, m, "xy", plane_offset=0.05)
