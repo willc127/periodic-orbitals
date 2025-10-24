@@ -1,5 +1,5 @@
 from typing import Optional
-from render_cross_section import render_cross_section
+from render_orbital import render_orbital
 
 
 def orbitals_generator(
@@ -20,8 +20,9 @@ def orbitals_generator(
     Retorna o caminho do arquivo gerado.
     """
     if filename is None:
-        filename = f"images/{n}-{l}-{m}-cross-section/{n}-{l}-{m}-cross-section-{projection}.png"
-    return render_cross_section(
+        filename = f"images/{n}-{l}-{m}/{n}-{l}-{m}-cross-section-{projection}.png"
+        print(f"Rendering Orbitals for ({n}, {l}, {m}) at {projection}, saving to default filename {filename}")
+    return render_orbital(
         n,
         l,
         m,
@@ -34,8 +35,13 @@ def orbitals_generator(
 
 # exemplo de teste (não roda em import quando usar API; execute manualmente se quiser)
 if __name__ == "__main__":
-    # gera fatias XZ e YZ normais e uma fatia XY deslocada para visualizar o p_z
-    n,l,m = 2,1,0
-    orbitals_generator(n, l, m, "xz", plane_offset=0.0)
-    orbitals_generator(n, l, m, "yz", plane_offset=0.0)
-    orbitals_generator(n, l, m, "xy", plane_offset=0.05)
+    # n = 1
+    # planes = ["xz", "yz", "xy", "3d"]
+    # for n in range(0, n + 1):
+    #     for l in range(0, n):
+    #         for m in range(-l, l + 1):
+    #             for plane in planes:
+    #                 plane_offset = 0.0 if plane != "xy" else 0.05
+    #                 orbitals_generator(n, l, m, plane, plane_offset=plane_offset)
+
+    orbitals_generator(3, 2, 1, "yz", plane_offset=0.05)

@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.special as spe
 
+
 # radial function
 def radial_function(r: float, n: int = 1, l: int = 0) -> float:
     coeff = np.sqrt(
@@ -33,16 +34,24 @@ def prob(res: float) -> float:
 
 # final function we are trying to calculate, returns prob(psi(...)) given cartesian coordiantes
 def cartesian_prob(n: int, l: int, m: int, x: float, y: float, z: float) -> float:
-    r = (x**2 + y**2 + z**2) ** 0.5
+    r = (x * x + y * y + z * z) ** 0.5
+    if r < 1e-10:  # near origin
+        return 0.0 if l > 0 else prob(psi(n, l, m, 0, 0, 0))
+
     azimuth = np.arctan2(y, x)
-    zenith = np.arctan2((x**2 + y**2) ** 0.5, z)
+    # use arccos for more stable theta near poles
+    zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
     return prob(psi(n, l, m, r, azimuth, zenith))
 
 
 # final function we are trying to calculate, for real orbitals
 # returns prob(psi_real(...)) given cartesian coordiantes
 def cartesian_prob_real(n: int, l: int, m: int, x: float, y: float, z: float) -> float:
-    r = (x**2 + y**2 + z**2) ** 0.5
+    r = (x * x + y * y + z * z) ** 0.5
+    if r < 1e-10:  # near origin
+        return 0.0 if l > 0 else prob(psi_real(n, l, m, 0, 0, 0))
+
     azimuth = np.arctan2(y, x)
-    zenith = np.arctan2((x**2 + y**2) ** 0.5, z)
+    # use arccos for more stable theta near poles
+    zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
     return prob(psi_real(n, l, m, r, azimuth, zenith))

@@ -1,99 +1,105 @@
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import numpy as np
 import os
 from hydrogen import cartesian_prob, cartesian_prob_real
 from get_render_radius import get_render_radius
 
 
 def render_3d(n, l, m, mode, filename=None):
-  print('Rendering ' + mode + ' 3d model for (' + str(n) + ', ' + str(l) +
-        ', ' + str(m) + ')')
+    print(f"Rendering {mode} 3d model for ({n}, {l}, {m})")
 
-  render_radius = get_render_radius(n, l) + 2
+    # Aumenta o raio de renderização para melhor visualização 3D
+    render_radius = get_render_radius(n, l)
 
-  # width, height, and depth in number of steps
-  s = 100
+    # Reduz número de pontos para melhor performance
+    s = 60  # resolution in each dimension
 
-  # step = size of pixel in a_0
-  step = 2 * render_radius / s
+    axis_set = np.linspace(-render_radius, render_radius, s)
 
-  # generate list of x, y, and z coordinates
-  axis_set = [(float(i) - s / 2) * step for i in range(s + 1)]
+    # Arrays para armazenar dados
+    x_data, y_data, z_data, p_data = [], [], [], []
 
-  # lists to dump data
-  x_data, y_data, z_data, p_data = [], [], [], []
+    
+    # Calcula probabilidades
+    for x in axis_set:
+        for y in axis_set:
+            for z in axis_set:
+                if mode == "real":
+                    p = cartesian_prob_real(n, l, m, x, y, z)
+                else:  # complex
+                    p = cartesian_prob(n, l, m, x, y, z)
 
-  # keep track of progress
-  point_count = len(axis_set)**3
-  current_point = 0
+                # Só adiciona pontos com probabilidade significativa
+                if p > 1e-5:  # threshold ajustável
+                    p_data.append(p)
+                    x_data.append(x)
+                    y_data.append(y)
+                    z_data.append(z)
+    print("Probabilities calculated, rendering 3D scatter plot")
 
-  print('Calculating probabilities')
-  # make data
-  for x in axis_set:
-    for y in axis_set:
-      for z in axis_set:
-        # calc p
-        if mode == 'real':
-          p = cartesian_prob_real(n, l, m, x, y, z)
-        elif mode == 'complex':
-          p = cartesian_prob(n, l, m, x, y, z)
+    # Configuração da figura com fundo preto
+    fig = plt.figure(dpi=600, facecolor="black")
+    ax = fig.add_subplot(111, projection="3d")
+    ax.set_facecolor("black")
 
-        # append data
-        p_data.append(p)
-        x_data.append(x)
-        y_data.append(y)
-        z_data.append(z)
+    # Normalização e colormap
+    max_p = max(p_data)
+    norm = mcolors.PowerNorm(gamma=0.5, vmin=0, vmax=max_p)
 
-        current_point += 1
+    # Plot com transparência baseada na probabilidade
+    ax.scatter3D(
+        x_data,
+        y_data,
+        z_data,
+        c=p_data,
+        cmap="magma",
+        norm=norm,
+        alpha=0.6,  # opacidade
+        s=2,  # tamanho dos pontos
+        edgecolors="none",
+        depthshade=True,
+    )
 
-    # log progress
-    print('Calculated ' + str(round(current_point / point_count * 100)) + '% of points')
+    # Configuração visual
+    ax.set_xlabel(r"x ($a_{0}$)", color="white")
+    ax.set_ylabel(r"y ($a_{0}$)", color="white")
+    ax.set_zlabel(r"z ($a_{0}$)", color="white")
+    ax.set_title(
+        f"3D View of ({n}, {l}, {m}) {mode.capitalize()} Hydrogen Orbital",
+        color="white",
+        pad=20,
+    )
 
-  print('Rendering figure')
-  # find net probability
-  sum_p = sum(p_data)
+    # Cor dos ticks e grids
+    ax.tick_params(colors="white")
+    for axis in [ax.xaxis, ax.yaxis, ax.zaxis]:
+        axis.label.set_color("white")
+        axis.line.set_color("white")
 
-  # normalize data such that sum(p) = 1
-  p_data = [p / sum_p for p in p_data]
+    # Remove grid e planos de fundo
+    ax.grid(False)
+    ax.xaxis.pane.fill = False
+    ax.yaxis.pane.fill = False
+    ax.zaxis.pane.fill = False
+    ax.xaxis.pane.set_edgecolor("black")
+    ax.yaxis.pane.set_edgecolor("black")
+    ax.zaxis.pane.set_edgecolor("black")
 
-  # find max p
-  max_p = max(p_data)
+    # Define limites e rotação
+    ax.set_xlim([-render_radius, render_radius])
+    ax.set_ylim([-render_radius, render_radius])
+    ax.set_zlim([-render_radius, render_radius])
+    ax.view_init(elev=20, azim=45)  # rotação para melhor visualização
 
-  # make figure
-  plt.figure(dpi=600)
-  ax = plt.axes(projection='3d')
+    # Salva a figura
+    print("Saving")
+    if filename is None:
+        filename = f"images/{n}_{l}_{m}_{mode}_3d.png"
+    os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
+    plt.savefig(filename, dpi=600, bbox_inches="tight", facecolor="black")
 
-  # plot
-  scatter = ax.scatter3D(x_data,
-                         y_data,
-                         z_data,
-                         edgecolors='none',
-                         depthshade=False)
+    plt.close()
+    print("Done")
+    return filename
 
-  # color
-  scatter.set_facecolors([[
-    max((x_data[p[0]] + render_radius) / (2 * render_radius), 0),
-    max((y_data[p[0]] + render_radius) / (2 * render_radius), 0),
-    max((z_data[p[0]] + render_radius) / (2 * render_radius), 0),
-    (p[1] / max_p)**0.5 / 15
-  ] for p in enumerate(p_data)])
-
-  # labels
-  plt.title(f'Electron Cloud of ({n}, {l}, {m}) {mode.capitalize()} Hydrogen Orbital')
-  ax.set_xlabel(r'x ($a_{0}$)')
-  ax.set_ylabel(r'y ($a_{0}$)')
-  ax.set_zlabel(r'z ($a_{0}$)')
-
-  # save
-  print('Saving')
-  if filename is None:
-    filename = f'orbit_{n}_{l}_{m}_{mode}.png'
-  # garante que diretório exista
-  os.makedirs(os.path.dirname(filename) or '.', exist_ok=True)
-  plt.savefig(filename, dpi=600, bbox_inches='tight')
-
-  # close
-  print('Closing')
-  plt.close()
-
-  print('Done')
-  return filename
