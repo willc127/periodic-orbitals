@@ -10,7 +10,7 @@ init()
 
 
 def render_3d(n, l, m, mode, filename=None):
-    print(f"Rendering {mode} 3d model for ({n}, {l}, {m})")
+    print(f"Renderizando modelo 3D {mode} para ({n}, {l}, {m})")
 
     # Aumenta o raio de renderização para melhor visualização 3D
     render_radius = get_render_radius(n, l)
@@ -38,8 +38,7 @@ def render_3d(n, l, m, mode, filename=None):
                     x_data.append(x)
                     y_data.append(y)
                     z_data.append(z)
-    print("Probabilities calculated, rendering 3D scatter plot")
-
+    
     # Configuração da figura com fundo preto
     fig = plt.figure(dpi=600, facecolor="black")
     ax = fig.add_subplot(111, projection="3d")
@@ -68,7 +67,7 @@ def render_3d(n, l, m, mode, filename=None):
     ax.set_ylabel(r"y ($a_{0}$)", color="white")
     ax.set_zlabel(r"z ($a_{0}$)", color="white")
     ax.set_title(
-        f"3D View of ({n}, {l}, {m}) {mode.capitalize()} Hydrogen Orbital",
+        f"Visão 3D do Orbital de Hidrogênio ({n}, {l}, {m}) {mode.capitalize()}",
         color="white",
         pad=20,
     )
@@ -95,12 +94,12 @@ def render_3d(n, l, m, mode, filename=None):
     ax.view_init(elev=20, azim=45)  # rotação para melhor visualização
 
     # Salva a figura
-    print("Saving...")
+    print("Salvando...")
     if filename is None:
         filename = f"images/{n}_{l}_{m}_{mode}_3d.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     plt.savefig(filename, dpi=600, bbox_inches="tight", facecolor="black")
 
     plt.close()
-    print("{0}Done{1}".format(Fore.GREEN, Style.RESET_ALL))
+    print("{0}Concluído{1}\n".format(Fore.GREEN, Back.WHITE, Style.RESET_ALL))
     return filename

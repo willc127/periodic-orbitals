@@ -44,12 +44,13 @@ def render_cross_section_xz(
         for z in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"XZ: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
+    
+    print(f"Plano XZ: {n}-{l}-{m} {Fore.GREEN}Concluído{Style.RESET_ALL}")
 
     if not filename:
-        filename = f"images/{n}-{l}-{m}-cross-section-xz.png"
+        filename = f"Backend/images/{n}-{l}-{m}-cross-section-xz.png"
 
-    title = f"XZ Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
+    title = f"Plano XZ do Orbital de Hidrogênio ({n}, {l}, {m})"
     save_figure(arr, render_radius_eff, r"x ($a_{0}$)", r"z ($a_{0}$)", title, filename)
     return filename
 
@@ -87,12 +88,13 @@ def render_cross_section_xy(
         for y in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"XY: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
+    
+    print(f"Plano XY: {n}-{l}-{m} {Fore.GREEN}Concluído{Style.RESET_ALL}")
 
     if not filename:
-        filename = f"images/{n}-{l}-{m}-cross-section-xy.png"
+        filename = f"Backend/images/{n}-{l}-{m}-cross-section-xy.png"
 
-    title = f"XY Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
+    title = f"Plano XY do Orbital de Hidrogênio ({n}, {l}, {m})"
     save_figure(arr, render_radius_eff, r"x ($a_{0}$)", r"y ($a_{0}$)", title, filename)
     return filename
 
@@ -130,12 +132,13 @@ def render_cross_section_yz(
         for z in range(s + 1)
     ]
     arr = np.asarray(arr, dtype=float)
-    print(f"YZ: {n}-{l}-{m} {Fore.GREEN}Done{Style.RESET_ALL}")
+    
+    print(f"Plano YZ: {n}-{l}-{m} {Fore.GREEN}Concluído{Style.RESET_ALL}")
 
     if not filename:
-        filename = f"images/{n}-{l}-{m}-cross-section-yz.png"
+        filename = f"Backend/images/{n}-{l}-{m}-cross-section-yz.png"
 
-    title = f"YZ Plane Cross Section of a ({n}, {l}, {m}) Hydrogen Orbital"
+    title = f"Plano YZ do Orbital de Hidrogênio ({n}, {l}, {m})"
     save_figure(arr, render_radius_eff, r"y ($a_{0}$)", r"z ($a_{0}$)", title, filename)
     return filename
 
@@ -150,26 +153,27 @@ def render_orbital(
     plane_offset: float = 0.0,  # offset aplicado perpendicular ao plano
 ) -> str:
     """
-    Dispatcher: plane in {"xz", "xy", "yz"}.
+    planos em {"xz", "xy", "yz"}.
     plane_offset: se plane='xy', offset é z; se 'xz' offset é y; se 'yz' offset é x.
     """
     plane = plane.lower()
     if plane == "xz":
-        print(f"Rendering XZ cross section for ({n}, {l}, {m})")
+        print(f"Renderizando seção cruzada XZ para ({n}, {l}, {m})")
         return render_cross_section_xz(
             n, l, m, filename=filename, samples=samples, plane_offset=plane_offset
         )
     if plane == "xy":
+        print(f"Renderizando seção cruzada XY para ({n}, {l}, {m})")
         return render_cross_section_xy(
             n, l, m, filename=filename, samples=samples, plane_offset=plane_offset
         )
     if plane == "yz":
-        print(f"Rendering YZ cross section for ({n}, {l}, {m})")
+        print(f"Renderizando seção cruzada YZ para ({n}, {l}, {m})")
         return render_cross_section_yz(
             n, l, m, filename=filename, samples=samples, plane_offset=plane_offset
         )
     if plane == "3d":
         return render_3d(
-            n, l, m, mode="real", filename=f"images/{n}-{l}-{m}/{n}-{l}-{m}-3d-real.png"
+            n, l, m, mode="real", filename=f"Backend/images/{n}-{l}-{m}/{n}-{l}-{m}-3d-real.png"
         )
-    raise ValueError("{0}Invalid plane. Use 'xz', 'xy' or 'yz'.".format(Fore.RED))
+    raise ValueError("{0} Visualização inválida. Use '3d', 'xz', 'xy' ou 'yz'.".format(Fore.RED))
