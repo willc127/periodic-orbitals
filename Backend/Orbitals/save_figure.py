@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 
 def save_figure(
-    arr, render_radius: float, xlabel: str, ylabel: str, title: str, filename: str
+    arr, render_radius: float, xlabel: str, ylabel: str, title: str, filename: str, cmap = "magma"
 ) -> None:
     from matplotlib import cm as mpl_cm
     import matplotlib.colors as mcolors
@@ -31,7 +31,7 @@ def save_figure(
         norm = colors.PowerNorm(1 / 3, vmin=thresh, vmax=vmax if vmax > 0 else 1.0)
 
     # prepara colormap e garante cor "under" (valores < vmin) preta
-    base_cmap = mpl_cm.get_cmap("magma")
+    base_cmap = mpl_cm.get_cmap(cmap)
     try:
         cmap = base_cmap
         cmap.set_under("black")

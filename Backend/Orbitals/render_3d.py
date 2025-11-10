@@ -9,16 +9,38 @@ from colorama import Fore, Back, Style, init
 init()
 
 
-def render_3d(n, l, m, mode, filename=None):
+def render_3d(n, l, m, mode, filename=None, cmap="magma"):
     print(f"Renderizando modelo 3D {mode} para ({n}, {l}, {m})")
 
     # Aumenta o raio de renderização para melhor visualização 3D
     render_radius = get_render_radius(n, l)
 
     # Reduz número de pontos para melhor performance
-    s = 60  # resolution in each dimension
-
-    axis_set = np.linspace(-render_radius, render_radius, s)
+    # Define limites e rotação
+    render_radius_eff = render_radius
+    match n:
+        case 1:
+            render_radius_eff = render_radius / 1.0
+            s = 100  # resolution in each dimension
+        case 2:
+            render_radius_eff = render_radius / 1.25
+            s = 100  
+        case 3:
+            render_radius_eff = render_radius / 1.5
+            s = 100  
+        case 4:
+            render_radius_eff = render_radius / 2.25
+            s = 120  
+        case 5:
+            render_radius_eff = render_radius / 5
+            s = 150  
+        case 6:
+            render_radius_eff = render_radius / 5
+            s = 150  
+        case 7:
+            render_radius_eff = render_radius / 5
+            s = 150  
+    axis_set = np.linspace(-render_radius_eff, render_radius_eff, s)
 
     # Arrays para armazenar dados
     x_data, y_data, z_data, p_data = [], [], [], []
@@ -38,7 +60,7 @@ def render_3d(n, l, m, mode, filename=None):
                     x_data.append(x)
                     y_data.append(y)
                     z_data.append(z)
-    
+
     # Configuração da figura com fundo preto
     fig = plt.figure(dpi=600, facecolor="black")
     ax = fig.add_subplot(111, projection="3d")
@@ -54,9 +76,9 @@ def render_3d(n, l, m, mode, filename=None):
         y_data,
         z_data,
         c=p_data,
-        cmap="magma",
+        cmap=cmap,
         norm=norm,
-        alpha=0.6,  # opacidade
+        alpha=0.075,  # opacidade
         s=2,  # tamanho dos pontos
         edgecolors="none",
         depthshade=True,
@@ -68,8 +90,7 @@ def render_3d(n, l, m, mode, filename=None):
     ax.set_zlabel(r"z ($a_{0}$)", color="white")
     ax.set_title(
         f"Visão 3D do Orbital de Hidrogênio ({n}, {l}, {m}) {mode.capitalize()}",
-        color="white",
-        pad=20,
+        color="white"
     )
 
     # Cor dos ticks e grids
@@ -87,19 +108,21 @@ def render_3d(n, l, m, mode, filename=None):
     ax.yaxis.pane.set_edgecolor("black")
     ax.zaxis.pane.set_edgecolor("black")
 
-    # Define limites e rotação
-    ax.set_xlim([-render_radius, render_radius])
-    ax.set_ylim([-render_radius, render_radius])
-    ax.set_zlim([-render_radius, render_radius])
-    ax.view_init(elev=20, azim=45)  # rotação para melhor visualização
+
+    ax.set_xlim([-render_radius_eff, render_radius_eff])
+    ax.set_ylim([-render_radius_eff, render_radius_eff])
+    ax.set_zlim([-render_radius_eff, render_radius_eff])
+    ax.set_box_aspect([1, 1, 1])  # mantém o cubo proporcional
+
+    ax.view_init(elev=15, azim=60)  # rotação para melhor visualização
 
     # Salva a figura
     print("Salvando...")
     if filename is None:
         filename = f"images/{n}_{l}_{m}_{mode}_3d.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
-    plt.savefig(filename, dpi=600, bbox_inches="tight", facecolor="black")
+    plt.savefig(filename, dpi=600, facecolor="black")
 
     plt.close()
-    print("{0}Concluído{1}\n".format(Fore.GREEN, Back.WHITE, Style.RESET_ALL))
+    print("{0}Concluído{1}\n".format(Fore.WHITE, Back.GREEN, Style.RESET_ALL))
     return filename
