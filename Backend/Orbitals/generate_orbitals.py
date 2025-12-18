@@ -111,8 +111,8 @@ def orbitals_generator(
 if __name__ == "__main__":
 
     # # número de combinações desde n=1: N(N+1)(2N+1)/6 --> O(N^3)
-    n_min: int = 3
-    n_max: int = 3
+    n_min: int = 1
+    n_max: int = 1
     total_combinacoes: int = (n_max * (n_max + 1) * (2 * n_max + 1)) // 6
     total_imagens: int = total_combinacoes * 4
     planos: list[str] = ["xz", "yz", "xy", "3d"]
@@ -144,9 +144,4 @@ if __name__ == "__main__":
     print(f"\n{Fore.GREEN}{Back.WHITE}------------------------------")
     print(f"Processo concluído!\n")
     print(f"{Fore.GREEN}{Back.WHITE}------------------------------{Style.RESET_ALL}")
-    # orbitals_generator(2,0,0, "3d", cmap="plasma")
-    # orbitals_generator(3,0,0, "3d", cmap="plasma")
-    # orbitals_generator(4,0,0, "3d", cmap="plasma")
-    # orbitals_generator(5,0,0, "3d", cmap="plasma")
-    # orbitals_generator(3,1,0, "3d", cmap="plasma")
-    # orbitals_generator(4,2,1, "3d", cmap="plasma")
+
