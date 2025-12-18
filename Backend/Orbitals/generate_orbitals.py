@@ -1,11 +1,54 @@
 from typing import Optional
 from render_orbital import render_orbital
+from grouping_figures import create_grouped_figure
 import os
 from tqdm import tqdm
 from colorama import Fore, Back, Style, init
+from pathlib import Path
 
 # Inicializa colorama para suportar cores no terminal
 init()
+
+
+def check_and_group_orbital(n: int, l: int, m: int, images_folder: str) -> bool:
+    """
+    Verifica se todas as 4 imagens de um orbital foram geradas e agrupa se estiverem prontas.
+
+    Args:
+        n, l, m: Números quânticos do orbital
+        images_folder: Caminho da pasta contendo as imagens
+
+    Returns:
+        bool: True se agrupamento foi bem-sucedido, False caso contrário
+    """
+    orbital_name = f"{n}-{l}-{m}"
+    orbital_folder = Path(images_folder) / orbital_name
+
+    # Verificar se todos os 4 arquivos necessários existem
+    required_files = [
+        f"{orbital_name}-3d-real.png",
+        f"{orbital_name}-cross-section-xz.png",
+        f"{orbital_name}-cross-section-yz.png",
+        f"{orbital_name}-cross-section-xy.png",
+    ]
+
+    if all((orbital_folder / file).exists() for file in required_files):
+        try:
+            grouped_folder = Path(images_folder) / "grouped"
+            grouped_folder.mkdir(parents=True, exist_ok=True)
+            output_path = grouped_folder / f"{orbital_name}-combined.png"
+
+            create_grouped_figure(str(images_folder), orbital_name, str(output_path))
+            print(
+                f"{Fore.CYAN}  → Agrupadas 4 imagens para ({n},{l},{m}){Style.RESET_ALL}"
+            )
+            return True
+        except Exception as e:
+            print(
+                f"{Fore.YELLOW}  ⚠ Erro ao agrupar ({n},{l},{m}): {e}{Style.RESET_ALL}"
+            )
+            return False
+    return False
 
 
 def orbitals_generator(
@@ -68,8 +111,8 @@ def orbitals_generator(
 if __name__ == "__main__":
 
     # # número de combinações desde n=1: N(N+1)(2N+1)/6 --> O(N^3)
-    n_min: int = 1
-    n_max: int = 1
+    n_min: int = 3
+    n_max: int = 3
     total_combinacoes: int = (n_max * (n_max + 1) * (2 * n_max + 1)) // 6
     total_imagens: int = total_combinacoes * 4
     planos: list[str] = ["xz", "yz", "xy", "3d"]
@@ -90,11 +133,17 @@ if __name__ == "__main__":
                     atual += 1
                     barra_progresso.update(1)
                     print()
-                    
+
+                # Depois de gerar todas as 4 imagens de um orbital, agrupar
+                backend_folder = Path(__file__).parent.parent
+                images_folder = backend_folder / "images"
+                check_and_group_orbital(n, l, m, str(images_folder))
 
     barra_progresso.close()
 
-    # orbitals_generator(1,0,0, "3d", cmap="plasma")
+    print(f"\n{Fore.GREEN}{Back.WHITE}------------------------------")
+    print(f"Processo concluído!\n")
+    print(f"{Fore.GREEN}{Back.WHITE}------------------------------{Style.RESET_ALL}")
     # orbitals_generator(2,0,0, "3d", cmap="plasma")
     # orbitals_generator(3,0,0, "3d", cmap="plasma")
     # orbitals_generator(4,0,0, "3d", cmap="plasma")
