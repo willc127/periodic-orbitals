@@ -140,7 +140,7 @@ def render_3d(n, l, m, mode, filename=None, cmap="magma"):
     if filename is None:
         filename = f"images/{n}_{l}_{m}_{mode}_3d.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
-    plt.savefig(filename, dpi=600, facecolor="black", bbox_inches="tight")
+    plt.savefig(filename, dpi=600, facecolor="black", bbox_inches="tight", pad_inches=0.1)
     plt.close()
     print("{0}Concluído{1}\n".format(Fore.WHITE, Back.GREEN, Style.RESET_ALL))
     return filename
