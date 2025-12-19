@@ -34,10 +34,10 @@ def render_3d(n, l, m, mode, filename=None, cmap="magma"):
             render_radius_eff = render_radius * 1.5
             s = 150
         case 6:
-            render_radius_eff = render_radius * 1.0
+            render_radius_eff = render_radius * 1.5
             s = 150
         case 7:
-            render_radius_eff = render_radius * 1.0
+            render_radius_eff = render_radius * 1.5
             s = 150
         case _:
             render_radius_eff = render_radius * 1.0

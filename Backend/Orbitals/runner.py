@@ -40,7 +40,7 @@ def main(n_min: int = 6, n_max: int = 7, cmap: str = "plasma"):
     print(f"{Fore.GREEN}{Back.WHITE}------------------------------{Style.RESET_ALL}")
 
     # Migrar imagens para o banco de dados
-    migrate_images_to_db("Backend/images")
+    # migrate_images_to_db("Backend/images")
 
 
 if __name__ == "__main__":

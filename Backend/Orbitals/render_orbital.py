@@ -24,8 +24,10 @@ def _render_radius_eff(n: int, l: int) -> float:
             return render_radius * 2.0
         case 5:
             return render_radius * 1.5
-        case 6 | 7:
-            return render_radius * 1.0
+        case 6:
+            return render_radius * 1.75
+        case 7:
+            return render_radius * 1.75
         case _:
             return render_radius * 1.0
 
