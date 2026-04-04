@@ -46,7 +46,7 @@ def main(n_min: int, n_max: int, cmap: str = "plasma") -> None:
 
                 # Depois de gerar todas as 4 imagens de um orbital, agrupar
                 backend_folder = Path(__file__).parent.parent
-                images_folder = backend_folder / "images"
+                images_folder = backend_folder / "images" / "grouped"
                 check_and_group_orbital(n, l, m, str(images_folder))
 
     barra_progresso.close()

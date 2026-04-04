@@ -76,8 +76,11 @@ def save_figure(
     ax.set_ylabel(ylabel, color="white", fontsize=14)
     ax.set_title(title, color="white", fontsize=16)
 
-    # Cores dos ticks
+    # Cores dos ticks e spines
     ax.tick_params(colors="white")
+    for spine in ax.spines.values():
+        spine.set_edgecolor("white")
+        spine.set_linewidth(1.5)
 
     # Salva a figura
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)

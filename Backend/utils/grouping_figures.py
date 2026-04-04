@@ -74,9 +74,9 @@ def batch_create_grouped_figures(
     """
     images_path = Path(images_folder)
 
-    # Se output_folder não foi especificado, criar uma pasta "grouped" no mesmo nível
+    # Se output_folder não foi especificado, criar uma pasta "grouped" em Backend/images
     if output_folder is None:
-        output_folder_path = images_path / "grouped"
+        output_folder_path = images_path.parent / "grouped"
     else:
         output_folder_path = Path(output_folder)
 

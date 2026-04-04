@@ -104,7 +104,7 @@ def render_3d(
     ax.scatter3D(
         x_data,
         y_data,
-        z_data,
+        z_data, # pyright: ignore[reportArgumentType]
         c=p_data,
         cmap=cmap,
         norm=norm,
@@ -134,6 +134,14 @@ def render_3d(
         axis.label.set_color("white")
         axis.line.set_color("white")
 
+    # Configura painéis para fundo preto
+    ax.xaxis.pane.set_facecolor("black") # pyright: ignore[reportAttributeAccessIssue]
+    ax.yaxis.pane.set_facecolor("black") # pyright: ignore[reportAttributeAccessIssue]
+    ax.zaxis.pane.set_facecolor("black")
+    ax.xaxis.pane.set_edgecolor("black") # pyright: ignore[reportAttributeAccessIssue]
+    ax.yaxis.pane.set_edgecolor("black") # pyright: ignore[reportAttributeAccessIssue]
+    ax.zaxis.pane.set_edgecolor("black")
+
     # Remove grid e planos de fundo
     ax.grid(False)
     ax.set_xlim([-render_radius_eff, render_radius_eff])
@@ -143,18 +151,16 @@ def render_3d(
     ax.invert_xaxis()  # inverte o eixo x para melhor visualização
     ax.view_init(elev=30, azim=60)  # rotação para melhor visualização
 
-    # Ajusta posicionamento para reduzir margens em torno do axes
-    fig.subplots_adjust(left=0.02, right=0.98, top=1, bottom=0.02)
-    ax.set_position((0.01, 0.01, 0.98, 0.98))
+    # Ajusta posicionamento mantendo margens adequadas para os eixos
+    fig.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.1)
+    fig.tight_layout()
 
-    # Salva a figura com mínimo padding (bbox_inches='tight' e pad_inches=0)
+    # Salva a figura com fundo preto preservado
     print("Salvando...")
     if filename is None:
         filename = f"images/cross-section-and-3d/{n}_{l}_{m}_{mode}_3d.png"
     os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
-    plt.savefig(
-        filename, dpi=600, facecolor="black", bbox_inches="tight", pad_inches=0.1
-    )
+    plt.savefig(filename, dpi=600, facecolor="black", edgecolor="none", pad_inches=0.2)
     plt.close()
     print(f"{Fore.WHITE}{Back.GREEN}Concluído{Style.RESET_ALL}\n")
     return filename

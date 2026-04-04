@@ -42,7 +42,7 @@ def gerar_projecoes_agrupadas(
 
     # Depois de gerar todas as 4 imagens de um orbital, agrupar
     backend_folder = Path(__file__).parent.parent
-    images_folder = backend_folder / "images"
+    images_folder = backend_folder / "images" / "cross-section-and-3d"
     check_and_group_orbital(n, l, m, str(images_folder))
 
 

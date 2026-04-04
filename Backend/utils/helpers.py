@@ -34,7 +34,7 @@ def check_and_group_orbital(n: int, l: int, m: int, images_folder: str) -> bool:
 
     if all((orbital_folder / file).exists() for file in required_files):
         try:
-            grouped_folder = Path(images_folder) / "grouped"
+            grouped_folder = Path("Backend") / "images" / "grouped"
             grouped_folder.mkdir(parents=True, exist_ok=True)
             output_path = grouped_folder / f"{orbital_name}-combined.png"
 
