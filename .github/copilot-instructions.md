@@ -103,6 +103,7 @@ Para boas práticas completas sobre segurança, DevOps, testes, Git workflow e d
 - Commits com mensagens descritivas: `feat:`, `fix:`, `docs:`, `test:`, `refactor:`.
 - Mínimo 80% coverage no backend, 75% no frontend.
 - Caso não encontre nenhuma solução para algum problema dê sugestões para que o usuário possa resolver o problema, como por exemplo: "Tente usar a função X para resolver o problema Y" ou "Considere refatorar a função Z para melhorar a legibilidade do código".
-- 
+- Após aplicar as instruções, deve verificar os erros e sugerir correções, caso haja algum erro, ou sugerir melhorias, caso haja alguma melhoria a ser feita.
+- Ao gerar variáveis, funções, classes, métodos, arquivos ou qualquer outro tipo de código, deve usar nomes descritivos e seguir as convenções de nomenclatura da linguagem em português (pt-BR).
 
 ---

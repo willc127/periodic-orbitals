@@ -50,3 +50,10 @@ images
 
 # Database
 orbitals.db
+
+# Ambiente
+.env
+.env.example
+
+# github
+.github

@@ -1,0 +1,3 @@
+- [ ] verificar eixos das imagens de seção transversal
+- [ ] verificar o render da figura 3d
+- [ ] arrumar os erros da migração
