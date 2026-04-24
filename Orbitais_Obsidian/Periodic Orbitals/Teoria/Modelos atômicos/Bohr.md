@@ -1,0 +1,5 @@
+A solução para esse impasse foi delineada por Niels Bohr mediante a introdução de postulados quânticos. Bohr postulou a existência de _estados estacionários de energia discretos_ nos quais os elétrons poderiam orbitar o núcleo sem emissão de radiação eletromagnética. A transição entre esses níveis energéticos dar-se-ia por meio de saltos quânticos, acompanhados da absorção ou emissão de fótons com energia equivalente à diferença entre os estados envolvidos.
+
+![[Átomo de Bohr|500]]
+
+Embora o modelo de Bohr-Sommerfeld tenha obtido êxito notável na descrição do espectro do átomo de hidrogênio e introduzido o número quântico principal, sua aplicabilidade a sistemas multieletrônicos e sua incapacidade de explicar as intensidades espectrais e o dualismo onda-partícula tornaram-no uma etapa transitória.

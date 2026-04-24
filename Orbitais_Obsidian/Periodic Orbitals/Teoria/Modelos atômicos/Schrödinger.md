@@ -1,0 +1,5 @@
+A ruptura epistemológica definitiva ocorreu com o advento da mecânica ondulatória e da mecânica matricial, consolidadas por Erwin Schrödinger e Werner Heisenberg. A equação de Schrödinger substituiu a noção determinística de trajetória por uma função de onda, cujo módulo quadrático representa a densidade de probabilidade de localização da partícula. 
+
+![[Átomo de Schrödinger|500]]
+
+Em consonância com o princípio da incerteza de Heisenberg, que estabelece a impossibilidade de determinação simultânea e precisa da posição e do momento linear de uma partícula subatômica, o conceito de órbita foi abandonado em favor do conceito de _orbital atômico_. O orbital constitui, assim, uma região do espaço eletrostático ao redor do núcleo na qual a probabilidade de encontrar o elétron é máxima, definida por um conjunto de [[Números quânticos]] que emergem como soluções estacionárias da [[Função de onda]]. Nesse arcabouço teórico contemporâneo, o átomo é descrito não como uma estrutura mecânica rígida, mas como um sistema difuso governado por leis estatísticas, onde a materialidade cede lugar à abstração matemática da função de onda.

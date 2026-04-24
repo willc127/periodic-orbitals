@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "⚗",
+      "✨",
+      "〰",
+      "🍇",
+      "⚽"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false,
+    "useInternalPlugins": false
+  },
+  "Periodic Orbitals/Teoria": "LiBookUp",
+  "Periodic Orbitals": "LiAtom",
+  "Periodic Orbitals/Teoria/Função de onda.md": "LiActivity",
+  "Periodic Orbitals/Teoria/Modelos atômicos/Rutherford.md": "🪐",
+  "Periodic Orbitals/Teoria/Modelos atômicos/Dalton.md": "⚽",
+  "Periodic Orbitals/Teoria/Modelos atômicos/Thompson.md": "🍇",
+  "Periodic Orbitals/Teoria/Modelos atômicos/Bohr.md": "〰",
+  "Periodic Orbitals/Teoria/Modelos atômicos/Schrödinger.md": "✨",
+  "Periodic Orbitals/Teoria/Modelos atômicos/História do átomo.md": "⚗",
+  "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md": "LiActivity"
+}

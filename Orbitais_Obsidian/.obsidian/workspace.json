@@ -1,0 +1,249 @@
+{
+  "main": {
+    "id": "f46e79dbb5f515de",
+    "type": "split",
+    "children": [
+      {
+        "id": "7097cff6bf228be6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4b5aaca813e7d2f6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Equação de Schrödinger Independente do Tempo"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6d015163d9247f50",
+    "type": "split",
+    "children": [
+      {
+        "id": "118e939b350fe2d4",
+        "type": "tabs",
+        "dimension": 65.95959595959596,
+        "children": [
+          {
+            "id": "bdef205f208c6115",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "618c35b4073792d8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6fd1e260c91f3981",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      },
+      {
+        "id": "b6f7bc94fe8859de",
+        "type": "tabs",
+        "dimension": 34.04040404040404,
+        "children": [
+          {
+            "id": "ef3fb290ed022539",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "95ead108dab6c2ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "08fc3d3a3c18800a",
+        "type": "tabs",
+        "dimension": 57.720588235294116,
+        "children": [
+          {
+            "id": "7c6a290df28737e0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos"
+            }
+          },
+          {
+            "id": "b5ba6719f46d3bfc",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "A fazer.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from A fazer"
+            }
+          },
+          {
+            "id": "c94a79ca0bb39fd0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "02e9004b292ffc29",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ],
+        "currentTab": 2
+      },
+      {
+        "id": "e4337243cbaea0fa",
+        "type": "tabs",
+        "dimension": 42.279411764705884,
+        "children": [
+          {
+            "id": "db710f40b2a52a18",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 309.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
+      "markdown-importer:Abrir importador Markdown": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "omnisearch:Omnisearch": false,
+      "graph:Abrir visualização em gráfico": false
+    }
+  },
+  "active": "4b5aaca813e7d2f6",
+  "lastOpenFiles": [
+    "Imagens/radial_100.png",
+    "Imagens/radial_300.png",
+    "Imagens/radial_200.png",
+    "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md",
+    "Imagens/radial_400.png",
+    "Imagens/radial_1_0_0.png",
+    "Imagens/radial_3_0_0.png",
+    "Imagens/radial_2_0_0.png",
+    "Imagens/radial_4_0_0.png",
+    "Periodic Orbitals/Teoria/Números quânticos.md",
+    "Periodic Orbitals/Teoria/EDO.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/História do átomo.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/Schrödinger.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/Bohr.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/Thompson.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/Dalton.md",
+    "Periodic Orbitals/Teoria/Função de onda.md",
+    "Excalidraw/Átomo de Thompson.md",
+    "Excalidraw/Átomo de Schrödinger.md",
+    "Excalidraw/Átomo de Rutherford.md",
+    "Excalidraw/Átomo de Dalton.md",
+    "Excalidraw/Átomo de Bohr.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos/Rutherford.md",
+    "A fazer.md",
+    "Periodic Orbitals/Teoria/Modelos atômicos",
+    "Imagens",
+    "Periodic Orbitals/Teoria",
+    "Periodic Orbitals/Teoria/EDP.md",
+    "Untitled Kanban 1.md",
+    "Untitled Kanban.md",
+    "Periodic Orbitals",
+    "2026-02-13.md",
+    "2026-01-23.md",
+    "Excalidraw/Drawing 2026-04-21 16.17.26.excalidraw.md",
+    "19ba3c6f-46c6-4eb1-8172-9b978d9ed7e3.png",
+    "Excalidraw"
+  ]
+}
