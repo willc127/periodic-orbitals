@@ -1,0 +1,1 @@
+Em mecânica quântica, a função de onda $ψ$ não tem um significado físico direto. A quantidade fisicamente relevante é o **módulo quadrado** da função de onda, $|\psi|^2$, que representa a **densidade de probabilidade** de encontrar a partícula na posição $r$.

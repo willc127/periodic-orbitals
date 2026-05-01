@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "7097cff6bf228be6",
+        "id": "6c16cca671d47311",
         "type": "tabs",
         "children": [
           {
-            "id": "4b5aaca813e7d2f6",
+            "id": "b80edc4b0fff052d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md",
+                "file": "Periodic Orbitals/Teoria/Mecânica Quântica/Equação de Schrödinger Independente do Tempo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Equação de Schrödinger Independente do Tempo"
             }
+          },
+          {
+            "id": "f0d951a186d8c448",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Periodic Orbitals/Teoria/Mecânica Quântica/Função de onda.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Função de onda"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -96,7 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 377.5
   },
   "right": {
     "id": "95ead108dab6c2ae",
@@ -167,9 +182,19 @@
               "icon": "lucide-list",
               "title": "Sumário"
             }
+          },
+          {
+            "id": "59f967828d370b61",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {},
+              "icon": "smart-connections",
+              "title": "Connections"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       },
       {
         "id": "e4337243cbaea0fa",
@@ -190,8 +215,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 309.5,
-    "collapsed": true
+    "width": 309.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,49 +225,62 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "bases:Criar nova base": false,
-      "markdown-importer:Abrir importador Markdown": false,
       "obsidian-excalidraw-plugin:New drawing": false,
       "omnisearch:Omnisearch": false,
-      "graph:Abrir visualização em gráfico": false
+      "graph:Abrir visualização em gráfico": false,
+      "smart-connections:Smart Connections: Open connections view": false,
+      "smart-connections:Smart Connections: Open random connection": false,
+      "smart-connections:Smart Lookup: Open lookup view": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "4b5aaca813e7d2f6",
+  "active": "59f967828d370b61",
   "lastOpenFiles": [
-    "Imagens/radial_100.png",
-    "Imagens/radial_300.png",
-    "Imagens/radial_200.png",
-    "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md",
-    "Imagens/radial_400.png",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "Periodic Orbitals/Teoria/Mecânica Quântica/Equação de Schrödinger Independente do Tempo.md",
+    "copilot/copilot-custom-prompts/Clip Web Page.md",
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts",
+    "copilot",
+    "Periodic Orbitals/Teoria/Mecânica Quântica/Equação de Schrödinger Dependente do Tempo.md",
+    "Periodic Orbitals/Teoria/Matemática/EDP.md",
+    "Periodic Orbitals/Teoria/Matemática/EDO.md",
+    "Periodic Orbitals/Imagens/radial_400.png",
+    "Periodic Orbitals/Imagens/radial_300.png",
+    "Periodic Orbitals/Imagens/radial_200.png",
+    "Periodic Orbitals/Imagens/radial_100.png",
+    "Periodic Orbitals/Imagens/5-4--1-cross-section-yz.png",
+    "Periodic Orbitals/Imagens/5-4--1-cross-section-xz.png",
+    "Periodic Orbitals/Imagens/5-4--1-cross-section-xy.png",
+    "Periodic Orbitals/Excalidraw/Átomo de Schrödinger.md",
+    "Periodic Orbitals/Excalidraw/Átomo de Bohr.md",
+    "Periodic Orbitals/Excalidraw/Átomo de Rutherford.md",
+    "Periodic Orbitals/Excalidraw/Átomo de Thompson.md",
+    "Periodic Orbitals/Excalidraw/Átomo de Dalton.md",
+    "A fazer.md",
+    "Periodic Orbitals/Teoria/Mecânica Quântica/Números quânticos.md",
+    "Periodic Orbitals/Programação",
+    "Periodic Orbitals/Teoria/Mecânica Quântica",
+    "Periodic Orbitals/Teoria/Matemática",
     "Imagens/radial_1_0_0.png",
     "Imagens/radial_3_0_0.png",
     "Imagens/radial_2_0_0.png",
-    "Imagens/radial_4_0_0.png",
-    "Periodic Orbitals/Teoria/Números quânticos.md",
-    "Periodic Orbitals/Teoria/EDO.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/História do átomo.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/Schrödinger.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/Bohr.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/Thompson.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/Dalton.md",
-    "Periodic Orbitals/Teoria/Função de onda.md",
-    "Excalidraw/Átomo de Thompson.md",
-    "Excalidraw/Átomo de Schrödinger.md",
-    "Excalidraw/Átomo de Rutherford.md",
-    "Excalidraw/Átomo de Dalton.md",
-    "Excalidraw/Átomo de Bohr.md",
-    "Periodic Orbitals/Teoria/Modelos atômicos/Rutherford.md",
-    "A fazer.md",
     "Periodic Orbitals/Teoria/Modelos atômicos",
-    "Imagens",
+    "Periodic Orbitals/Imagens",
     "Periodic Orbitals/Teoria",
-    "Periodic Orbitals/Teoria/EDP.md",
-    "Untitled Kanban 1.md",
-    "Untitled Kanban.md",
     "Periodic Orbitals",
-    "2026-02-13.md",
-    "2026-01-23.md",
-    "Excalidraw/Drawing 2026-04-21 16.17.26.excalidraw.md",
-    "19ba3c6f-46c6-4eb1-8172-9b978d9ed7e3.png",
-    "Excalidraw"
+    "Periodic Orbitals/Excalidraw"
   ]
 }

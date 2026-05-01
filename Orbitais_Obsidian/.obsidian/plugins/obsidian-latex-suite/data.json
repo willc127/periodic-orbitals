@@ -20,7 +20,7 @@
   "mathPreviewEnabled": true,
   "mathPreviewPositionIsAbove": true,
   "mathPreviewCursor": "▶",
-  "mathPreviewBracketHighlighting": false,
+  "mathPreviewBracketHighlighting": true,
   "autofractionEnabled": true,
   "autofractionSymbol": "\\frac",
   "autofractionBreakingChars": "+-=\t",

@@ -6,11 +6,11 @@
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
-      "⚗",
-      "✨",
-      "〰",
-      "🍇",
-      "⚽"
+      "LiImages",
+      "LiBrush",
+      "LiActivitySquare",
+      "LiActivity",
+      "LiComputer"
     ],
     "recentlyUsedIconsSize": 5,
     "rules": [],
@@ -36,12 +36,17 @@
   },
   "Periodic Orbitals/Teoria": "LiBookUp",
   "Periodic Orbitals": "LiAtom",
-  "Periodic Orbitals/Teoria/Função de onda.md": "LiActivity",
   "Periodic Orbitals/Teoria/Modelos atômicos/Rutherford.md": "🪐",
   "Periodic Orbitals/Teoria/Modelos atômicos/Dalton.md": "⚽",
   "Periodic Orbitals/Teoria/Modelos atômicos/Thompson.md": "🍇",
   "Periodic Orbitals/Teoria/Modelos atômicos/Bohr.md": "〰",
   "Periodic Orbitals/Teoria/Modelos atômicos/Schrödinger.md": "✨",
   "Periodic Orbitals/Teoria/Modelos atômicos/História do átomo.md": "⚗",
-  "Periodic Orbitals/Teoria/Equação de Schrödinger Independente do Tempo.md": "LiActivity"
+  "Periodic Orbitals/Teoria/Mecânica Quântica/Equação de Schrödinger Independente do Tempo.md": "LiActivity",
+  "Periodic Orbitals/Teoria/Mecânica Quântica/Função de onda.md": "LiActivity",
+  "Periodic Orbitals/Programação": "LiComputer",
+  "Periodic Orbitals/Teoria/Mecânica Quântica/Equação de Schrödinger Dependente do Tempo.md": "LiActivity",
+  "Periodic Orbitals/Teoria/Mecânica Quântica/Números quânticos.md": "LiActivitySquare",
+  "Periodic Orbitals/Excalidraw": "LiBrush",
+  "Periodic Orbitals/Imagens": "LiImages"
 }

@@ -1,6 +1,63 @@
 {
-  "cascadeColors": false,
-  "colorBackground": false,
-  "palette": [],
-  "fileColors": []
+  "cascadeColors": true,
+  "colorBackground": true,
+  "palette": [
+    {
+      "id": "NBik51ahRkAlKKCWHxZgR",
+      "name": "Vermelho",
+      "value": "#ff0000"
+    },
+    {
+      "id": "iM0X6i7-SQ1m91Ebo1fMs",
+      "name": "Verde",
+      "value": "#088000"
+    },
+    {
+      "id": "5GYP3lsItOpipAdQnnBEK",
+      "name": "Azul",
+      "value": "#0043e0"
+    },
+    {
+      "id": "GWYP8-P7WI6W0DZwUU8RP",
+      "name": "Branco",
+      "value": "#ffffff"
+    },
+    {
+      "id": "UQrlOI0lTayPK-o6C5jP8",
+      "name": "Amarelo",
+      "value": "#f0e800"
+    },
+    {
+      "id": "Zh1MlisaXb_Ladldhukcz",
+      "name": "Laranja",
+      "value": "#dc6718"
+    },
+    {
+      "id": "prBq1Pnus9H2MsH3yKpez",
+      "name": "Rosa",
+      "value": "#fe39f7"
+    }
+  ],
+  "fileColors": [
+    {
+      "path": "Periodic Orbitals/Excalidraw",
+      "color": "iM0X6i7-SQ1m91Ebo1fMs"
+    },
+    {
+      "path": "Periodic Orbitals/Programação",
+      "color": "5GYP3lsItOpipAdQnnBEK"
+    },
+    {
+      "path": "Periodic Orbitals/Teoria",
+      "color": "UQrlOI0lTayPK-o6C5jP8"
+    },
+    {
+      "path": "Periodic Orbitals/Imagens",
+      "color": "NBik51ahRkAlKKCWHxZgR"
+    },
+    {
+      "path": "Periodic Orbitals",
+      "color": "GWYP8-P7WI6W0DZwUU8RP"
+    }
+  ]
 }
