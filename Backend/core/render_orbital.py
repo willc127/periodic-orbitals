@@ -2,6 +2,7 @@
 
 from utils.save_figure import save_figure
 from typing import Optional
+from pathlib import Path
 
 from core.render_3d import render_3d
 from core.hydrogen import cartesian_prob_real
@@ -26,7 +27,7 @@ def _render_radius_eff(n: int, l: int) -> float:
         case 4:
             return render_radius * 2.0
         case 5:
-            return render_radius * 1.5
+            return render_radius * 1.75
         case 6:
             return render_radius * 1.75
         case 7:
@@ -125,10 +126,17 @@ def _render_cross_section(
         "yz": f"Plano YZ ({n}, {l}, {m})",
     }
 
+    # Calcular caminho absoluto se filename não for fornecido
+    if filename is None:
+        backend_dir = Path(__file__).parent.parent
+        images_dir = backend_dir / "images" / "cross-section-and-3d"
+        filename_base = f"{n}-{l}-{m}-cross-section-{plane}.png"
+        filename = str(images_dir / filename_base)
+
     file_map = {
-        "xz": filename or f"Backend/images/cross-section-and-3d/{n}-{l}-{m}-cross-section-xz.png",
-        "xy": filename or f"Backend/images/cross-section-and-3d/{n}-{l}-{m}-cross-section-xy.png",
-        "yz": filename or f"Backend/images/cross-section-and-3d/{n}-{l}-{m}-cross-section-yz.png",
+        "xz": filename if plane == "xz" else "",
+        "xy": filename if plane == "xy" else "",
+        "yz": filename if plane == "yz" else "",
     }
 
     axis_map = {
@@ -276,16 +284,23 @@ def render_orbital(
             cmap=cmap,
         )
     if plane == "3d":
+        if filename is None:
+            backend_dir = Path(__file__).parent.parent
+            images_dir = (
+                backend_dir / "images" / "cross-section-and-3d" / f"{n}-{l}-{m}"
+            )
+            filename = str(images_dir / f"{n}-{l}-{m}-3d-real.png")
+
         return (
             render_3d(
                 n,
                 l,
                 m,
                 mode="real",
-                filename=f"Backend/images/cross-section-and-3d/{n}-{l}-{m}/{n}-{l}-{m}-3d-real.png",
+                filename=filename,
                 cmap=cmap,
             )
-            or f"Backend/images/cross-section-and-3d/{n}-{l}-{m}-3d-real.png"
+            or filename
         )
     raise ValueError(
         f"{Fore.RED}Visualização inválida. Use '3d', 'xz', 'xy' ou 'yz'.{Style.RESET_ALL}"

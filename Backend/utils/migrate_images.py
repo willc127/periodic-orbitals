@@ -2,17 +2,24 @@
 
 import os
 from pathlib import Path
+from typing import Optional
 from db.session import SessionLocal
 from db.models.orbital_image import OrbitalImage
 
 
-def migrate_images_to_db(images_folder: str = "Backend/images") -> None:
+def migrate_images_to_db(images_folder: Optional[str] = None) -> None:
     """
     Migra todas as imagens da pasta images para o banco de dados SQLite.
 
     Args:
-        images_folder: Caminho da pasta contendo as imagens
+        images_folder: Caminho da pasta contendo as imagens.
+                      Se None, usa Backend/images relativo ao arquivo
     """
+    if images_folder is None:
+        # Calcular caminho absoluto baseado no diretório do script
+        backend_dir = Path(__file__).parent.parent
+        images_folder = str(backend_dir / "images")
+
     db = SessionLocal()
     images_path = Path(images_folder)
 

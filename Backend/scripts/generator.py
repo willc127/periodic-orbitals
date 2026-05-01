@@ -1,6 +1,7 @@
 """Orbital generation script utilities."""
 
 from typing import Optional
+from pathlib import Path
 from core.render_orbital import render_orbital
 from colorama import Fore, Style
 import os
@@ -55,9 +56,11 @@ def orbitals_generator(
         Caminho do arquivo salvo
     """
     if filename is None:
-        base_dir = f"Backend/images/cross-section-and-3d/{n}-{l}-{m}"
-        os.makedirs(base_dir, exist_ok=True)
-        filename = f"{base_dir}/{n}-{l}-{m}-cross-section-{projection}.png"
+        # Calcular caminho absoluto baseado no diretório do script
+        backend_dir = Path(__file__).parent.parent
+        images_dir = backend_dir / "images" / "cross-section-and-3d" / f"{n}-{l}-{m}"
+        images_dir.mkdir(parents=True, exist_ok=True)
+        filename = str(images_dir / f"{n}-{l}-{m}-cross-section-{projection}.png")
 
     # Aumentar samples para orbitais problemáticos
     if (n, l, m) in PROBLEMATIC_ORBITALS_XY_OFFSETS and projection == "xy":

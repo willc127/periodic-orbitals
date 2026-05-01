@@ -15,9 +15,13 @@ problematic_orbitals = [
     (1, 0, 0),
 ]
 
+# Calcular caminho absoluto para a pasta de imagens agrupadas
+backend_dir = Path(__file__).parent.parent
+grouped_folder = str(backend_dir / "images" / "grouped")
+
 for n, l, m in problematic_orbitals:
     # orbitals_generator(n, l, m, "xy", cmap="plasma")
     # orbitals_generator(n, l, m, "xz", cmap="plasma")
     # orbitals_generator(n, l, m, "yz", cmap="plasma")
     # orbitals_generator(n, l, m, "3d", cmap="plasma")
-    check_and_group_orbital(n, l, m, "Backend/images/grouped")
+    check_and_group_orbital(n, l, m, grouped_folder)
