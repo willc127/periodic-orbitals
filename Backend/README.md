@@ -272,6 +272,260 @@ Acesse:
 
 ---
 
+## 🏗️ Estrutura do Projeto
+
+O backend está organizado por funcionalidade:
+
+```
+Backend/
+├── api/                          # Endpoints e rotas
+│   ├── endpoints/
+│   │   ├── health.py            # Health check
+│   │   ├── images.py            # Operações com imagens
+│   │   └── orbitals.py          # Renderização de orbitais
+│   └── deps.py                  # Dependências compartilhadas
+│
+├── core/                        # Lógica científica
+│   ├── hydrogen.py              # Funções de onda do hidrogênio
+│   ├── render_orbital.py        # Renderização 2D/3D
+│   ├── render_3d.py             # Renderização 3D avançada
+│   └── get_render_radius.py     # Cálculo de raio de renderização
+│
+├── services/                    # Orquestração de negócio
+│   ├── orbital_service.py       # Renderização e cache
+│   └── image_service.py         # Gerenciamento de imagens
+│
+├── db/                          # Banco de dados
+│   ├── models/                  # Modelos SQLAlchemy
+│   ├── base.py                  # Configuração base
+│   └── session.py               # Gerenciamento de sessão
+│
+├── config/                      # Configurações
+│   ├── settings.py              # Variáveis de ambiente
+│   └── constants.py             # Constantes globais
+│
+├── schemas/                     # Modelos Pydantic
+│   ├── orbital.py               # Requisição de orbital
+│   └── response.py              # Estrutura de resposta
+│
+├── scripts/                     # Scripts utilitários
+│   ├── generate_orbitals.py    # Geração em lote
+│   ├── generator.py             # Lógica de geração
+│   └── runner.py                # Executor de tarefas
+│
+├── utils/                       # Funções auxiliares
+│   ├── grouping_figures.py     # Agrupamento de imagens
+│   ├── helpers.py               # Funções utilitárias
+│   └── save_figure.py           # Salvamento de figuras
+│
+├── tests/                       # Testes unitários e integração
+│   ├── unit/                    # Testes unitários
+│   ├── integration/             # Testes de integração
+│   └── fixtures/                # Fixtures de teste
+│
+├── main.py                      # Entrada da aplicação
+└── requirements.txt             # Dependências
+```
+
+**Responsabilidades de cada diretório:**
+
+- **`core/`**: Cálculos matemáticos e renderização científica
+- **`api/`**: Rotas e validação de entrada
+- **`services/`**: Lógica de negócio e cache
+- **`db/`**: Persistência de dados
+- **`scripts/`**: Ferramentas de linha de comando
+
+---
+
+## 🔌 API REST
+
+### Endpoints Principais
+
+#### 1. **Health Check**
+
+```http
+GET /health
+```
+
+**Resposta (200):**
+
+```json
+{
+	"status": "ok",
+	"message": "API is running"
+}
+```
+
+#### 2. **Renderizar Orbital (Base64)**
+
+```http
+POST /api/v1/orbitals/render
+Content-Type: application/json
+```
+
+**Requisição:**
+
+```json
+{
+	"n": 2,
+	"l": 1,
+	"m": 0,
+	"plane": "xy",
+	"samples": 400,
+	"cmap": "plasma"
+}
+```
+
+**Resposta (200):**
+
+```json
+{
+	"image_base64": "iVBORw0KGgoAAAANSUhEUgAAA...",
+	"format": "png",
+	"size": {"width": 800, "height": 600},
+	"orbital": {"n": 2, "l": 1, "m": 0}
+}
+```
+
+#### 3. **Renderizar Orbital (Stream PNG)**
+
+```http
+POST /api/v1/orbitals/render-stream
+Content-Type: application/json
+```
+
+**Parâmetros:** Idênticos a `/render`
+
+**Resposta (200):** Arquivo PNG em stream
+
+### Parâmetros Comuns
+
+| Parâmetro | Tipo   | Obrigatório | Padrão     | Descrição                              |
+| --------- | ------ | ----------- | ---------- | -------------------------------------- |
+| `n`       | int    | ✅          | -          | Nível quântico principal (1-7)         |
+| `l`       | int    | ✅          | -          | Número quântico angular (0 ≤ l < n)    |
+| `m`       | int    | ✅          | -          | Número quântico magnético (-l ≤ m ≤ l) |
+| `plane`   | string | ❌          | `"xy"`     | Projeção: `xy`, `xz`, `yz`, ou `3d`    |
+| `samples` | int    | ❌          | 400        | Resolução da grade (pixels)            |
+| `cmap`    | string | ❌          | `"plasma"` | Colormap: `plasma`, `viridis`, etc.    |
+
+### Exemplos com cURL
+
+**Gerar orbital 2p (m=0) em XY:**
+
+```bash
+curl -X POST http://localhost:8000/api/v1/orbitals/render \
+  -H "Content-Type: application/json" \
+  -d '{
+    "n": 2,
+    "l": 1,
+    "m": 0,
+    "plane": "xy"
+  }' > orbital.json
+```
+
+**Obter stream PNG direto:**
+
+```bash
+curl -X POST http://localhost:8000/api/v1/orbitals/render-stream \
+  -H "Content-Type: application/json" \
+  -d '{"n": 3, "l": 2, "m": 0}' > orbital.png
+```
+
+---
+
+## 📊 Stack e Dependências
+
+| Biblioteca         | Versão  | Finalidade                               |
+| ------------------ | ------- | ---------------------------------------- |
+| `fastapi`          | 0.104.1 | Framework HTTP para APIs REST            |
+| `uvicorn`          | 0.24.0  | Servidor ASGI assíncrono                 |
+| `sqlalchemy`       | 2.0.23  | ORM para gerenciamento de banco de dados |
+| `pydantic`         | 2.0.0   | Validação de dados com type hints        |
+| `python-multipart` | 0.0.6   | Suporte para upload de arquivos          |
+| `pillow`           | 10.1.0  | Processamento e manipulação de imagens   |
+| `numpy`            | -       | Cálculo numérico vetorizado              |
+| `scipy`            | 1.10.0  | Funções de onda (harmônicos esféricos)   |
+| `matplotlib`       | -       | Renderização e visualização              |
+| `colorama`         | -       | Colorização de output em terminal        |
+| `pytest`           | 7.4.0   | Framework de testes                      |
+| `black`            | 23.9.0  | Formatação de código                     |
+| `mypy`             | 1.5.0   | Type checking estático                   |
+| `flake8`           | 6.1.0   | Linting de código                        |
+
+---
+
+## 🧪 Testes e Validação
+
+### Rodar Testes Unitários
+
+```bash
+pytest Backend/tests/unit -v
+```
+
+### Rodar Todos os Testes
+
+```bash
+pytest Backend/tests -v
+```
+
+### Rodar com Cobertura
+
+```bash
+pytest Backend/tests --cov=Backend --cov-report=html
+```
+
+Resultado: Abrir `htmlcov/index.html` no navegador
+
+### Cobertura Esperada
+
+- **Mínimo**: 80% para merge
+- **Alvo**: 90%+ para funções críticas
+- **Cobertura por módulo:**
+    - `core/`: 95%+ (lógica científica)
+    - `services/`: 85%+
+    - `api/`: 80%+
+
+### Exemplo: Teste de Renderização
+
+```python
+# Backend/tests/unit/test_render_orbital.py
+import pytest
+from core.render_orbital import render_orbital
+
+
+def test_render_orbital_1s():
+    """Testar renderização do orbital 1s."""
+    result = render_orbital(n=1, l=0, m=0, plane="xy")
+    assert result is not None
+    assert result.shape == (800, 800)
+
+
+def test_render_orbital_2p():
+    """Testar renderização do orbital 2p."""
+    result = render_orbital(n=2, l=1, m=0, plane="xy")
+    assert result is not None
+
+
+def test_invalid_quantum_numbers():
+    """Testar validação de números quânticos."""
+    with pytest.raises(ValueError):
+        render_orbital(n=2, l=3, m=0)  # l deve ser < n
+```
+
+---
+
+## 📖 Documentação Adicional
+
+- **[Instruções Backend Completas](.github/instructions/BACKEND.instructions.md)** - Convenções, padrões e boas práticas
+- **[FastAPI Documentation](https://fastapi.tiangolo.com/)** - Framework HTTP
+- **[SciPy Documentation](https://scipy.org/)** - Funções de onda e harmônicos esféricos
+- **[Matplotlib Documentation](https://matplotlib.org/)** - Renderização de gráficos
+- **[SQLAlchemy ORM](https://www.sqlalchemy.org/)** - Gerenciamento de banco de dados
+- **[Pydantic Validation](https://docs.pydantic.dev/)** - Validação de schemas
+
+---
+
 ## ⚙️ Configurações Avançadas
 
 ### **Parâmetros de Orbitais Problemáticos**
