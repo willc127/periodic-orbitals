@@ -1,0 +1,11 @@
+- [x] verificar eixos das imagens de seção transversal
+- [x] verificar o render da figura 3d
+- [x] arrumar os erros da migração
+	- [x] Arrumar path da gravação das imagens agrupadas
+	
+- [ ] Decidir se vai fazer a animação de transição de orbitais e fótons
+- [ ] Decidir como implementar isso no frontend (Esse projeto está sendo feito para que?)
+- [ ] A representação do orbital de cada elemento deve ser a do orbital do último elétron
+- [ ] Deve explicar que essa representação é uma extrapolação dos orbitais do hidrogênio para átomos multieletrônicos
+- [ ] Ao clicar num átomo deve abrir um modal que carrega as imagens das seções transversais + modelo 3d do orbital
+- [ ] Exportar os pontos 3d num JSON via FastAPI para o frontend
