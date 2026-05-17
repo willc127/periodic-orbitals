@@ -1,0 +1,90 @@
+.periodic-table {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(18, 4.15rem);
+  grid-template-rows: repeat(9, 4.15rem);
+  justify-content: center;
+  padding: 3rem;
+}
+
+@mixin efeito-transicao {
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    border: 2px solid #ffffff;
+    filter: brightness(1.25) saturate(1.1);
+    transform: scale(1.05);
+  }
+}
+
+.element {
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  justify-content: center;
+  text-align: center;
+  @include efeito-transicao;
+
+  .name {
+    font-size: 0.6rem;
+    color: inherit;
+  }
+}
+
+/* Classes para cada tipo de elemento */
+.Hydrogen {
+  background: #a8d8ea;
+}
+
+.Noble-Gas {
+  background: #ff6b9d;
+}
+
+.Alkali-Metal {
+  background: #ff6b35;
+}
+
+.Alkali-Earth-Metal {
+  background: #f4a900;
+}
+
+.Transition-Metal {
+  background: #4a78b5;
+}
+
+.Metalloid {
+  background: #6a994e;
+}
+
+.Nonmetal {
+  background: #c9e15a;
+}
+
+.Lanthanide {
+  background: #c0392b;
+}
+
+.Actinide {
+  background: #8ef876;
+}
+
+.Post-Transition-Metal {
+  background: #3aafa9;
+}
+
+.Undefined {
+  background: hsl(0, 0%, 75%);
+}
+
+.LaAcBlock {
+  display: flex;
+  background: linear-gradient(#c0392b, #8ef876);
+  grid-column: 3;
+  grid-row: 6 / 8;
+}

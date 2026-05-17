@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-periodic-table',
   imports: [CommonModule],
   templateUrl: './periodic-table.html',
-  styleUrl: './periodic-table.css',
+  styleUrl: './periodic-table.scss',
 })
 export class PeriodicTable {
   elements: Element[] = [

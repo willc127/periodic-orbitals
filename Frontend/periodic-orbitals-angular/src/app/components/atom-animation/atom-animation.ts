@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-atom-animation',
   imports: [],
   templateUrl: './atom-animation.html',
-  styleUrl: './atom-animation.css'
+  styleUrl: './atom-animation.scss',
 })
-export class AtomAnimation {
-
-}
+export class AtomAnimation {}

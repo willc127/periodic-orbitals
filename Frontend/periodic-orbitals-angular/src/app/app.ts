@@ -9,17 +9,9 @@ import { ElementProperties } from './components/element-properties/element-prope
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    Header,
-    Footer,
-    PeriodicTable,
-    AtomAnimation,
-    ElectronDistribution,
-    ElementProperties
-  ],
+  imports: [Header, Footer, PeriodicTable],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('periodic-orbitals-angular');

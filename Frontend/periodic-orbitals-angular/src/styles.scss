@@ -1,16 +1,13 @@
 /* Reset */
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body{
+html,
+body {
   width: 100%;
   overflow-x: hidden;
-}
-
-/* Estilos gerais */
-body{
-  background-color: hsl(222,50%,85%);  
 }

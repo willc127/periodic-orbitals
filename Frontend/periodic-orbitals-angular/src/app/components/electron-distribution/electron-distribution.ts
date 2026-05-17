@@ -6,7 +6,7 @@ import { Distributor } from './electron-distributor';
 @Component({
   selector: 'app-electron-distribution',
   templateUrl: './electron-distribution.html',
-  styleUrls: ['./electron-distribution.css'],
+  styleUrl: './electron-distribution.scss',
 })
 export class ElectronDistribution implements AfterViewInit {
   @ViewChild('canvas', { static: true })
@@ -78,7 +78,7 @@ export class ElectronDistribution implements AfterViewInit {
     const { symbol, name, color } = this.getChemical(atomicNumber);
 
     const ctx = this.ctx2D;
-    const originX = this.canvasRef.nativeElement.width/1.5;
+    const originX = this.canvasRef.nativeElement.width / 1.5;
     const originY = this.canvasRef.nativeElement.height / 2;
     const alpha = 2 * Math.PI;
 

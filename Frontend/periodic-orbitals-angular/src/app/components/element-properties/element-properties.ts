@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-element-properties',
   imports: [],
   templateUrl: './element-properties.html',
-  styleUrl: './element-properties.css'
+  styleUrl: './element-properties.scss',
 })
-export class ElementProperties {
-
-}
+export class ElementProperties {}

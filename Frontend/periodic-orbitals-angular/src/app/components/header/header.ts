@@ -5,8 +5,6 @@ import { AtomAnimation } from '../atom-animation/atom-animation';
   selector: 'app-header',
   imports: [AtomAnimation],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrl: './header.scss',
 })
-export class Header {
-
-}
+export class Header {}
