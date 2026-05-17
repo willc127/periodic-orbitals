@@ -1,54 +1,51 @@
-"""Aplicação principal FastAPI."""
-
+# Suas importações permanecem as mesmas
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+from mendeleev.fetch import fetch_table
+import numpy as np
+import pandas as pd
 
-from config.settings import settings
-from api.endpoints import health, images, orbitals
+app = FastAPI()
 
-# Criar aplicação FastAPI
-app = FastAPI(
-    title=settings.PROJECT_NAME,
-    description=settings.DESCRIPTION,
-    version=settings.PROJECT_VERSION,
-    debug=settings.DEBUG,
-)
-
-# Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["http://localhost:4200"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Incluir rotas
-app.include_router(health.router)
-app.include_router(images.router)
-app.include_router(orbitals.router)
 
-# Servir arquivos estáticos
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-
-@app.get("/")
-async def root():
-    """Rota raiz da API."""
-    return {
-        "message": "Bem-vindo ao Orbital Renderer API",
-        "documentation": "/docs",
-        "health": "/health",
-    }
+def clean_for_json(df: pd.DataFrame) -> list:
+    """
+    Substitui valores infinitos e NaN por None
+    para serem convertidos para 'null' no JSON.
+    """
+    # Converte infinitos para NaN
+    df = df.replace([np.inf, -np.inf], np.nan)
+    # Substitui NaN por None
+    df = df.where(pd.notnull(df), None)
+    return df.to_dict(orient="records")
 
 
-if __name__ == "__main__":
-    import uvicorn
+@app.get("/elements-data")
+async def get_elements():
+    # Busca a tabela completa
+    df = fetch_table("elements")
 
-    uvicorn.run(
-        "main:app",
-        host=settings.SERVER_HOST,
-        port=settings.SERVER_PORT,
-        reload=settings.DEBUG,
-    )
+    # Seleciona as colunas desejadas
+    colunas_desejadas = [
+        "symbol",
+        "name",
+        "atomic_number",
+        "atomic_weight",
+        "group_id",
+        "electronic_configuration",
+    ]
+    df["group_id"] = df["group_id"].fillna(0).astype(int)  # 0 para elementos sem grupo
+    df = df[colunas_desejadas]
+
+    # Aplica a limpeza dos dados
+    dados_limpos = clean_for_json(df)
+
+    # Retorna a lista de dicionários com todos os 118 elementos
+    return dados_limpos
