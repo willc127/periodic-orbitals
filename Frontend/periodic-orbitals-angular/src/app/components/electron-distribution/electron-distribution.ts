@@ -1,183 +1,183 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { chemicals, chemicalColors, Chemical } from '../../types/chemicals';
-import { ScopeConfig } from '../../types/scopeConfig';
-import { Distributor } from './electron-distributor';
+// import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+// import { chemicals, chemicalColors, Chemical } from '../../types/chemicals';
+// import { ScopeConfig } from '../../types/scopeConfig';
+// import { Distributor } from './electron-distributor';
 
-@Component({
-  selector: 'app-electron-distribution',
-  templateUrl: './electron-distribution.html',
-  styleUrl: './electron-distribution.scss',
-})
-export class ElectronDistribution implements AfterViewInit {
-  @ViewChild('canvas', { static: true })
-  canvasRef!: ElementRef<HTMLCanvasElement>;
-  private ctx2D!: CanvasRenderingContext2D;
-  scope!: ScopeConfig;
+// @Component({
+//   selector: 'app-electron-distribution',
+//   templateUrl: './electron-distribution.html',
+//   styleUrl: './electron-distribution.scss',
+// })
+// export class ElectronDistribution implements AfterViewInit {
+//   @ViewChild('canvas', { static: true })
+//   canvasRef!: ElementRef<HTMLCanvasElement>;
+//   private ctx2D!: CanvasRenderingContext2D;
+//   scope!: ScopeConfig;
 
-  ngAfterViewInit() {
-    const canvas = this.canvasRef.nativeElement;
-    this.ctx2D = canvas.getContext('2d')!;
-    this.beforeInit();
-    this.loop();
-  }
+//   ngAfterViewInit() {
+//     const canvas = this.canvasRef.nativeElement;
+//     this.ctx2D = canvas.getContext('2d')!;
+//     this.beforeInit();
+//     this.loop();
+//   }
 
-  beforeInit() {
-    const canvas = this.canvasRef.nativeElement;
-    this.scope = {
-      orbitColor: '#DDD',
-      textColor: '#FFF',
-      atomicNumber: 18,
-      shells: [],
-      size: (Math.max(canvas.width, canvas.height) * 4) / 20,
-      offset: 0,
-      animate: true,
-    };
+//   beforeInit() {
+//     const canvas = this.canvasRef.nativeElement;
+//     this.scope = {
+//       orbitColor: '#DDD',
+//       textColor: '#FFF',
+//       atomicNumber: 18,
+//       shells: [],
+//       size: (Math.max(canvas.width, canvas.height) * 4) / 20,
+//       offset: 0,
+//       animate: true,
+//     };
 
-    const distributeElectrons = (atomicNumber: number) => {
-      const atom = new Distributor(atomicNumber);
-      this.scope.shells = atom.shells;
-    };
-    distributeElectrons(this.scope.atomicNumber);
-  }
+//     const distributeElectrons = (atomicNumber: number) => {
+//       const atom = new Distributor(atomicNumber);
+//       this.scope.shells = atom.shells;
+//     };
+//     distributeElectrons(this.scope.atomicNumber);
+//   }
 
-  private normalizeString(name: string): string {
-    return name.toLowerCase();
-  }
+//   private normalizeString(name: string): string {
+//     return name.toLowerCase();
+//   }
 
-  private getChemical(search: number | string) {
-    let chemical: Chemical | undefined;
+//   private getChemical(search: number | string) {
+//     let chemical: Chemical | undefined;
 
-    if (typeof search === 'number' && chemicals[search - 1]) {
-      chemical = chemicals[search - 1];
-    } else {
-      const normSearch = this.normalizeString(search.toString());
-      chemical = chemicals.find((ch) => {
-        if (!ch) return false;
-        for (let i = 0; i < ch.length - 1; i++) {
-          const element = ch[i];
-          if (typeof element !== 'string') continue;
-          if (this.normalizeString(element).startsWith(normSearch)) return true;
-        }
-        return false;
-      });
-    }
+//     if (typeof search === 'number' && chemicals[search - 1]) {
+//       chemical = chemicals[search - 1];
+//     } else {
+//       const normSearch = this.normalizeString(search.toString());
+//       chemical = chemicals.find((ch) => {
+//         if (!ch) return false;
+//         for (let i = 0; i < ch.length - 1; i++) {
+//           const element = ch[i];
+//           if (typeof element !== 'string') continue;
+//           if (this.normalizeString(element).startsWith(normSearch)) return true;
+//         }
+//         return false;
+//       });
+//     }
 
-    if (!chemical)
-      throw new Error(`Elemento químico não encontrado:  {search}`);
+//     if (!chemical)
+//       throw new Error(`Elemento químico não encontrado:  {search}`);
 
-    const [symbol, name, colorCode] = chemical;
-    const atomicNumber = chemicals.indexOf(chemical) + 1;
-    const color = chemicalColors[colorCode];
+//     const [symbol, name, colorCode] = chemical;
+//     const atomicNumber = chemicals.indexOf(chemical) + 1;
+//     const color = chemicalColors[colorCode];
 
-    return { symbol, atomicNumber, name, color };
-  }
+//     return { symbol, atomicNumber, name, color };
+//   }
 
-  draw() {
-    const { orbitColor, textColor, atomicNumber, shells, size, offset } =
-      this.scope;
-    const { symbol, name, color } = this.getChemical(atomicNumber);
+//   draw() {
+//     const { orbitColor, textColor, atomicNumber, shells, size, offset } =
+//       this.scope;
+//     const { symbol, name, color } = this.getChemical(atomicNumber);
 
-    const ctx = this.ctx2D;
-    const originX = this.canvasRef.nativeElement.width / 1.5;
-    const originY = this.canvasRef.nativeElement.height / 2;
-    const alpha = 2 * Math.PI;
+//     const ctx = this.ctx2D;
+//     const originX = this.canvasRef.nativeElement.width / 1.5;
+//     const originY = this.canvasRef.nativeElement.height / 2;
+//     const alpha = 2 * Math.PI;
 
-    const minOrbitRadius = size / 3;
-    const orbitLineWidth = size / 2 ** 7;
-    const electronRadius = size / 30;
-    const electronClearRadius = electronRadius * 2;
-    const nucleusRadius = size / 6;
+//     const minOrbitRadius = size / 3;
+//     const orbitLineWidth = size / 2 ** 7;
+//     const electronRadius = size / 30;
+//     const electronClearRadius = electronRadius * 2;
+//     const nucleusRadius = size / 6;
 
-    let layerRotationSpeed = 1;
+//     let layerRotationSpeed = 1;
 
-    ctx.clearRect(
-      0,
-      0,
-      this.canvasRef.nativeElement.width,
-      this.canvasRef.nativeElement.height,
-    );
+//     ctx.clearRect(
+//       0,
+//       0,
+//       this.canvasRef.nativeElement.width,
+//       this.canvasRef.nativeElement.height,
+//     );
 
-    ctx.save();
-    ctx.fillStyle = color;
-    ctx.strokeStyle = orbitColor;
-    ctx.lineWidth = orbitLineWidth;
-    ctx.lineCap = 'round';
+//     ctx.save();
+//     ctx.fillStyle = color;
+//     ctx.strokeStyle = orbitColor;
+//     ctx.lineWidth = orbitLineWidth;
+//     ctx.lineCap = 'round';
 
-    shells.forEach((electrons, i) => {
-      const radius =
-        (i / (shells.length - 1)) * (size - minOrbitRadius) + minOrbitRadius;
-      const layerRotation = offset * layerRotationSpeed;
+//     shells.forEach((electrons, i) => {
+//       const radius =
+//         (i / (shells.length - 1)) * (size - minOrbitRadius) + minOrbitRadius;
+//       const layerRotation = offset * layerRotationSpeed;
 
-      if (electrons === 0) {
-        ctx.globalAlpha = 0.1;
-        ctx.beginPath();
-        ctx.arc(originX, originY, radius, 0, alpha);
-        ctx.stroke();
-        return;
-      }
+//       if (electrons === 0) {
+//         ctx.globalAlpha = 0.1;
+//         ctx.beginPath();
+//         ctx.arc(originX, originY, radius, 0, alpha);
+//         ctx.stroke();
+//         return;
+//       }
 
-      ctx.globalAlpha = 1;
+//       ctx.globalAlpha = 1;
 
-      for (let j = 0; j < electrons; j++) {
-        const phi1 = (j / electrons) * alpha + layerRotation;
-        const phi2 = phi1 + (1 / electrons) * alpha;
-        const posX = originX + radius * Math.cos(phi1);
-        const posY = originY + radius * Math.sin(phi1);
-        const orbitalSpacing = electronClearRadius / radius;
+//       for (let j = 0; j < electrons; j++) {
+//         const phi1 = (j / electrons) * alpha + layerRotation;
+//         const phi2 = phi1 + (1 / electrons) * alpha;
+//         const posX = originX + radius * Math.cos(phi1);
+//         const posY = originY + radius * Math.sin(phi1);
+//         const orbitalSpacing = electronClearRadius / radius;
 
-        if (phi2 - phi1 - 2 * orbitalSpacing > 0) {
-          ctx.beginPath();
-          ctx.arc(
-            originX,
-            originY,
-            radius,
-            phi1 + orbitalSpacing,
-            phi2 - orbitalSpacing,
-          );
-          ctx.stroke();
-        }
+//         if (phi2 - phi1 - 2 * orbitalSpacing > 0) {
+//           ctx.beginPath();
+//           ctx.arc(
+//             originX,
+//             originY,
+//             radius,
+//             phi1 + orbitalSpacing,
+//             phi2 - orbitalSpacing,
+//           );
+//           ctx.stroke();
+//         }
 
-        ctx.beginPath();
-        ctx.arc(posX, posY, electronRadius, 0, alpha);
-        ctx.fill();
-      }
-      layerRotationSpeed *= -1;
-    });
+//         ctx.beginPath();
+//         ctx.arc(posX, posY, electronRadius, 0, alpha);
+//         ctx.fill();
+//       }
+//       layerRotationSpeed *= -1;
+//     });
 
-    ctx.globalAlpha = 1;
-    ctx.beginPath();
-    ctx.arc(originX, originY, nucleusRadius, 0, alpha);
-    ctx.fill();
+//     ctx.globalAlpha = 1;
+//     ctx.beginPath();
+//     ctx.arc(originX, originY, nucleusRadius, 0, alpha);
+//     ctx.fill();
 
-    // Escrever símbolo
-    ctx.font = '20px sans-serif';
-    ctx.fillStyle = color;
-    ctx.fillStyle = textColor;
-    ctx.fillText(symbol, 28, 45);
-    const symbolWidth = ctx.measureText(symbol).width;
+//     // Escrever símbolo
+//     ctx.font = '20px sans-serif';
+//     ctx.fillStyle = color;
+//     ctx.fillStyle = textColor;
+//     ctx.fillText(symbol, 28, 45);
+//     const symbolWidth = ctx.measureText(symbol).width;
 
-    // Colchetes
-    ctx.fillStyle = color;
-    ctx.fillText('[', 16, 42);
-    ctx.fillText(']', 30 + symbolWidth, 42);
+//     // Colchetes
+//     ctx.fillStyle = color;
+//     ctx.fillText('[', 16, 42);
+//     ctx.fillText(']', 30 + symbolWidth, 42);
 
-    // Número atômico
-    ctx.font = '16px sans-serif';
-    ctx.fillStyle = textColor;
-    ctx.fillText(atomicNumber.toString(), 42 + symbolWidth, 28);
+//     // Número atômico
+//     ctx.font = '16px sans-serif';
+//     ctx.fillStyle = textColor;
+//     ctx.fillText(atomicNumber.toString(), 42 + symbolWidth, 28);
 
-    // Nome
-    ctx.font = '16px sans-serif';
-    ctx.fillText(name, 16, 75);
-    ctx.font = 'italic 16px sans-serif';
+//     // Nome
+//     ctx.font = '16px sans-serif';
+//     ctx.fillText(name, 16, 75);
+//     ctx.font = 'italic 16px sans-serif';
 
-    ctx.restore();
-  }
+//     ctx.restore();
+//   }
 
-  loop() {
-    if (!this.scope.animate) return;
-    this.scope.offset = (this.scope.offset + 2 ** -8) % (2 * Math.PI);
-    this.draw();
-    requestAnimationFrame(() => this.loop());
-  }
-}
+//   loop() {
+//     if (!this.scope.animate) return;
+//     this.scope.offset = (this.scope.offset + 2 ** -8) % (2 * Math.PI);
+//     this.draw();
+//     requestAnimationFrame(() => this.loop());
+//   }
+// }
