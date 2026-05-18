@@ -21,7 +21,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -56,10 +56,16 @@ orbitals.db
 .env.example
 
 # Obsidian
+Orbitais_Obsidian
 Orbitais_Obsidian/.keep-the-rhythm
 Orbitais_Obsidian/.obsidian
 Orbitais_Obsidian/.smart-env
 Orbitais_Obsidian/copilot
-Orbitais_Obsidian
 
+# Node modules
 node_modules
+
+#Angular
+.angular
+
+package-lock.json
