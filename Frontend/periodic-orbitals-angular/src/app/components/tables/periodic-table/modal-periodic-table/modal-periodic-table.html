@@ -5,17 +5,21 @@
   <div class="conteudo">
     <div class="informacoes">
       <p>{{ data.descricao }}</p>
-      <p><strong>Número Atômico:</strong> {{ data.numeroAtomico }}</p>
-      <p><strong>Massa Atômica:</strong> {{ data.massaAtomica }}</p>
 
-      <p><strong>Tipo:</strong> {{ data.tipo }}</p>
-      <p><strong>Grupo:</strong> {{ data.grupo }}</p>
-      <p><strong>Período:</strong> {{ data.periodo }}</p>
-      <p>
-        <strong>Configuração Eletrônica:</strong>
-        {{ data.configuracaoEletronica }}
-      </p>
-      <p></p>
+      <ul>
+        <li><strong>Número Atômico:</strong> {{ data.numeroAtomico }}</li>
+        <li><strong>Massa Atômica:</strong> {{ data.massaAtomica }}</li>
+        <li><strong>Tipo:</strong> {{ data.tipo }}</li>
+        <li><strong>Grupo:</strong> {{ data.grupo }}</li>
+        <li><strong>Período:</strong> {{ data.periodo }}</li>
+        <li>
+          <strong>Configuração Eletrônica:</strong>
+          {{ data.configuracaoEletronica }}
+        </li>
+      </ul>
+      <a class="link" href="{{ data.link }}" target="_blank">
+        Periodic Videos
+      </a>
     </div>
     <app-electron-distribution
       class="animacao"

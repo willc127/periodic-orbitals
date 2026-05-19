@@ -40,7 +40,22 @@
   text-align: justify;
 }
 
+.informacoes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .animacao {
   width: 50%;
   height: 100%;
+}
+
+.link {
+  color: aqua;
+  display: inline-flex;
+  width: fit-content;
 }

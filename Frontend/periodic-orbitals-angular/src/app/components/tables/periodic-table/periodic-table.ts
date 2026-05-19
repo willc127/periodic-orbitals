@@ -33,6 +33,7 @@ export class PeriodicTable implements OnInit {
       configuracaoEletronica: item.electronic_configuration,
       descricao: item.description,
       tipo: item.type,
+      link: item.link,
     }));
   }
 
@@ -45,7 +46,7 @@ export class PeriodicTable implements OnInit {
     });
   }
 
-  // Elemento "vazio" para preencher os blocos de lantanídeos e actinídeos
+  // Elementos "vazios" para preencher os blocos de lantanídeos e actinídeos
   private bloco_vazio_lantanideo: Element = {
     simbolo: 'La-Lu',
     nome: 'Lantanídeos',

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from mendeleev.fetch import fetch_table
 import numpy as np
 import pandas as pd
+import re
 
 app = FastAPI()
 
@@ -13,7 +14,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+# ------------------------------------------------
 
 def clean_for_json(df: pd.DataFrame) -> list:
     """
@@ -26,35 +27,6 @@ def clean_for_json(df: pd.DataFrame) -> list:
     # Substitui NaN por None em todas as colunas
     df = df.astype(object).where(pd.notnull(df), None)
     return df.to_dict(orient="records")
-
-
-def classify_group(series_id: int | None, symbol: str) -> str | None:
-
-    match symbol:
-        case "H":
-            return "Hydrogen"
-
-    match series_id:
-        case 1:
-            return "Nonmetal"
-        case 2:
-            return "Noble-Gas"
-        case 3:
-            return "Alkali-Metal"
-        case 4:
-            return "Alkaline-Earth-Metal"
-        case 5:
-            return "Metalloid"
-        case 6:
-            return "Halogen"
-        case 7:
-            return "Poor-Metal"
-        case 8:
-            return "Transition-Metal"
-        case 9:
-            return "Lanthanide"
-        case 10:
-            return "Actinide"
 
 
 @app.get("/elements-data")
@@ -72,15 +44,87 @@ async def get_elements():
         "series_id",
         "period",
         "electronic_configuration",
-        "description"
+        "description",
     ]
 
     df = df[colunas_desejadas]
 
-    # Aplica match/case para classificar series
+# Customização de colunas
+
     df["series_id"] = df["series_id"].fillna(0).astype(int)
+    
+    # Aplica match/case para classificar series
+    def classify_group(series_id: int | None, symbol: str) -> str | None:
+
+        match symbol:
+            case "H":
+                return "Hydrogen"
+
+        match series_id:
+            case 1:
+                return "Nonmetal"
+            case 2:
+                return "Noble-Gas"
+            case 3:
+                return "Alkali-Metal"
+            case 4:
+                return "Alkaline-Earth-Metal"
+            case 5:
+                return "Metalloid"
+            case 6:
+                return "Halogen"
+            case 7:
+                return "Poor-Metal"
+            case 8:
+                return "Transition-Metal"
+            case 9:
+                return "Lanthanide"
+            case 10:
+                return "Actinide"
+            
     df["type"] = df.apply(
         lambda row: classify_group(row["series_id"], row["symbol"]), axis=1
+    )
+
+    # Adiciona link para vídeos do Periodic Videos
+    df["link"] = df["atomic_number"].apply(
+        lambda num: f"http://www.periodicvideos.com/videos/{int(num):03d}.htm"
+    )
+
+    # Corrige formatação da distribuição eletrônica: números em sobrescrito e '1' implícito
+    superscript_map = str.maketrans(
+        {
+            "0": "⁰",
+            "1": "¹",
+            "2": "²",
+            "3": "³",
+            "4": "⁴",
+            "5": "⁵",
+            "6": "⁶",
+            "7": "⁷",
+            "8": "⁸",
+            "9": "⁹",
+        }
+    )
+
+    def _to_superscript(match: re.Match) -> str:
+        principal = match.group(1)
+        orbital = match.group(2)
+        number = match.group(3) or "1"
+        return f"{principal}{orbital}{number.translate(superscript_map)}"
+
+    def format_electronic_config(value):
+        if pd.isna(value):
+            return value
+        s = re.sub(r"\s+", " ", str(value)).strip()
+        # Substitui padrões como '6s2' ou '6p' por '6s²' e '6p¹'
+        s = re.sub(r"(\d+)([spdfg])(\d*)", _to_superscript, s)
+        return s
+
+    df.loc[df["electronic_configuration"].notnull(), "electronic_configuration"] = (
+        df.loc[
+            df["electronic_configuration"].notnull(), "electronic_configuration"
+        ].apply(format_electronic_config)
     )
 
     # Corrige valores para elementos 71 e 103

@@ -9,4 +9,5 @@ export interface Element {
   configuracaoEletronica: string;
   descricao?: string;
   tipo: string;
+  link?: string;
 }

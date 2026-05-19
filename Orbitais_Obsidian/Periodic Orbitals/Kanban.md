@@ -12,27 +12,27 @@ kanban-plugin: board
 - [ ] Traduzir as informações
 - [ ] Descobrir como incluir a animação dentro dos cards dos elementos
 - [ ] Descobrir como incluir as imagens dos orbitais dentro dos cards dos elementos
-- [ ] Formatar distribuição eletrônica
 
 
 ## A fazer
 
+- [ ] Formatar distribuição eletrônica
 
 
 ## Em andamento
 
-- [ ] Criar modal para mais informações dos elementos
-- [ ] configurar animação dos elétrons orbitando os átomos
 
 
 ## Revisão
 
+- [ ] Criar modal para mais informações dos elementos
 
 
 ## Concluído
 
 - [x] Configurar o FASTApi
 - [x] Definir estilos da tabela periódica
+- [x] configurar animação dos elétrons orbitando os átomos
 
 
 
