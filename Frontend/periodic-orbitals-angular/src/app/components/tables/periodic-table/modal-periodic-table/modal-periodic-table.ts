@@ -3,11 +3,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-periodic-table',
-  imports: [],
+  standalone: true,
   templateUrl: './modal-periodic-table.html',
-  styleUrl: './modal-periodic-table.scss'
+  styleUrls: ['./modal-periodic-table.scss'],
 })
 export class ModalPeriodicTable {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

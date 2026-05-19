@@ -67,5 +67,6 @@ node_modules
 
 #Angular
 .angular
+angular
 
 package-lock.json

@@ -1,0 +1,22 @@
+.modal_container {
+  background: #161622;
+  border: 5px solid #252538;
+  border-radius: 30px !important;
+  color: #ededed;
+  height: 100%;
+  padding: 24px;
+  width: 100%;
+}
+
+.header_modal {
+  font-size: larger;
+  color: red;
+  margin-bottom: 32px;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
