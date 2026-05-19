@@ -2,12 +2,11 @@ import { Component, signal } from '@angular/core';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { PeriodicTable } from './components/tables/periodic-table/periodic-table';
-import { AtomAnimation } from './components/atom-animation/atom-animation';
-import { ElectronDistribution } from './components/electron-distribution/electron-distribution';
+import { ElectronDistribution } from './components/tables/periodic-table/modal-periodic-table/electron-distribution/electron-distribution';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, PeriodicTable, AtomAnimation, ElectronDistribution],
+  imports: [Header, Footer, PeriodicTable, ElectronDistribution],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

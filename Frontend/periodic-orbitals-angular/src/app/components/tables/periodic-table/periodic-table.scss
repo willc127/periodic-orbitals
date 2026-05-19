@@ -35,6 +35,7 @@
   .name {
     font-size: 0.875rem;
     color: inherit;
+    padding: 5px;
   }
 }
 
@@ -74,6 +75,16 @@
   color: #f2e474;
 }
 
+.Poor-Metal {
+  background: #3aafa9;
+  color: #0e3731;
+}
+
+.Halogen {
+  background: #553179;
+  color: #cc92f2;
+}
+
 .Lanthanide {
   background: #84562b;
   color: #f2b57a;
@@ -82,21 +93,4 @@
 .Actinide {
   background: #8ef876;
   color: #09090f;
-}
-
-.Poor-Metal {
-  background: #3aafa9;
-  color: #09090f;
-}
-
-.Halogen {
-  background: #553179;
-  color: #cc92f2;
-}
-
-.LaAcBlock {
-  display: flex;
-  background: linear-gradient(#c0392b, #8ef876);
-  grid-column: 3;
-  grid-row: 6 / 8;
 }
