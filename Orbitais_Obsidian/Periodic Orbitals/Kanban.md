@@ -6,20 +6,22 @@ kanban-plugin: board
 
 ## Backlog
 
-- [ ] Gerar orbitais no formato JSON ou bin
+- [ ] Gerar orbitais no formato JSON ou bin para exportar em 3d para o  three.js
 - [ ] Decidir se vai fazer a animação de transição de orbitais e fótons
 - [ ] Alternar visualizações das tabelas
 - [ ] Traduzir as informações
+- [ ] Descobrir como incluir a animação dentro dos cards dos elementos
+- [ ] Descobrir como incluir as imagens dos orbitais dentro dos cards dos elementos
 
 
 ## A fazer
 
-- [ ] Criar modal para mais informações dos elementos
 - [ ] configurar animação dos elétrons orbitando os átomos
 
 
 ## Em andamento
 
+- [ ] Criar modal para mais informações dos elementos
 
 
 ## Revisão

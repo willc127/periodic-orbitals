@@ -1,0 +1,19 @@
+<div class="periodic-table">
+  @for (elem of elements; track elem) {
+    @if (elem.tipo != "LaAcBlock") {
+      <div
+        class="element"
+        [style.gridColumn]="elem.grupo"
+        [style.gridRow]="elem.periodo"
+        [ngClass]="elem.tipo"
+        (click)="abrirModal(elem)"
+      >
+        <strong>{{ elem.simbolo }}</strong>
+        <small class="name">{{ elem.nome }}</small>
+        <small>{{ elem.numeroAtomico }}</small>
+      </div>
+    } @else {
+      <div class="element" [ngClass]="elem.tipo"></div>
+    }
+  }
+</div>

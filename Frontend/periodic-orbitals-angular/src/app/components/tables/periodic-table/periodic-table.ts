@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Element } from '../../interfaces/elemento';
+import { MatDialog } from '@angular/material/dialog';
+import { Element } from '../../../interfaces/elemento';
 import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
+import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table';
 
 @Component({
   selector: 'app-periodic-table',
@@ -13,7 +15,10 @@ import { DadosElementosService } from './periodic-table.service';
 export class PeriodicTable implements OnInit {
   elements: Element[] = [];
 
-  constructor(private elementService: DadosElementosService) {}
+  constructor(
+    private elementService: DadosElementosService,
+    private modal: MatDialog,
+  ) {}
 
   // Função de mapeamento: recebe array bruto e retorna array formatado
   private mapearDados(dados: any[]): Element[] {
@@ -62,6 +67,13 @@ export class PeriodicTable implements OnInit {
     configuracaoEletronica: '',
     tipo: 'Actinide',
   };
+
+  abrirModal(element: Element): void {
+    this.modal.open(ModalPeriodicTable, {
+      data: element,
+      width: '400px',
+    });
+  }
 
   ngOnInit(): void {
     this.carregarDados();
