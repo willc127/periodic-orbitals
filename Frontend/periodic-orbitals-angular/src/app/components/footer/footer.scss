@@ -12,6 +12,12 @@
   width: 100%;
 }
 
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
 a {
   color: #ededed;
   font-family: "Rubik Mono One", monospace;
@@ -22,4 +28,8 @@ a {
 
 .logo {
   height: 90%;
+}
+
+.footer a img.logo {
+  width: auto;
 }
