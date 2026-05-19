@@ -1,17 +1,20 @@
 .modal_container {
+  display: flex;
+  flex-direction: column;
   background: #161622;
   border: 5px solid #252538;
   border-radius: 30px !important;
   color: #ededed;
   height: 100%;
-  padding: 24px;
+  padding: 30px;
   width: 100%;
 }
 
 .header_modal {
   font-size: larger;
-  color: red;
+  color: #ededed;
   margin-bottom: 32px;
+  margin-top: 32px;
 }
 
 .conteudo {
@@ -19,4 +22,26 @@
   flex-direction: row;
   align-items: center;
   gap: 16px;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.informacoes {
+  color: #ededed;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  font-size: larger;
+  gap: 20px;
+  height: 100%;
+  width: 50%;
+  text-align: justify;
+}
+
+.animacao {
+  background-color: aqua;
+  width: 50%;
+  height: 100%;
 }

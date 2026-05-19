@@ -7,5 +7,6 @@ export interface Element {
   serie: string;
   periodo: number;
   configuracaoEletronica: string;
+  descricao?: string;
   tipo: string;
 }

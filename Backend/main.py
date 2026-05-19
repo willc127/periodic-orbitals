@@ -72,6 +72,7 @@ async def get_elements():
         "series_id",
         "period",
         "electronic_configuration",
+        "description"
     ]
 
     df = df[colunas_desejadas]

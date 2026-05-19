@@ -1,19 +1,23 @@
 <div class="modal_container">
   <div class="header_modal">
-    <h1>
-      {{ data.nome }}
-    </h1>
+    <h1>{{ data.nome }} ({{ data.simbolo }})</h1>
   </div>
   <div class="conteudo">
     <div class="informacoes">
-      <p><strong>Símbolo:</strong> {{ data.simbolo }}</p>
+      <p>{{ data.descricao }}</p>
       <p><strong>Número Atômico:</strong> {{ data.numeroAtomico }}</p>
+      <p><strong>Massa Atômica:</strong> {{ data.massaAtomica }}</p>
+
+      <p><strong>Tipo:</strong> {{ data.tipo }}</p>
+      <p><strong>Grupo:</strong> {{ data.grupo }}</p>
+      <p><strong>Período:</strong> {{ data.periodo }}</p>
       <p>
         <strong>Configuração Eletrônica:</strong>
         {{ data.configuracaoEletronica }}
       </p>
-      <p><strong>Estado de Oxidação:</strong> {{ data.estadoOxidacao }}</p>
+      <p></p>
     </div>
+
     <div class="animacao">animação</div>
   </div>
 </div>

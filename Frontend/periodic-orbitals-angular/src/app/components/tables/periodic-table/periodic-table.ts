@@ -31,6 +31,7 @@ export class PeriodicTable implements OnInit {
       serie: item.type,
       periodo: item.period,
       configuracaoEletronica: item.electronic_configuration,
+      descricao: item.description,
       tipo: item.type,
     }));
   }
@@ -72,8 +73,8 @@ export class PeriodicTable implements OnInit {
     this.modal.open(ModalPeriodicTable, {
       data: element,
       panelClass: 'modal-periodic-table-panel',
-      width: '800px',
-      height: '500px',
+      width: '1000px',
+      height: '750px',
       maxWidth: '90vw',
       maxHeight: '90vh',
     });
