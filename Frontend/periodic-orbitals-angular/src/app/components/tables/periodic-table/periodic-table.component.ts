@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Element } from '../../../interfaces/elemento';
 import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
-import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table';
+import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
 
 @Component({
   selector: 'app-periodic-table',

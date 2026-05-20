@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ElectronDistribution } from './electron-distribution/electron-distribution';
+import { ElectronDistribution } from './electron-distribution/electron-distribution.component';
 
 @Component({
   selector: 'app-modal-periodic-table',

@@ -9,7 +9,7 @@ import { wlToRGB, wlToCSS, pct } from './wl-utils';
   standalone: true,
   imports: [CommonModule, SpectrumCanvasComponent],
   templateUrl: './emission-spectrum.component.html',
-  styleUrls: ['./emission-spectrum.component.css'],
+  styleUrls: ['./emission-spectrum.scss'],
 })
 export class EmissionSpectrumComponent implements OnInit {
   selected = 'H';

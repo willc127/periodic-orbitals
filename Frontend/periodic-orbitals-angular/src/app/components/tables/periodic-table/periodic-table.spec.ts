@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeriodicTable } from './periodic-table';
+import { PeriodicTable } from './periodic-table.component';
 
 describe('PeriodicTable', () => {
   let component: PeriodicTable;
@@ -8,9 +8,8 @@ describe('PeriodicTable', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PeriodicTable]
-    })
-    .compileComponents();
+      imports: [PeriodicTable],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PeriodicTable);
     component = fixture.componentInstance;

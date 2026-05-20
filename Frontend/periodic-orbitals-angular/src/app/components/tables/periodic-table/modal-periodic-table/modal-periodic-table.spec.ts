@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalPeriodicTable } from './modal-periodic-table';
+import { ModalPeriodicTable } from './modal-periodic-table.component';
 
 describe('ModalPeriodicTable', () => {
   let component: ModalPeriodicTable;
@@ -8,9 +8,8 @@ describe('ModalPeriodicTable', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalPeriodicTable]
-    })
-    .compileComponents();
+      imports: [ModalPeriodicTable],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalPeriodicTable);
     component = fixture.componentInstance;
