@@ -16,6 +16,7 @@ app.add_middleware(
 )
 # ------------------------------------------------
 
+
 def clean_for_json(df: pd.DataFrame) -> list:
     """
     Substitui valores infinitos e NaN por None
@@ -49,10 +50,15 @@ async def get_elements():
 
     df = df[colunas_desejadas]
 
-# Customização de colunas
+    # Customização de colunas
 
     df["series_id"] = df["series_id"].fillna(0).astype(int)
-    
+
+    # Trunca valor de massa atômica para 2 casas decimais e adiciona o sufixo 'ua'
+    df["atomic_weight"] = df["atomic_weight"].apply(
+        lambda x: f"{round(x, 2)} ua" if pd.notnull(x) else x
+    )
+
     # Aplica match/case para classificar series
     def classify_group(series_id: int | None, symbol: str) -> str | None:
 
@@ -81,7 +87,7 @@ async def get_elements():
                 return "Lanthanide"
             case 10:
                 return "Actinide"
-            
+
     df["type"] = df.apply(
         lambda row: classify_group(row["series_id"], row["symbol"]), axis=1
     )

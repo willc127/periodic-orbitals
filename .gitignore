@@ -70,3 +70,8 @@ node_modules
 angular
 
 package-lock.json
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
