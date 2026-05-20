@@ -1,51 +1,6 @@
 <div class="wrapper">
-
-  <!-- ── Header ───────────────────────────────────────────────────── -->
-  <div class="header">
-    <div class="header-subtitle">Espectroscopia de Emissão Atômica</div>
-
-    <h1 class="header-title">
-      Espectro de&nbsp;<span [style.color]="headerNameColor()">{{ el.name }}</span>
-    </h1>
-
-    <div class="header-meta">
-      Z = {{ el.Z }}&nbsp;&nbsp;·&nbsp;&nbsp;{{ el.lines.length }} linhas de emissão
-    </div>
-  </div>
-
-  <!-- ── Element selector ─────────────────────────────────────────── -->
-  <div class="element-selector">
-    <button
-      *ngFor="let entry of sortedElements"
-      [ngStyle]="buttonStyle(entry[0], entry[1].lines)"
-      (click)="selectElement(entry[0])">
-      <div [ngStyle]="buttonSymbolStyle(entry[0], entry[1].lines)">{{ entry[0] }}</div>
-      <div [ngStyle]="buttonZStyle(entry[0], entry[1].lines)">{{ entry[1].Z }}</div>
-    </button>
-  </div>
-
   <!-- ── Spectrum display ─────────────────────────────────────────── -->
   <div class="spectrum-wrapper">
-
-    <!-- Wavelength labels (top) -->
-    <div class="tick-labels">
-      <div
-        *ngFor="let wl of ticks"
-        class="tick-label"
-        [style.left.%]="pct(wl)">
-        {{ wl }}
-      </div>
-    </div>
-
-    <!-- Tick marks (top) -->
-    <div class="tick-marks">
-      <div
-        *ngFor="let wl of ticks"
-        class="tick-mark"
-        [style.left.%]="pct(wl)">
-      </div>
-    </div>
-
     <!-- Canvas -->
     <div class="canvas-container">
       <app-spectrum-canvas [lines]="el.lines"></app-spectrum-canvas>
@@ -53,60 +8,22 @@
 
     <!-- Tick marks (bottom) -->
     <div class="tick-marks">
-      <div
-        *ngFor="let wl of ticks"
-        class="tick-mark"
-        [style.left.%]="pct(wl)">
-      </div>
+      @for (wl of ticks; track wl) {
+        <div class="tick-mark" [style.left.%]="pct(wl)"></div>
+      }
     </div>
 
     <!-- Wavelength labels (bottom) -->
     <div class="tick-labels">
-      <div
-        *ngFor="let wl of ticks"
-        class="tick-label"
-        [style.left.%]="pct(wl)">
-        {{ wl }}
-      </div>
+      @for (wl of ticks; track wl) {
+        <div class="tick-label" [style.left.%]="pct(wl)">
+          {{ wl }}
+        </div>
+      }
     </div>
 
     <!-- Axis title -->
     <div class="axis-title">COMPRIMENTO DE ONDA (nm)</div>
 
-    <!-- UV / VIS / IR range labels -->
-    <div class="range-labels">
-      <span class="range-uv">← UV</span>
-      <span class="range-vis">VISÍVEL</span>
-      <span class="range-ir">IV →</span>
-    </div>
-
   </div>
-
-  <!-- ── Spectral line table ───────────────────────────────────────── -->
-  <div class="line-table">
-    <div class="line-table-title">Linhas espectrais</div>
-
-    <div class="line-cards">
-      <div
-        *ngFor="let line of el.lines; let i = index"
-        [ngStyle]="lineCardStyle(line[0], line[1])">
-
-        <!-- Color bar -->
-        <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
-
-        <!-- Values -->
-        <div>
-          <div [ngStyle]="lineWlStyle(line[0])">
-            {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
-          </div>
-          <div class="line-intensity">I = {{ (line[1] * 100).toFixed(0) }}%</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Footer ───────────────────────────────────────────────────── -->
-  <div class="footer">NIST Atomic Spectra Database&nbsp;·&nbsp;dados de referência</div>
-
 </div>

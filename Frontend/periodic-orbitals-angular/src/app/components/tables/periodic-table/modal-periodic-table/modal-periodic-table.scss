@@ -55,7 +55,12 @@
 }
 
 .link {
-  color: aqua;
+  color: inherit;
   display: inline-flex;
   width: fit-content;
+  text-decoration: none;
+}
+
+.espectro {
+  margin-top: 16px;
 }

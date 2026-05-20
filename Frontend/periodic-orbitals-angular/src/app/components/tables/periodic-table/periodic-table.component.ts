@@ -74,8 +74,8 @@ export class PeriodicTable implements OnInit {
     this.modal.open(ModalPeriodicTable, {
       data: element,
       panelClass: 'modal-periodic-table-panel',
-      width: '1150px',
-      height: '750px',
+      width: '1500px',
+      height: '900px',
       maxWidth: '90vw',
       maxHeight: '90vh',
     });
