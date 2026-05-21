@@ -20,8 +20,12 @@
         </li>
       </ul>
 
-        <h3 class="espectro">Espectro de emissão</h3>
-        <app-emission-spectrum></app-emission-spectrum>
+      <h3 class="espectro__titulo">Espectro de emissão</h3>
+      
+        <app-emission-spectrum
+         (click) = "abrirLinkNist()"
+         style="cursor: pointer;">
+        </app-emission-spectrum>
       
     </div>
     <app-electron-distribution

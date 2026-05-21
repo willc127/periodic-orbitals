@@ -10,4 +10,5 @@ export interface Element {
   descricao?: string;
   tipo: string;
   link?: string;
+  link_nist?: string;
 }

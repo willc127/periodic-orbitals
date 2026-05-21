@@ -34,6 +34,7 @@ export class PeriodicTable implements OnInit {
       descricao: item.description,
       tipo: item.type,
       link: item.link,
+      link_nist: item.link_nist
     }));
   }
 

@@ -12,4 +12,8 @@ import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum
 })
 export class ModalPeriodicTable {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  abrirLinkNist(): void {
+    window.open(this.data.link_nist, '_blank');
+  }
 }

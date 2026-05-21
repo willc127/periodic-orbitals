@@ -36,7 +36,8 @@
   font-size: larger;
   gap: 20px;
   height: 100%;
-  width: 50%;
+  flex: 0 0 50%;
+  min-width: 0;
   text-align: justify;
 }
 
@@ -61,6 +62,6 @@
   text-decoration: none;
 }
 
-.espectro {
+.espectro__titulo {
   margin-top: 16px;
 }
