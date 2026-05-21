@@ -6,7 +6,7 @@ import { EmissionSpectrumComponent } from './components/tables/periodic-table/mo
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, PeriodicTable, EmissionSpectrumComponent],
+  imports: [Header, Footer, PeriodicTable],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

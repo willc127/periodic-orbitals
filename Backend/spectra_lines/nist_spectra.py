@@ -10,6 +10,8 @@ from astropy.table import Table
 
 warnings.filterwarnings("ignore")
 
+# Busca e salva dados de linhas espectrais do NIST para os elementos listados em ALL_ELEMENTS.
+
 ALL_ELEMENTS = [
     "H",
     "He",
