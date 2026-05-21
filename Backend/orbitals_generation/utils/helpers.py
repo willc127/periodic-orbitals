@@ -2,7 +2,7 @@
 
 from colorama import Fore, Back, Style, init
 from pathlib import Path
-from utils.grouping_figures import create_grouped_figure
+from Backend.orbitals_generation.utils.grouping_figures import create_grouped_figure
 
 # Inicializa colorama para suportar cores no terminal ao importar este módulo
 init()

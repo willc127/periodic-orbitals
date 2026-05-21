@@ -1,7 +1,7 @@
 """Testes unitários para validação de orbitais."""
 
 import pytest
-from config.constants import (
+from Backend.orbitals_generation.config.constants import (
     ERROR_INVALID_L,
     ERROR_INVALID_M,
     ERROR_INVALID_N,
@@ -73,7 +73,7 @@ class TestOrbitalService:
     @pytest.mark.asyncio
     async def test_render_orbital_returns_request_data(self):
         """Testa se render_orbital retorna dados válidos."""
-        from schemas.orbital import OrbitalRequest
+        from Backend.orbitals_generation.schemas.orbital import OrbitalRequest
 
         service = OrbitalService(db=None)
         request = OrbitalRequest(n=2, l=1, m=0)

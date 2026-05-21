@@ -1,12 +1,12 @@
 """Orbital rendering module for cross-sections."""
 
-from utils.save_figure import save_figure
+from Backend.orbitals_generation.utils.save_figure import save_figure
 from typing import Optional
 from pathlib import Path
 
-from core.render_3d import render_3d
-from core.hydrogen import cartesian_prob_real
-from core.get_render_radius import get_render_radius
+from Backend.orbitals_generation.core.render_3d import render_3d
+from Backend.orbitals_generation.core.hydrogen import cartesian_prob_real
+from Backend.orbitals_generation.core.get_render_radius import get_render_radius
 import numpy as np
 
 from colorama import Fore, Style, init

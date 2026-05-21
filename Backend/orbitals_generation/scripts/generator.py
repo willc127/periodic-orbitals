@@ -2,7 +2,7 @@
 
 from typing import Optional
 from pathlib import Path
-from core.render_orbital import render_orbital
+from Backend.orbitals_generation.core.render_orbital import render_orbital
 from colorama import Fore, Style
 import os
 

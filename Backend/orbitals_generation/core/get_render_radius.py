@@ -1,4 +1,4 @@
-from core.hydrogen import radial_function
+from Backend.orbitals_generation.core.hydrogen import radial_function
 
 
 def get_render_radius(n: int, l: int) -> float:

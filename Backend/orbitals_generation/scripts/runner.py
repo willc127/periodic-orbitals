@@ -8,11 +8,10 @@ from pathlib import Path
 backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
-from utils.migrate_images import migrate_images_to_db
 from tqdm import tqdm
 from colorama import Fore, Back, Style
-from scripts.generator import orbitals_generator
-from utils.helpers import check_and_group_orbital
+from Backend.orbitals_generation.scripts.generator import orbitals_generator
+from Backend.orbitals_generation.utils.helpers import check_and_group_orbital
 
 
 def main(n_min: int, n_max: int, cmap: str = "plasma") -> None:

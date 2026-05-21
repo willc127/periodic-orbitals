@@ -8,9 +8,9 @@ import argparse
 caminho_backend = Path(__file__).parent.parent
 sys.path.insert(0, str(caminho_backend))
 
-from scripts.generator import orbitals_generator
-from utils.helpers import check_and_group_orbital
-from scripts.runner import main
+from Backend.orbitals_generation.scripts.generator import orbitals_generator
+from Backend.orbitals_generation.utils.helpers import check_and_group_orbital
+from Backend.orbitals_generation.scripts.runner import main
 
 
 __all__ = ["orbitals_generator", "check_and_group_orbital", "main"]

@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import numpy as np
 import os
-from core.hydrogen import cartesian_prob, cartesian_prob_real
-from core.get_render_radius import get_render_radius
+from Backend.orbitals_generation.core.hydrogen import cartesian_prob, cartesian_prob_real
+from Backend.orbitals_generation.core.get_render_radius import get_render_radius
 from colorama import Fore, Back, Style, init
 
 init()
