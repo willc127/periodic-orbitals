@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AtomAnimation } from '../atom-animation/atom-animation.component';
+import { AtomAnimation } from './atom-animation/atom-animation.component';
 
 @Component({
   selector: 'app-header',

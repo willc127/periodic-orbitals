@@ -6,7 +6,7 @@ import {
   AfterViewInit,
   Input,
 } from '@angular/core';
-import { ScopeConfig } from '../../../../../interfaces/scopeConfig';
+import { ScopeConfig } from '../../../../interfaces/scopeConfig';
 import { Distributor } from './electron-distributor';
 
 @Component({
@@ -28,17 +28,17 @@ export class ElectronDistribution implements AfterViewInit {
   private resizeObserver?: ResizeObserver;
 
   private readonly elementTypeColors: Record<string, string> = {
-    'Hydrogen': '#a8d8ea',
+    Hydrogen: '#a8d8ea',
     'Noble-Gas': '#ff00aa',
     'Alkali-Metal': '#ff6b35',
     'Alkaline-Earth-Metal': '#f4a900',
     'Transition-Metal': '#88bff2',
-    'Metalloid': '#88e6d1',
-    'Nonmetal': '#f2e474',
-    'Lanthanide': '#f2b57a',
-    'Actinide': '#8ef876',
+    Metalloid: '#88e6d1',
+    Nonmetal: '#f2e474',
+    Lanthanide: '#f2b57a',
+    Actinide: '#8ef876',
     'Poor-Metal': '#3aafa9',
-    'Halogen': '#cc92f2',
+    Halogen: '#cc92f2',
   };
 
   ngAfterViewInit() {

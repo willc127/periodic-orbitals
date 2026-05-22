@@ -1,8 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { Header } from './components/header/header.component';
-import { Footer } from './components/footer/footer.component';
-import { PeriodicTable } from './components/tables/periodic-table/periodic-table.component';
-import { EmissionSpectrumComponent } from './components/tables/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.component';
+import { Header } from './shared/header/header.component';
+import { Footer } from './shared/footer/footer.component';
+import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
 
 @Component({
   selector: 'app-root',

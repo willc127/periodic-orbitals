@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Element } from '../../../interfaces/elemento';
+import { Element } from '../../interfaces/elemento';
 import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
 import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
@@ -34,7 +34,7 @@ export class PeriodicTable implements OnInit {
       descricao: item.description,
       tipo: item.type,
       link: item.link,
-      link_nist: item.link_nist
+      link_nist: item.link_nist,
     }));
   }
 

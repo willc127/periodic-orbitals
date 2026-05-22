@@ -5,7 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { PeriodicTable } from './components/tables/periodic-table/periodic-table.component';
+import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
 
 @NgModule({
   imports: [
