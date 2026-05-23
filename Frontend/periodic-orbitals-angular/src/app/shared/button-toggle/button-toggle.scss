@@ -1,0 +1,32 @@
+app-button-toggle {
+  section {
+    background: #09090f;
+    display: flex;
+    font-family: inherit;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .mat-button-toggle-group {
+    border: 3px solid #031030;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .mat-button-toggle {
+    background-color: #09090f;
+    border: none;
+    color: #aaaacc;
+  }
+  // divisor entre os botões
+  .mat-button-toggle-group .mat-button-toggle + .mat-button-toggle {
+    border-left: 1px solid #031030;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: #a1c2e8 !important;
+    color: #031030 !important;
+  }
+}

@@ -4,11 +4,12 @@ import { Element } from '../../interfaces/elemento';
 import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
 import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
+import { ButtonToggle } from '../../shared/button-toggle/button-toggle.component';
 
 @Component({
   selector: 'app-periodic-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonToggle],
   templateUrl: './periodic-table.html',
   styleUrls: ['./periodic-table.scss'],
 })
@@ -17,7 +18,7 @@ export class PeriodicTable implements OnInit {
 
   constructor(
     private elementService: DadosElementosService,
-    private modal: MatDialog,
+    private modal: MatDialog
   ) {}
 
   // Função de mapeamento: recebe array bruto e retorna array formatado

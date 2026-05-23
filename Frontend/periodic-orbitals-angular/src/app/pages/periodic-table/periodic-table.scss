@@ -4,7 +4,13 @@
   grid-template-columns: repeat(18, 5.75rem);
   grid-template-rows: repeat(9, 5.75rem);
   justify-content: center;
-  padding: 3rem;
+  padding: 2rem;
+
+  app-button-toggle {
+    padding: 0;
+    grid-column: 7 / span 2;
+    grid-row: 2;
+  }
 }
 
 @mixin efeito-transicao {

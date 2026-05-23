@@ -14,7 +14,7 @@ import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
     MatDialogModule,
     BrowserAnimationsModule,
     AppComponent,
-    PeriodicTable,
+    PeriodicTable
   ],
   providers: [], // serviços globais (se houver)
 })
