@@ -7,9 +7,10 @@
   padding: 2rem;
 
   app-button-toggle {
+    grid-column: 6 / span 4;
+    grid-row: 1;
     padding: 0;
-    grid-column: 7 / span 2;
-    grid-row: 2;
+    place-self: center;
   }
 }
 

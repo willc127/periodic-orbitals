@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
 import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
 import { ButtonToggle } from '../../shared/button-toggle/button-toggle.component';
+import { SelectorsComponent } from "./selectors/selectors.component";
 
 @Component({
   selector: 'app-periodic-table',
   standalone: true,
-  imports: [CommonModule, ButtonToggle],
+  imports: [CommonModule, ButtonToggle, SelectorsComponent],
   templateUrl: './periodic-table.html',
   styleUrls: ['./periodic-table.scss'],
 })

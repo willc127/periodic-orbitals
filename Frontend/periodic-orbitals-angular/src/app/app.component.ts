@@ -6,7 +6,7 @@ import { ButtonToggle } from './shared/button-toggle/button-toggle.component';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, PeriodicTable, ButtonToggle],
+  imports: [Header, Footer, PeriodicTable],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
