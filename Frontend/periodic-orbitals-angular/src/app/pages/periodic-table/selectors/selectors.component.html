@@ -1,17 +1,23 @@
 <div class="selectors__esquerda">
   @for (elem of listaEsquerda; track elem) {
-    <p>
-      <span class="dot" [style.background-color]="elem.cor"></span>
-      {{ elem.tipo }}
-    </p>
+    <button class="button-selector"
+    [style.border-color]="elem.cor"
+    mat-flat-button>
+<span class="dot" [style.background-color]="elem.cor"></span>
+{{ elem.tipo }}
+</button>
   }
 </div>
 
 <div class="selectors__direita">
   @for (elem of listaDireita; track elem) {
-    <p>
-      <span class="dot" [style.background-color]="elem.cor"></span>
-      {{ elem.tipo }}
-    </p>
+    <button class="button-selector"
+    [style.border-color]="elem.cor"
+    mat-flat-button>
+
+        <span class="dot" [style.background-color]="elem.cor"></span>
+        {{ elem.tipo }}
+
+    </button>
   }
 </div>
