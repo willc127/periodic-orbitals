@@ -1,4 +1,4 @@
-$electrons: 9;
+$electrons: var(--total-eletrons);
 $width: 4.5vmin;
 
 * {
@@ -23,7 +23,7 @@ body {
   height: $width;
   position: relative;
   perspective: 50000px;
-  color: #61dafb;
+  animation: pulsar-nucleo 3s cubic-bezier(0.5, 1, 0.89, 1) infinite;
 
   span {
     position: absolute;
@@ -41,27 +41,58 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-left: calc($width / 20) solid;
+    border-left: calc($width / 20) solid var(--cor-orbita, #61dafb);
     border-top: calc($width / 20) solid transparent;
     border-radius: 100%;
-
-    @for $i from 1 through $electrons {
-      &:nth-child(#{$i}) {
-        animation: anim-#{$i} 1s linear infinite;
-        animation-delay: #{$i * -433}ms;
-      }
-    }
+    animation: orbitar-eletron 1s linear infinite;
+    animation-delay: calc(var(--index) * -433ms);
   }
 }
 
-@for $i from 1 through $electrons {
-  @keyframes anim-#{$i} {
-    from {
-      transform: rotateZ(calc(360deg / $electrons) * $i) rotateX(66deg) rotateZ(0deg);
-    }
-    to {
-      transform: rotateZ(calc(360deg / $electrons) * $i) rotateX(66deg)
-        rotateZ(360deg);
-    }
+// Uma única animação genérica que serve para qualquer quantidade de elétrons
+@keyframes orbitar-eletron {
+  from {
+    transform: rotateZ(calc((360deg / #{$electrons}) * var(--index)))
+      rotateX(66deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(calc((360deg / #{$electrons}) * var(--index)))
+      rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes pulsar-nucleo {
+  0% {
+    color: #FF8439;
+  }
+  10% {
+    color: #AA6B30; 
+  }
+  20% {
+    color: #FFD400; 
+  }
+  30% {
+    color: #888529; 
+  }
+  40% {
+    color: #ACFF8B; 
+  }
+  50% {
+    color: #1F7063; 
+  }
+  60% {
+    color: #3DDED6;
+  }
+  70% {
+    color: #61dafb; 
+  }
+  80% {
+    color: #354782; 
+  }
+  90% {
+    color: #6D3C9F; 
+  }
+  100% {
+    color: #FF00AA;
   }
 }

@@ -1,12 +1,10 @@
 <div class="circles">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-
-  <div></div>
-  <div></div>
+  @for (el of eletronsList; track el) {
+    <div
+      [style.--index]="el"
+      [style.--cor-orbita]="coresOrbitas[(el - 1) % coresOrbitas.length]"
+    ></div>
+  }
 
   <span></span>
 </div>
