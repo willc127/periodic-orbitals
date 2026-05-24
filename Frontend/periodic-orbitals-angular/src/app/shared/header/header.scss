@@ -10,6 +10,12 @@ header {
   width: 100%;
 }
 
+.logo-title{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 h1 {
   color: #ededed;
   font-family: "Rubik Mono One", monospace;
@@ -17,18 +23,30 @@ h1 {
   font-weight: 400;
 }
 
-.logo {
+form {
   height: 100%;
-  padding: 0.5rem;
 }
 
+form > mat-form-field {
+  width: 200px;
+  height: 100%;
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
 
-.example-full-width {
-  width: 100%;
+  mat-label {
+    color: #031030;
+    font-weight: bold;
+  }
+  .mdc-text-field {
+    border-radius: 10px;
+    background: #A1C2E8 !important;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  
+  .mat-mdc-form-field-bottom-align {
+    display: none;
+    height: 0;
+  } 
 }

@@ -1,13 +1,14 @@
 <header class="header">
-  <app-atom-animation></app-atom-animation>
-  <h1>Periodic Orbitals</h1>
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Number</mat-label>
+  <div class="logo-title">
+    <app-atom-animation></app-atom-animation>
+    <h1>Periodic Orbitals</h1>
+  </div>
+  <form class="campo-busca">
+    <mat-form-field>
+      <mat-label>Pesquisa</mat-label>
       <input
         type="text"
-        placeholder="Pick one"
-        aria-label="Number"
+        placeholder="Digite um termo"
         matInput
         [formControl]="myControl"
         [matAutocomplete]="auto"

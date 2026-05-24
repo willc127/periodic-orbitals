@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -21,6 +21,7 @@ import { AtomAnimation } from './atom-animation/atom-animation.component';
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class Header {
 
