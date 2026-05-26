@@ -1,0 +1,214 @@
+[
+	{
+		"symbol": "H",
+		"name": "Hydrogen",
+		"atomic_number": 1,
+		"atomic_weight": "1.01 ua",
+		"group_id": 1,
+		"series_id": 1,
+		"period": 1,
+		"electronic_configuration": "1s¹",
+		"description": "Colourless, odourless gaseous chemical element. Lightest and most abundant element in the universe. Present in water and in all organic compounds. Chemically reacts with most elements. Discovered by Henry Cavendish in 1776.",
+		"type": "Hydrogen",
+		"link": "http://www.periodicvideos.com/videos/001.htm",
+		"link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=H&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
+		"spectra": [
+			{
+				"w": 383.649,
+				"i": 6
+			},
+			{
+				"w": 389.017,
+				"i": 14
+			},
+			{
+				"w": 397.12,
+				"i": 6
+			},
+			{
+				"w": 410.289,
+				"i": 14
+			},
+			{
+				"w": 434.169,
+				"i": 18
+			},
+			{
+				"w": 486.271,
+				"i": 36
+			},
+			{
+				"w": 656.46,
+				"i": 100
+			}
+		]
+	},
+	{
+		"symbol": "He",
+		"name": "Helium",
+		"atomic_number": 2,
+		"atomic_weight": "4.0 ua",
+		"group_id": 18,
+		"series_id": 2,
+		"period": 1,
+		"electronic_configuration": "1s²",
+		"description": "Colourless, odourless gaseous nonmetallic element. Belongs to group 18 of the periodic table. Lowest boiling point of all elements and can only be solidified under pressure. Chemically inert, no known compounds. Discovered in the solar spectrum in 1868 by Lockyer.",
+		"type": "Noble-Gas",
+		"link": "http://www.periodicvideos.com/videos/002.htm",
+		"link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=He&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
+		"spectra": [
+			{
+				"w": 382.069,
+				"i": 2
+			},
+			{
+				"w": 382.069,
+				"i": 2
+			},
+			{
+				"w": 382.069,
+				"i": 2
+			},
+			{
+				"w": 382.069,
+				"i": 2
+			},
+			{
+				"w": 382.069,
+				"i": 2
+			},
+			{
+				"w": 383.464,
+				"i": 0
+			},
+			{
+				"w": 387.289,
+				"i": 0
+			},
+			{
+				"w": 388.975,
+				"i": 100
+			},
+			{
+				"w": 388.975,
+				"i": 100
+			},
+			{
+				"w": 393.703,
+				"i": 0
+			},
+			{
+				"w": 396.585,
+				"i": 4
+			},
+			{
+				"w": 402.511,
+				"i": 0
+			},
+			{
+				"w": 402.733,
+				"i": 10
+			},
+			{
+				"w": 402.733,
+				"i": 10
+			},
+			{
+				"w": 402.733,
+				"i": 10
+			},
+			{
+				"w": 402.733,
+				"i": 10
+			},
+			{
+				"w": 402.733,
+				"i": 10
+			},
+			{
+				"w": 412.198,
+				"i": 2
+			},
+			{
+				"w": 412.198,
+				"i": 2
+			},
+			{
+				"w": 414.493,
+				"i": 1
+			},
+			{
+				"w": 417.014,
+				"i": 0
+			},
+			{
+				"w": 438.916,
+				"i": 2
+			},
+			{
+				"w": 443.88,
+				"i": 1
+			},
+			{
+				"w": 447.274,
+				"i": 40
+			},
+			{
+				"w": 447.274,
+				"i": 40
+			},
+			{
+				"w": 447.274,
+				"i": 40
+			},
+			{
+				"w": 447.274,
+				"i": 40
+			},
+			{
+				"w": 447.274,
+				"i": 40
+			},
+			{
+				"w": 471.446,
+				"i": 6
+			},
+			{
+				"w": 471.446,
+				"i": 6
+			},
+			{
+				"w": 492.331,
+				"i": 4
+			},
+			{
+				"w": 501.708,
+				"i": 20
+			},
+			{
+				"w": 504.914,
+				"i": 2
+			},
+			{
+				"w": 587.725,
+				"i": 100
+			},
+			{
+				"w": 587.725,
+				"i": 100
+			},
+			{
+				"w": 587.725,
+				"i": 100
+			},
+			{
+				"w": 587.725,
+				"i": 100
+			},
+			{
+				"w": 668.0,
+				"i": 20
+			}
+		]
+	}
+]

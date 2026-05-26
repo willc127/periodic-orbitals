@@ -1,12 +1,17 @@
 # Suas importações permanecem as mesmas
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from mendeleev.fetch import fetch_table
 import numpy as np
 import pandas as pd
 import re
 
 app = FastAPI()
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("favicon.ico")
 
 app.add_middleware(
     CORSMiddleware,
