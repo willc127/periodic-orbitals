@@ -10,7 +10,7 @@ from astropy.table import Table
 
 warnings.filterwarnings("ignore")
 
-# Busca e salva dados de linhas espectrais do NIST para os elementos listados em ALL_ELEMENTS.
+# * Busca e salva dados de linhas espectrais do NIST para os elementos listados em ALL_ELEMENTS 
 
 ALL_ELEMENTS = [
     "H",
@@ -205,5 +205,6 @@ def nist_spectra() -> None:
     print(f"Total de linhas:        {total_lines}")
 
 
-if __name__ == "__main__":  # ✅ corrigido
+#  _ Só executar esse arquivo para trazer e salvar os dados
+if __name__ == "__main__":
     nist_spectra()
