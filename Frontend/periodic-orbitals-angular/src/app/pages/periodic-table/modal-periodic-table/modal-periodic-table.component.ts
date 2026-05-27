@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ElectronDistribution } from './electron-distribution/electron-distribution.component';
 import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum.component';
@@ -10,8 +10,13 @@ import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum
   styleUrls: ['./modal-periodic-table.scss'],
   imports: [ElectronDistribution, EmissionSpectrumComponent],
 })
-export class ModalPeriodicTable {
+export class ModalPeriodicTable implements OnInit {
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  ngOnInit() {
+
+  }
 
   abrirLinkNist(): void {
     window.open(this.data.link_nist, '_blank');

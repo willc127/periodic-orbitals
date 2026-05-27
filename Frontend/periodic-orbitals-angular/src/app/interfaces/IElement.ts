@@ -1,4 +1,4 @@
-export interface Element {
+export interface IElement {
   simbolo: string;
   nome: string;
   numeroAtomico: number | null;
@@ -11,4 +11,5 @@ export interface Element {
   tipo: string;
   link?: string;
   link_nist?: string;
+  spectral_lines?: [number, number][];
 }

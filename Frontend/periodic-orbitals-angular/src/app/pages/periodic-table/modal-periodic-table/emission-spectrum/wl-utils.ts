@@ -38,7 +38,7 @@ export function wlToRGB(wl: number): [number, number, number] {
   else if (wl >= 701 && wl <= 800) f = 0.3 + (0.7 * (800 - wl)) / 100;
   else f = 0;
 
-  const gamma = 0.75;
+  const gamma = 2;
   return [
     Math.round(255 * Math.pow(r * f, gamma)),
     Math.round(255 * Math.pow(g * f, gamma)),

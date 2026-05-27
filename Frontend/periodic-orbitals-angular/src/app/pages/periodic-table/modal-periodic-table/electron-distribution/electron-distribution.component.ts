@@ -6,7 +6,7 @@ import {
   AfterViewInit,
   Input,
 } from '@angular/core';
-import { ScopeConfig } from '../../../../interfaces/scopeConfig';
+import { IScopeConfig } from '../../../../interfaces/IScopeConfig';
 import { Distributor } from './electron-distributor';
 
 @Component({
@@ -23,7 +23,7 @@ export class ElectronDistribution implements AfterViewInit {
   wrapperRef!: ElementRef<HTMLDivElement>;
   @ViewChild('canvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
-  scope!: ScopeConfig;
+  scope!: IScopeConfig;
   private ctx2D!: CanvasRenderingContext2D;
   private resizeObserver?: ResizeObserver;
 

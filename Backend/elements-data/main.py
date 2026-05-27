@@ -5,7 +5,7 @@ from functools import lru_cache
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from mendeleev.fetch import fetch_table as mendeleev
+from mendeleev.fetch import fetch_table
 import numpy as np
 import pandas as pd
 import re
@@ -73,7 +73,7 @@ def clean_for_json(df: pd.DataFrame) -> list:
 @app.get("/elements-data")
 async def get_elements():
     # * Busca a tabela completa 
-    df = mendeleev.fetch_table("elements")
+    df = fetch_table("elements")
 
     # * Seleciona as colunas desejadas 
     colunas_desejadas = [
@@ -248,6 +248,5 @@ def get_spectral_lines(symbol: str):
     element = get_element(symbol)
     return {
         "symbol":         element["symbol"],
-        "name":           element["name"],
         "spectral_lines": element["spectral_lines"],
     }

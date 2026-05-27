@@ -3,18 +3,6 @@
   display: block;
 }
 
-// .wrapper {
-//   min-height: 100vh;
-//   background: #080808;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   padding: 2.5rem 1.5rem;
-//   font-family: 'Courier New', monospace;
-//   color: #ddd;
-// }
-
 /* ── Spectrum display wrapper ───────────────────────────────────── */
 .spectrum-wrapper {
   width: 100%;
@@ -69,60 +57,4 @@
   color: #ededed;
   letter-spacing: 0.15em;
   margin-top: 2px;
-}
-
-/* UV / VIS / IR labels */
-.range-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  padding: 0 2px;
-}
-
-.range-uv {
-  font-size: 0.55rem;
-  color: #252540;
-  letter-spacing: 0.1em;
-}
-.range-vis {
-  font-size: 0.55rem;
-  color: #254025;
-  letter-spacing: 0.1em;
-}
-.range-ir {
-  font-size: 0.55rem;
-  color: #402520;
-  letter-spacing: 0.1em;
-}
-
-/* ── Spectral line table ────────────────────────────────────────── */
-.line-table {
-  margin-top: 2.5rem;
-  width: 100%;
-  max-width: 860px;
-}
-
-.line-table-title {
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  color: #333;
-  text-transform: uppercase;
-  margin-bottom: 0.8rem;
-}
-
-.line-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* Card border/bg applied dynamically; only static resets here */
-.nm-unit {
-  font-size: 0.55rem;
-  opacity: 0.6;
-}
-
-.line-intensity {
-  font-size: 0.55rem;
-  color: #333;
 }

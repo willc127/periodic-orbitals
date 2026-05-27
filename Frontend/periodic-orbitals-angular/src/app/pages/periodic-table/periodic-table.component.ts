@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Element } from '../../interfaces/elemento';
+import { IElement } from '../../interfaces/IElement';
 import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
 import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
 import { ButtonToggle } from '../../shared/button-toggle/button-toggle.component';
-import { SelectorsComponent } from "./selectors/selectors.component";
+import { SelectorsComponent } from './selectors/selectors.component';
 
 @Component({
   selector: 'app-periodic-table',
@@ -15,15 +15,15 @@ import { SelectorsComponent } from "./selectors/selectors.component";
   styleUrls: ['./periodic-table.scss'],
 })
 export class PeriodicTable implements OnInit {
-  elements: Element[] = [];
+  elements: IElement[] = [];
 
   constructor(
     private elementService: DadosElementosService,
-    private modal: MatDialog
+    private modal: MatDialog,
   ) {}
 
   // Função de mapeamento: recebe array bruto e retorna array formatado
-  private mapearDados(dados: any[]): Element[] {
+  private mapearDados(dados: any[]): IElement[] {
     return dados.map((item) => ({
       simbolo: item.symbol,
       nome: item.name,
@@ -37,20 +37,20 @@ export class PeriodicTable implements OnInit {
       tipo: item.type,
       link: item.link,
       link_nist: item.link_nist,
+      spectral_lines: item.spectral_lines,
     }));
   }
 
   carregarDados(): void {
-    this.elementService.obterDados().subscribe((data: Element[]) => {
+    this.elementService.obterDados().subscribe((data: IElement[]) => {
       this.elements = this.mapearDados(data);
       this.elements.push(this.bloco_vazio_lantanideo);
       this.elements.push(this.bloco_vazio_actinideo);
-      console.log(this.elements);
     });
   }
 
   // Elementos "vazios" para preencher os blocos de lantanídeos e actinídeos
-  private bloco_vazio_lantanideo: Element = {
+  private bloco_vazio_lantanideo: IElement = {
     simbolo: 'La-Lu',
     nome: 'Lantanídeos',
     numeroAtomico: null,
@@ -61,7 +61,7 @@ export class PeriodicTable implements OnInit {
     configuracaoEletronica: '',
     tipo: 'Lanthanide',
   };
-  private bloco_vazio_actinideo: Element = {
+  private bloco_vazio_actinideo: IElement = {
     simbolo: 'Ac-Lr',
     nome: 'Actinídeos',
     numeroAtomico: null,
@@ -73,7 +73,7 @@ export class PeriodicTable implements OnInit {
     tipo: 'Actinide',
   };
 
-  abrirModal(element: Element): void {
+  abrirModal(element: IElement): void {
     this.modal.open(ModalPeriodicTable, {
       data: element,
       panelClass: 'modal-periodic-table-panel',
