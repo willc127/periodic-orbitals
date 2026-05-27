@@ -94,11 +94,6 @@ async def get_elements():
 
     df["series_id"] = df["series_id"].fillna(0).astype(int)
 
-    # * Trunca valor de massa atômica para 2 casas decimais e adiciona o sufixo 'ua' 
-    df["atomic_weight"] = df["atomic_weight"].apply(
-        lambda x: f"{round(x, 2)} ua" if pd.notnull(x) else x
-    )
-
     # * Aplica match/case para classificar series do elemento 
     def classify_group(series_id: int | None, symbol: str) -> str | None:
 
