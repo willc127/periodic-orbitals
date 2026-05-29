@@ -33,12 +33,12 @@ form > mat-form-field {
 
 
   mat-label {
-    color: #031030;
+    color: #233970;
     font-weight: bold;
   }
   .mdc-text-field {
-    border-radius: 10px;
-    background: #A1C2E8 !important;
+    border-radius: 5px;
+    background: #D9E3FC!important;
   }
 
   .mat-mdc-form-field-subscript-wrapper {
@@ -48,5 +48,6 @@ form > mat-form-field {
   .mat-mdc-form-field-bottom-align {
     display: none;
     height: 0;
-  } 
+  }
+  
 }

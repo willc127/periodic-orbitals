@@ -7,6 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AtomAnimation } from './atom-animation/atom-animation.component';
+import { ButtonToggle } from './button-toggle/button-toggle.component';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ import { AtomAnimation } from './atom-animation/atom-animation.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    ButtonToggle
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',

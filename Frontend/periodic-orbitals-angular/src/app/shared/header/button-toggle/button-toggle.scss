@@ -1,6 +1,6 @@
 app-button-toggle {
   section {
-    background: #09090f;
+    background: transparent;
     display: flex;
     font-family: inherit;
     justify-content: center;
@@ -10,25 +10,26 @@ app-button-toggle {
   }
 
   .mat-button-toggle {
-    background-color: #031030;
+    background-color: #233970;
     border: none;
-    color: #a1c2e8;
+    color: #D9E3FC;
   }
 
   .mat-button-toggle-checked {
-    background-color: #a1c2e8 !important;
-    color: #031030 !important;
+    background-color: #D9E3FC !important;
+    color: #233970 !important;
   }
 
   .mat-button-toggle-group {
-    border: 3px solid #031030;
+    // border: 3px solid #233970;
+    border-color: transparent;
     border-radius: 16px;
     overflow: hidden;
   }
 
   // divisor entre os botões
   .mat-button-toggle-group .mat-button-toggle + .mat-button-toggle {
-    border-left: 1px solid #031030;
+    border-left: 1px solid #233970;
   }
 
   .mat-button-toggle-label-content {
