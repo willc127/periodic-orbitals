@@ -4,10 +4,83 @@
 }
 
 /* ── Spectrum display wrapper ───────────────────────────────────── */
+
+.wrapper {
+  align-items: center;
+  background: #161622;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.header-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #d9e3fc;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
 .spectrum-wrapper {
   width: 100%;
   max-width: 860px;
   position: relative;
+}
+
+/* UV / VIS / IR labels */
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 2px;
+}
+
+.range-uv {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #8d0fdb;
+}
+
+.range-ir {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #c51e3a;
+}
+
+/* ── Spectral line table ────────────────────────────────────────── */
+.line-table {
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 860px;
+}
+
+.line-table-title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #d9e3fc;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.line-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nm-unit {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.line-intensity {
+  font-size: 0.65rem;
 }
 
 /* Tick label row */
@@ -22,7 +95,6 @@
   transform: translateX(-50%);
   font-size: 0.62rem;
   color: #ededed;
-  letter-spacing: 0.03em;
 }
 
 /* Tick mark row */
@@ -44,8 +116,8 @@
 .canvas-container {
   width: 100%;
   height: 60px;
-  border: 2px solid #252538;
-  border-radius: 2px;
+  border: 1px solid #252538;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
 }
@@ -55,6 +127,5 @@
   text-align: center;
   font-size: 0.65rem;
   color: #ededed;
-  letter-spacing: 0.15em;
   margin-top: 2px;
 }
