@@ -6,7 +6,7 @@ import {
   AfterViewInit,
   Input,
 } from '@angular/core';
-import { IScopeConfig } from '../../../../interfaces/IScopeConfig';
+import { IScopeConfig } from '../../../../../interfaces/IScopeConfig';
 import { Distributor } from './electron-distributor';
 
 @Component({

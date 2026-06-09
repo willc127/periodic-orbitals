@@ -1,9 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ElectronDistribution } from './electron-distribution/electron-distribution.component';
+import { ElectronDistribution } from './properties-elements/electron-distribution/electron-distribution.component';
 import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum.component';
 import { ButtonToggleModal } from '../../../shared/header/button-toggle-modal/button-toggle-modal.component';
-
 
 @Component({
   selector: 'app-modal-periodic-table',
