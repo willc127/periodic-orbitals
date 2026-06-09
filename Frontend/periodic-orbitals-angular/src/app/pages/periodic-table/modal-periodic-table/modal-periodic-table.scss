@@ -11,8 +11,11 @@
 }
 
 .header_modal {
-  font-size: larger;
+  align-items: center;
   color: #ededed;
+  display: flex;
+  justify-content: space-between;
+  font-size: larger;
   margin-bottom: 32px;
   margin-top: 32px;
 }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonToggle } from './button-toggle.component';
+import { ButtonToggle } from './button-toggle-modal.component';
 
 describe('ButtonToggle', () => {
   let component: ButtonToggle;

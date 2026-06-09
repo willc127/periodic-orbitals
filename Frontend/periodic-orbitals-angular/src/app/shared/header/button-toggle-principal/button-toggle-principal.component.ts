@@ -8,14 +8,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-button-toggle',
+  selector: 'app-button-toggle-principal',
   imports: [MatButtonToggleModule, MatCheckboxModule],
-  templateUrl: './button-toggle.html',
-  styleUrl: './button-toggle.scss',
+  templateUrl: './button-toggle-principal.html',
+  styleUrl: './button-toggle-principal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonToggle {
+export class ButtonTogglePrincipal {
   checked = signal('padrao');
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);

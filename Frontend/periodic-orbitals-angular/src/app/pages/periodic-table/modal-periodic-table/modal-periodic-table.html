@@ -3,7 +3,9 @@
     <a class="link" href="{{ data.link }}" target="_blank">
       <h1>{{ data.nome }} ({{ data.simbolo }})</h1>
     </a>
+    <app-button-toggle-modal></app-button-toggle-modal>
   </div>
+
   <div class="conteudo">
     <div class="informacoes">
       <article>{{ data.descricao }}</article>
@@ -21,15 +23,13 @@
       </ul>
 
       <h3 class="espectro__titulo">Espectro de emissão</h3>
-      
-        <app-emission-spectrum
-         (click) = "abrirLinkNist()"
-         style="cursor: pointer;"
-         [symbol]="data.simbolo"
-         
-         >
-        </app-emission-spectrum>
-      
+
+      <app-emission-spectrum
+        (click)="abrirLinkNist()"
+        style="cursor: pointer"
+        [symbol]="data.simbolo"
+      >
+      </app-emission-spectrum>
     </div>
     <app-electron-distribution
       class="animacao"

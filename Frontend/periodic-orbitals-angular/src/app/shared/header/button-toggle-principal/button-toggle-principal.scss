@@ -1,0 +1,40 @@
+app-button-toggle-principal {
+  section {
+    background: transparent;
+    display: flex;
+    font-family: inherit;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .mat-button-toggle {
+    background-color: #233970;
+    border: none;
+    color: #D9E3FC;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: #D9E3FC !important;
+    color: #233970 !important;
+  }
+
+  .mat-button-toggle-group {
+    // border: 3px solid #233970;
+    border-color: transparent;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  // divisor entre os botões
+  .mat-button-toggle-group .mat-button-toggle + .mat-button-toggle {
+    border-left: 1px solid #233970;
+  }
+
+  .mat-button-toggle-label-content {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}

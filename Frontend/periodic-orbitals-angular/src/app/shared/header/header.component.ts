@@ -7,7 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AtomAnimation } from './atom-animation/atom-animation.component';
-import { ButtonToggle } from './button-toggle/button-toggle.component';
+import { ButtonTogglePrincipal } from './button-toggle-principal/button-toggle-principal.component';
 
 @Component({
   selector: 'app-header',
@@ -19,14 +19,13 @@ import { ButtonToggle } from './button-toggle/button-toggle.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    ButtonToggle
+    ButtonTogglePrincipal,
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class Header {
-
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
@@ -34,14 +33,15 @@ export class Header {
   constructor() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
+      map((value) => this._filter(value || '')),
     );
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter((option) =>
+      option.toLowerCase().includes(filterValue),
+    );
   }
-
 }
