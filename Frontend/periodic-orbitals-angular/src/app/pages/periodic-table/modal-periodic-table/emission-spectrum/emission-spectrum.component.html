@@ -1,11 +1,13 @@
 <div class="wrapper">
-
   <div class="header-title">Espectro de Emissão Atômica</div>
 
   <!-- ── Spectrum display ─────────────────────────────────────────── -->
   <div class="spectrum-wrapper">
-
-    <div class="canvas-container">
+    <div
+      class="canvas-container"
+      (click)="abrirLinkNist()"
+      style="cursor: pointer"
+    >
       <app-spectrum-canvas [lines]="lines"></app-spectrum-canvas>
     </div>
 
@@ -36,11 +38,10 @@
   </div>
 
   <!-- ── Spectral line table ───────────────────────────────────────── -->
+  <div class="line-table-title">Principais linhas espectrais</div>
   <div class="line-table">
-    <div class="line-table-title">Principais linhas espectrais</div>
     <div class="line-cards">
       @for (line of mainLines; track line) {
-        
         <div [ngStyle]="lineCardStyle(line[0])">
           <!-- Color bar -->
           <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>

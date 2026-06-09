@@ -19,7 +19,5 @@ export class ModalPeriodicTable {
     this.selectedView.set(newView);
   }
 
-  abrirLinkNist(): void {
-    window.open(this.data.link_nist, '_blank');
-  }
+
 }

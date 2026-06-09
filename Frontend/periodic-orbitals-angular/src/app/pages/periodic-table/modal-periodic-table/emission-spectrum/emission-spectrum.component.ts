@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpectrumCanvasComponent } from './spectrum-canvas';
 import { pct, rgbToHsl, wlToCSS, wlToRGB } from './wl-utils';
 import { ISpectrum } from '../../../../interfaces/ISpectra';
 import { DadosElementosService } from './emission-spectrum.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-emission-spectrum',
@@ -19,7 +20,9 @@ export class EmissionSpectrumComponent implements OnInit {
   mainLines: [number, number][] = [];
   ticks: number[] = [];
 
-  constructor(private spectrumService: DadosElementosService) {}
+  constructor(private spectrumService: DadosElementosService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   carregarEspectros(symbol: string): void {
     this.spectrumService
@@ -33,10 +36,13 @@ export class EmissionSpectrumComponent implements OnInit {
 
         this.mainLines = this.lines
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 10) // escolher as 10 linhas mais intensas
+          .slice(0, 40) // escolher as 40 linhas mais intensas
           .sort((a, b) => a[0] - b[0]);
- 
       });
+  }
+
+  abrirLinkNist(): void {
+    window.open(this.data.link_nist, '_blank');
   }
 
   geraTicks(passo: number): number[] {
@@ -48,7 +54,7 @@ export class EmissionSpectrumComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarEspectros(this.symbol);
-    this.geraTicks(20);
+    this.geraTicks(10);
   }
 
   /** Left-position percentage for a wavelength tick */
@@ -60,36 +66,35 @@ export class EmissionSpectrumComponent implements OnInit {
 
   lineCardStyle(wl: number): Record<string, string> {
     const [r, g, b] = wlToRGB(wl);
-    const {h,s} = rgbToHsl(r, g, b);
+    const { h, s } = rgbToHsl(r, g, b);
     return {
       display: 'flex',
       alignItems: 'center',
       background: `hsla(${h}, ${s}%, 60%, 0.10)`,
       border: `1px solid hsl(${h}, ${s}%, 60%)`,
-      gap: '1.5rem',
+      gap: '1rem',
       borderRadius: '4px',
       padding: '0.3rem 0.6rem',
       fontWeight: 'bold',
-      
     };
   }
 
   lineBarStyle(wl: number, intensity: number): Record<string, string> {
     const [r, g, b] = wlToRGB(wl);
-    const {h, s, l} = rgbToHsl(r, g, b);
+    const { h, s, l } = rgbToHsl(r, g, b);
 
     return {
       width: '5px',
       height: '18px',
       background: `hsl(${h}, ${s}%, ${l}%)`,
-      boxShadow: `0 0 15px  ${intensity/15}px hsl(${h}, ${s}%, 60%)`,
+      boxShadow: `0 0 15px  ${intensity / 15}px hsl(${h}, ${s}%, 60%)`,
       flexShrink: '0',
     };
   }
 
   lineWlStyle(wl: number): Record<string, string> {
     const [r, g, b] = wlToRGB(wl);
-    const {h} = rgbToHsl(r, g, b);
+    const { h } = rgbToHsl(r, g, b);
     return {
       fontSize: '1rem',
       color: `hsl(${h}, 100%, 80%)`,
@@ -98,7 +103,7 @@ export class EmissionSpectrumComponent implements OnInit {
   }
   lineWlStyleIntensity(wl: number): Record<string, string> {
     const [r, g, b] = wlToRGB(wl);
-    const {h} = rgbToHsl(r, g, b);
+    const { h } = rgbToHsl(r, g, b);
     return {
       fontSize: '0.65rem',
       color: `hsl(${h}, 100%, 80%)`,

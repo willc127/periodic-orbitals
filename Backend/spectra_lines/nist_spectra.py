@@ -176,7 +176,7 @@ def fetch_element(symbol: str) -> list[dict]:
 def nist_spectra() -> None:
     parser = argparse.ArgumentParser(description="Busca espectros do NIST ASD")
     parser.add_argument("--elements", nargs="+", default=ALL_ELEMENTS)
-    parser.add_argument("--out", default="spectral_lines.json")
+    parser.add_argument("--out", default="Backend/spectra_lines/data/spectral_lines.json")
     args = parser.parse_args()
 
     result: dict[str, list] = {}
