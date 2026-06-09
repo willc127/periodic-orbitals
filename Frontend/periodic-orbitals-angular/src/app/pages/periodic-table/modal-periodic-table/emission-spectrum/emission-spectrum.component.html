@@ -1,10 +1,10 @@
 <div class="wrapper">
-  <!-- ── Header ───────────────────────────────────────────────────── -->
+
   <div class="header-title">Espectro de Emissão Atômica</div>
 
   <!-- ── Spectrum display ─────────────────────────────────────────── -->
   <div class="spectrum-wrapper">
-    <!-- Canvas -->
+
     <div class="canvas-container">
       <app-spectrum-canvas [lines]="lines"></app-spectrum-canvas>
     </div>
@@ -39,24 +39,26 @@
   <div class="line-table">
     <div class="line-table-title">Principais linhas espectrais</div>
     <div class="line-cards">
-      <div
-        *ngFor="let line of mainLines; let i = index"
-        [ngStyle]="lineCardStyle(line[0])"
-      >
-        <!-- Color bar -->
-        <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
+      @for (line of mainLines; track line) {
+        
+        <div [ngStyle]="lineCardStyle(line[0])">
+          <!-- Color bar -->
+          <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
 
-        <!-- Values -->
-        <div>
-          <div [ngStyle]="lineWlStyle(line[0])">
-            {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
-          </div>
-          <div class="line-intensity"
-           [ngStyle]="lineWlStyleIntensity(line[0])">
-            I = {{ line[1].toFixed(0) }}%
+          <!-- Values -->
+          <div>
+            <div [ngStyle]="lineWlStyle(line[0])">
+              {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
+            </div>
+            <div
+              class="line-intensity"
+              [ngStyle]="lineWlStyleIntensity(line[0])"
+            >
+              I = {{ line[1].toFixed(0) }}%
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </div>
