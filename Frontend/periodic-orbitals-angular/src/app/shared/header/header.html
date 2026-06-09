@@ -3,7 +3,9 @@
     <app-atom-animation></app-atom-animation>
     <h1>Periodic Orbitals</h1>
   </div>
-  <app-button-toggle-principal></app-button-toggle-principal>
+  <app-button-toggle-principal
+    (viewChanged)="viewChanged.emit($event)"
+  ></app-button-toggle-principal>
   <form class="campo-busca">
     <mat-form-field>
       <mat-label>Pesquisa</mat-label>

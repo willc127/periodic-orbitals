@@ -11,7 +11,7 @@ import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum
   imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent],
 })
 export class ModalPeriodicTable {
-  selectedView = signal('padrao');
+  selectedView = signal('propriedades');
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 

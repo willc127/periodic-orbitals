@@ -17,7 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonToggleModal {
-  checked = signal('padrao');
+  checked = signal('propriedades');
   checkedChange = output<string>();
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);

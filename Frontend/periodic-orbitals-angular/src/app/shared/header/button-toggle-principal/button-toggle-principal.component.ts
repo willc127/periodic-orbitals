@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
@@ -19,6 +20,13 @@ export class ButtonTogglePrincipal {
   checked = signal('padrao');
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);
+
+  viewChanged = output<'padrao' | 'graficos'>();
+
+  onViewChange(value: string) {
+    this.checked.set(value);
+    this.viewChanged.emit(value as 'padrao' | 'graficos');
+  }
 
   toggleSingleSelectionIndicator() {
     this.hideSingleSelectionIndicator.update((value) => !value);

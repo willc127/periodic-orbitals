@@ -2,6 +2,7 @@
   <mat-button-toggle-group
     [hideSingleSelectionIndicator]="hideSingleSelectionIndicator()"
     [value]="checked()"
+    (change)="onViewChange($event.value)"
   >
     <mat-button-toggle value="padrao">Padrão</mat-button-toggle>
     <mat-button-toggle value="graficos">Gráficos</mat-button-toggle>
