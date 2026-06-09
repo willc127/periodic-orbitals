@@ -1,1 +1,24 @@
-<p>properties-elements works!</p>
+<div class="conteudo">
+    <div class="informacoes">
+      <article>{{ data.descricao }}</article>
+
+      <ul>
+        <li>Número Atômico: {{ data.numeroAtomico }}</li>
+        <li>Massa Atômica: {{ data.massaAtomica }}</li>
+        <li>Tipo: {{ data.tipo }}</li>
+        <li>Grupo: {{ data.grupo }}</li>
+        <li>Período: {{ data.periodo }}</li>
+        <li>
+          Configuração Eletrônica:
+          {{ data.configuracaoEletronica }}
+        </li>
+      </ul>
+
+
+    </div>
+    <app-electron-distribution
+      class="animacao"
+      [atomicNumber]="data.numeroAtomico"
+      [elementType]="data.tipo"
+    ></app-electron-distribution>
+  </div>

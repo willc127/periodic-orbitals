@@ -1,20 +1,23 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ElectronDistribution } from './properties-elements/electron-distribution/electron-distribution.component';
+import { ButtonToggleModal } from '../../../shared/button-toggle-modal/button-toggle-modal.component';
+import { PropertiesElements } from './properties-elements/properties-elements.component';
 import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum.component';
-import { ButtonToggleModal } from '../../../shared/header/button-toggle-modal/button-toggle-modal.component';
-
 @Component({
   selector: 'app-modal-periodic-table',
   standalone: true,
   templateUrl: './modal-periodic-table.html',
   styleUrls: ['./modal-periodic-table.scss'],
-  imports: [ElectronDistribution, EmissionSpectrumComponent, ButtonToggleModal],
+  imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent],
 })
-export class ModalPeriodicTable implements OnInit {
+export class ModalPeriodicTable {
+  selectedView = signal('padrao');
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-  ngOnInit() {}
+  onViewChange(newView: string): void {
+    this.selectedView.set(newView);
+  }
 
   abrirLinkNist(): void {
     window.open(this.data.link_nist, '_blank');

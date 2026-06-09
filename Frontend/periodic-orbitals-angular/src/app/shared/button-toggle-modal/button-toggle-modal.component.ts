@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
@@ -17,8 +18,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class ButtonToggleModal {
   checked = signal('padrao');
+  checkedChange = output<string>();
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);
+
+  onCheckedChange(newValue: string) {
+    this.checked.set(newValue);
+    this.checkedChange.emit(newValue);
+  }
 
   toggleSingleSelectionIndicator() {
     this.hideSingleSelectionIndicator.update((value) => !value);
