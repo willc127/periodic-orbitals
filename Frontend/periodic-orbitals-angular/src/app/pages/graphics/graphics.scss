@@ -1,0 +1,24 @@
+// graphics.scss
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.container-graphics {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.esquerda {
+  flex: 1;
+  background-color: rgb(240, 132, 132);
+}
+
+.direita {
+  flex: 2;
+  background-color: rgb(200, 200, 247);
+  padding: 5rem;
+}
