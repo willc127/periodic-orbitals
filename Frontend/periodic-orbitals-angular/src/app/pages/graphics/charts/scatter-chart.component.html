@@ -9,24 +9,9 @@
 
   } @else {
 
-    <!-- Cabeçalho: eixo X × séries Y -->
-    <div class="chart-header">
-      <span class="axis-label axis-label--x">
-        <span class="dot dot--x"></span>
-        {{ xConfig()!.label }}
-      </span>
-      <span class="separator">×</span>
-      @for (yCfg of yConfigs(); track yCfg.id) {
-        <span class="axis-label axis-label--y" [style.border-color]="yCfg.color + '55'">
-          <span class="dot" [style.background]="yCfg.color"></span>
-          {{ yCfg.label }}
-        </span>
-      }
-    </div>
-
     <!-- Abas de série (só aparece quando há mais de 1 série Y) -->
     @if (yConfigs().length > 1) {
-      <div class="series-tabs" role="tablist" aria-label="Filtrar série">
+      <div class="series-tabs" [class.series-tabs--colored]="yConfigs().length > 1" role="tablist" aria-label="Filtrar série">
         @for (tab of tabs(); track tab.id) {
           <button
             class="series-tab"

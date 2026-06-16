@@ -137,7 +137,7 @@ export class ScatterChartComponent implements OnDestroy {
           legend: {
             display: showLegend,
             position: 'top',
-            labels: { boxWidth: 10, font: { size: 11 } },
+            labels: { boxWidth: 10, font: { size: 12 }, color: '#EDEDED' },
           },
           tooltip: {
             callbacks: {
@@ -155,9 +155,10 @@ export class ScatterChartComponent implements OnDestroy {
             title: {
               display: true,
               text: xCfg.unit ? `${xCfg.label} (${xCfg.unit})` : xCfg.label,
-              font: { size: 11 },
+              font: { size: 12 },
+              color: '#EDEDED',
             },
-            ticks: { font: { size: 10 }, maxTicksLimit: 8 },
+            ticks: { font: { size: 10 }, maxTicksLimit: 8, color: '#EDEDED' },
             grid: { color: 'rgba(128,128,128,0.1)' },
           },
           y: {
@@ -168,11 +169,13 @@ export class ScatterChartComponent implements OnDestroy {
                   ? `${singleY.label} (${singleY.unit})`
                   : singleY.label
                 : '',
-              font: { size: 11 },
+              font: { size: 12 },
+              color: '#EDEDED',
             },
             ticks: {
               font: { size: 10 },
               maxTicksLimit: 6,
+              color: '#EDEDED',
               callback: (v) =>
                 Math.abs(+v) >= 1000
                   ? (+v / 1000).toFixed(1) + 'k'

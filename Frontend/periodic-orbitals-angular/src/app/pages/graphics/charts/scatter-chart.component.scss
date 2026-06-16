@@ -1,24 +1,27 @@
 :host {
   display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .scatter-chart {
+  background: rgba(255, 255, 255, 0.02);
   border-radius: var(--mdc-elevated-card-container-shape, 12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  height: 100%;
+  width: 100%;
 }
 
 // ─── Estado vazio ─────────────────────────────────────────────────────────────
 
 .empty-state {
+  align-items: center;
+  color: var(--mat-sys-on-surface-variant);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 8px;
   min-height: 160px;
-  color: var(--mat-sys-on-surface-variant);
   opacity: 0.5;
 
   p {
@@ -29,8 +32,8 @@
 
 .empty-icon {
   font-size: 36px;
-  width: 36px;
   height: 36px;
+  width: 36px;
 }
 
 // ─── Cabeçalho ───────────────────────────────────────────────────────────────
@@ -41,33 +44,6 @@
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 12px;
-}
-
-.separator {
-  font-size: 12px;
-  color: var(--mat-sys-on-surface-variant);
-  opacity: 0.5;
-}
-
-.axis-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  border: 0.5px solid rgba(255, 255, 255, 0.12);
-
-  &--x {
-    color: #58a6ff;
-    border-color: rgba(56, 139, 253, 0.3);
-    background: rgba(56, 139, 253, 0.07);
-  }
-
-  &--y {
-    color: var(--mat-sys-on-surface);
-    background: rgba(255, 255, 255, 0.04);
-  }
 }
 
 .dot {
@@ -91,6 +67,7 @@
 }
 
 .series-tab {
+  color: #ededed;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -137,7 +114,7 @@
 .canvas-wrapper {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 100%;
 }
 
 canvas {
@@ -169,4 +146,8 @@ canvas {
   width: 13px;
   height: 13px;
   flex-shrink: 0;
+}
+
+.series-tabs--colored .series-tab {
+  color: #EDEDED;
 }
