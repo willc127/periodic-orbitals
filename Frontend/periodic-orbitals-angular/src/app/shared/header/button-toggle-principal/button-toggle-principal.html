@@ -4,7 +4,13 @@
     [value]="checked()"
     (change)="onViewChange($event.value)"
   >
-    <mat-button-toggle value="padrao">Padrão</mat-button-toggle>
-    <mat-button-toggle value="graficos">Gráficos</mat-button-toggle>
+    <mat-button-toggle value="padrao"
+      ><span class="mdi mdi-periodic-table mdi-24px"></span>
+      Padrão</mat-button-toggle
+    >
+    <mat-button-toggle value="graficos"
+      ><span class="mdi mdi-chart-line mdi-24px"></span>
+      Gráficos</mat-button-toggle
+    >
   </mat-button-toggle-group>
 </section>

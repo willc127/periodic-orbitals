@@ -37,4 +37,10 @@ app-button-toggle-principal {
     font-size: 1rem;
     font-weight: bold;
   }
+
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    display: flex;
+    gap: 4px;
+    
+  }
 }
