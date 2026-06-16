@@ -26,6 +26,7 @@ export interface IElement {
   temperaturaEbulicao:number;
   temperaturaCritica:number;
   pressaoCritica:number;
+  fontes:string;
   tipo: string;
   link?: string;
   link_nist?: string;

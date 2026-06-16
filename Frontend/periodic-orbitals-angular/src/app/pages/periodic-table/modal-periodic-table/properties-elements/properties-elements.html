@@ -1,24 +1,40 @@
 <div class="conteudo">
-    <div class="informacoes">
-      <article>{{ data.descricao }}</article>
 
+  <div class="esquerda">
+    <header class="descricao">
+      <p>{{ data.descricao }}</p>
+    </header>
+
+    <div class="informacoes">
       <ul>
         <li>Número Atômico: {{ data.numeroAtomico }}</li>
         <li>Massa Atômica: {{ data.massaAtomica }}</li>
         <li>Tipo: {{ data.tipo }}</li>
         <li>Grupo: {{ data.grupo }}</li>
         <li>Período: {{ data.periodo }}</li>
-        <li>
-          Configuração Eletrônica:
-          {{ data.configuracaoEletronica }}
-        </li>
+        <li>Configuração Eletrônica: {{ data.configuracaoEletronica }}</li>
+        <li>Eletronegatividade: {{ data.eletronegatividade }}</li>
+        <li>Condutividade Térmica: {{ data.condutividadeTermica }}</li>
+        <li>Capacidade Calorífica: {{ data.capacidadeCalorifica }}</li>
       </ul>
-
-
+      <ul>
+      <li>Capacidade Calorífica Molar: {{ data.capacidadeCalorificaMolar }}</li>
+        <li>Calor Evaporação: {{ data.calorEvaporacao }}</li>
+        <li>Calor Fusão: {{ data.calorFusao }}</li>
+        <li>Temperatura Fusão: {{ data.temperaturaFusao }}</li>
+        <li>Temperatura Ebulição: {{ data.temperaturaEbulicao }}</li>
+        <li>Temperatura Crítica: {{ data.temperaturaCritica }}</li>
+        <li>Pressão Crítica: {{ data.pressaoCritica }}</li>
+        <li>Raio Atômico: {{ data.raioAtomico }}</li>
+        <li>Radioativo: {{ data.radioativo }}</li>
+      </ul>
     </div>
-    <app-electron-distribution
-      class="animacao"
-      [atomicNumber]="data.numeroAtomico"
-      [elementType]="data.tipo"
-    ></app-electron-distribution>
   </div>
+
+  <app-electron-distribution
+    class="animacao"
+    [atomicNumber]="data.numeroAtomico"
+    [elementType]="data.tipo"
+  ></app-electron-distribution>
+
+</div>

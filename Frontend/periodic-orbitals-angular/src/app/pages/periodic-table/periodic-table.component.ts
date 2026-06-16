@@ -51,6 +51,7 @@ export class PeriodicTable implements OnInit {
       temperaturaEbulicao: item.boiling_point,
       temperaturaCritica: item.critical_temperature,
       pressaoCritica: item.critical_pressure,
+      fontes: item.sources,
       tipo: item.type,
       link: item.link,
       link_nist: item.link_nist,
@@ -63,7 +64,6 @@ export class PeriodicTable implements OnInit {
       this.elements = this.mapearDados(data);
       this.elements.push(this.bloco_vazio_lantanideo);
       this.elements.push(this.bloco_vazio_actinideo);
-      console.log('Dados carregados e mapeados:', this.elements);
     });
   }
 
@@ -96,6 +96,7 @@ export class PeriodicTable implements OnInit {
     temperaturaEbulicao: 0,
     temperaturaCritica: 0,
     pressaoCritica: 0,
+    fontes: '',
     tipo: 'Lanthanide',
   };
   private bloco_vazio_actinideo: IElement = {
@@ -126,6 +127,7 @@ export class PeriodicTable implements OnInit {
     temperaturaEbulicao: 0,
     temperaturaCritica: 0,
     pressaoCritica: 0,
+    fontes: '',
     tipo: 'Actinide',
   };
 

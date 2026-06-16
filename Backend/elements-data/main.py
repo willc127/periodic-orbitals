@@ -20,7 +20,7 @@ SPECTRA_DIR = Path(__file__).parent.parent
 SPECTRA_FILE = SPECTRA_DIR / "spectra_lines" / "data" / "spectral_lines.json"
 
 # * Dias para considerar o cache válido (Atualiza a base de dados local)
-TTL_DAYS = 10
+TTL_DAYS = 0
 
 
 # * Verifica se o cache local é válido (existe e tem menos de 10 dias)
@@ -124,6 +124,7 @@ def _fetch_and_save() -> list[dict]:
         "evaporation_heat",
         "fusion_heat",
         "cas",
+        "sources"
     ]
     # Seleciona apenas colunas que existem no DataFrame
     colunas_desejadas = [col for col in colunas_desejadas if col in df.columns]
