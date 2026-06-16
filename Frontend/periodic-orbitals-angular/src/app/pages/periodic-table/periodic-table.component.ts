@@ -77,7 +77,7 @@ export class PeriodicTable implements OnInit {
       data: element,
       panelClass: 'modal-periodic-table-panel',
       width: '1500px',
-      height: '900px',
+      height: '1000px',
       maxWidth: '90vw',
       maxHeight: '90vh',
     });

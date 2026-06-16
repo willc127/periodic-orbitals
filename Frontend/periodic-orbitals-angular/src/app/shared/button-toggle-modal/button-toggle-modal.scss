@@ -6,14 +6,22 @@ app-button-toggle-modal {
     justify-content: center;
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 90%;        // ← herda o flex: 0 1 50% do pai
+  }
+
+  .mat-button-toggle-group {
+    width: 100%;        // ← ocupa toda a largura disponível
+    border: 1px solid #d9e3fce6;
+    border-radius: 16px;
+    overflow: hidden;
   }
 
   .mat-button-toggle {
     background-color: transparent;
     color: #d9e3fc;
-    width: 25vh;
+    flex: 1;            // ← cada botão divide igualmente (remove width: 25vh)
   }
+
   
   .mat-button-toggle-checked {
     background-color: #d9e3fc !important;
@@ -35,6 +43,8 @@ app-button-toggle-modal {
     font-family: "Inter", sans-serif;
     font-size: 1rem;
     font-weight: bold;
+    align-items: center;      // ← centraliza verticalmente ícone + texto
+    justify-content: center;  // ← centraliza horizontalmente
   }
 
   .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {

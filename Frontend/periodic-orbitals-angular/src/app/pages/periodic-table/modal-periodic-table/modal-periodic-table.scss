@@ -21,6 +21,12 @@
   font-size: larger;
   margin-bottom: 32px;
   margin-top: 32px;
+
+  app-button-toggle-modal {
+    flex: 0 1 50%;      // ← espelha exatamente o .animacao
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .link {

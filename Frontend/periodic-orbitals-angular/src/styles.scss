@@ -66,6 +66,15 @@ body {
 }
 
 .modal-periodic-table-panel {
+  &.cdk-overlay-pane {
+    width: 1500px !important;
+    height: 1000px !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+  }
+}
+
+.modal-periodic-table-panel {
   .cdk-overlay-pane:has(&) {
     height: 90vh; // fallback explícito
   }
