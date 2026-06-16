@@ -3,7 +3,6 @@ import { Header } from './shared/header/header.component';
 import { Footer } from './shared/footer/footer.component';
 import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
 import { GraphicsComponent } from './pages/graphics/graphics.component';
-
 @Component({
   selector: 'app-root',
   imports: [Header, Footer, PeriodicTable, GraphicsComponent],

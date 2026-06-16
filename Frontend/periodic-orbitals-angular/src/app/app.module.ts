@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
+import { AxisSelectorComponent } from './pages/graphics/axis-selector/axis-selector.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
     MatDialogModule,
     BrowserAnimationsModule,
     AppComponent,
-    PeriodicTable
+    PeriodicTable,
+    AxisSelectorComponent,
   ],
   providers: [], // serviços globais (se houver)
 })

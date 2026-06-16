@@ -1,0 +1,67 @@
+<div class="scatter-chart">
+
+  @if (isEmpty()) {
+
+    <div class="empty-state">
+      <!-- <mat-icon fontIcon="scatter_plot" class="empty-icon" /> -->
+      <p>Selecione as propriedades e clique em <strong>Plotar gráfico</strong></p>
+    </div>
+
+  } @else {
+
+    <!-- Cabeçalho: eixo X × séries Y -->
+    <div class="chart-header">
+      <span class="axis-label axis-label--x">
+        <span class="dot dot--x"></span>
+        {{ xConfig()!.label }}
+      </span>
+      <span class="separator">×</span>
+      @for (yCfg of yConfigs(); track yCfg.id) {
+        <span class="axis-label axis-label--y" [style.border-color]="yCfg.color + '55'">
+          <span class="dot" [style.background]="yCfg.color"></span>
+          {{ yCfg.label }}
+        </span>
+      }
+    </div>
+
+    <!-- Abas de série (só aparece quando há mais de 1 série Y) -->
+    @if (yConfigs().length > 1) {
+      <div class="series-tabs" role="tablist" aria-label="Filtrar série">
+        @for (tab of tabs(); track tab.id) {
+          <button
+            class="series-tab"
+            role="tab"
+            [class.series-tab--active]="activeTab() === tab.id"
+            [style.--tab-color]="$any(tab).color ?? null"
+            [attr.aria-selected]="activeTab() === tab.id"
+            (click)="selectTab(tab.id)"
+          >
+            @if ($any(tab).color) {
+              <span class="tab-dot" [style.background]="$any(tab).color"></span>
+            }
+            {{ tab.label }}
+          </button>
+        }
+      </div>
+    }
+
+    <!-- Canvas -->
+    <div class="canvas-wrapper">
+      <canvas
+        #chartCanvas
+        role="img"
+        [attr.aria-label]="'Scatter plot de ' + xConfig()!.label + ' vs ' + visibleYConfigs().length + ' propriedade(s)'"
+      >
+        Scatter plot de {{ xConfig()!.label }}
+        contra {{ visibleYConfigs().length }} propriedade(s) atômicas.
+      </canvas>
+    </div>
+
+    <p class="data-note">
+      <!-- <mat-icon fontIcon="info" class="note-icon" /> -->
+      Dados mock — H até Kr (Z 1–36). Substitua <code>MOCK_ELEMENT_DATA</code> pela chamada ao endpoint FastAPI.
+    </p>
+
+  }
+
+</div>

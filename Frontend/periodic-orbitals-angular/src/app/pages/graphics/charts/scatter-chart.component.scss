@@ -1,0 +1,172 @@
+:host {
+  display: block;
+}
+
+.scatter-chart {
+  border-radius: var(--mdc-elevated-card-container-shape, 12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+// ─── Estado vazio ─────────────────────────────────────────────────────────────
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 160px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.5;
+
+  p {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+.empty-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+// ─── Cabeçalho ───────────────────────────────────────────────────────────────
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.separator {
+  font-size: 12px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.5;
+}
+
+.axis-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+
+  &--x {
+    color: #58a6ff;
+    border-color: rgba(56, 139, 253, 0.3);
+    background: rgba(56, 139, 253, 0.07);
+  }
+
+  &--y {
+    color: var(--mat-sys-on-surface);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &--x {
+    background: #58a6ff;
+  }
+}
+
+// ─── Abas de série ────────────────────────────────────────────────────────────
+
+.series-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.series-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &--active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: var(--mat-sys-on-surface);
+    font-weight: 500;
+
+    // quando tem cor de série, usa ela na borda
+    &[style*="--tab-color"] {
+      border-color: color-mix(in srgb, var(--tab-color) 60%, transparent);
+      background: color-mix(in srgb, var(--tab-color) 10%, transparent);
+    }
+  }
+}
+
+.tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Canvas ───────────────────────────────────────────────────────────────────
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+}
+
+canvas {
+  display: block;
+}
+
+// ─── Nota rodapé ─────────────────────────────────────────────────────────────
+
+.data-note {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.55;
+
+  code {
+    font-family: monospace;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+}
+
+.note-icon {
+  font-size: 13px;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}

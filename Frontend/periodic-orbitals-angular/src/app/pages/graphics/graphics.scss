@@ -13,12 +13,16 @@
 }
 
 .esquerda {
-  flex: 1;
-  background-color: rgb(240, 132, 132);
+  flex: 6;
+  // background-color: rgb(240, 132, 132);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 .direita {
-  flex: 2;
+  flex: 7;
   background-color: rgb(200, 200, 247);
   padding: 5rem;
 }

@@ -1,0 +1,139 @@
+<section class="axis-selector">
+  <!-- ── Pool de propriedades ─────────────────────────────────────────── -->
+  <div class="pool-section">
+    <p class="section-label">Propriedades disponíveis</p>
+
+    <div
+      id="pool"
+      class="drop-zone pool-zone"
+      cdkDropList
+      [cdkDropListData]="availableProps()"
+      [cdkDropListConnectedTo]="['axis-x', 'axis-y']"
+      (cdkDropListDropped)="onDropToPool($event)"
+    >
+      @for (prop of availableProps(); track prop.id) {
+        <div
+          class="prop-chip"
+          cdkDrag
+          [cdkDragData]="prop"
+          [matTooltip]="
+            prop.unit ? prop.label + ' (' + prop.unit + ')' : prop.label
+          "
+        >
+          <span class="chip-dot"></span>
+          {{ prop.label }}
+                  </div>
+      } @empty {
+        <span class="pool-empty">Todas as propriedades foram alocadas</span>
+      }
+    </div>
+  </div>
+
+  <!-- ── Drop zones dos eixos ──────────────────────────────────────────── -->
+  <div class="axes-row">
+    <!-- Eixo X — apenas UMA propriedade -->
+    <div class="axis-card axis-card--x">
+      <div class="axis-header">
+        <span class="axis-badge axis-badge--x">Eixo X</span>
+        <span class="axis-hint">1 propriedade</span>
+      </div>
+
+      <div
+        id="axis-x"
+        class="drop-zone axis-zone"
+        [class.axis-zone--filled]="axisX()"
+        cdkDropList
+        [cdkDropListData]="axisX() ? [axisX()!] : []"
+        [cdkDropListConnectedTo]="['pool', 'axis-y']"
+        (cdkDropListDropped)="onDropToAxisX($event)"
+      >
+        @if (axisX(); as prop) {
+          <div class="prop-chip prop-chip--x" cdkDrag [cdkDragData]="prop">
+            <span class="chip-dot chip-dot--x"></span>
+            {{ prop.label }}
+            <button
+              class="chip-remove"
+              type="button"
+              (click)="removeFromAxisX()"
+              matTooltip="Remover"
+              aria-label="Remover propriedade do eixo X"
+            >
+              <mat-icon fontIcon="close" />
+            </button>
+          </div>
+        } @else {
+          <span class="axis-empty">
+            <mat-icon fontIcon="drag_indicator" class="empty-icon" />
+            Arraste uma propriedade aqui
+          </span>
+        }
+      </div>
+    </div>
+
+    <!-- Eixo Y — MÚLTIPLAS propriedades -->
+    <div class="axis-card axis-card--y">
+      <div class="axis-header">
+        <span class="axis-badge axis-badge--y">Eixo Y</span>
+        <span class="axis-hint">
+          {{
+            axisY().length > 0
+              ? axisY().length + " série" + (axisY().length > 1 ? "s" : "")
+              : "várias propriedades"
+          }}
+        </span>
+      </div>
+
+      <div
+        id="axis-y"
+        class="drop-zone axis-zone axis-zone--multi"
+        [class.axis-zone--filled]="axisY().length > 0"
+        cdkDropList
+        [cdkDropListData]="axisY()"
+        [cdkDropListConnectedTo]="['pool', 'axis-x']"
+        (cdkDropListDropped)="onDropToAxisY($event)"
+      >
+        @if (axisY().length > 0) {
+          @for (prop of axisY(); track prop.id) {
+            <div class="prop-chip prop-chip--y" cdkDrag [cdkDragData]="prop">
+              <span class="chip-dot chip-dot--y"></span>
+              {{ prop.label }}
+              <button
+                class="chip-remove"
+                type="button"
+                (click)="removeFromAxisY(prop.id)"
+                [matTooltip]="'Remover ' + prop.label"
+                [attr.aria-label]="'Remover ' + prop.label + ' do eixo Y'"
+              >
+                <mat-icon fontIcon="close" />
+              </button>
+              <div class="drag-placeholder"></div>
+            </div>
+          }
+        } @else {
+          <span class="axis-empty">
+            <mat-icon fontIcon="drag_indicator" class="empty-icon" />
+            Arraste uma ou mais propriedades
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Botão plotar ───────────────────────────────────────────────────── -->
+  <button
+    mat-stroked-button
+    class="plot-button"
+    [disabled]="!canPlot()"
+    (click)="onPlot()"
+  >
+    <mat-icon fontIcon="scatter_plot" />
+    Plotar gráfico
+    @if (canPlot()) {
+      <span class="plot-summary">
+        {{ axisX()!.label }} × {{ axisY().length }} série{{
+          axisY().length > 1 ? "s" : ""
+        }}
+      </span>
+    }
+  </button>
+</section>

@@ -1,0 +1,263 @@
+// ─── Variáveis de tema ────────────────────────────────────────────────────────
+// Reutiliza as CSS custom props do tema escuro do seu app (#09090F bg)
+// Os tokens abaixo são baseados em Material M3 + overrides do seu projeto.
+
+:host {
+  display: block;
+}
+
+// ─── Layout principal ─────────────────────────────────────────────────────────
+
+.axis-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ─── Labels de seção ─────────────────────────────────────────────────────────
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+  margin-bottom: 8px;
+}
+
+// ─── Drop zones (pool + eixos) ────────────────────────────────────────────────
+
+.drop-zone {
+  min-height: 52px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  padding: 10px;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+
+  &.cdk-drop-list-dragging {
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  &.cdk-drop-list-receiving {
+    border-color: var(--mat-sys-primary);
+    background: rgba(var(--mat-sys-primary-rgb, 99, 102, 241), 0.08);
+  }
+}
+
+// ─── Pool ────────────────────────────────────────────────────────────────────
+
+.pool-zone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pool-empty {
+  font-size: 12px;
+  color: var(--mat-sys-on-surface-variant);
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+// ─── Row de eixos ─────────────────────────────────────────────────────────────
+
+.axes-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+// ─── Cards de eixo ───────────────────────────────────────────────────────────
+
+.axis-card {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.axis-header {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.axis-hint {
+  font-size: 11px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.6;
+}
+
+.axis-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 20px;
+
+  &--x {
+    background: rgba(56, 139, 253, 0.15);
+    color: #58a6ff;
+  }
+
+  &--y {
+    background: rgba(63, 185, 80, 0.15);
+    color: #3fb950;
+  }
+}
+
+// ─── Zona de drop do eixo ────────────────────────────────────────────────────
+
+.axis-zone {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  &--filled {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  // Eixo Y cresce verticalmente conforme chips acumulam
+  &--multi {
+    min-height: 52px;
+    align-content: flex-start;
+  }
+}
+
+.axis-empty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.6;
+  height: 32px;
+}
+
+.empty-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+// ─── Chips ───────────────────────────────────────────────────────────────────
+
+.prop-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+  font-weight: 500;
+  color: #ededed;
+  cursor: grab;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &.cdk-drag-dragging {
+    cursor: grabbing;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  // Chip no eixo X
+  &--x {
+    border-color: rgba(56, 139, 253, 0.4);
+    background: rgba(56, 139, 253, 0.1);
+  }
+
+  // Chip no eixo Y
+  &--y {
+    border-color: rgba(63, 185, 80, 0.4);
+    background: rgba(63, 185, 80, 0.1);
+  }
+}
+
+
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.3);
+
+  &--x {
+    background: #58a6ff;
+  }
+  &--y {
+    background: #3fb950;
+  }
+}
+
+.chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--mat-sys-on-surface-variant);
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+  transition: background 0.12s;
+
+  mat-icon {
+    font-size: 13px;
+    width: 13px;
+    height: 13px;
+  }
+
+  &:hover {
+    background: rgba(255, 80, 80, 0.2);
+    color: #ff6b6b;
+  }
+}
+
+// ─── Botão plotar ─────────────────────────────────────────────────────────────
+
+.plot-button {
+  align-self: stretch;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 10px !important;
+
+  mat-icon {
+    margin-right: 4px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.plot-summary {
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.6;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 8px;
+}

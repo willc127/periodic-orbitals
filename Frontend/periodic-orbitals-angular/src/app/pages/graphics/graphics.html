@@ -1,10 +1,14 @@
 <div class="container-graphics">
-
-  <div class="esquerda"></div>
+  <div class="esquerda">
+    <app-axis-selector
+      [properties]="properties()"
+      (plot)="onPlotRequest($event)"
+    ></app-axis-selector>
+  </div>
   <div class="direita">
-
-    <canvas #chartCanvas></canvas>
-
+    <app-scatter-chart
+      *ngIf="plotRequest()"
+      [request]="plotRequest()!"
+    ></app-scatter-chart>
   </div>
 </div>
-
