@@ -17,7 +17,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { PlotRequest } from '../../../interfaces/IAxisSelector';
+import { PlotRequest } from '../../../../interfaces/IAxisSelector';
 import { MOCK_ELEMENT_DATA, SERIES_CONFIG } from './scatter-chart.data';
 
 Chart.register(ScatterController, LinearScale, PointElement, Tooltip, Legend);

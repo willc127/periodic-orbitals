@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AxisSelectorComponent } from './axis-selector/axis-selector.component';
 import { ElementProperty, PlotRequest } from '../../interfaces/IAxisSelector';
-import { ScatterChartComponent } from './charts/scatter-chart.component';
+import { ScatterChartComponent } from './charts/scatter/scatter-chart.component';
 
 @Component({
   selector: 'app-graphics',
