@@ -1,10 +1,45 @@
 .periodic-table {
   display: grid;
   gap: 4px;
-  grid-template-columns: repeat(18, 5.75rem);
-  grid-template-rows: repeat(9, 5.75rem);
+  grid-template-columns: repeat(18, minmax(3rem, 1fr));
+  grid-template-rows: repeat(9, 3rem);
   justify-content: center;
+  align-items: center;
   padding: 2rem;
+  width: 100%;
+  overflow: auto;
+
+  /* Tablet (768px - 1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    gap: 3px;
+    padding: 1.5rem;
+    grid-template-columns: repeat(18, minmax(4rem, 1fr));
+    grid-template-rows: repeat(9, 4rem);
+  }
+
+  /* Desktop (> 1024px) */
+  @media (min-width: 1025px) {
+    gap: 4px;
+    padding: 2rem;
+    grid-template-columns: repeat(18, minmax(4.5rem, 1fr));
+    grid-template-rows: repeat(9, 4.5rem);
+  }
+
+  /* Small Mobile (< 480px) */
+  @media (max-width: 479px) {
+    gap: 2px;
+    padding: 0.5rem;
+    grid-template-columns: repeat(18, minmax(2.2rem, 1fr));
+    grid-template-rows: repeat(9, 2.2rem);
+  }
+
+  /* Mobile (480px - 767px) */
+  @media (min-width: 480px) and (max-width: 767px) {
+    gap: 2px;
+    padding: 1rem;
+    grid-template-columns: repeat(18, minmax(2.8rem, 1fr));
+    grid-template-rows: repeat(9, 2.8rem);
+  }
 }
 
 @mixin efeito-transicao {
@@ -27,15 +62,53 @@
   flex-direction: column;
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  font-size: 1.75rem;
-  justify-content: center;
+  font-size: 1.5rem;
+  justify-content: flex-start;
   text-align: center;
   @include efeito-transicao;
+  min-height: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  padding-top: 0.5rem;
 
   .name {
-    font-size: 0.775rem;
+    font-size: 0.65rem;
     color: inherit;
-    padding: 5px;
+  }
+  .atomicNumber {
+    font-size: 0.65rem;
+    color: inherit;
+    
+  }
+
+  /* Ajustar tamanho da fonte em mobile */
+  @media (max-width: 767px) {
+    font-size: 1.2rem;
+
+    .name {
+      font-size: 0.6rem;
+      padding: 3px;
+    }
+
+    small {
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Ajustar tamanho da fonte em small mobile */
+  @media (max-width: 479px) {
+    font-size: 0.9rem;
+
+    .name {
+      font-size: 0.5rem;
+      padding: 2px;
+    }
+
+    small {
+      font-size: 0.6rem;
+    }
   }
 }
 
