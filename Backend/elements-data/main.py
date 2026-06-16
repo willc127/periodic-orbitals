@@ -20,7 +20,7 @@ SPECTRA_DIR = Path(__file__).parent.parent
 SPECTRA_FILE = SPECTRA_DIR / "spectra_lines" / "data" / "spectral_lines.json"
 
 # * Dias para considerar o cache válido (Atualiza a base de dados local)
-TTL_DAYS = 10  
+TTL_DAYS = 10
 
 
 # * Verifica se o cache local é válido (existe e tem menos de 10 dias)
@@ -65,8 +65,6 @@ def load_elements() -> list[dict]:
     return elements
 
 
-
-
 # _ Aplicação principal
 app = FastAPI(
     title="Periodic Table API",
@@ -100,12 +98,47 @@ def clean_for_json(df: pd.DataFrame) -> list:
 # * Busca dados da API externa e salva localmente
 def _fetch_and_save() -> list[dict]:
     df = fetch_table("elements")
+    df_phases = fetch_table("phasetransitions")
 
     colunas_desejadas = [
-        "symbol", "name", "atomic_number", "atomic_weight",
-        "group_id", "series_id", "period", "electronic_configuration", "description",
+        "symbol",
+        "name",
+        "atomic_number",
+        "atomic_weight",
+        "group_id",
+        "series_id",
+        "period",
+        "electronic_configuration",
+        "description",
+        "abundance_crust",
+        "abundance_sea",
+        "density",
+        "atomic_radius",
+        "uses",
+        "en_pauling",
+        "thermal_conductivity",
+        "specific_heat_capacity",
+        "molar_heat_capacity",
+        "is_radioactive",
+        "geochemical_class",
+        "evaporation_heat",
+        "fusion_heat",
+        "cas",
     ]
+    # Seleciona apenas colunas que existem no DataFrame
+    colunas_desejadas = [col for col in colunas_desejadas if col in df.columns]
     df = df[colunas_desejadas]
+
+    # Merge com phase_transitions para obter melting_point, boiling_point, etc
+    colunas_fases = [
+        "atomic_number",
+        "melting_point",
+        "boiling_point",
+        "critical_temperature",
+        "critical_pressure",
+    ]
+    df_phases = df_phases[colunas_fases].drop_duplicates(subset=["atomic_number"])
+    df = df.merge(df_phases, on="atomic_number", how="left")
     df["series_id"] = df["series_id"].fillna(0).astype(int)
 
     def classify_group(series_id: int | None, symbol: str) -> str | None:
@@ -113,18 +146,30 @@ def _fetch_and_save() -> list[dict]:
             case "H":
                 return "Hydrogen"
         match series_id:
-            case 1: return "Nonmetal"
-            case 2: return "Noble-Gas"
-            case 3: return "Alkali-Metal"
-            case 4: return "Alkaline-Earth-Metal"
-            case 5: return "Metalloid"
-            case 6: return "Halogen"
-            case 7: return "Poor-Metal"
-            case 8: return "Transition-Metal"
-            case 9: return "Lanthanide"
-            case 10: return "Actinide"
+            case 1:
+                return "Nonmetal"
+            case 2:
+                return "Noble-Gas"
+            case 3:
+                return "Alkali-Metal"
+            case 4:
+                return "Alkaline-Earth-Metal"
+            case 5:
+                return "Metalloid"
+            case 6:
+                return "Halogen"
+            case 7:
+                return "Poor-Metal"
+            case 8:
+                return "Transition-Metal"
+            case 9:
+                return "Lanthanide"
+            case 10:
+                return "Actinide"
 
-    df["type"] = df.apply(lambda row: classify_group(row["series_id"], row["symbol"]), axis=1)
+    df["type"] = df.apply(
+        lambda row: classify_group(row["series_id"], row["symbol"]), axis=1
+    )
     df["link"] = df["atomic_number"].apply(
         lambda num: f"http://www.periodicvideos.com/videos/{int(num):03d}.htm"
     )
@@ -132,7 +177,20 @@ def _fetch_and_save() -> list[dict]:
         lambda atom_symbol: f"https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra={atom_symbol}&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on"
     )
 
-    superscript_map = str.maketrans({"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"})
+    superscript_map = str.maketrans(
+        {
+            "0": "⁰",
+            "1": "¹",
+            "2": "²",
+            "3": "³",
+            "4": "⁴",
+            "5": "⁵",
+            "6": "⁶",
+            "7": "⁷",
+            "8": "⁸",
+            "9": "⁹",
+        }
+    )
 
     def _to_superscript(match: re.Match) -> str:
         return f"{match.group(1)}{match.group(2)}{(match.group(3) or '1').translate(superscript_map)}"
@@ -144,8 +202,9 @@ def _fetch_and_save() -> list[dict]:
         return re.sub(r"(\d+)([spdfg])(\d*)", _to_superscript, s)
 
     df.loc[df["electronic_configuration"].notnull(), "electronic_configuration"] = (
-        df.loc[df["electronic_configuration"].notnull(), "electronic_configuration"]
-        .apply(format_electronic_config)
+        df.loc[
+            df["electronic_configuration"].notnull(), "electronic_configuration"
+        ].apply(format_electronic_config)
     )
 
     df.loc[df["atomic_number"] == 57, "type"] = "Lanthanide"
@@ -153,8 +212,12 @@ def _fetch_and_save() -> list[dict]:
     df.loc[df["atomic_number"] == 89, "type"] = "Actinide"
     df.loc[df["atomic_number"] == 103, "type"] = "Actinide"
 
-    mask_lanthanide = (df["group_id"].isnull() & (df["type"] == "Lanthanide")) | (df["atomic_number"] == 57)
-    mask_actinide = (df["group_id"].isnull() & (df["type"] == "Actinide")) | (df["atomic_number"] == 89)
+    mask_lanthanide = (df["group_id"].isnull() & (df["type"] == "Lanthanide")) | (
+        df["atomic_number"] == 57
+    )
+    mask_actinide = (df["group_id"].isnull() & (df["type"] == "Actinide")) | (
+        df["atomic_number"] == 89
+    )
 
     lanthanide_group = 4
     actinide_group = 4
@@ -181,7 +244,9 @@ def _fetch_and_save() -> list[dict]:
 
     # * Persiste no disco
     ELEMENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    ELEMENTS_FILE.write_text(json.dumps(dados_limpos, indent=2, ensure_ascii=False), encoding="utf-8")
+    ELEMENTS_FILE.write_text(
+        json.dumps(dados_limpos, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
     _write_meta()  # ← salva o timestamp
 
     # * Invalida o lru_cache para forçar releitura na próxima chamada
@@ -215,13 +280,16 @@ def get_element(symbol: str):
 
 
 # _ endpoint para as linhas espectrais de um elemento
-@app.get("/elements-data/{symbol}/spectral_lines", summary="Linhas espectrais de um elemento")
+@app.get(
+    "/elements-data/{symbol}/spectral_lines", summary="Linhas espectrais de um elemento"
+)
 def get_spectral_lines(symbol: str):
     element = get_element(symbol)
     return {
         "symbol": element["symbol"],
         "spectral_lines": element["spectral_lines"],
     }
+
 
 # _ utilitário: limpa o cache em memória (lru_cache)
 @app.post("/cache/clear", include_in_schema=False)
