@@ -9,7 +9,7 @@ import { SelectorsComponent } from './selectors/selectors.component';
 @Component({
   selector: 'app-periodic-table',
   standalone: true,
-  imports: [CommonModule,  SelectorsComponent],
+  imports: [CommonModule, SelectorsComponent],
   templateUrl: './periodic-table.html',
   styleUrls: ['./periodic-table.scss'],
 })
@@ -33,6 +33,24 @@ export class PeriodicTable implements OnInit {
       periodo: item.period,
       configuracaoEletronica: item.electronic_configuration,
       descricao: item.description,
+      abundanciaCrosta: item.abundance_crust,
+      abundanciaMar: item.abundance_sea,
+      densidade: item.density,
+      raioAtomico: item.atomic_radius,
+      usos: item.uses,
+      eletronegatividade: item.en_pauling,
+      condutividadeTermica: item.thermal_conductivity,
+      capacidadeCalorifica: item.specific_heat_capacity,
+      capacidadeCalorificaMolar: item.molar_heat_capacity,
+      radioativo: item.is_radioactive,
+      classeGeoquimica: item.geochemical_class,
+      calorEvaporacao: item.evaporation_heat,
+      calorFusao: item.fusion_heat,
+      CAS: item.cas,
+      temperaturaFusao: item.melting_point,
+      temperaturaEbulicao: item.boiling_point,
+      temperaturaCritica: item.critical_temperature,
+      pressaoCritica: item.critical_pressure,
       tipo: item.type,
       link: item.link,
       link_nist: item.link_nist,
@@ -45,6 +63,7 @@ export class PeriodicTable implements OnInit {
       this.elements = this.mapearDados(data);
       this.elements.push(this.bloco_vazio_lantanideo);
       this.elements.push(this.bloco_vazio_actinideo);
+      console.log('Dados carregados e mapeados:', this.elements);
     });
   }
 
@@ -58,6 +77,25 @@ export class PeriodicTable implements OnInit {
     serie: '',
     periodo: 6,
     configuracaoEletronica: '',
+    descricao: 'Blocos de lantanídeos',
+    abundanciaCrosta: 0,
+    abundanciaMar: 0,
+    densidade: 0,
+    raioAtomico: 0,
+    usos: '',
+    eletronegatividade: 0,
+    condutividadeTermica: 0,
+    capacidadeCalorifica: 0,
+    capacidadeCalorificaMolar: 0,
+    radioativo: false,
+    classeGeoquimica: '',
+    calorEvaporacao: 0,
+    calorFusao: 0,
+    CAS: '',
+    temperaturaFusao: 0,
+    temperaturaEbulicao: 0,
+    temperaturaCritica: 0,
+    pressaoCritica: 0,
     tipo: 'Lanthanide',
   };
   private bloco_vazio_actinideo: IElement = {
@@ -69,6 +107,25 @@ export class PeriodicTable implements OnInit {
     serie: '',
     periodo: 7,
     configuracaoEletronica: '',
+    descricao: 'Blocos de actinídeos',
+    abundanciaCrosta: 0,
+    abundanciaMar: 0,
+    densidade: 0,
+    raioAtomico: 0,
+    usos: '',
+    eletronegatividade: 0,
+    condutividadeTermica: 0,
+    capacidadeCalorifica: 0,
+    capacidadeCalorificaMolar: 0,
+    radioativo: false,
+    classeGeoquimica: '',
+    calorEvaporacao: 0,
+    calorFusao: 0,
+    CAS: '',
+    temperaturaFusao: 0,
+    temperaturaEbulicao: 0,
+    temperaturaCritica: 0,
+    pressaoCritica: 0,
     tipo: 'Actinide',
   };
 
