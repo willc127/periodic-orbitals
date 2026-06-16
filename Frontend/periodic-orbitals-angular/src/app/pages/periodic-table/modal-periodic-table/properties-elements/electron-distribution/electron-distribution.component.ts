@@ -4,6 +4,7 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  OnDestroy,
   Input,
 } from '@angular/core';
 import { IScopeConfig } from '../../../../../interfaces/IScopeConfig';
@@ -16,7 +17,7 @@ import { Distributor } from './electron-distributor';
   templateUrl: './electron-distribution.html',
   styleUrls: ['./electron-distribution.scss'],
 })
-export class ElectronDistribution implements AfterViewInit {
+export class ElectronDistribution implements AfterViewInit, OnDestroy {
   @Input() atomicNumber: number | null = 1;
   @Input() elementType = '';
   @ViewChild('wrapper', { static: true })
@@ -26,6 +27,7 @@ export class ElectronDistribution implements AfterViewInit {
   scope!: IScopeConfig;
   private ctx2D!: CanvasRenderingContext2D;
   private resizeObserver?: ResizeObserver;
+  private animationFrameId?: number;
 
   private readonly elementTypeColors: Record<string, string> = {
     Hydrogen: '#a8d8ea',
@@ -50,38 +52,36 @@ export class ElectronDistribution implements AfterViewInit {
   }
 
   private observeResize() {
-    const canvas = this.canvasRef.nativeElement;
-    const container = canvas.parentElement;
-    if (!container || typeof ResizeObserver === 'undefined') {
-      return;
-    }
-
+    const host = this.wrapperRef.nativeElement; // ← o wrapper que recebe 100% de .animacao
+    if (typeof ResizeObserver === 'undefined') return;
+  
     this.resizeObserver = new ResizeObserver(() => {
       this.resizeCanvas();
     });
-    this.resizeObserver.observe(container);
+    this.resizeObserver.observe(host); // ← observa o elemento certo
+    requestAnimationFrame(() => this.resizeCanvas()); // ← resize inicial pós-layout
   }
-
-  //
+  
   private resizeCanvas() {
     const canvas = this.canvasRef.nativeElement;
-    const container = canvas.parentElement as HTMLElement | null;
-    if (!container) {
-      return;
-    }
-
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const host = this.wrapperRef.nativeElement; // ← dimensões reais vêm daqui
+    if (!host) return;
+  
+    const width = host.clientWidth;
+    const height = host.clientHeight;
+  
+    if (width === 0 || height === 0) return; // layout ainda não estável
+  
     const dpr = window.devicePixelRatio || 1;
-
+  
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     canvas.width = Math.max(1, Math.floor(width * dpr));
     canvas.height = Math.max(1, Math.floor(height * dpr));
     this.ctx2D.setTransform(dpr, 0, 0, dpr, 0, 0);
-
+  
     if (this.scope) {
-      this.scope.size = (Math.max(width, height) * 4) / 10;
+      this.scope.size = (Math.min(width, height) * 0.8) / 2;
     }
   }
 
@@ -90,7 +90,7 @@ export class ElectronDistribution implements AfterViewInit {
       orbitColor: '#DDDDDD',
       atomicNumber: this.atomicNumber || 1,
       shells: [],
-      size: 0,
+      size: 1,
       offset: 0,
       animate: true,
     };
@@ -158,10 +158,11 @@ export class ElectronDistribution implements AfterViewInit {
   draw() {
     const { orbitColor, shells, size, offset } = this.scope;
     const color = this.getColorForElementType(this.elementClass);
-
+  
     const ctx = this.ctx2D;
-    const originX = this.canvasRef.nativeElement.width / 2;
-    const originY = this.canvasRef.nativeElement.height / 2;
+    const dpr = window.devicePixelRatio || 1;
+    const originX = this.canvasRef.nativeElement.width / dpr / 2; // ← divide por dpr
+    const originY = this.canvasRef.nativeElement.height / dpr / 2;
     const alpha = 2 * Math.PI;
 
     const minOrbitRadius = size / 3;
@@ -238,6 +239,15 @@ export class ElectronDistribution implements AfterViewInit {
     if (!this.scope.animate) return;
     this.scope.offset = (this.scope.offset + 2 ** -8) % (2 * Math.PI);
     this.draw();
-    requestAnimationFrame(() => this.loop());
+    this.animationFrameId = requestAnimationFrame(() => this.loop());
+  }
+
+  ngOnDestroy(): void {
+    if (this.animationFrameId !== undefined) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 }

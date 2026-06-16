@@ -7,10 +7,10 @@
       <p>Selecione as propriedades e clique em <strong>Plotar gráfico</strong></p>
     </div>
 
-  } @else {
+  } @else if (yConfigs().length > 1) {
 
     <!-- Abas de série (só aparece quando há mais de 1 série Y) -->
-    @if (yConfigs().length > 1) {
+    
       <div class="series-tabs" [class.series-tabs--colored]="yConfigs().length > 1" role="tablist" aria-label="Filtrar série">
         @for (tab of tabs(); track tab.id) {
           <button
@@ -46,7 +46,5 @@
       <!-- <mat-icon fontIcon="info" class="note-icon" /> -->
       Dados mock — H até Kr (Z 1–36). Substitua <code>MOCK_ELEMENT_DATA</code> pela chamada ao endpoint FastAPI.
     </p>
-
-  }
-
+    
 </div>

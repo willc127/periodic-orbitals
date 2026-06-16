@@ -6,8 +6,11 @@
   border-radius: 30px !important;
   color: #ededed;
   height: 100%;
+  min-height: 0; // ← essencial em flex filho
   padding: 30px;
   width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .header_modal {
@@ -25,8 +28,22 @@
   display: inline-flex;
   width: fit-content;
   text-decoration: none;
+  outline: none;        // ← remove o outline de foco
+  border: none;         // ← remove qualquer borda residual
+  
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .espectro__titulo {
   margin-top: 16px;
+}
+
+// dentro do .ts do dialog, no styleUrls ou via ::ng-deep no parent
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__content {
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding: 0;
 }

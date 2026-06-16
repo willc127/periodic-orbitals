@@ -1,19 +1,25 @@
 /* ── Host / wrapper ─────────────────────────────────────────────── */
 :host {
   display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* ── Spectrum display wrapper ───────────────────────────────────── */
 
 .wrapper {
-  align-items: center;
+  align-items: flex-start;
   background: #161622;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2.5rem 1.5rem;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 /* ── Header ─────────────────────────────────────────────────────── */
@@ -26,12 +32,15 @@
   color: #d9e3fc;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .spectrum-wrapper {
   width: 100%;
   max-width: 100%;
   position: relative;
+  flex-shrink: 0;
 }
 
 /* UV / VIS / IR labels */
@@ -60,6 +69,7 @@
   width: 100%;
   justify-content: center;
   display: flex;
+  flex-shrink: 0;
 }
 
 .line-table-title {
@@ -70,6 +80,7 @@
   justify-content: left;
   width: 100%;
   margin-top: 2.5rem;
+  flex-shrink: 0;
 }
 
 .line-cards {
@@ -77,7 +88,7 @@
   flex-wrap: wrap;
   gap: 0.3rem;
   justify-content: center;
-
+  width: 100%;
 }
 
 .nm-unit {
@@ -121,11 +132,13 @@
 /* Canvas container */
 .canvas-container {
   width: 100%;
-  height: 150px;
+  height: 100px;
   border: 1px solid #252538;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 /* Axis label */

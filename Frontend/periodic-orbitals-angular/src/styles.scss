@@ -64,3 +64,27 @@ body {
   box-shadow: none !important; /* Remove a sombra nativa que brilha em branco/cinza */
   border: none !important; /* Garante que não há borda nativa */
 }
+
+.modal-periodic-table-panel {
+  .cdk-overlay-pane:has(&) {
+    height: 90vh; // fallback explícito
+  }
+
+  .mat-mdc-dialog-container,
+  .mdc-dialog__container,
+  .mdc-dialog__surface {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .mdc-dialog__content,
+  .mat-mdc-dialog-content {
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
