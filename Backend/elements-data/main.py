@@ -124,7 +124,10 @@ def _fetch_and_save() -> list[dict]:
         "evaporation_heat",
         "fusion_heat",
         "cas",
-        "sources"
+        "sources",
+        "discoverers", "discovery_location",
+        "discovery_year",
+        "name_origin",
     ]
     # Seleciona apenas colunas que existem no DataFrame
     colunas_desejadas = [col for col in colunas_desejadas if col in df.columns]

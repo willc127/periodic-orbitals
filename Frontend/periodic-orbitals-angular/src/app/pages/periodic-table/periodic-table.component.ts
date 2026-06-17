@@ -52,6 +52,10 @@ export class PeriodicTable implements OnInit {
       temperaturaCritica: item.critical_temperature,
       pressaoCritica: item.critical_pressure,
       fontes: item.sources,
+      descobridor: item.discoverers,
+      localDescoberta: item.discovery_location,
+      anoDescoberta: item.discovery_year,
+      origemNome: item.name_origin,
       tipo: item.type,
       link: item.link,
       link_nist: item.link_nist,
@@ -97,6 +101,10 @@ export class PeriodicTable implements OnInit {
     temperaturaCritica: 0,
     pressaoCritica: 0,
     fontes: '',
+    descobridor: '',
+    localDescoberta: '',
+    anoDescoberta: 0,
+    origemNome: '',
     tipo: 'Lanthanide',
   };
   private bloco_vazio_actinideo: IElement = {
@@ -128,6 +136,10 @@ export class PeriodicTable implements OnInit {
     temperaturaCritica: 0,
     pressaoCritica: 0,
     fontes: '',
+    descobridor: '',
+    localDescoberta: '',
+    anoDescoberta: 0,
+    origemNome: '',
     tipo: 'Actinide',
   };
 
