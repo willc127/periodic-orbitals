@@ -10,6 +10,10 @@
   </div>
 
 
+  @if (selectedView() === "descricao") {
+    <app-description></app-description>
+  }
+
   @if (selectedView() === "propriedades") {
     <app-properties-elements></app-properties-elements>
   }
