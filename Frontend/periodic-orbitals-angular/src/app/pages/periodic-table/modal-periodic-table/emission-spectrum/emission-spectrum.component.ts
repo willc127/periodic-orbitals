@@ -36,7 +36,7 @@ export class EmissionSpectrumComponent implements OnInit {
 
         this.mainLines = this.lines
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 30) // escolher as 30 linhas mais intensas
+          .slice(0, 20) // escolher as 20 linhas mais intensas
           .sort((a, b) => a[0] - b[0]);
       });
   }

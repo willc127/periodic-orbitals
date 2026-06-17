@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-description',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './description.scss'
 })
 export class Description {
+  readonly data = inject(MAT_DIALOG_DATA);
 
 }

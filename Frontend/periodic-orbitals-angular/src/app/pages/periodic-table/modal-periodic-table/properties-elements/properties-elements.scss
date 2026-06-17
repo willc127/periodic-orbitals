@@ -30,18 +30,6 @@
   overflow: hidden;
 }
 
-.descricao {
-  flex: 0 0 auto;
-  background: transparent;         
-  color: #ededed;
-  font-size: larger;
-  font-family: inherit;
-  text-align: justify;
-  padding: 0;
-
-  p { margin: 0; }
-}
-
 .informacoes {
   display: flex;
   flex-direction: row;      // duas listas lado a lado

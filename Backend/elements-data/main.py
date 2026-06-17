@@ -20,7 +20,7 @@ SPECTRA_DIR = Path(__file__).parent.parent
 SPECTRA_FILE = SPECTRA_DIR / "spectra_lines" / "data" / "spectral_lines.json"
 
 # * Dias para considerar o cache válido (Atualiza a base de dados local)
-TTL_DAYS = 0
+TTL_DAYS = 10
 
 
 # * Verifica se o cache local é válido (existe e tem menos de 10 dias)
