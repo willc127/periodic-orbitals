@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+$accent: #4fa3e3;
+$accent-dim: rgba(79, 163, 227, 0.12);
+$accent-border: rgba(79, 163, 227, 0.35);
+
+.info-panel {
+  font-family: var(--font-sans, sans-serif);
+  height: 100%;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 16px;
+
+  // scrollbar estilizada
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(79, 163, 227, 0.25);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(79, 163, 227, 0.5);
+    }
+  }
+}
+
+.description-block {
+  background: $accent-dim;
+  border-left: 2px solid $accent-border;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.meta-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.meta-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  i {
+    font-size: 13px;
+    color: $accent;
+    opacity: 0.7;
+  }
+}
+
+.meta-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.info-section {
+  margin-bottom: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 8px;
+
+  i {
+    font-size: 13px;
+    color: $accent;
+    opacity: 0.75;
+  }
+}
+
+.uses-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.section-value {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.divider {
+  height: 1px;
+  background: #ededed1a;
+  margin: 1.25rem 0;
+}

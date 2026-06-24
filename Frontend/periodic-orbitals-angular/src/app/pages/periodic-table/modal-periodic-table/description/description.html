@@ -1,13 +1,75 @@
-<p>Descrição: {{ data.descricao }}</p>
-<br />
-<p>Usos: {{ data.usos }}</p>
-<br />
-<p>Fontes: {{ data.fontes }}</p>
-<br />
-<p>Descobridor: {{ data.descobridor }}</p>
-<br />
-<p>Local de Descoberta: {{ data.localDescoberta }}</p>
-<br />
-<p>Ano de Descoberta: {{ data.anoDescoberta }}</p>
-<br />
-<p>Origem do nome: {{ data.origemNome }}</p>
+<div class="info-panel">
+  @if (data.descricao) {
+    <div class="description-block">
+      {{ data.descricao }}
+    </div>
+  } @else {
+    <div class="description-block description-block--empty">
+      Sem descrição disponível
+    </div>
+  }
+
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="meta-label">
+        <i class="mdi mdi-account-circle-outline"></i> Descobridor
+      </div>
+      <div class="meta-value">
+        @if (data.descobridor) {
+          {{ data.descobridor }}
+        } @else {
+          <span class="meta-value--empty">Desconhecido</span>
+        }
+      </div>
+    </div>
+
+    <div class="meta-card">
+      <div class="meta-label"><i class="mdi mdi-calendar-outline"></i> Ano</div>
+      <div class="meta-value">
+        @if (data.anoDescoberta) {
+          {{ data.anoDescoberta }}
+        } @else {
+          <span class="meta-value--empty">Desconhecido</span>
+        }
+      </div>
+    </div>
+
+    <div class="meta-card meta-card--full">
+      <div class="meta-label">
+        <i class="mdi mdi-map-marker-outline"></i> Local de Descoberta
+      </div>
+      <div class="meta-value">
+        @if (data.localDescoberta) {
+          {{ data.localDescoberta }}
+        } @else {
+          <span class="meta-value--empty">Não informado</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="section-label">
+      <i class="mdi mdi-lightbulb-outline"></i> Usos
+    </div>
+    <div class="uses-list">
+      <span class="section-value">{{ data.usos }}</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="info-section">
+    <div class="section-label">
+      <i class="mdi mdi-book-open-variant"></i> Origem do nome
+    </div>
+    <p class="section-value">{{ data.origemNome }}</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="info-section">
+    <div class="section-label"><i class="mdi mdi-book-outline"></i> Fontes</div>
+    <p class="section-value">{{ data.fontes }}</p>
+  </div>
+</div>

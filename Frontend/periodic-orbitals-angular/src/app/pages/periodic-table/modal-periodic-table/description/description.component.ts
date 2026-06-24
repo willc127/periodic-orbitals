@@ -10,4 +10,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class Description {
   readonly data = inject(MAT_DIALOG_DATA);
 
+  
+
 }
