@@ -47,14 +47,14 @@ export const SERIES_CONFIG = [
     label: 'Ponto de fusão',
     unit: 'K',
     color: '#FAC775',
-    pointStyle: 'cross',
+    pointStyle: 'circle',
   },
   {
     id: 'thermal_conductivity',
-    label: 'Cond. térmica',
+    label: 'Condutividade térmica',
     unit: 'W/m·K',
     color: '#D4537E',
-    pointStyle: 'cross',
+    pointStyle: 'circle',
   },
   {
     id: 'specific_heat_capacity',
@@ -104,6 +104,13 @@ export const SERIES_CONFIG = [
     unit: '',
     color: '#4DA6FF',
     pointStyle: 'rect',
+  },
+  {
+    id: 'is_radioactive',
+    label: 'Radioativo',
+    unit: '',
+    color: '#6eff4d',
+    pointStyle: 'circle',
   },
 ] as const;
 
