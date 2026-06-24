@@ -157,7 +157,7 @@ export class ScatterChartComponent implements OnDestroy {
         .map((el) => ({
           x: el[req.x] as number,
           y: el[yCfg.id] as number,
-          label: el['symbol'] + ' - ' + el['name'],
+          label: `${el['symbol']} - ${el['name']}`,
         })),
       backgroundColor: yCfg.color + 'bb',
       borderColor: yCfg.color,
