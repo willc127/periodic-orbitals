@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { AxisSelectorComponent } from './axis-selector/axis-selector.component';
 import { ScatterChartComponent } from './charts/scatter/scatter-chart.component';
 import { PlotRequest } from '../../interfaces/IAxisSelector';
-import { ELEMENT_PROPERTIES } from './charts/scatter/scatter-chart.data';
+import { ELEMENT_PROPERTIES } from './charts/scatter/scatter-chart.config';
 
 @Component({
   selector: 'app-graphics',
@@ -13,7 +13,6 @@ import { ELEMENT_PROPERTIES } from './charts/scatter/scatter-chart.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphicsComponent {
-
   readonly properties = ELEMENT_PROPERTIES;
 
   readonly plotRequest = signal<PlotRequest | null>(null);

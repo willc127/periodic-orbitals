@@ -23,7 +23,7 @@ import {
   Legend,
 } from 'chart.js';
 import { PlotRequest } from '../../../../interfaces/IAxisSelector';
-import { SERIES_CONFIG } from './scatter-chart.data';
+import { SERIES_CONFIG } from './scatter-chart.config';
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -56,9 +56,6 @@ export class ScatterChartComponent implements OnDestroy {
     viewChild<ElementRef<HTMLCanvasElement>>('chartCanvas');
   private _chart: Chart | null = null;
 
-  // ─── Dados brutos da API ──────────────────────────────────────────────────
-  // Consome o mesmo endpoint já usado pela tabela periódica.
-  // initialValue garante que o signal nunca seja undefined.
   private readonly _elements = toSignal(
     this._http.get<ElementRaw[]>('http://localhost:8000/elements-data'),
     { initialValue: [] as ElementRaw[] },
@@ -165,8 +162,7 @@ export class ScatterChartComponent implements OnDestroy {
       backgroundColor: yCfg.color + 'bb',
       borderColor: yCfg.color,
       borderWidth: showLine ? 1.5 : 0, // <── linha ligada/desligada
-      showLine, // <── propriedade do Chart.js scatter
-
+      showLine,
       pointRadius: 5,
       pointHoverRadius: 7,
       pointStyle: yCfg.pointStyle as any,
@@ -174,7 +170,6 @@ export class ScatterChartComponent implements OnDestroy {
 
     const showLegend = yCfgs.length > 1;
     const singleY = yCfgs.length === 1 ? yCfgs[0] : null;
-
     const config: ChartConfiguration<'scatter'> = {
       type: 'scatter',
       data: { datasets },
