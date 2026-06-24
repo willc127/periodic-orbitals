@@ -23,7 +23,7 @@
         >
           <span class="chip-dot"></span>
           {{ prop.label }}
-                  </div>
+        </div>
       } @empty {
         <span class="pool-empty">Todas as propriedades foram alocadas</span>
       }
@@ -70,7 +70,17 @@
         }
       </div>
     </div>
-
+    <!-- Botão swap -->
+    <button
+      mat-icon-button
+      class="swap-button"
+      type="button"
+      (click)="swapAxes()"
+      matTooltip="Inverter eixos"
+      [disabled]="!axisX() && axisY().length === 0"
+    >
+      <mat-icon fontIcon="swap_horiz" />
+    </button>
     <!-- Eixo Y — MÚLTIPLAS propriedades -->
     <div class="axis-card axis-card--y">
       <div class="axis-header">
@@ -125,13 +135,13 @@
     mat-stroked-button
     class="plot-button"
     [disabled]="!canPlot()"
-    (click)="onPlot()"
+    (click)="canPlot() && onPlot()"
   >
     <mat-icon fontIcon="scatter_plot" />
     Plotar gráfico
     @if (canPlot()) {
       <span class="plot-summary">
-        {{ axisX()!.label }} × {{ axisY().length }} série{{
+        {{ axisX()!.label }} x {{ axisY().length }} série{{
           axisY().length > 1 ? "s" : ""
         }}
       </span>

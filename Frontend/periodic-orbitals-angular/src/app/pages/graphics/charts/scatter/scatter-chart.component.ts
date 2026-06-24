@@ -3,43 +3,71 @@ import {
   computed,
   effect,
   ElementRef,
+  inject,
   input,
   OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
 import {
   Chart,
   ChartConfiguration,
   ScatterController,
+  LineController,
   LinearScale,
   PointElement,
+  LineElement,
   Tooltip,
   Legend,
 } from 'chart.js';
 import { PlotRequest } from '../../../../interfaces/IAxisSelector';
-import { MOCK_ELEMENT_DATA, SERIES_CONFIG } from './scatter-chart.data';
+import { SERIES_CONFIG } from './scatter-chart.data';
+import { MatIconButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-Chart.register(ScatterController, LinearScale, PointElement, Tooltip, Legend);
+Chart.register(
+  ScatterController,
+  LineController,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+);
+
+// Tipo que reflete o JSON bruto do backend
+type ElementRaw = Record<string, number | string | null>;
 
 @Component({
   selector: 'app-scatter-chart',
   standalone: true,
+  imports: [MatIconButton, MatIconModule, MatTooltipModule],
   templateUrl: './scatter-chart.component.html',
   styleUrls: ['./scatter-chart.component.scss'],
 })
 export class ScatterChartComponent implements OnDestroy {
   request = input.required<PlotRequest>();
 
+  private readonly _http = inject(HttpClient);
   private readonly _canvasRef =
     viewChild<ElementRef<HTMLCanvasElement>>('chartCanvas');
   private _chart: Chart | null = null;
 
-  // ─── Aba ativa: 'all' ou id de uma série Y ────────────────────────────────
+  // ─── Dados brutos da API ──────────────────────────────────────────────────
+  // Consome o mesmo endpoint já usado pela tabela periódica.
+  // initialValue garante que o signal nunca seja undefined.
+  private readonly _elements = toSignal(
+    this._http.get<ElementRaw[]>('http://localhost:8000/elements-data'),
+    { initialValue: [] as ElementRaw[] },
+  );
+
+  // ─── Aba ativa ────────────────────────────────────────────────────────────
   readonly activeTab = signal<string>('all');
 
   // ─── Metadados ────────────────────────────────────────────────────────────
-
   readonly xConfig = computed(
     () => SERIES_CONFIG.find((s) => s.id === this.request().x) ?? null,
   );
@@ -54,7 +82,6 @@ export class ScatterChartComponent implements OnDestroy {
     () => !this.xConfig() || this.yConfigs().length === 0,
   );
 
-  /** Séries visíveis de acordo com a aba selecionada */
   readonly visibleYConfigs = computed(() => {
     const tab = this.activeTab();
     return tab === 'all'
@@ -62,32 +89,50 @@ export class ScatterChartComponent implements OnDestroy {
       : this.yConfigs().filter((s) => s.id === tab);
   });
 
-  // ─── Abas: "Todas" + uma por série Y ─────────────────────────────────────
-
   readonly tabs = computed(() => [
     { id: 'all', label: 'Todas' },
     ...this.yConfigs().map((s) => ({
       id: s.id,
-      label: s.label.split(' ')[0], // primeira palavra: "Afinidade", "Raio"…
+      label: s.label.split(' ')[0],
       color: s.color,
     })),
   ]);
 
-  // ─── Reconstrói o gráfico quando request OU aba mudar ────────────────────
+  // ----- Unir pontos--------------
+  readonly showLine = signal(false);
 
+  toggleLine(): void {
+    this.showLine.set(!this.showLine());
+  }
+
+  // ─── Effects ──────────────────────────────────────────────────────────────
   constructor() {
     effect(() => {
-      // Reseta para "Todas" quando chega um novo request
       const _ = this.request();
       this.activeTab.set('all');
     });
 
     effect(() => {
       const canvas = this._canvasRef();
-      if (!canvas || this.isEmpty()) return;
-      // lê activeTab e visibleYConfigs para reagir a mudanças
+      const empty = this.isEmpty();
+      const data = this._elements();
       const yCfgs = this.visibleYConfigs();
-      this._buildChart(canvas.nativeElement, yCfgs);
+      const line = this.showLine();
+
+      if (!canvas) {
+        console.warn('[ScatterChart] sem canvas');
+        return;
+      }
+      if (empty) {
+        console.warn('[ScatterChart] isEmpty = true');
+        return;
+      }
+      if (data.length === 0) {
+        console.warn('[ScatterChart] dados ainda vazios');
+        return;
+      }
+
+      this._buildChart(canvas.nativeElement, yCfgs, data, line);
     });
   }
 
@@ -96,10 +141,11 @@ export class ScatterChartComponent implements OnDestroy {
   }
 
   // ─── Chart.js ─────────────────────────────────────────────────────────────
-
   private _buildChart(
     canvas: HTMLCanvasElement,
     yCfgs: readonly (typeof SERIES_CONFIG)[number][],
+    elements: ElementRaw[],
+    showLine: boolean,
   ): void {
     this._chart?.destroy();
 
@@ -108,16 +154,19 @@ export class ScatterChartComponent implements OnDestroy {
 
     const datasets = yCfgs.map((yCfg) => ({
       label: `${yCfg.label}${yCfg.unit ? ' (' + yCfg.unit + ')' : ''}`,
-      data: MOCK_ELEMENT_DATA.filter(
-        (el) => el[req.x] != null && el[yCfg.id] != null,
-      ).map((el) => ({
-        x: el[req.x] as number,
-        y: el[yCfg.id] as number,
-        label: el['symbol'],
-      })),
+      data: elements
+        .filter((el) => el[req.x] != null && el[yCfg.id] != null)
+        .sort((a, b) => (a[req.x] as number) - (b[req.x] as number)) // ordena X para a linha ficar correta
+        .map((el) => ({
+          x: el[req.x] as number,
+          y: el[yCfg.id] as number,
+          label: el['symbol'] ?? el['name'],
+        })),
       backgroundColor: yCfg.color + 'bb',
       borderColor: yCfg.color,
-      borderWidth: 1,
+      borderWidth: showLine ? 1.5 : 0, // <── linha ligada/desligada
+      showLine, // <── propriedade do Chart.js scatter
+
       pointRadius: 5,
       pointHoverRadius: 7,
       pointStyle: yCfg.pointStyle as any,
@@ -145,7 +194,7 @@ export class ScatterChartComponent implements OnDestroy {
               label: (item) => {
                 const raw = item.raw as any;
                 const yLabel = item.dataset.label?.split(' (')[0] ?? '';
-                return `${xCfg.label}: ${(+raw.x).toFixed(2)} ${xCfg.unit}  |  ${yLabel}: ${(+raw.y).toFixed(2)}`;
+                return `${xCfg.label}: ${(+raw.x).toFixed(3)} ${xCfg.unit}  |  ${yLabel}: ${(+raw.y).toFixed(3)}`;
               },
             },
           },

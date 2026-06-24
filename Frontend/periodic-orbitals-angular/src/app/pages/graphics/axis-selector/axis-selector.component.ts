@@ -112,7 +112,22 @@ export class AxisSelectorComponent {
     const x = this._axisX();
     const ys = this._axisY();
     if (x && ys.length > 0) {
-      this.plot.emit({ x: x.id, y: ys.map((p) => p.id) });
+      const request: PlotRequest = { x: x.id, y: ys.map((p) => p.id) };
+      this.plot.emit(request);
     }
   }
+
+// --- Inverter eixos --------------
+swapAxes(): void {
+  const currentX = this._axisX();
+  const currentY = this._axisY();
+
+  // Y pode ter múltiplas — pega só a primeira para o eixo X
+  const newX = currentY[0] ?? null;
+  const newY = currentX ? [currentX, ...currentY.slice(1)] : currentY.slice(1);
+
+  this._axisX.set(newX);
+  this._axisY.set(newY);
+}
+
 }

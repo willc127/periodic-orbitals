@@ -4,12 +4,7 @@ export interface ElementProperty {
   unit?: string;
 }
 
-export interface AxisSelection {
-  x: ElementProperty | null;
-  y: ElementProperty[];
-}
-
 export interface PlotRequest {
   x: string;
-  y: string[];   // múltiplas séries no eixo Y
+  y: string[];
 }

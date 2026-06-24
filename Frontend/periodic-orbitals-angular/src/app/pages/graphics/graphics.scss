@@ -28,3 +28,21 @@
   flex: 7;
   padding: 2rem;
 }
+
+// ─── Estado vazio ─────────────────────────────────────────────────────────────
+
+.empty-state {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  min-height: 160px;
+  opacity: 0.75;
+
+  p {
+    font-size: 22px;
+    color: #EDEDED;
+    text-align: center;
+  }
+}

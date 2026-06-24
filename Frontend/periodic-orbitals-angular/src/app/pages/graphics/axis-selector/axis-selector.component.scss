@@ -21,7 +21,8 @@
   font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--mat-sys-on-surface-variant);
+  color: #ededed;
+  opacity: 0.75;
   margin-bottom: 8px;
 }
 
@@ -30,8 +31,9 @@
 .drop-zone {
   min-height: 52px;
   border-radius: 10px;
-  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
   padding: 10px;
+
   transition:
     border-color 0.18s ease,
     background 0.18s ease;
@@ -67,9 +69,21 @@
 // ─── Row de eixos ─────────────────────────────────────────────────────────────
 
 .axes-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px; // gap fixo entre cards e botão
+  width: 100%;
+}
+
+.axis-card {
+  flex: 1; // cada card ocupa o espaço disponível igualmente
+  min-width: 0; // evita overflow
+}
+
+.swap-button {
+  flex-shrink: 0;
+  color: #ededed;
+  opacity: 0.75;
 }
 
 // ─── Cards de eixo ───────────────────────────────────────────────────────────
@@ -90,8 +104,8 @@
 
 .axis-hint {
   font-size: 11px;
-  color: var(--mat-sys-on-surface-variant);
-  opacity: 0.6;
+  color: #ededed;
+  opacity: 0.5;
 }
 
 .axis-badge {
@@ -120,6 +134,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 6px;
+  border-color: #ededed80;
 
   &--filled {
     border-style: solid;
@@ -138,12 +153,14 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: var(--mat-sys-on-surface-variant);
-  opacity: 0.6;
+  color: #ededed;
+  opacity: 0.5;
   height: 32px;
 }
 
 .empty-icon {
+  color: #ededed;
+  opacity: 0.5;
   font-size: 16px;
   width: 16px;
   height: 16px;
@@ -192,7 +209,6 @@
   }
 }
 
-
 .chip-dot {
   width: 7px;
   height: 7px;
@@ -238,26 +254,52 @@
 // ─── Botão plotar ─────────────────────────────────────────────────────────────
 
 .plot-button {
-  align-self: stretch;
-  height: 44px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  border-radius: 10px !important;
+  // ── base ──
+  width: 100%;
+  border-radius: 8px;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 
-  mat-icon {
-    margin-right: 4px;
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+  // ── desabilitado ──
+  &:disabled,
+  &[disabled] {
+    color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
   }
-}
 
-.plot-summary {
-  margin-left: 8px;
-  font-size: 11px;
-  font-weight: 400;
-  opacity: 0.6;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 8px;
+  // ── habilitado ──
+  &:not(:disabled) {
+    color: #378add;
+    border-color: #378add;
+    background: rgba(55, 138, 221, 0.08);
+
+    &:hover {
+      background: rgba(55, 138, 221, 0.15);
+      box-shadow: 0 0 12px rgba(55, 138, 221, 0.25);
+    }
+
+    &:active {
+      background: rgba(55, 138, 221, 0.22);
+      box-shadow: none;
+    }
+  }
+
+  // ── ícone e texto ──
+  mat-icon {
+    margin-right: 6px;
+  }
+
+  .plot-summary {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    border-left: 1px solid currentColor;
+    padding-left: 8px;
+  }
 }

@@ -1,14 +1,18 @@
 <div class="container-graphics">
   <div class="esquerda">
     <app-axis-selector
-      [properties]="properties()"
+      [properties]="properties"
       (plot)="onPlotRequest($event)"
     ></app-axis-selector>
   </div>
+
   <div class="direita">
-    <app-scatter-chart
-      *ngIf="plotRequest()"
-      [request]="plotRequest()!"
-    ></app-scatter-chart>
+    @if (!plotRequest()) {
+      <div class="empty-state">
+        <p>Selecione as propriedades e clique em <strong>Plotar gráfico</strong></p>
+      </div>
+    } @else {
+      <app-scatter-chart [request]="plotRequest()!"></app-scatter-chart>
+    }
   </div>
 </div>

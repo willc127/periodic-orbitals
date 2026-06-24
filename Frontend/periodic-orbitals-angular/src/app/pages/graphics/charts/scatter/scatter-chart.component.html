@@ -1,17 +1,7 @@
 <div class="scatter-chart">
-
-  @if (isEmpty()) {
-
-    <div class="empty-state">
-      <!-- <mat-icon fontIcon="scatter_plot" class="empty-icon" /> -->
-      <p>Selecione as propriedades e clique em <strong>Plotar gráfico</strong></p>
-    </div>
-
-  } @else if (yConfigs().length > 1) {
-
-    <!-- Abas de série (só aparece quando há mais de 1 série Y) -->
-    
-      <div class="series-tabs" [class.series-tabs--colored]="yConfigs().length > 1" role="tablist" aria-label="Filtrar série">
+    <!-- Abas (só quando há mais de 1 série Y) -->
+    @if (yConfigs().length > 1) {
+      <div class="series-tabs" role="tablist" aria-label="Filtrar série">
         @for (tab of tabs(); track tab.id) {
           <button
             class="series-tab"
@@ -30,21 +20,34 @@
       </div>
     }
 
+    <!-- Toolbar -->
+    <div class="chart-toolbar">
+      <button
+        mat-icon-button
+        [class.active]="showLine()"
+        (click)="toggleLine()"
+        matTooltip="Conectar pontos"
+      >
+        <mat-icon>show_chart</mat-icon>
+      </button>
+    </div>
+
     <!-- Canvas -->
     <div class="canvas-wrapper">
       <canvas
         #chartCanvas
         role="img"
-        [attr.aria-label]="'Scatter plot de ' + xConfig()!.label + ' vs ' + visibleYConfigs().length + ' propriedade(s)'"
+        [attr.aria-label]="
+          'Scatter plot de ' +
+          xConfig()!.label +
+          ' vs ' +
+          visibleYConfigs().length +
+          ' propriedade(s)'
+        "
       >
-        Scatter plot de {{ xConfig()!.label }}
-        contra {{ visibleYConfigs().length }} propriedade(s) atômicas.
+        Scatter plot de {{ xConfig()!.label }} contra
+        {{ visibleYConfigs().length }} propriedade(s) atômicas.
       </canvas>
     </div>
-
-    <p class="data-note">
-      <!-- <mat-icon fontIcon="info" class="note-icon" /> -->
-      Dados mock — H até Kr (Z 1–36). Substitua <code>MOCK_ELEMENT_DATA</code> pela chamada ao endpoint FastAPI.
-    </p>
-    
+  
 </div>

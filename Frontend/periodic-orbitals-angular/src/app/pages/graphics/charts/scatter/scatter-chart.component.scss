@@ -12,29 +12,7 @@
   width: 100%;
 }
 
-// ─── Estado vazio ─────────────────────────────────────────────────────────────
 
-.empty-state {
-  align-items: center;
-  color: var(--mat-sys-on-surface-variant);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  min-height: 160px;
-  opacity: 0.5;
-
-  p {
-    font-size: 13px;
-    text-align: center;
-  }
-}
-
-.empty-icon {
-  font-size: 36px;
-  height: 36px;
-  width: 36px;
-}
 
 // ─── Cabeçalho ───────────────────────────────────────────────────────────────
 
@@ -150,4 +128,15 @@ canvas {
 
 .series-tabs--colored .series-tab {
   color: #EDEDED;
+}
+
+.chart-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 8px;
+
+  button.active {
+    color: var(--mat-sys-primary);
+    background: rgba(255, 255, 255, 0.08);
+  }
 }

@@ -50,7 +50,6 @@ export class SpectrumCanvasComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['lines'] && this.canvasRef) {
-      console.log('Linhas espectrais no canvas', this.lines);
       this.draw();
     }
   }
