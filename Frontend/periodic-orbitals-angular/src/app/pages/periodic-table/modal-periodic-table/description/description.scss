@@ -12,7 +12,9 @@ $accent-border: rgba(79, 163, 227, 0.35);
   height: 100%;
   max-height: 60vh;
   overflow-y: auto;
-  padding-right: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  background: #0c0c18;
 
   // scrollbar estilizada
   &::-webkit-scrollbar {
