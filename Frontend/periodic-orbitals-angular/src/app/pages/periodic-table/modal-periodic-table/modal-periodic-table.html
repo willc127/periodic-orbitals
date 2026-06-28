@@ -18,9 +18,9 @@
     <app-properties-elements></app-properties-elements>
   }
 
-  <!-- @if (selectedView() === "orbitais") {
-    <app-orbitais></app-orbitais>
-  } -->
+  @if (selectedView() === "orbitais") {
+    <app-quantum-orbital-viewer></app-quantum-orbital-viewer>
+  }
 
   @if (selectedView() === "espectro") {
     <app-emission-spectrum
