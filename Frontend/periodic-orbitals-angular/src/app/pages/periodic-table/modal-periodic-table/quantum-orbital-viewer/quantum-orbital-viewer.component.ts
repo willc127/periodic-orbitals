@@ -99,6 +99,7 @@ export class QuantumOrbitalViewerComponent
   private axesHelper!: THREE.AxesHelper;
   private rafId = 0;
   private ro!: ResizeObserver;
+  private roRadial!: ResizeObserver;
 
   // Câmera orbital manual (sem OrbitControls para evitar import extra)
   private camTheta = 0.5;
@@ -195,11 +196,18 @@ export class QuantumOrbitalViewerComponent
         ),
       20,
     );
+
+    this.roRadial = new ResizeObserver(() => {
+      const o = this.selectedOrb();
+      this.math.drawRadial(this.radialRef.nativeElement, o.n, o.l);
+    });
+    this.roRadial.observe(this.radialRef.nativeElement);
   }
 
   ngOnDestroy(): void {
     cancelAnimationFrame(this.rafId);
     this.ro?.disconnect();
+    this.roRadial?.disconnect();
     this.renderer?.dispose();
     this.removeDragListeners();
   }
@@ -208,10 +216,10 @@ export class QuantumOrbitalViewerComponent
   private initThree(): void {
     const wrap = this.wrapRef.nativeElement;
     const canvas = this.canvasRef.nativeElement;
-  // Obtém as dimensões atuais
-  const rect = wrap.getBoundingClientRect();
-  const W = rect.width || 800;
-  const H = rect.height || 500;
+    // Obtém as dimensões atuais
+    const rect = wrap.getBoundingClientRect();
+    const W = rect.width || 800;
+    const H = rect.height || 500;
 
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -236,8 +244,6 @@ export class QuantumOrbitalViewerComponent
       this.camera.updateProjectionMatrix();
     });
     this.ro.observe(wrap);
-
-    
 
     // Interação
     this.initDragControls(canvas);
