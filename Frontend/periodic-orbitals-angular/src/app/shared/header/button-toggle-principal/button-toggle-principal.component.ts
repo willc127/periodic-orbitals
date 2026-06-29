@@ -7,10 +7,20 @@ import {
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { gameMolecule } from '@ng-icons/game-icons'; // importe o ícone desejad
 
 @Component({
   selector: 'app-button-toggle-principal',
-  imports: [MatButtonToggleModule, MatCheckboxModule],
+  imports: [
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    NgIcon,
+    MatButtonToggleModule,
+  ],
+  providers: [
+    provideIcons({ gameMolecule }), // <-- registra o ícone
+  ],
   templateUrl: './button-toggle-principal.html',
   styleUrl: './button-toggle-principal.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,11 +31,11 @@ export class ButtonTogglePrincipal {
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);
 
-  viewChanged = output<'padrao' | 'graficos'>();
+  viewChanged = output<'padrao' | 'graficos' | 'molecula'>();
 
   onViewChange(value: string) {
     this.checked.set(value);
-    this.viewChanged.emit(value as 'padrao' | 'graficos');
+    this.viewChanged.emit(value as 'padrao' | 'graficos' | 'molecula');
   }
 
   toggleSingleSelectionIndicator() {

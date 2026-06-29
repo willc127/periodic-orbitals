@@ -2,9 +2,11 @@
 <div class="container">
   @if (activeView() === "padrao") {
     <app-periodic-table></app-periodic-table>
+  } @else if (activeView() === "molecula") {
+    <!-- Atualizar para o componente que constrói moléculas inorgânicas -->
+    <app-periodic-table></app-periodic-table>
   } @else if (activeView() === "graficos") {
     <app-graphics></app-graphics>
-    
   }
 </div>
 <app-footer></app-footer>

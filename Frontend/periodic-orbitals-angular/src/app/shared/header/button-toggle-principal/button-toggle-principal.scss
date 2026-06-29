@@ -12,11 +12,11 @@ app-button-toggle-principal {
   .mat-button-toggle {
     background-color: #233970;
     border: none;
-    color: #D9E3FC;
+    color: #d9e3fc;
   }
 
   .mat-button-toggle-checked {
-    background-color: #D9E3FC !important;
+    background-color: #d9e3fc !important;
     color: #233970 !important;
   }
 
@@ -41,6 +41,6 @@ app-button-toggle-principal {
   .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
     display: flex;
     gap: 4px;
-    
+    align-items: center;
   }
 }

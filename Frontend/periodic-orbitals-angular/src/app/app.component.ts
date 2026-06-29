@@ -11,9 +11,9 @@ import { GraphicsComponent } from './pages/graphics/graphics.component';
 })
 export class AppComponent {
   protected readonly title = signal('periodic-orbitals-angular');
-  protected readonly activeView = signal<'padrao' | 'graficos'>('padrao');
+  protected readonly activeView = signal<'padrao' | 'graficos' | 'molecula'>('padrao');
 
-  onViewChange(view: 'padrao' | 'graficos') {
+  onViewChange(view: 'padrao' | 'graficos' | 'molecula') {
     this.activeView.set(view);
   }
 }
