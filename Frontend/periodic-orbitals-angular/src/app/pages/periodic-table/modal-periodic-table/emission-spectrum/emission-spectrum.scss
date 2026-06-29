@@ -139,6 +139,10 @@
   position: relative;
   box-sizing: border-box;
   flex-shrink: 0;
+
+  &:hover {
+    border: 1px solid #454563;
+  }
 }
 
 /* Axis label */

@@ -23,7 +23,7 @@
   margin-top: 32px;
 
   app-button-toggle-modal {
-    flex: 0 1 50%;      // ← espelha exatamente o .animacao
+    flex: 0 1 50%;
     display: flex;
     justify-content: center;
   }
@@ -34,12 +34,17 @@
   display: inline-flex;
   width: fit-content;
   text-decoration: none;
-  outline: none;        // ← remove o outline de foco
-  border: none;         // ← remove qualquer borda residual
-  
+  outline: none;
+  border: none;
+
   &:focus,
   &:focus-visible {
     outline: none;
+  }
+
+  &:hover,
+  &:hover * {
+    color: #4fa3e3 !important;
   }
 }
 

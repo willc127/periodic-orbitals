@@ -185,17 +185,7 @@ export class QuantumOrbitalViewerComponent
     // Desenhar plots iniciais
     const o = this.selectedOrb();
     this.math.drawRadial(this.radialRef.nativeElement, o.n, o.l);
-    setTimeout(
-      () =>
-        this.math.drawDensity(
-          this.densityRef.nativeElement,
-          o.n,
-          o.l,
-          o.m,
-          this.densityPlane(),
-        ),
-      20,
-    );
+    
 
     this.roRadial = new ResizeObserver(() => {
       const o = this.selectedOrb();
