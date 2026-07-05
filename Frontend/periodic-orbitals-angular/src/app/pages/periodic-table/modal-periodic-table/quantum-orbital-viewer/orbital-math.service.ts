@@ -396,55 +396,61 @@ export class OrbitalMathService {
     ctx.fillRect(0, 0, W, H);
 
     try {
-      const params = new HttpParams()
-        .set('n', n.toString())
-        .set('l', l.toString())
-        .set('m', m.toString())
-        .set('plane', plane);
-      const response = await firstValueFrom(
-        this.http.get<DensityResponse>(`${this.baseUrl}/density`, { params }),
-      );
+      // Carrega apenas a imagem gerada pelo backend e a desenha.
+      const proj = plane.toLowerCase();
+      const imgUrl = `${this.baseUrl}/image?n=${n}&l=${l}&m=${m}&plane=${proj}&colormap=viridis`;
 
-      if (requestId !== this.densityRequestId) return;
+      await new Promise<void>((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          if (requestId !== this.densityRequestId) return resolve();
 
-      const values = response.values;
-      if (!values.length) return;
-      const rows = values.length;
-      const cols = values[0]?.length ?? 0;
-      const maxValue = Math.max(...values.flat(), 1e-12);
-      const gridLeft = 36;
-      const gridTop = 16;
-      const gridWidth = W - 44;
-      const gridHeight = H - 44;
-      const cellW = gridWidth / cols;
-      const cellH = gridHeight / rows;
+          const maxGridSide = Math.min(W, H);
+          const gridWidth = maxGridSide;
+          const gridHeight = maxGridSide;
+          const gridLeft = Math.round((W - gridWidth) / 2);
+          const gridTop = Math.round((H - gridHeight) / 2 + 8);
 
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const intensity = values[y][x] / maxValue;
-          const shade = Math.round(32 + Math.min(1, intensity) * 208);
-          ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
-          ctx.fillRect(
-            gridLeft + x * cellW,
-            gridTop + y * cellH,
-            cellW + 1,
-            cellH + 1,
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            img.width,
+            img.height,
+            gridLeft,
+            gridTop,
+            gridWidth,
+            gridHeight,
           );
-        }
-      }
 
-      ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(gridLeft, gridTop, gridWidth, gridHeight);
+          ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(gridLeft, gridTop, gridWidth, gridHeight);
 
-      ctx.fillStyle = '#4fa3e3';
-      ctx.font = 'bold 10px monospace';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillText(`Plano ${plane}`, gridLeft, 2);
+          ctx.fillStyle = '#4fa3e3';
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'top';
+          ctx.fillText(
+            `Plano ${plane} — n=${n} l=${l} m=${m}`,
+            gridLeft,
+            gridTop - 12,
+          );
+
+          resolve();
+        };
+
+        img.onerror = () => {
+          // Silencioso: se a imagem faltar, não tenta fallback.
+          resolve();
+        };
+
+        img.src = imgUrl;
+      });
     } catch (error) {
       if (requestId === this.densityRequestId) {
-        console.error('Erro ao buscar densidade orbital:', error);
+        console.error('Erro ao desenhar mapa de densidade:', error);
       }
     }
   }

@@ -4,6 +4,8 @@ from typing import List, Literal
 
 import numpy as np
 from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import FileResponse
+from pathlib import Path
 from pydantic import BaseModel
 from skimage.measure import marching_cubes
 
@@ -220,3 +222,53 @@ async def orbital_density(
             rows.append(row)
 
     return DensityResponse(plane=plane, size=size, values=rows)
+
+
+@router.get("/image")
+async def orbital_image(
+    n: int = Query(..., ge=1, le=7),
+    l: int = Query(..., ge=0),
+    m: int = Query(...),
+    plane: str = Query("xy"),
+    colormap: str = Query("plasma"),
+):
+    """
+    Serves a pre-generated PNG image for the requested orbital and projection.
+    Falls back to 404 if image not found.
+    """
+    _ensure_nlm(n, l, m)
+    # Normalize plane to same naming used by generator (xy/xz/yz/3d)
+    plane_str = plane.lower()
+    allowed = {"xy", "xz", "yz", "3d"}
+    if plane_str not in allowed:
+        raise HTTPException(
+            status_code=422, detail=f"plane must be one of {sorted(allowed)}"
+        )
+    # Try dash and underscore filenames
+    backend_dir = Path(__file__).parent
+    img_dir = backend_dir / "images" / "cross-section-and-3d" / f"{n}-{l}-{m}"
+    filename_dash = img_dir / f"{n}-{l}-{m}-cross-section-{plane_str}.png"
+    filename_underscore = img_dir / f"{n}_{l}_{m}_{plane_str}_3d.png"
+
+    # Also try legacy Backend/images path (some scripts write there)
+    repo_root = Path(__file__).resolve().parent.parent
+    legacy_img = (
+        repo_root.parent
+        / "images"
+        / "cross-section-and-3d"
+        / f"{n}-{l}-{m}"
+        / f"{n}-{l}-{m}-cross-section-{plane_str}.png"
+    )
+
+    tried = [str(filename_dash), str(filename_underscore), str(legacy_img)]
+
+    for p in [filename_dash, filename_underscore, legacy_img]:
+        try:
+            if Path(p).exists():
+                return FileResponse(str(Path(p).resolve()), media_type="image/png")
+        except Exception:
+            continue
+
+    raise HTTPException(
+        status_code=404, detail={"error": "Image not found", "tried": tried}
+    )

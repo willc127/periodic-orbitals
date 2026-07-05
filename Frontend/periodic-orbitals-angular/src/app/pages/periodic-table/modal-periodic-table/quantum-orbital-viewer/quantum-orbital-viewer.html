@@ -145,7 +145,7 @@
         @if (loading()) {
           <div class="loading-overlay-radial">
             <l-quantum size="45" speed="1.75" color="#4fa3e3"></l-quantum>
-            <span>Calculando distribuição...</span>
+            <span>Calculando distribuição radial...</span>
           </div>
         }
         <div class="panel-desc">
@@ -168,11 +168,13 @@
           }
         </div>
         <div style="display: flex; justify-content: center">
-          <img
-            src="../../../../../assets/Angular_gradient_logo.png"
-            height="210px"
-            width="210px"
-          />
+          <canvas #densityCanvas class="panel-canvas"></canvas>
+          @if (loading()) {
+            <div class="loading-overlay-radial">
+              <l-quantum size="45" speed="1.75" color="#4fa3e3"></l-quantum>
+              <span>Calculando densidade de probabilidade...</span>
+            </div>
+          }
         </div>
       </div>
 
@@ -205,7 +207,7 @@
       @if (loading()) {
         <div class="loading-overlay">
           <l-quantum size="45" speed="1.75" color="#4fa3e3"></l-quantum>
-          <span>Calculando orbital…</span>
+          <span>Calculando orbital atômico…</span>
         </div>
       }
 

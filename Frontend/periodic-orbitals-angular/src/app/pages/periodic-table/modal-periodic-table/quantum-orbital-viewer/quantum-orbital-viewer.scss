@@ -421,7 +421,7 @@
   flex-direction: column;
   min-width: 0;
   overflow: visible;
-  position: relative; /* ensure overlay positions relative to this panel */
+  position: relative;
 
   .loading-overlay-radial {
     position: absolute;
@@ -432,7 +432,7 @@
     justify-content: center;
     gap: 12px;
     background: rgba(7, 7, 15, 0.85);
-    z-index: 20; /* sit above panel contents */
+    z-index: 20; 
     color: #4fa3e3;
     font-size: 13px;
   }
