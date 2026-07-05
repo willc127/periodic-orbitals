@@ -1,0 +1,125 @@
+┣ 📂periodic-orbitals-angular
+┃ ┣ 📂.vscode
+┃ ┃ ┣ 📜extensions.json
+┃ ┃ ┣ 📜launch.json
+┃ ┃ ┗ 📜tasks.json
+┃ ┣ 📂public
+┃ ┃ ┣ 📜favicon.ico
+┃ ┃ ┗ 📜image.png
+┃ ┣ 📂src
+┃ ┃ ┣ 📂app
+┃ ┃ ┃ ┣ 📂interfaces
+┃ ┃ ┃ ┃ ┣ 📜IAxisSelector.ts
+┃ ┃ ┃ ┃ ┣ 📜IElement.ts
+┃ ┃ ┃ ┃ ┣ 📜IScopeConfig.ts
+┃ ┃ ┃ ┃ ┗ 📜ISpectra.ts
+┃ ┃ ┃ ┣ 📂pages
+┃ ┃ ┃ ┃ ┣ 📂graphics
+┃ ┃ ┃ ┃ ┃ ┣ 📂axis-selector
+┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜axis-selector.component.html
+┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜axis-selector.component.scss
+┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜axis-selector.component.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📂charts
+┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂scatter
+┃ ┃ ┃ ┃ ┃ ┃   ┣ 📜scatter-chart.component.html
+┃ ┃ ┃ ┃ ┃ ┃   ┣ 📜scatter-chart.component.scss
+┃ ┃ ┃ ┃ ┃ ┃   ┣ 📜scatter-chart.component.ts
+┃ ┃ ┃ ┃ ┃ ┃   ┗ 📜scatter-chart.config.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜graphics.component.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜graphics.html
+┃ ┃ ┃ ┃ ┃ ┗ 📜graphics.scss
+┃ ┃ ┃ ┃ ┗ 📂periodic-table
+┃ ┃ ┃ ┃   ┣ 📂modal-periodic-table
+┃ ┃ ┃ ┃   ┃ ┣ 📂description
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜description.component.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜description.html
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜description.scss
+┃ ┃ ┃ ┃   ┃ ┃ ┗ 📜description.spec.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📂emission-spectrum
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜emission-spectrum.component.html
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜emission-spectrum.component.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜emission-spectrum.scss
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜emission-spectrum.service.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜spectrum-canvas.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┗ 📜wl-utils.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📂properties-elements
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📂electron-distribution
+┃ ┃ ┃ ┃   ┃ ┃ ┃ ┣ 📜electron-distribution.component.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┃ ┣ 📜electron-distribution.html
+┃ ┃ ┃ ┃   ┃ ┃ ┃ ┣ 📜electron-distribution.scss
+┃ ┃ ┃ ┃   ┃ ┃ ┃ ┣ 📜electron-distribution.spec.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┃ ┗ 📜electron-distributor.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜properties-elements.component.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜properties-elements.html
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜properties-elements.scss
+┃ ┃ ┃ ┃   ┃ ┃ ┗ 📜properties-elements.spec.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📂quantum-orbital-viewer
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜orbital-math.service.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜orbital.models.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜quantum-orbital-viewer.component.ts
+┃ ┃ ┃ ┃   ┃ ┃ ┣ 📜quantum-orbital-viewer.html
+┃ ┃ ┃ ┃   ┃ ┃ ┗ 📜quantum-orbital-viewer.scss
+┃ ┃ ┃ ┃   ┃ ┣ 📜modal-periodic-table.component.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📜modal-periodic-table.html
+┃ ┃ ┃ ┃   ┃ ┣ 📜modal-periodic-table.scss
+┃ ┃ ┃ ┃   ┃ ┗ 📜modal-periodic-table.spec.ts
+┃ ┃ ┃ ┃   ┣ 📂selectors
+┃ ┃ ┃ ┃   ┃ ┣ 📜selectors.component.html
+┃ ┃ ┃ ┃   ┃ ┣ 📜selectors.component.scss
+┃ ┃ ┃ ┃   ┃ ┣ 📜selectors.component.spec.ts
+┃ ┃ ┃ ┃   ┃ ┗ 📜selectors.component.ts
+┃ ┃ ┃ ┃   ┣ 📜periodic-table.component.ts
+┃ ┃ ┃ ┃   ┣ 📜periodic-table.html
+┃ ┃ ┃ ┃   ┣ 📜periodic-table.scss
+┃ ┃ ┃ ┃   ┣ 📜periodic-table.service.ts
+┃ ┃ ┃ ┃   ┗ 📜periodic-table.spec.ts
+┃ ┃ ┃ ┣ 📂shared
+┃ ┃ ┃ ┃ ┣ 📂button-toggle-modal
+┃ ┃ ┃ ┃ ┃ ┣ 📜button-toggle-modal.component.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜button-toggle-modal.html
+┃ ┃ ┃ ┃ ┃ ┣ 📜button-toggle-modal.scss
+┃ ┃ ┃ ┃ ┃ ┗ 📜button-toggle-modal.spec.ts
+┃ ┃ ┃ ┃ ┣ 📂footer
+┃ ┃ ┃ ┃ ┃ ┣ 📜footer.component.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜footer.html
+┃ ┃ ┃ ┃ ┃ ┣ 📜footer.scss
+┃ ┃ ┃ ┃ ┃ ┗ 📜footer.spec.ts
+┃ ┃ ┃ ┃ ┗ 📂header
+┃ ┃ ┃ ┃   ┣ 📂atom-animation
+┃ ┃ ┃ ┃   ┃ ┣ 📜atom-animation.component.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📜atom-animation.html
+┃ ┃ ┃ ┃   ┃ ┗ 📜atom-animation.scss
+┃ ┃ ┃ ┃   ┣ 📂button-toggle-principal
+┃ ┃ ┃ ┃   ┃ ┣ 📜button-toggle-principal.component.ts
+┃ ┃ ┃ ┃   ┃ ┣ 📜button-toggle-principal.html
+┃ ┃ ┃ ┃   ┃ ┣ 📜button-toggle-principal.scss
+┃ ┃ ┃ ┃   ┃ ┗ 📜button-toggle-principal.spec.ts
+┃ ┃ ┃ ┃   ┣ 📜header.component.ts
+┃ ┃ ┃ ┃   ┣ 📜header.html
+┃ ┃ ┃ ┃   ┣ 📜header.scss
+┃ ┃ ┃ ┃   ┗ 📜header.spec.ts
+┃ ┃ ┃ ┣ 📜app.component.ts
+┃ ┃ ┃ ┣ 📜app.config.ts
+┃ ┃ ┃ ┣ 📜app.html
+┃ ┃ ┃ ┣ 📜app.module.ts
+┃ ┃ ┃ ┣ 📜app.routes.ts
+┃ ┃ ┃ ┣ 📜app.scss
+┃ ┃ ┃ ┗ 📜app.spec.ts
+┃ ┃ ┣ 📂assets
+┃ ┃ ┃ ┣ 📜Angular_gradient_logo.png
+┃ ┃ ┃ ┣ 📜astropy_project_logo.svg
+┃ ┃ ┃ ┣ 📜logo-teal.png
+┃ ┃ ┃ ┣ 📜mendeleev.png
+┃ ┃ ┃ ┗ 📜Python-logo.png
+┃ ┃ ┣ 📜index.html
+┃ ┃ ┣ 📜main.ts
+┃ ┃ ┗ 📜styles.scss
+┃ ┣ 📜.editorconfig
+┃ ┣ 📜angular.json
+┃ ┣ 📜karma.conf.js
+┃ ┣ 📜package.json
+┃ ┣ 📜README.md
+┃ ┣ 📜tsconfig.app.json
+┃ ┣ 📜tsconfig.doc.json
+┃ ┣ 📜tsconfig.json
+┃ ┗ 📜tsconfig.spec.json

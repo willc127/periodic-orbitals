@@ -1,0 +1,924 @@
+┣ 📂__pycache__
+┃ ┣ 📜database.cpython-311.pyc
+┃ ┣ 📜main.cpython-311.pyc
+┃ ┗ 📜teste.cpython-311.pyc
+┣ 📂elements-data
+┃ ┣ 📂__pycache__
+┃ ┃ ┗ 📜main.cpython-311.pyc
+┃ ┣ 📂data
+┃ ┃ ┣ 📜elements-data.json
+┃ ┃ ┣ 📜elements-data.meta.json
+┃ ┃ ┗ 📜elements.db
+┃ ┣ 📜favicon.ico
+┃ ┗ 📜main.py
+┣ 📂orbitals_generation
+┃ ┣ 📂config
+┃ ┃ ┣ 📂__pycache__
+┃ ┃ ┃ ┣ 📜__init__.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜constants.cpython-311.pyc
+┃ ┃ ┃ ┗ 📜settings.cpython-311.pyc
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┣ 📜constants.py
+┃ ┃ ┗ 📜settings.py
+┃ ┣ 📂core
+┃ ┃ ┣ 📂__pycache__
+┃ ┃ ┃ ┣ 📜__init__.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜get_render_radius.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜hydrogen.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜render_3d.cpython-311.pyc
+┃ ┃ ┃ ┗ 📜render_orbital.cpython-311.pyc
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┣ 📜get_render_radius.py
+┃ ┃ ┣ 📜hydrogen.py
+┃ ┃ ┣ 📜render_3d.py
+┃ ┃ ┗ 📜render_orbital.py
+┃ ┣ 📂images
+┃ ┃ ┣ 📂cross-section-and-3d
+┃ ┃ ┃ ┣ 📂1-0-0
+┃ ┃ ┃ ┃ ┣ 📜1-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜1-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜1-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜1-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂2-0-0
+┃ ┃ ┃ ┃ ┣ 📜2-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜2-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜2-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜2-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂2-1--1
+┃ ┃ ┃ ┃ ┣ 📜2-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜2-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜2-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜2-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂2-1-0
+┃ ┃ ┃ ┃ ┣ 📜2-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜2-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜2-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜2-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂2-1-1
+┃ ┃ ┃ ┃ ┣ 📜2-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜2-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜2-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜2-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-0-0
+┃ ┃ ┃ ┃ ┣ 📜3-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-1--1
+┃ ┃ ┃ ┃ ┣ 📜3-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-1-0
+┃ ┃ ┃ ┃ ┣ 📜3-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-1-1
+┃ ┃ ┃ ┃ ┣ 📜3-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-2--1
+┃ ┃ ┃ ┃ ┣ 📜3-2--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-2--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-2--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-2--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-2--2
+┃ ┃ ┃ ┃ ┣ 📜3-2--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-2--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-2--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-2--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-2-0
+┃ ┃ ┃ ┃ ┣ 📜3-2-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-2-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-2-1
+┃ ┃ ┃ ┃ ┣ 📜3-2-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-2-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂3-2-2
+┃ ┃ ┃ ┃ ┣ 📜3-2-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜3-2-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜3-2-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-0-0
+┃ ┃ ┃ ┃ ┣ 📜4-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-1--1
+┃ ┃ ┃ ┃ ┣ 📜4-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-1-0
+┃ ┃ ┃ ┃ ┣ 📜4-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-1-1
+┃ ┃ ┃ ┃ ┣ 📜4-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-2--1
+┃ ┃ ┃ ┃ ┣ 📜4-2--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-2--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-2--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-2--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-2--2
+┃ ┃ ┃ ┃ ┣ 📜4-2--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-2--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-2--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-2--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-2-0
+┃ ┃ ┃ ┃ ┣ 📜4-2-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-2-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-2-1
+┃ ┃ ┃ ┃ ┣ 📜4-2-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-2-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-2-2
+┃ ┃ ┃ ┃ ┣ 📜4-2-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-2-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-2-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3--1
+┃ ┃ ┃ ┃ ┣ 📜4-3--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3--2
+┃ ┃ ┃ ┃ ┣ 📜4-3--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3--3
+┃ ┃ ┃ ┃ ┣ 📜4-3--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3-0
+┃ ┃ ┃ ┃ ┣ 📜4-3-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3-1
+┃ ┃ ┃ ┃ ┣ 📜4-3-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3-2
+┃ ┃ ┃ ┃ ┣ 📜4-3-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂4-3-3
+┃ ┃ ┃ ┃ ┣ 📜4-3-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜4-3-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜4-3-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-0-0
+┃ ┃ ┃ ┃ ┣ 📜5-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-1--1
+┃ ┃ ┃ ┃ ┣ 📜5-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-1-0
+┃ ┃ ┃ ┃ ┣ 📜5-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-1-1
+┃ ┃ ┃ ┃ ┣ 📜5-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-2--1
+┃ ┃ ┃ ┃ ┣ 📜5-2--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-2--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-2--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-2--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-2--2
+┃ ┃ ┃ ┃ ┣ 📜5-2--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-2--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-2--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-2--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-2-0
+┃ ┃ ┃ ┃ ┣ 📜5-2-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-2-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-2-1
+┃ ┃ ┃ ┃ ┣ 📜5-2-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-2-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-2-2
+┃ ┃ ┃ ┃ ┣ 📜5-2-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-2-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-2-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3--1
+┃ ┃ ┃ ┃ ┣ 📜5-3--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3--2
+┃ ┃ ┃ ┃ ┣ 📜5-3--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3--3
+┃ ┃ ┃ ┃ ┣ 📜5-3--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3-0
+┃ ┃ ┃ ┃ ┣ 📜5-3-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3-1
+┃ ┃ ┃ ┃ ┣ 📜5-3-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3-2
+┃ ┃ ┃ ┃ ┣ 📜5-3-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-3-3
+┃ ┃ ┃ ┃ ┣ 📜5-3-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-3-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-3-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4--1
+┃ ┃ ┃ ┃ ┣ 📜5-4--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4--2
+┃ ┃ ┃ ┃ ┣ 📜5-4--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4--3
+┃ ┃ ┃ ┃ ┣ 📜5-4--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4--4
+┃ ┃ ┃ ┃ ┣ 📜5-4--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4-0
+┃ ┃ ┃ ┃ ┣ 📜5-4-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4-1
+┃ ┃ ┃ ┃ ┣ 📜5-4-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4-2
+┃ ┃ ┃ ┃ ┣ 📜5-4-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4-3
+┃ ┃ ┃ ┃ ┣ 📜5-4-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂5-4-4
+┃ ┃ ┃ ┃ ┣ 📜5-4-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜5-4-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜5-4-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-0-0
+┃ ┃ ┃ ┃ ┣ 📜6-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-1--1
+┃ ┃ ┃ ┃ ┣ 📜6-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-1-0
+┃ ┃ ┃ ┃ ┣ 📜6-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-1-1
+┃ ┃ ┃ ┃ ┣ 📜6-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-2--1
+┃ ┃ ┃ ┃ ┣ 📜6-2--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-2--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-2--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-2--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-2--2
+┃ ┃ ┃ ┃ ┣ 📜6-2--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-2--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-2--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-2--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-2-0
+┃ ┃ ┃ ┃ ┣ 📜6-2-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-2-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-2-1
+┃ ┃ ┃ ┃ ┣ 📜6-2-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-2-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-2-2
+┃ ┃ ┃ ┃ ┣ 📜6-2-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-2-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-2-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3--1
+┃ ┃ ┃ ┃ ┣ 📜6-3--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3--2
+┃ ┃ ┃ ┃ ┣ 📜6-3--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3--3
+┃ ┃ ┃ ┃ ┣ 📜6-3--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3-0
+┃ ┃ ┃ ┃ ┣ 📜6-3-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3-1
+┃ ┃ ┃ ┃ ┣ 📜6-3-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3-2
+┃ ┃ ┃ ┃ ┣ 📜6-3-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-3-3
+┃ ┃ ┃ ┃ ┣ 📜6-3-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-3-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-3-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4--1
+┃ ┃ ┃ ┃ ┣ 📜6-4--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4--2
+┃ ┃ ┃ ┃ ┣ 📜6-4--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4--3
+┃ ┃ ┃ ┃ ┣ 📜6-4--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4--4
+┃ ┃ ┃ ┃ ┣ 📜6-4--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4-0
+┃ ┃ ┃ ┃ ┣ 📜6-4-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4-1
+┃ ┃ ┃ ┃ ┣ 📜6-4-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4-2
+┃ ┃ ┃ ┃ ┣ 📜6-4-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4-3
+┃ ┃ ┃ ┃ ┣ 📜6-4-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-4-4
+┃ ┃ ┃ ┃ ┣ 📜6-4-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-4-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-4-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5--1
+┃ ┃ ┃ ┃ ┣ 📜6-5--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5--2
+┃ ┃ ┃ ┃ ┣ 📜6-5--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5--3
+┃ ┃ ┃ ┃ ┣ 📜6-5--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5--4
+┃ ┃ ┃ ┃ ┣ 📜6-5--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5--5
+┃ ┃ ┃ ┃ ┣ 📜6-5--5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5--5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5--5-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-0
+┃ ┃ ┃ ┃ ┣ 📜6-5-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-1
+┃ ┃ ┃ ┃ ┣ 📜6-5-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-2
+┃ ┃ ┃ ┃ ┣ 📜6-5-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-3
+┃ ┃ ┃ ┃ ┣ 📜6-5-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-4
+┃ ┃ ┃ ┃ ┣ 📜6-5-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂6-5-5
+┃ ┃ ┃ ┃ ┣ 📜6-5-5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜6-5-5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜6-5-5-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-0-0
+┃ ┃ ┃ ┃ ┣ 📜7-0-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-0-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-0-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-0-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-1--1
+┃ ┃ ┃ ┃ ┣ 📜7-1--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-1--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-1--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-1--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-1-0
+┃ ┃ ┃ ┃ ┣ 📜7-1-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-1-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-1-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-1-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-1-1
+┃ ┃ ┃ ┃ ┣ 📜7-1-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-1-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-1-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-1-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-2--1
+┃ ┃ ┃ ┃ ┣ 📜7-2--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-2--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-2--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-2--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-2--2
+┃ ┃ ┃ ┃ ┣ 📜7-2--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-2--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-2--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-2--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-2-0
+┃ ┃ ┃ ┃ ┣ 📜7-2-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-2-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-2-1
+┃ ┃ ┃ ┃ ┣ 📜7-2-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-2-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-2-2
+┃ ┃ ┃ ┃ ┣ 📜7-2-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-2-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-2-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3--1
+┃ ┃ ┃ ┃ ┣ 📜7-3--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3--2
+┃ ┃ ┃ ┃ ┣ 📜7-3--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3--3
+┃ ┃ ┃ ┃ ┣ 📜7-3--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3-0
+┃ ┃ ┃ ┃ ┣ 📜7-3-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3-1
+┃ ┃ ┃ ┃ ┣ 📜7-3-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3-2
+┃ ┃ ┃ ┃ ┣ 📜7-3-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-3-3
+┃ ┃ ┃ ┃ ┣ 📜7-3-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-3-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-3-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4--1
+┃ ┃ ┃ ┃ ┣ 📜7-4--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4--2
+┃ ┃ ┃ ┃ ┣ 📜7-4--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4--3
+┃ ┃ ┃ ┃ ┣ 📜7-4--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4--4
+┃ ┃ ┃ ┃ ┣ 📜7-4--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4-0
+┃ ┃ ┃ ┃ ┣ 📜7-4-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4-1
+┃ ┃ ┃ ┃ ┣ 📜7-4-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4-2
+┃ ┃ ┃ ┃ ┣ 📜7-4-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4-3
+┃ ┃ ┃ ┃ ┣ 📜7-4-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-4-4
+┃ ┃ ┃ ┃ ┣ 📜7-4-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-4-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-4-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5--1
+┃ ┃ ┃ ┃ ┣ 📜7-5--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5--2
+┃ ┃ ┃ ┃ ┣ 📜7-5--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5--3
+┃ ┃ ┃ ┃ ┣ 📜7-5--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5--4
+┃ ┃ ┃ ┃ ┣ 📜7-5--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5--5
+┃ ┃ ┃ ┃ ┣ 📜7-5--5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5--5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5--5-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-0
+┃ ┃ ┃ ┃ ┣ 📜7-5-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-1
+┃ ┃ ┃ ┃ ┣ 📜7-5-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-2
+┃ ┃ ┃ ┃ ┣ 📜7-5-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-3
+┃ ┃ ┃ ┃ ┣ 📜7-5-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-4
+┃ ┃ ┃ ┃ ┣ 📜7-5-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-5-5
+┃ ┃ ┃ ┃ ┣ 📜7-5-5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-5-5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-5-5-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--1
+┃ ┃ ┃ ┃ ┣ 📜7-6--1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--2
+┃ ┃ ┃ ┃ ┣ 📜7-6--2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--3
+┃ ┃ ┃ ┃ ┣ 📜7-6--3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--4
+┃ ┃ ┃ ┃ ┣ 📜7-6--4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--5
+┃ ┃ ┃ ┃ ┣ 📜7-6--5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--5-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6--6
+┃ ┃ ┃ ┃ ┣ 📜7-6--6-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--6-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6--6-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6--6-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-0
+┃ ┃ ┃ ┃ ┣ 📜7-6-0-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-0-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-0-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-0-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-1
+┃ ┃ ┃ ┃ ┣ 📜7-6-1-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-1-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-1-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-1-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-2
+┃ ┃ ┃ ┃ ┣ 📜7-6-2-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-2-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-2-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-2-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-3
+┃ ┃ ┃ ┃ ┣ 📜7-6-3-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-3-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-3-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-3-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-4
+┃ ┃ ┃ ┃ ┣ 📜7-6-4-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-4-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-4-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-4-cross-section-yz.png
+┃ ┃ ┃ ┣ 📂7-6-5
+┃ ┃ ┃ ┃ ┣ 📜7-6-5-3d-real.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-5-cross-section-xy.png
+┃ ┃ ┃ ┃ ┣ 📜7-6-5-cross-section-xz.png
+┃ ┃ ┃ ┃ ┗ 📜7-6-5-cross-section-yz.png
+┃ ┃ ┃ ┗ 📂7-6-6
+┃ ┃ ┃   ┣ 📜7-6-6-3d-real.png
+┃ ┃ ┃   ┣ 📜7-6-6-cross-section-xy.png
+┃ ┃ ┃   ┣ 📜7-6-6-cross-section-xz.png
+┃ ┃ ┃   ┗ 📜7-6-6-cross-section-yz.png
+┃ ┃ ┗ 📂grouped
+┃ ┃   ┣ 📜1-0-0-combined.png
+┃ ┃   ┣ 📜2-0-0-combined.png
+┃ ┃   ┣ 📜2-1--1-combined.png
+┃ ┃   ┣ 📜2-1-0-combined.png
+┃ ┃   ┣ 📜2-1-1-combined.png
+┃ ┃   ┣ 📜3-0-0-combined.png
+┃ ┃   ┣ 📜3-1--1-combined.png
+┃ ┃   ┣ 📜3-1-0-combined.png
+┃ ┃   ┣ 📜3-1-1-combined.png
+┃ ┃   ┣ 📜3-2--1-combined.png
+┃ ┃   ┣ 📜3-2--2-combined.png
+┃ ┃   ┣ 📜3-2-0-combined.png
+┃ ┃   ┣ 📜3-2-1-combined.png
+┃ ┃   ┣ 📜3-2-2-combined.png
+┃ ┃   ┣ 📜4-0-0-combined.png
+┃ ┃   ┣ 📜4-1--1-combined.png
+┃ ┃   ┣ 📜4-1-0-combined.png
+┃ ┃   ┣ 📜4-1-1-combined.png
+┃ ┃   ┣ 📜4-2--1-combined.png
+┃ ┃   ┣ 📜4-2--2-combined.png
+┃ ┃   ┣ 📜4-2-0-combined.png
+┃ ┃   ┣ 📜4-2-1-combined.png
+┃ ┃   ┣ 📜4-2-2-combined.png
+┃ ┃   ┣ 📜4-3--1-combined.png
+┃ ┃   ┣ 📜4-3--2-combined.png
+┃ ┃   ┣ 📜4-3--3-combined.png
+┃ ┃   ┣ 📜4-3-0-combined.png
+┃ ┃   ┣ 📜4-3-1-combined.png
+┃ ┃   ┣ 📜4-3-2-combined.png
+┃ ┃   ┣ 📜4-3-3-combined.png
+┃ ┃   ┣ 📜5-0-0-combined.png
+┃ ┃   ┣ 📜5-1--1-combined.png
+┃ ┃   ┣ 📜5-1-0-combined.png
+┃ ┃   ┣ 📜5-1-1-combined.png
+┃ ┃   ┣ 📜5-2--1-combined.png
+┃ ┃   ┣ 📜5-2--2-combined.png
+┃ ┃   ┣ 📜5-2-0-combined.png
+┃ ┃   ┣ 📜5-2-1-combined.png
+┃ ┃   ┣ 📜5-2-2-combined.png
+┃ ┃   ┣ 📜5-3--1-combined.png
+┃ ┃   ┣ 📜5-3--2-combined.png
+┃ ┃   ┣ 📜5-3--3-combined.png
+┃ ┃   ┣ 📜5-3-0-combined.png
+┃ ┃   ┣ 📜5-3-1-combined.png
+┃ ┃   ┣ 📜5-3-2-combined.png
+┃ ┃   ┣ 📜5-3-3-combined.png
+┃ ┃   ┣ 📜5-4--1-combined.png
+┃ ┃   ┣ 📜5-4--2-combined.png
+┃ ┃   ┣ 📜5-4--3-combined.png
+┃ ┃   ┣ 📜5-4--4-combined.png
+┃ ┃   ┣ 📜5-4-0-combined.png
+┃ ┃   ┣ 📜5-4-1-combined.png
+┃ ┃   ┣ 📜5-4-2-combined.png
+┃ ┃   ┣ 📜5-4-3-combined.png
+┃ ┃   ┣ 📜5-4-4-combined.png
+┃ ┃   ┣ 📜6-0-0-combined.png
+┃ ┃   ┣ 📜6-1--1-combined.png
+┃ ┃   ┣ 📜6-1-0-combined.png
+┃ ┃   ┣ 📜6-1-1-combined.png
+┃ ┃   ┣ 📜6-2--1-combined.png
+┃ ┃   ┣ 📜6-2--2-combined.png
+┃ ┃   ┣ 📜6-2-0-combined.png
+┃ ┃   ┣ 📜6-2-1-combined.png
+┃ ┃   ┣ 📜6-2-2-combined.png
+┃ ┃   ┣ 📜6-3--1-combined.png
+┃ ┃   ┣ 📜6-3--2-combined.png
+┃ ┃   ┣ 📜6-3--3-combined.png
+┃ ┃   ┣ 📜6-3-0-combined.png
+┃ ┃   ┣ 📜6-3-1-combined.png
+┃ ┃   ┣ 📜6-3-2-combined.png
+┃ ┃   ┣ 📜6-3-3-combined.png
+┃ ┃   ┣ 📜6-4--1-combined.png
+┃ ┃   ┣ 📜6-4--2-combined.png
+┃ ┃   ┣ 📜6-4--3-combined.png
+┃ ┃   ┣ 📜6-4--4-combined.png
+┃ ┃   ┣ 📜6-4-0-combined.png
+┃ ┃   ┣ 📜6-4-1-combined.png
+┃ ┃   ┣ 📜6-4-2-combined.png
+┃ ┃   ┣ 📜6-4-3-combined.png
+┃ ┃   ┣ 📜6-4-4-combined.png
+┃ ┃   ┣ 📜6-5--1-combined.png
+┃ ┃   ┣ 📜6-5--2-combined.png
+┃ ┃   ┣ 📜6-5--3-combined.png
+┃ ┃   ┣ 📜6-5--4-combined.png
+┃ ┃   ┣ 📜6-5--5-combined.png
+┃ ┃   ┣ 📜6-5-0-combined.png
+┃ ┃   ┣ 📜6-5-1-combined.png
+┃ ┃   ┣ 📜6-5-2-combined.png
+┃ ┃   ┣ 📜6-5-3-combined.png
+┃ ┃   ┣ 📜6-5-4-combined.png
+┃ ┃   ┣ 📜6-5-5-combined.png
+┃ ┃   ┣ 📜7-0-0-combined.png
+┃ ┃   ┣ 📜7-1--1-combined.png
+┃ ┃   ┣ 📜7-1-0-combined.png
+┃ ┃   ┣ 📜7-1-1-combined.png
+┃ ┃   ┣ 📜7-2--1-combined.png
+┃ ┃   ┣ 📜7-2--2-combined.png
+┃ ┃   ┣ 📜7-2-0-combined.png
+┃ ┃   ┣ 📜7-2-1-combined.png
+┃ ┃   ┣ 📜7-2-2-combined.png
+┃ ┃   ┣ 📜7-3--1-combined.png
+┃ ┃   ┣ 📜7-3--2-combined.png
+┃ ┃   ┣ 📜7-3--3-combined.png
+┃ ┃   ┣ 📜7-3-0-combined.png
+┃ ┃   ┣ 📜7-3-1-combined.png
+┃ ┃   ┣ 📜7-3-2-combined.png
+┃ ┃   ┣ 📜7-3-3-combined.png
+┃ ┃   ┣ 📜7-4--1-combined.png
+┃ ┃   ┣ 📜7-4--2-combined.png
+┃ ┃   ┣ 📜7-4--3-combined.png
+┃ ┃   ┣ 📜7-4--4-combined.png
+┃ ┃   ┣ 📜7-4-0-combined.png
+┃ ┃   ┣ 📜7-4-1-combined.png
+┃ ┃   ┣ 📜7-4-2-combined.png
+┃ ┃   ┣ 📜7-4-3-combined.png
+┃ ┃   ┣ 📜7-4-4-combined.png
+┃ ┃   ┣ 📜7-5--1-combined.png
+┃ ┃   ┣ 📜7-5--2-combined.png
+┃ ┃   ┣ 📜7-5--3-combined.png
+┃ ┃   ┣ 📜7-5--4-combined.png
+┃ ┃   ┣ 📜7-5--5-combined.png
+┃ ┃   ┣ 📜7-5-0-combined.png
+┃ ┃   ┣ 📜7-5-1-combined.png
+┃ ┃   ┣ 📜7-5-2-combined.png
+┃ ┃   ┣ 📜7-5-3-combined.png
+┃ ┃   ┣ 📜7-5-4-combined.png
+┃ ┃   ┣ 📜7-5-5-combined.png
+┃ ┃   ┣ 📜7-6--1-combined.png
+┃ ┃   ┣ 📜7-6--2-combined.png
+┃ ┃   ┣ 📜7-6--3-combined.png
+┃ ┃   ┣ 📜7-6--4-combined.png
+┃ ┃   ┣ 📜7-6--5-combined.png
+┃ ┃   ┣ 📜7-6--6-combined.png
+┃ ┃   ┣ 📜7-6-0-combined.png
+┃ ┃   ┣ 📜7-6-1-combined.png
+┃ ┃   ┣ 📜7-6-2-combined.png
+┃ ┃   ┣ 📜7-6-3-combined.png
+┃ ┃   ┣ 📜7-6-4-combined.png
+┃ ┃   ┣ 📜7-6-5-combined.png
+┃ ┃   ┗ 📜7-6-6-combined.png
+┃ ┣ 📂schemas
+┃ ┃ ┣ 📂__pycache__
+┃ ┃ ┃ ┣ 📜__init__.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜orbital.cpython-311.pyc
+┃ ┃ ┃ ┗ 📜response.cpython-311.pyc
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┗ 📜orbital.py
+┃ ┣ 📂scripts
+┃ ┃ ┣ 📂__pycache__
+┃ ┃ ┃ ┣ 📜__init__.cpython-311.pyc
+┃ ┃ ┃ ┣ 📜generator.cpython-311.pyc
+┃ ┃ ┃ ┗ 📜runner.cpython-311.pyc
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┣ 📜convert_nlm_real.py
+┃ ┃ ┣ 📜generate_orbitals.py
+┃ ┃ ┣ 📜generator.py
+┃ ┃ ┣ 📜runner.py
+┃ ┃ ┗ 📜teste.py
+┃ ┗ 📂utils
+┃   ┣ 📂__pycache__
+┃   ┃ ┣ 📜__init__.cpython-311.pyc
+┃   ┃ ┣ 📜grouping_figures.cpython-311.pyc
+┃   ┃ ┣ 📜helpers.cpython-311.pyc
+┃   ┃ ┣ 📜migrate_images.cpython-311.pyc
+┃   ┃ ┗ 📜save_figure.cpython-311.pyc
+┃   ┣ 📜__init__.py
+┃   ┣ 📜grouping_figures.py
+┃   ┣ 📜helpers.py
+┃   ┗ 📜save_figure.py
+┣ 📂spectra_lines
+┃ ┣ 📂data
+┃ ┃ ┗ 📜spectral_lines.json
+┃ ┗ 📜nist_spectra.py
+┣ 📂tests
+┃ ┣ 📂fixtures
+┃ ┃ ┗ 📜__init__.py
+┃ ┣ 📂integration
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┗ 📜test_orbital_endpoints.py
+┃ ┣ 📂unit
+┃ ┃ ┣ 📜__init__.py
+┃ ┃ ┗ 📜test_orbital_service.py
+┃ ┣ 📜__init__.py
+┃ ┗ 📜conftest.py
+┣ 📜.gitignore
+┣ 📜README.md
+┗ 📜requirements.txt
