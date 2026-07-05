@@ -3,16 +3,19 @@
 import sys
 from pathlib import Path
 
-# Adicionar Backend ao path para permitir imports absolutos
-backend_path = Path(__file__).parent.parent
-sys.path.insert(0, str(backend_path))
+repo_root = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(repo_root))
 
 from Backend.orbitals_generation.scripts.generator import orbitals_generator
 from Backend.orbitals_generation.utils.helpers import check_and_group_orbital
 
 # Lista de orbitais problemáticos conhecidos
 problematic_orbitals = [
+    (3, 2, 1),
     (1, 0, 0),
+    (3, 2, 2),
+    (4, 2, 1),
+    (4, 3, -1),
 ]
 
 # Calcular caminho absoluto para a pasta de imagens agrupadas
@@ -20,8 +23,8 @@ backend_dir = Path(__file__).parent.parent
 grouped_folder = str(backend_dir / "images" / "grouped")
 
 for n, l, m in problematic_orbitals:
-    # orbitals_generator(n, l, m, "xy", cmap="plasma")
+    orbitals_generator(n, l, m, "xy", cmap="viridis")
     # orbitals_generator(n, l, m, "xz", cmap="plasma")
     # orbitals_generator(n, l, m, "yz", cmap="plasma")
     # orbitals_generator(n, l, m, "3d", cmap="plasma")
-    check_and_group_orbital(n, l, m, grouped_folder)
+    # check_and_group_orbital(n, l, m, grouped_folder)

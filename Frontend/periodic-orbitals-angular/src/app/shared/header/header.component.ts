@@ -30,7 +30,7 @@ export class Header {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
-  viewChanged = output<'padrao' | 'graficos'>();
+  viewChanged = output<'padrao' | 'graficos' | 'molecula'>();
 
   constructor() {
     this.filteredOptions = this.myControl.valueChanges.pipe(

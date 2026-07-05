@@ -185,7 +185,6 @@ export class QuantumOrbitalViewerComponent
     // Desenhar plots iniciais
     const o = this.selectedOrb();
     this.math.drawRadial(this.radialRef.nativeElement, o.n, o.l);
-    
 
     this.roRadial = new ResizeObserver(() => {
       const o = this.selectedOrb();
@@ -358,14 +357,14 @@ export class QuantumOrbitalViewerComponent
   }
 
   // ── Rebuild orbital 3D ───────────────────────────────────
-  private rebuildOrbital(
+  private async rebuildOrbital(
     o: OrbitalDef,
     mode: ViewMode,
     nPts: number,
     ptSize: number,
     isoVal: number,
     isoRes: number,
-  ): void {
+  ): Promise<void> {
     // Remover meshes anteriores
     const toRemove: THREE.Object3D[] = [];
     this.scene.traverse((obj) => {
@@ -380,43 +379,55 @@ export class QuantumOrbitalViewerComponent
     const boxHalf = Math.max(12, o.n * o.n * 1.7 + 4);
     this.ngZone.run(() => this.loading.set(true));
 
-    setTimeout(() => {
-      if (mode === 'cloud') {
-        const { positions, phases } = this.math.sampleOrbital(
-          o.n,
-          o.l,
-          o.m,
-          nPts,
-          boxHalf,
-        );
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
-        const mat = this.math.createCloudMaterial(ptSize);
-        const pts = new THREE.Points(geo, mat);
-        pts.userData['orbital'] = true;
-        this.scene.add(pts);
-      } else {
-        const { vertices, normals, phaseColors } = this.math.buildIsosurface(
-          o.n,
-          o.l,
-          o.m,
-          isoVal,
-          isoRes,
-          boxHalf,
-        );
-        if (vertices.length > 0) {
+    setTimeout(async () => {
+      try {
+        if (mode === 'cloud') {
+          const { positions, phases } = await this.math.sampleOrbital(
+            o.n,
+            o.l,
+            o.m,
+            nPts,
+            boxHalf,
+          );
           const geo = new THREE.BufferGeometry();
-          geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-          geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
-          geo.setAttribute('phase', new THREE.BufferAttribute(phaseColors, 1));
-          const mat = this.math.createSurfaceMaterial();
-          const mesh = new THREE.Mesh(geo, mat);
-          mesh.userData['orbital'] = true;
-          this.scene.add(mesh);
+          geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+          geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+          const mat = this.math.createCloudMaterial(ptSize);
+          const pts = new THREE.Points(geo, mat);
+          pts.userData['orbital'] = true;
+          this.scene.add(pts);
+        } else {
+          const { vertices, normals, phaseColors } =
+            await this.math.buildIsosurface(
+              o.n,
+              o.l,
+              o.m,
+              isoVal,
+              isoRes,
+              boxHalf,
+            );
+          if (vertices.length > 0) {
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute(
+              'position',
+              new THREE.BufferAttribute(vertices, 3),
+            );
+            geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+            geo.setAttribute(
+              'phase',
+              new THREE.BufferAttribute(phaseColors, 1),
+            );
+            const mat = this.math.createSurfaceMaterial();
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.userData['orbital'] = true;
+            this.scene.add(mesh);
+          }
         }
+      } catch (error) {
+        console.error('Erro ao carregar orbital:', error);
+      } finally {
+        this.ngZone.run(() => this.loading.set(false));
       }
-      this.ngZone.run(() => this.loading.set(false));
     }, 30);
   }
 

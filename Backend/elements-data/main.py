@@ -1,5 +1,6 @@
 # Suas importações permanecem as mesmas
 from pathlib import Path
+import sys
 import json
 from datetime import datetime, timedelta
 from functools import lru_cache
@@ -10,6 +11,13 @@ from mendeleev.fetch import fetch_table
 import numpy as np
 import pandas as pd
 import re
+
+# Ensure Backend package can be imported when script is run from Backend/elements-data
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from Backend.orbitals_generation.api import router as orbital_router
 
 # * paths
 DATA_DIR = Path(__file__).parent
@@ -72,6 +80,8 @@ app = FastAPI(
     version="1.0.0",
 )
 
+app.include_router(orbital_router)
+
 
 # * Adiciona favicon
 @app.get("/favicon.ico", include_in_schema=False)
@@ -125,7 +135,8 @@ def _fetch_and_save() -> list[dict]:
         "fusion_heat",
         "cas",
         "sources",
-        "discoverers", "discovery_location",
+        "discoverers",
+        "discovery_location",
         "discovery_year",
         "name_origin",
     ]

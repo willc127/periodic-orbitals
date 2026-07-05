@@ -16,9 +16,8 @@ def psi(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) -> floa
     """
     Função de onda complexa original
     """
-    Y = spe.sph_harm(m, l, azimuth, zenith)
+    Y = spe.sph_harm_y(l, m, zenith, azimuth)
     radial = radial_function(r, n, l)
-
     if m < 0:
         return (-1) ** m * np.imag(Y * radial) * (2**0.5)
     elif m > 0:
@@ -33,10 +32,10 @@ def psi_real(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) ->
     Orbitais reais padrão da química
     """
     if m == 0:
-        return spe.sph_harm(0, l, azimuth, zenith).real * radial_function(r, n, l)
+        return spe.sph_harm_y(l, 0, zenith, azimuth).real * radial_function(r, n, l)
     elif m > 0:
-        y_plus = spe.sph_harm(m, l, azimuth, zenith)
-        y_minus = spe.sph_harm(-m, l, azimuth, zenith)
+        y_plus = spe.sph_harm_y(l, m, zenith, azimuth)
+        y_minus = spe.sph_harm_y(l, -m, zenith, azimuth)
         return (
             (1 / np.sqrt(2))
             * (y_plus + (-1) ** m * y_minus).real
@@ -44,8 +43,8 @@ def psi_real(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) ->
         )
     else:  # m < 0
         m_abs = abs(m)
-        y_plus = spe.sph_harm(m_abs, l, azimuth, zenith)
-        y_minus = spe.sph_harm(-m_abs, l, azimuth, zenith)
+        y_plus = spe.sph_harm_y(l, m_abs, zenith, azimuth)
+        y_minus = spe.sph_harm_y(l, -m_abs, zenith, azimuth)
         return (
             (1 / np.sqrt(2))
             * (y_plus - (-1) ** m_abs * y_minus).imag
@@ -63,9 +62,7 @@ def cartesian_prob(n: int, l: int, m: int, x: float, y: float, z: float) -> floa
     r = (x * x + y * y + z * z) ** 0.5
     if r < 1e-10:  # near origin
         return 0.0 if l > 0 else prob(psi(n, l, m, 0, 0, 0))
-
     azimuth = np.arctan2(y, x)
-    # use arccos for more stable theta near poles
     zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
     return prob(psi(n, l, m, r, azimuth, zenith))
 
@@ -76,8 +73,6 @@ def cartesian_prob_real(n: int, l: int, m: int, x: float, y: float, z: float) ->
     r = (x * x + y * y + z * z) ** 0.5
     if r < 1e-10:  # near origin
         return 0.0 if l > 0 else prob(psi_real(n, l, m, 0, 0, 0))
-
     azimuth = np.arctan2(y, x)
-    # use arccos for more stable theta near poles
     zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
     return prob(psi_real(n, l, m, r, azimuth, zenith))
