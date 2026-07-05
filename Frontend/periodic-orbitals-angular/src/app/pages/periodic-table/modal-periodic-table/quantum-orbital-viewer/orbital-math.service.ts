@@ -123,7 +123,14 @@ export interface DensityResponse {
 export class OrbitalMathService {
   private readonly baseUrl = 'http://localhost:8000/api/v1/orbitals';
 
+  // ─── Tokens de requisição para evitar corridas entre chamadas
+  //     concorrentes ao mesmo canvas (ex.: effect() + ResizeObserver
+  //     disparando drawRadial/drawDensity quase ao mesmo tempo) ───
+  private radialRequestId = 0;
+  private densityRequestId = 0;
+
   constructor(private readonly http: HttpClient) {}
+
   // ─── Amostragem Monte Carlo (Beloit + Lisyarus) ───────────
   async sampleOrbital(
     n: number,
@@ -214,15 +221,27 @@ export class OrbitalMathService {
     n: number,
     l: number,
   ): Promise<void> {
+    // Token desta chamada específica: se outra chamada mais nova
+    // terminar depois, esta é descartada silenciosamente.
+    const requestId = ++this.radialRequestId;
+
     const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
     const cssW = canvas.clientWidth;
     const cssH = canvas.clientHeight;
-    if (cssW > 0 && cssH > 0) {
-      canvas.width = Math.round(cssW * dpr);
-      canvas.height = Math.round(cssH * dpr);
-    }
+
+    // Evita desenhar (e resetar o canvas) quando o elemento ainda
+    // não tem layout — ex.: dentro de uma aba/painel ainda oculto.
+    if (cssW === 0 || cssH === 0) return;
+
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+
     const ctx = canvas.getContext('2d')!;
-    ctx.scale(dpr, dpr);
+    // setTransform substitui a matriz inteira em vez de multiplicá-la
+    // (como faz scale()), então cada chamada começa sempre de um
+    // estado limpo e conhecido — não acumula escala entre execuções.
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
     const W = cssW;
     const H = cssH;
 
@@ -237,6 +256,10 @@ export class OrbitalMathService {
       const response = await firstValueFrom(
         this.http.get<RadialResponse>(`${this.baseUrl}/radial`, { params }),
       );
+
+      // Se uma chamada mais recente já assumiu o canvas enquanto
+      // aguardávamos a resposta HTTP, descarta este resultado.
+      if (requestId !== this.radialRequestId) return;
 
       const radii = response.radii;
       const values = response.values;
@@ -335,7 +358,11 @@ export class OrbitalMathService {
       ctx.textBaseline = 'top';
       ctx.fillText(`n=${n}  l=${l}`, 44, 0);
     } catch (error) {
-      console.error('Erro ao buscar dados radiais:', error);
+      // Só loga se ainda formos a chamada "vigente"; evita ruído
+      // de erros de requisições já obsoletas.
+      if (requestId === this.radialRequestId) {
+        console.error('Erro ao buscar dados radiais:', error);
+      }
     }
   }
 
@@ -347,15 +374,20 @@ export class OrbitalMathService {
     m: number,
     plane: string,
   ): Promise<void> {
+    const requestId = ++this.densityRequestId;
+
     const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
     const cssW = canvas.clientWidth;
     const cssH = canvas.clientHeight;
-    if (cssW > 0 && cssH > 0) {
-      canvas.width = Math.round(cssW * dpr);
-      canvas.height = Math.round(cssH * dpr);
-    }
+
+    if (cssW === 0 || cssH === 0) return;
+
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+
     const ctx = canvas.getContext('2d')!;
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
     const W = cssW;
     const H = cssH;
 
@@ -372,6 +404,8 @@ export class OrbitalMathService {
       const response = await firstValueFrom(
         this.http.get<DensityResponse>(`${this.baseUrl}/density`, { params }),
       );
+
+      if (requestId !== this.densityRequestId) return;
 
       const values = response.values;
       if (!values.length) return;
@@ -409,7 +443,9 @@ export class OrbitalMathService {
       ctx.textBaseline = 'top';
       ctx.fillText(`Plano ${plane}`, gridLeft, 2);
     } catch (error) {
-      console.error('Erro ao buscar densidade orbital:', error);
+      if (requestId === this.densityRequestId) {
+        console.error('Erro ao buscar densidade orbital:', error);
+      }
     }
   }
 }

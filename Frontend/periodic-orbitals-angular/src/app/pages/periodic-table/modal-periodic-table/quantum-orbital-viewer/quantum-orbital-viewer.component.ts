@@ -15,7 +15,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import * as THREE from 'three';
 
 import {
@@ -115,9 +117,16 @@ export class QuantumOrbitalViewerComponent
   private lastX = 0;
   private lastY = 0;
 
+  private readonly nlmLookup = new Map<
+    number,
+    { n: number; l: number; m: number }
+  >();
+  private nlmLookupPromise: Promise<void> | null = null;
+
   constructor(
     private readonly math: OrbitalMathService,
     private readonly ngZone: NgZone,
+    private readonly http: HttpClient,
   ) {
     // Effects reactivos
 
@@ -188,7 +197,7 @@ export class QuantumOrbitalViewerComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['element']) {
-      this.applyElementOrbital();
+      void this.applyElementOrbital();
     }
   }
 
@@ -213,12 +222,12 @@ export class QuantumOrbitalViewerComponent
     this.removeDragListeners();
   }
 
-  private applyElementOrbital(): void {
+  private async applyElementOrbital(): Promise<void> {
     const atomicNumber = this.getAtomicNumber(this.element);
 
     const orbital =
       (atomicNumber != null
-        ? this.resolveOrbitalFromAtomicNumber(atomicNumber)
+        ? await this.resolveOrbitalFromAtomicNumber(atomicNumber)
         : null) ??
       this.resolveOrbitalFromConfiguration(
         this.element?.configuracaoEletronica ?? '',
@@ -248,68 +257,82 @@ export class QuantumOrbitalViewerComponent
   }
 
   /**
-   * Calcula (n, l, m) do último elétron diferenciador de um átomo neutro
-   * no estado fundamental, usando a regra de Madelung (Aufbau) para
-   * determinar a subcamada, e a regra de Hund para achar o m dentro dela
-   * (preenche 1 elétron por orbital, do m mais negativo ao mais positivo,
-   * e só então começa a emparelhar, novamente do m mais negativo).
-   *
-   * Cobre subcamadas até n=8 (s,p,d,f), ou seja, funciona para qualquer
-   * elemento real da tabela periódica (Z até ~120), não apenas até 4f.
-   *
-   * Se a subcamada resultante (n,l,m) não existir no array ORBITALS
-   * (que hoje só cobre 1s–4f), o método cai no fallback de mesmo n,l
-   * ignorando m, e por fim retorna null caso nem isso exista — nesse
-   * caso o orbital selecionado não muda.
-   *
-   * OBS: não trata exceções de configuração real (Cr, Cu, Nb, Mo, Ru,
-   * Rh, Pd, Ag, Pt, Au, etc.), que fogem do preenchimento estritamente
-   * por Aufbau devido à estabilidade extra de subcamadas semipreenchidas
-   * ou completamente preenchidas.
+   * Usa os dados do arquivo tabelaNLM.csv para associar o número atômico ao
+   * orbital (n, l, m) correspondente, em vez de calcular via regra de Aufbau.
    */
-  private resolveOrbitalFromAtomicNumber(z: number): OrbitalDef | null {
+  private async resolveOrbitalFromAtomicNumber(
+    z: number,
+  ): Promise<OrbitalDef | null> {
     if (!Number.isInteger(z) || z < 1) return null;
 
-    const groupLetters: OrbitalGroup[] = ['s', 'p', 'd', 'f'];
+    await this.loadNlmData();
 
-    // 1) Gera todas as subcamadas possíveis (s,p,d,f) até n=8
-    const subshells: { n: number; l: number }[] = [];
-    const MAX_N = 8;
-    for (let n = 1; n <= MAX_N; n++) {
-      for (let l = 0; l <= Math.min(n - 1, 3); l++) {
-        subshells.push({ n, l });
-      }
-    }
+    const entry = this.nlmLookup.get(z);
+    if (!entry) return null;
 
-    // 2) Ordena pela regra de Madelung: (n + l) crescente; empate -> menor n primeiro
-    subshells.sort((a, b) => {
-      const ka = a.n + a.l;
-      const kb = b.n + b.l;
-      return ka !== kb ? ka - kb : a.n - b.n;
-    });
+    const group = (['s', 'p', 'd', 'f'] as OrbitalGroup[])[entry.l] ?? 's';
 
-    // 3) Distribui os elétrons e localiza a subcamada do último
-    let remaining = z;
-    for (const { n, l } of subshells) {
-      const orbCount = 2 * l + 1; // nº de orbitais (valores possíveis de m)
-      const capacity = 2 * orbCount; // capacidade máxima da subcamada (com spin)
+    return (
+      ORBITALS.find(
+        (o) =>
+          o.n === entry.n &&
+          o.l === entry.l &&
+          o.m === entry.m &&
+          o.g === group,
+      ) ??
+      ORBITALS.find(
+        (o) => o.n === entry.n && o.l === entry.l && o.g === group,
+      ) ??
+      null
+    );
+  }
 
-      if (remaining <= capacity) {
-        const p = remaining; // posição (1-indexada) do último elétron na subcamada
-        const m = p <= orbCount ? -l + (p - 1) : -l + (p - orbCount - 1);
-        const g = groupLetters[l] ?? 's';
+  private async loadNlmData(): Promise<void> {
+    if (this.nlmLookup.size > 0) return;
+    if (this.nlmLookupPromise) return this.nlmLookupPromise;
 
-        return (
-          ORBITALS.find(
-            (o) => o.n === n && o.l === l && o.m === m && o.g === g,
-          ) ??
-          ORBITALS.find((o) => o.n === n && o.l === l && o.g === g) ??
-          null
+    this.nlmLookupPromise = (async () => {
+      try {
+        const csv = await firstValueFrom(
+          this.http.get('assets/tabelaNLM.csv', {
+            responseType: 'text' as const,
+          }),
         );
+
+        const rows = csv
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter(Boolean);
+
+        for (const row of rows) {
+          const values = row
+            .split(',')
+            .map((value) => value.trim())
+            .filter((value) => value !== '');
+
+          if (values.length < 4) continue;
+
+          const [atomicNumberText, nText, lText, mText] = values;
+          const atomicNumber = Number(atomicNumberText);
+          const n = Number(nText);
+          const l = Number(lText);
+          const m = Number(mText);
+
+          if (
+            Number.isInteger(atomicNumber) &&
+            Number.isInteger(n) &&
+            Number.isInteger(l) &&
+            Number.isInteger(m)
+          ) {
+            this.nlmLookup.set(atomicNumber, { n, l, m });
+          }
+        }
+      } catch {
+        this.nlmLookup.clear();
       }
-      remaining -= capacity;
-    }
-    return null; // Z fora do intervalo suportado
+    })();
+
+    await this.nlmLookupPromise;
   }
 
   private resolveOrbitalFromConfiguration(
@@ -482,7 +505,7 @@ export class QuantumOrbitalViewerComponent
     this._onWheel = (e: WheelEvent) => {
       this.camRadius = Math.max(
         5,
-        Math.min(80, this.camRadius + e.deltaY * 0.04),
+        Math.min(250, this.camRadius + e.deltaY * 0.04),
       );
       this.updateCamera();
     };
