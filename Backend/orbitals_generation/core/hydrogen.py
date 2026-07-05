@@ -52,6 +52,19 @@ def psi_real(n: int, l: int, m: int, r: float, azimuth: float, zenith: float) ->
         )
 
 
+def psi_real_at_cartesian(
+    n: int, l: int, m: int, x: float, y: float, z: float
+) -> float:
+    """Evaluate the real hydrogen orbital from Cartesian coordinates."""
+    r = (x * x + y * y + z * z) ** 0.5
+    if r < 1e-10:
+        return 0.0 if l > 0 else psi_real(n, l, m, 0.0, 0.0, 0.0)
+
+    azimuth = np.arctan2(y, x)
+    zenith = np.arccos(z / r) if abs(z) < r else (0.0 if z > 0 else np.pi)
+    return psi_real(n, l, m, r, azimuth, zenith)
+
+
 # probability given wave function output
 def prob(res: float) -> float:
     return np.absolute(res) ** 2
@@ -70,9 +83,5 @@ def cartesian_prob(n: int, l: int, m: int, x: float, y: float, z: float) -> floa
 # final function we are trying to calculate, for real orbitals
 # returns prob(psi_real(...)) given cartesian coordiantes
 def cartesian_prob_real(n: int, l: int, m: int, x: float, y: float, z: float) -> float:
-    r = (x * x + y * y + z * z) ** 0.5
-    if r < 1e-10:  # near origin
-        return 0.0 if l > 0 else prob(psi_real(n, l, m, 0, 0, 0))
-    azimuth = np.arctan2(y, x)
-    zenith = np.arccos(z / r) if abs(z) < r else (0 if z > 0 else np.pi)
-    return prob(psi_real(n, l, m, r, azimuth, zenith))
+    psi_value = psi_real_at_cartesian(n, l, m, x, y, z)
+    return prob(psi_value)

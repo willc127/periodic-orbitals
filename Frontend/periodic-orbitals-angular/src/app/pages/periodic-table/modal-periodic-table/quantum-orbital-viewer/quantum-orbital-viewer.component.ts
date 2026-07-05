@@ -10,6 +10,9 @@ import {
   signal,
   computed,
   effect,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +28,7 @@ import {
   DensityPlane,
 } from './orbital.models';
 import { OrbitalMathService } from './orbital-math.service';
+import { IElement } from '../../../../interfaces/IElement';
 
 // ─────────────────────────────────────────────────────────────
 
@@ -37,7 +41,7 @@ import { OrbitalMathService } from './orbital-math.service';
   styleUrls: ['./quantum-orbital-viewer.scss'],
 })
 export class QuantumOrbitalViewerComponent
-  implements OnInit, AfterViewInit, OnDestroy
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
 {
   // ── ViewChildren ──────────────────────────────────────────
   @ViewChild('canvasWrap', { static: true })
@@ -49,11 +53,13 @@ export class QuantumOrbitalViewerComponent
   @ViewChild('densityCanvas', { static: true })
   densityRef!: ElementRef<HTMLCanvasElement>;
 
+  @Input() element: IElement | null = null;
+
   // ── Signals de estado ─────────────────────────────────────
   selectedOrb = signal<OrbitalDef>(ORBITALS[0]);
   viewMode = signal<ViewMode>('cloud');
-  nPts = signal(10000);
-  ptSize = signal(1);
+  nPts = signal(1500);
+  ptSize = signal(3);
   isoVal = signal(0.0008);
   isoRes = signal(32);
   showAxes = signal(false);
@@ -180,6 +186,12 @@ export class QuantumOrbitalViewerComponent
 
   ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['element']) {
+      this.applyElementOrbital();
+    }
+  }
+
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => this.initThree());
     // Desenhar plots iniciais
@@ -199,6 +211,171 @@ export class QuantumOrbitalViewerComponent
     this.roRadial?.disconnect();
     this.renderer?.dispose();
     this.removeDragListeners();
+  }
+
+  private applyElementOrbital(): void {
+    const atomicNumber = this.getAtomicNumber(this.element);
+
+    const orbital =
+      (atomicNumber != null
+        ? this.resolveOrbitalFromAtomicNumber(atomicNumber)
+        : null) ??
+      this.resolveOrbitalFromConfiguration(
+        this.element?.configuracaoEletronica ?? '',
+      );
+
+    if (orbital) {
+      this.selectedOrb.set(orbital);
+    }
+  }
+
+  /**
+   * Tenta extrair o número atômico do elemento, aceitando alguns nomes
+   * de propriedade comuns (ajuste conforme o nome real na sua IElement).
+   */
+  private getAtomicNumber(element: IElement | null): number | null {
+    if (!element) return null;
+    const e = element as any;
+    const candidates = [
+      e.numeroAtomico,
+      e.atomicNumber,
+      e.numero_atomico,
+      e.z,
+      e.Z,
+    ];
+    const found = candidates.find((v) => typeof v === 'number' && v > 0);
+    return found ?? null;
+  }
+
+  /**
+   * Calcula (n, l, m) do último elétron diferenciador de um átomo neutro
+   * no estado fundamental, usando a regra de Madelung (Aufbau) para
+   * determinar a subcamada, e a regra de Hund para achar o m dentro dela
+   * (preenche 1 elétron por orbital, do m mais negativo ao mais positivo,
+   * e só então começa a emparelhar, novamente do m mais negativo).
+   *
+   * Cobre subcamadas até n=8 (s,p,d,f), ou seja, funciona para qualquer
+   * elemento real da tabela periódica (Z até ~120), não apenas até 4f.
+   *
+   * Se a subcamada resultante (n,l,m) não existir no array ORBITALS
+   * (que hoje só cobre 1s–4f), o método cai no fallback de mesmo n,l
+   * ignorando m, e por fim retorna null caso nem isso exista — nesse
+   * caso o orbital selecionado não muda.
+   *
+   * OBS: não trata exceções de configuração real (Cr, Cu, Nb, Mo, Ru,
+   * Rh, Pd, Ag, Pt, Au, etc.), que fogem do preenchimento estritamente
+   * por Aufbau devido à estabilidade extra de subcamadas semipreenchidas
+   * ou completamente preenchidas.
+   */
+  private resolveOrbitalFromAtomicNumber(z: number): OrbitalDef | null {
+    if (!Number.isInteger(z) || z < 1) return null;
+
+    const groupLetters: OrbitalGroup[] = ['s', 'p', 'd', 'f'];
+
+    // 1) Gera todas as subcamadas possíveis (s,p,d,f) até n=8
+    const subshells: { n: number; l: number }[] = [];
+    const MAX_N = 8;
+    for (let n = 1; n <= MAX_N; n++) {
+      for (let l = 0; l <= Math.min(n - 1, 3); l++) {
+        subshells.push({ n, l });
+      }
+    }
+
+    // 2) Ordena pela regra de Madelung: (n + l) crescente; empate -> menor n primeiro
+    subshells.sort((a, b) => {
+      const ka = a.n + a.l;
+      const kb = b.n + b.l;
+      return ka !== kb ? ka - kb : a.n - b.n;
+    });
+
+    // 3) Distribui os elétrons e localiza a subcamada do último
+    let remaining = z;
+    for (const { n, l } of subshells) {
+      const orbCount = 2 * l + 1; // nº de orbitais (valores possíveis de m)
+      const capacity = 2 * orbCount; // capacidade máxima da subcamada (com spin)
+
+      if (remaining <= capacity) {
+        const p = remaining; // posição (1-indexada) do último elétron na subcamada
+        const m = p <= orbCount ? -l + (p - 1) : -l + (p - orbCount - 1);
+        const g = groupLetters[l] ?? 's';
+
+        return (
+          ORBITALS.find(
+            (o) => o.n === n && o.l === l && o.m === m && o.g === g,
+          ) ??
+          ORBITALS.find((o) => o.n === n && o.l === l && o.g === g) ??
+          null
+        );
+      }
+      remaining -= capacity;
+    }
+    return null; // Z fora do intervalo suportado
+  }
+
+  private resolveOrbitalFromConfiguration(
+    configuration: string,
+  ): OrbitalDef | null {
+    if (!configuration?.trim()) {
+      return null;
+    }
+
+    const superscriptMap: Record<string, string> = {
+      '⁰': '0',
+      '¹': '1',
+      '²': '2',
+      '³': '3',
+      '⁴': '4',
+      '⁵': '5',
+      '⁶': '6',
+      '⁷': '7',
+      '⁸': '8',
+      '⁹': '9',
+    };
+
+    const normalized = Array.from(configuration)
+      .map((char) => superscriptMap[char] ?? char)
+      .join('')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const tokens = normalized.split(' ').filter(Boolean);
+    const orbitalToken = [...tokens].reverse().find((token) => {
+      return /^\d+([spdf])\d*$/.test(token);
+    });
+
+    if (!orbitalToken) {
+      return null;
+    }
+
+    const match = orbitalToken.match(/^(\d+)([spdf])(\d*)$/);
+    if (!match) {
+      return null;
+    }
+
+    const [, nText, orbitalType, electronCountText] = match;
+    const n = Number(nText);
+    const electronCount = electronCountText ? Number(electronCountText) : 1;
+
+    if (!n || electronCount <= 0) {
+      return null;
+    }
+
+    const group = orbitalType as OrbitalGroup;
+    const l = { s: 0, p: 1, d: 2, f: 3 }[group] ?? 0;
+
+    return (
+      ORBITALS.find(
+        (orbital) =>
+          orbital.n === n &&
+          orbital.l === l &&
+          orbital.g === group &&
+          orbital.m === 0,
+      ) ??
+      ORBITALS.find(
+        (orbital) => orbital.n === n && orbital.l === l && orbital.g === group,
+      ) ??
+      null
+    );
   }
 
   // ── Inicialização Three.js ────────────────────────────────

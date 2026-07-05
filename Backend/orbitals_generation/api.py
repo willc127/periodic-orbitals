@@ -9,7 +9,7 @@ from skimage.measure import marching_cubes
 
 from Backend.orbitals_generation.core.hydrogen import (
     cartesian_prob_real,
-    psi_real,
+    psi_real_at_cartesian,
     radial_function,
 )
 
@@ -86,7 +86,7 @@ async def orbital_cloud(
         x = np.random.uniform(-box_half, box_half)
         y = np.random.uniform(-box_half, box_half)
         z = np.random.uniform(-box_half, box_half)
-        psi_value = psi_real(n, l, m, x, y, z)
+        psi_value = psi_real_at_cartesian(n, l, m, x, y, z)
         p = psi_value * psi_value
         if np.random.random() * pdf_max < p:
             positions.extend([float(x), float(y), float(z)])
@@ -127,7 +127,7 @@ async def orbital_surface(
             y = -box_half + iy * step
             for iz in range(size):
                 z = -box_half + iz * step
-                psi_value = psi_real(n, l, m, x, y, z)
+                psi_value = psi_real_at_cartesian(n, l, m, x, y, z)
                 field[ix, iy, iz] = float(psi_value * psi_value)
 
     if np.max(field) < isoValue:
@@ -144,7 +144,11 @@ async def orbital_surface(
     unique_verts = verts
     psi_signs = np.array(
         [
-            1 if psi_real(n, l, m, float(x), float(y), float(z)) >= 0 else -1
+            (
+                1
+                if psi_real_at_cartesian(n, l, m, float(x), float(y), float(z)) >= 0
+                else -1
+            )
             for x, y, z in unique_verts
         ]
     )

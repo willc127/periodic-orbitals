@@ -10,32 +10,6 @@
       </div>
     </div>
 
-    <!-- Seletor de orbital -->
-    <div class="section-label">Orbital</div>
-    @for (g of groups; track g) {
-      <div class="orb-group">
-        <div
-          class="group-badge"
-          [style.background]="groupColor(g) + '22'"
-          [style.color]="groupColor(g)"
-        >
-          {{ g }}
-        </div>
-        <div class="orb-btns">
-          @for (o of getGroup(g); track o.label) {
-            <button
-              class="orb-btn"
-              [class.orb-btn--active]="selectedOrb().label === o.label"
-              [style.--gc]="groupColor(g)"
-              (click)="selectOrbital(o)"
-            >
-              {{ o.tex }}
-            </button>
-          }
-        </div>
-      </div>
-    }
-
     <!-- Modo 3D -->
     <div class="section-label mt14">Modo 3D</div>
     <div class="mode-btns">
@@ -65,9 +39,9 @@
         <input
           type="range"
           class="slider"
-          min="3000"
-          max="60000"
-          step="1000"
+          min="100"
+          max="6000"
+          step="50"
           [value]="nPts()"
           (input)="onNPts($event)"
         />
