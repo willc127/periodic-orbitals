@@ -33,6 +33,7 @@
     "@ng-icons/core": "^30.4.0",
     "@ng-icons/game-icons": "^30.4.0",
     "chart.js": "^4.5.1",
+    "ldrs": "^1.1.9",
     "rxjs": "~7.8.0",
     "three": "^0.185.0",
     "tslib": "^2.3.0",

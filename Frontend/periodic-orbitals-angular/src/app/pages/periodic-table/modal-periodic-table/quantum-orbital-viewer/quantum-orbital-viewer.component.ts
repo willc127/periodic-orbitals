@@ -13,6 +13,7 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -31,6 +32,7 @@ import {
 } from './orbital.models';
 import { OrbitalMathService } from './orbital-math.service';
 import { IElement } from '../../../../interfaces/IElement';
+// `quantum.register()` is called in `src/main.ts`; no-op here to avoid duplicate registration.
 
 // ─────────────────────────────────────────────────────────────
 
@@ -38,6 +40,7 @@ import { IElement } from '../../../../interfaces/IElement';
   selector: 'app-quantum-orbital-viewer',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './quantum-orbital-viewer.html',
   styleUrls: ['./quantum-orbital-viewer.scss'],
@@ -61,7 +64,7 @@ export class QuantumOrbitalViewerComponent
   selectedOrb = signal<OrbitalDef>(ORBITALS[0]);
   viewMode = signal<ViewMode>('cloud');
   nPts = signal(1500);
-  ptSize = signal(3);
+  ptSize = signal(2);
   isoVal = signal(0.0008);
   isoRes = signal(32);
   showAxes = signal(false);
@@ -212,6 +215,8 @@ export class QuantumOrbitalViewerComponent
       this.math.drawRadial(this.radialRef.nativeElement, o.n, o.l);
     });
     this.roRadial.observe(this.radialRef.nativeElement);
+    const el = document.querySelector('l-quantum');
+    el?.addEventListener('someEvent', (e: Event) => console.log(e));
   }
 
   ngOnDestroy(): void {

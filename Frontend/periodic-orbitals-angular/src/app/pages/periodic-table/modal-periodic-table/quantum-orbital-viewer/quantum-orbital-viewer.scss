@@ -334,6 +334,20 @@
   color: #4fa3e3;
   font-size: 13px;
 }
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(7, 7, 15, 0.85);
+  z-index: 10;
+  color: #4fa3e3;
+  font-size: 13px;
+}
+
 .spinner {
   width: 34px;
   height: 34px;
@@ -399,6 +413,30 @@
   min-width: 0;
   overflow: visible;
 }
+.panel-radial {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: visible;
+  position: relative; /* ensure overlay positions relative to this panel */
+
+  .loading-overlay-radial {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(7, 7, 15, 0.85);
+    z-index: 20; /* sit above panel contents */
+    color: #4fa3e3;
+    font-size: 13px;
+  }
+}
 .panel:last-child {
   border-right: none;
 }
@@ -414,10 +452,18 @@
   text-transform: uppercase;
   flex-shrink: 0;
 }
+.canvas-box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
 .panel-canvas {
   display: block;
   border-radius: 4px;
   max-width: 100%;
+  width: 100%;
   height: 100%;
 }
 .panel-canvas--density {

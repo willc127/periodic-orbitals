@@ -139,12 +139,12 @@
     <!-- Painéis inferiores -->
     <div class="bottom-panels">
       <!-- Distribuição radial -->
-      <div class="panel">
+      <div class="panel-radial">
         <div class="panel-title">Distribuição Radial</div>
         <canvas #radialCanvas class="panel-canvas"></canvas>
-                @if (loading()) {
-          <div class="loading-overlay">
-            <div class="spinner"></div>
+        @if (loading()) {
+          <div class="loading-overlay-radial">
+            <l-quantum size="45" speed="1.75" color="#4fa3e3"></l-quantum>
             <span>Calculando distribuição...</span>
           </div>
         }
@@ -204,7 +204,7 @@
 
       @if (loading()) {
         <div class="loading-overlay">
-          <div class="spinner"></div>
+          <l-quantum size="45" speed="1.75" color="#4fa3e3"></l-quantum>
           <span>Calculando orbital…</span>
         </div>
       }
