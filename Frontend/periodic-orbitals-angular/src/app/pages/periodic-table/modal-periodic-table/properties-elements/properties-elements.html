@@ -1,31 +1,63 @@
 <div class="conteudo">
-
   <div class="esquerda">
-    <div class="informacoes">
-      <ul>
-        <li>Número Atômico: {{ data.numeroAtomico }}</li>
-        <li>Massa Atômica: {{ data.massaAtomica }}</li>
-        <li>Tipo: {{ data.tipo }}</li>
-        <li>Grupo: {{ data.grupo }}</li>
-        <li>Período: {{ data.periodo }}</li>
-        <li>Configuração Eletrônica: {{ data.configuracaoEletronica }}</li>
-        <li>Eletronegatividade: {{ data.eletronegatividade }}</li>
-        <li>Condutividade Térmica: {{ data.condutividadeTermica }}</li>
-        <li>Capacidade Calorífica: {{ data.capacidadeCalorifica }}</li>
-      </ul>
-      <ul>
-      <li>Capacidade Calorífica Molar: {{ data.capacidadeCalorificaMolar }}</li>
-        <li>Calor Evaporação: {{ data.calorEvaporacao }}</li>
-        <li>Calor Fusão: {{ data.calorFusao }}</li>
-        <li>Temperatura Fusão: {{ data.temperaturaFusao }}</li>
-        <li>Temperatura Ebulição: {{ data.temperaturaEbulicao }}</li>
-        <li>Temperatura Crítica: {{ data.temperaturaCritica }}</li>
-        <li>Pressão Crítica: {{ data.pressaoCritica }}</li>
-        <li>Raio Atômico: {{ data.raioAtomico }}</li>
-        <li>Radioativo: {{ data.radioativo }} 
-          <span class="mdi mdi-radioactive-circle mdi-24-px" ></span>
-        </li>
-      </ul>
+    <div class="hero">
+      <div class="hero-tile" [style.--category-color]="categoryColor()">
+        <span class="hero-tile__numero">{{ data.numeroAtomico }}</span>
+        @if (data.simbolo) {
+          <span class="hero-tile__simbolo">{{ data.simbolo }}</span>
+        }
+        <span class="hero-tile__categoria">{{ categoryLabel() }}</span>
+      </div>
+
+      <div class="hero-info">
+        <p class="hero-info__meta">
+          Grupo {{ data.grupo }} · Período {{ data.periodo }}
+        </p>
+
+        <div class="hero-info__destaques">
+          <div class="destaque">
+            <span class="destaque__label">Massa atômica</span>
+            <span class="destaque__valor"
+              >{{ formatValue(data.massaAtomica) }} <span class="destaque__unidade">ua</span></span
+            >
+          </div>
+          <div class="destaque">
+            <span class="destaque__label">Raio atômico</span>
+            <span class="destaque__valor">
+              {{ formatValue(data.raioAtomico) }}
+              @if (data.raioAtomico) {
+                <span class="destaque__unidade">pm</span>
+              }
+            </span>
+          </div>
+          <div class="destaque">
+            <span class="destaque__label">Radioativo</span>
+            <span class="pill" [class.pill--alerta]="isRadioativo()">
+              {{ isRadioativo() ? "Sim" : "Não" }}
+              <span class="mdi mdi-radioactive-circle mdi-18-px"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="painel-grid">
+      @for (grupo of statGroups(); track grupo.titulo) {
+        <div class="painel">
+          <h3 class="painel__titulo">{{ grupo.titulo }}</h3>
+          @for (item of grupo.itens; track item.label) {
+            <div class="painel__linha">
+              <span class="painel__label">{{ item.label }}</span>
+              <span class="painel__valor">
+                {{ formatValue(item.valor) }}
+                @if (item.unidade) {
+                  <span class="painel__unidade">{{ item.unidade }}</span>
+                }
+              </span>
+            </div>
+          }
+        </div>
+      }
     </div>
   </div>
 
@@ -34,5 +66,4 @@
     [atomicNumber]="data.numeroAtomico"
     [elementType]="data.tipo"
   ></app-electron-distribution>
-
 </div>

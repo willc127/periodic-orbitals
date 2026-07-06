@@ -13,7 +13,7 @@ import { QuantumOrbitalViewerComponent } from "./quantum-orbital-viewer/quantum-
   imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent, Description, QuantumOrbitalViewerComponent],
 })
 export class ModalPeriodicTable {
-  selectedView = signal('descricao');
+  selectedView = signal('propriedades');
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
