@@ -84,10 +84,7 @@ export class PropertiesElements {
             label: 'Eletronegatividade',
             valor: this.formatValue(d.eletronegatividade),
           },
-          {
-            label: 'Condutividade térmica',
-            valor: this.formatValue(d.condutividadeTermica),
-          },
+
         ],
       },
       {
@@ -127,6 +124,18 @@ export class PropertiesElements {
             valor: this.formatValue(d.capacidadeCalorificaMolar),
           },
           { label: 'Pressão crítica', valor: this.formatValue(d.pressaoCritica) },
+        ],
+      },
+      {
+        titulo: 'FÍSICO-QUÍMICAS',
+        itens: [
+          { label: 'Densidade', valor: this.formatValue(d.densidade) },
+          {
+            label: 'Condutividade térmica',
+            valor: this.formatValue(d.condutividadeTermica),
+          },
+
+
         ],
       },
     ];

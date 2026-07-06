@@ -34,13 +34,25 @@
       </div>
     </div>
 
-    <div class="meta-card meta-card--full">
+    <div class="meta-card">
       <div class="meta-label">
         <i class="mdi mdi-map-marker-outline"></i> Local de Descoberta
       </div>
       <div class="meta-value">
         @if (data.localDescoberta) {
           {{ data.localDescoberta }}
+        } @else {
+          <span class="meta-value--empty">Não informado</span>
+        }
+      </div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">
+        <i class="mdi mdi-map-marker-outline"></i> Número CAS
+      </div>
+      <div class="meta-value">
+        @if (data.CAS) {
+          {{ data.CAS }}
         } @else {
           <span class="meta-value--empty">Não informado</span>
         }
@@ -54,6 +66,16 @@
     </div>
     <div class="uses-list">
       <span class="section-value">{{ data.usos }}</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="info-section">
+    <div class="section-label">
+      <i class="mdi mdi-lightbulb-outline"></i> Classe Geoquímica
+    </div>
+    <div class="uses-list">
+      <span class="section-value">{{ data.classeGeoquimica }}</span>
     </div>
   </div>
 

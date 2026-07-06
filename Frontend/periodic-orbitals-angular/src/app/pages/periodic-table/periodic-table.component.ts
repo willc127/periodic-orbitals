@@ -37,29 +37,31 @@ export class PeriodicTable implements OnInit {
       abundanciaMar: item.abundance_sea,
       densidade: item.density,
       raioAtomico: item.atomic_radius,
-      usos: item.uses,
+      usos: item.uses || 'Sem usos conhecidos',
       eletronegatividade: item.en_pauling,
       condutividadeTermica: item.thermal_conductivity,
       capacidadeCalorifica: item.specific_heat_capacity,
       capacidadeCalorificaMolar: item.molar_heat_capacity,
       radioativo: item.is_radioactive,
-      classeGeoquimica: item.geochemical_class,
+      classeGeoquimica: item.geochemical_class || 'Sem classificação',
       calorEvaporacao: item.evaporation_heat,
       calorFusao: item.fusion_heat,
-      CAS: item.cas,
+      CAS: item.cas || 'Sem CAS cadastrado',
       temperaturaFusao: item.melting_point,
       temperaturaEbulicao: item.boiling_point,
       temperaturaCritica: item.critical_temperature,
       pressaoCritica: item.critical_pressure,
-      fontes: item.sources,
-      descobridor: item.discoverers,
-      localDescoberta: item.discovery_location,
-      anoDescoberta: item.discovery_year,
-      origemNome: item.name_origin,
+      fontes: item.sources || 'Sem fontes naturais conhecidas',
+      descobridor: item.discoverers || 'Sem descobridor conhecido',
+      localDescoberta: item.discovery_location || 'Desconhecido',
+      anoDescoberta: item.discovery_year || 'Desconhecido',
+      origemNome: item.name_origin || 'Desconhecida',
       tipo: item.type,
       link: item.link,
       link_nist: item.link_nist,
       spectral_lines: item.spectral_lines,
+      protons: item.protons,
+      neutrons: item.neutrons,
     }));
   }
 
@@ -106,6 +108,8 @@ export class PeriodicTable implements OnInit {
     anoDescoberta: 0,
     origemNome: '',
     tipo: 'Lanthanide',
+    protons: 0,
+    neutrons: 0,
   };
   private bloco_vazio_actinideo: IElement = {
     simbolo: 'Ac-Lr',
@@ -141,6 +145,8 @@ export class PeriodicTable implements OnInit {
     anoDescoberta: 0,
     origemNome: '',
     tipo: 'Actinide',
+    protons: 0,
+    neutrons: 0,
   };
 
   abrirModal(element: IElement): void {

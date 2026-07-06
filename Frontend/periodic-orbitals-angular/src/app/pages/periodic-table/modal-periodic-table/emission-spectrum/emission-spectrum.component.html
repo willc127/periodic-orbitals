@@ -41,23 +41,29 @@
   <div class="line-table-title">Principais linhas espectrais</div>
   <div class="line-table">
     <div class="line-cards">
-      @for (line of mainLines; track line) {
-        <div [ngStyle]="lineCardStyle(line[0])">
-          <!-- Color bar -->
-          <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
+      @if(mainLines.length > 0) {
+        @for (line of mainLines; track line) {
+          <div [ngStyle]="lineCardStyle(line[0])">
+            <!-- Color bar -->
+            <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
 
-          <!-- Values -->
-          <div>
-            <div [ngStyle]="lineWlStyle(line[0])">
-              {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
-            </div>
-            <div
-              class="line-intensity"
-              [ngStyle]="lineWlStyleIntensity(line[0])"
-            >
-              I = {{ line[1].toFixed(0) }}%
+            <!-- Values -->
+            <div>
+              <div [ngStyle]="lineWlStyle(line[0])">
+                {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
+              </div>
+              <div
+                class="line-intensity"
+                [ngStyle]="lineWlStyleIntensity(line[0])"
+              >
+                I = {{ line[1].toFixed(0) }}%
+              </div>
             </div>
           </div>
+        }
+      } @else {
+        <div class="no-data-placeholder">
+          Nenhuma linha espectral disponível
         </div>
       }
     </div>

@@ -81,7 +81,7 @@ export const SERIES_CONFIG = [
     id: 'abundance_crust',
     label: 'Abundância (crosta)',
     unit: 'mg/kg',
-    color: '#C8A2C8',
+    color: '#8e4610',
     pointStyle: 'triangle',
   },
   {
@@ -95,7 +95,7 @@ export const SERIES_CONFIG = [
     id: 'period',
     label: 'Período',
     unit: '',
-    color: '#4DA6FF',
+    color: '#0c6ac8',
     pointStyle: 'rect',
   },
   {
@@ -110,6 +110,20 @@ export const SERIES_CONFIG = [
     label: 'Radioativo',
     unit: '',
     color: '#6eff4d',
+    pointStyle: 'circle',
+  },
+  {
+    id: 'protons',
+    label: 'Protons',
+    unit: '',
+    color: '#db1399',
+    pointStyle: 'circle',
+  },
+  {
+    id: 'neutrons',
+    label: 'Neutrons',
+    unit: '',
+    color: '#098d88',
     pointStyle: 'circle',
   },
 ] as const;
