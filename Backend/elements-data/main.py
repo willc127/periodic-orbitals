@@ -22,13 +22,13 @@ from Backend.orbitals_generation.api import router as orbital_router
 # * paths
 DATA_DIR = Path(__file__).parent
 ELEMENTS_FILE = DATA_DIR / "data" / "elements-data.json"
-ELEMENTS_META_FILE = DATA_DIR / "data" / "elements-data.meta.json"  # ← novo
+ELEMENTS_META_FILE = DATA_DIR / "data" / "elements-data.meta.json" 
 
 SPECTRA_DIR = Path(__file__).parent.parent
 SPECTRA_FILE = SPECTRA_DIR / "spectra_lines" / "data" / "spectral_lines.json"
 
 # * Dias para considerar o cache válido (Atualiza a base de dados local)
-TTL_DAYS = 10
+TTL_DAYS = 0
 
 
 # * Verifica se o cache local é válido (existe e tem menos de 10 dias)
@@ -105,10 +105,38 @@ def clean_for_json(df: pd.DataFrame) -> list:
     return df.to_dict(orient="records")
 
 
+# * Calcula protons/neutrons do isótopo mais abundante (replica mendeleev.Element.neutrons)
+def _add_protons_neutrons(df: pd.DataFrame) -> pd.DataFrame:
+    df_iso = fetch_table("isotopes")
+
+    com_abundancia = df_iso[df_iso["abundance"].notnull()]
+    mais_abundante = com_abundancia.sort_values(
+        "abundance", ascending=False
+    ).drop_duplicates(subset=["atomic_number"], keep="first")[
+        ["atomic_number", "mass_number"]
+    ]
+
+    primeiro_isotopo = df_iso.drop_duplicates(subset=["atomic_number"], keep="first")[
+        ["atomic_number", "mass_number"]
+    ].set_index("atomic_number")["mass_number"]
+
+    df = df.merge(mais_abundante, on="atomic_number", how="left")
+    df["mass_number"] = df["mass_number"].fillna(
+        df["atomic_number"].map(primeiro_isotopo)
+    )
+    df["mass_number"] = df["mass_number"].fillna(df["atomic_weight"].astype(int))
+    df["mass_number"] = df["mass_number"].astype(int)
+
+    df["protons"] = df["atomic_number"]
+    df["neutrons"] = df["mass_number"] - df["protons"]
+    return df
+
+
 # * Busca dados da API externa e salva localmente
 def _fetch_and_save() -> list[dict]:
     df = fetch_table("elements")
     df_phases = fetch_table("phasetransitions")
+    df = _add_protons_neutrons(df)
 
     colunas_desejadas = [
         "symbol",
@@ -139,6 +167,8 @@ def _fetch_and_save() -> list[dict]:
         "discovery_location",
         "discovery_year",
         "name_origin",
+        "protons",
+        "neutrons",
     ]
     # Seleciona apenas colunas que existem no DataFrame
     colunas_desejadas = [col for col in colunas_desejadas if col in df.columns]
