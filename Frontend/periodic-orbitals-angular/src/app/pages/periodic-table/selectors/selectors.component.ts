@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { TemperatureSelector } from './temperature-selector/temperature-selector.component';
+
 
 @Component({
   selector: 'app-selectors',
-  imports: [],
+  imports: [TemperatureSelector],
   templateUrl: './selectors.component.html',
   styleUrl: './selectors.component.scss',
 })
