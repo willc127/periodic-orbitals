@@ -80,7 +80,6 @@
   .atomicNumber {
     font-size: 0.65rem;
     color: inherit;
-    
   }
 
   /* Ajustar tamanho da fonte em mobile */
@@ -166,4 +165,14 @@
 .Actinide {
   background: #8ef876;
   color: #09090f;
+}
+
+.loading-periodic-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #7db0e4;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IElement } from '../../interfaces/IElement';
 import { CommonModule } from '@angular/common';
@@ -12,9 +12,13 @@ import { SelectorsComponent } from './selectors/selectors.component';
   imports: [CommonModule, SelectorsComponent],
   templateUrl: './periodic-table.html',
   styleUrls: ['./periodic-table.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PeriodicTable implements OnInit {
+export class PeriodicTable implements OnInit, AfterViewInit {
   elements: IElement[] = [];
+
+  // ── Signal de estado de carregamento ──────────────────────
+  loading = signal(false);
 
   constructor(
     private elementService: DadosElementosService,
@@ -66,10 +70,20 @@ export class PeriodicTable implements OnInit {
   }
 
   carregarDados(): void {
-    this.elementService.obterDados().subscribe((data: IElement[]) => {
-      this.elements = this.mapearDados(data);
-      this.elements.push(this.bloco_vazio_lantanideo);
-      this.elements.push(this.bloco_vazio_actinideo);
+    this.loading.set(true);
+    this.elementService.obterDados().subscribe({
+      next: (data: IElement[]) => {
+        this.elements = this.mapearDados(data);
+        this.elements.push(this.bloco_vazio_lantanideo);
+        this.elements.push(this.bloco_vazio_actinideo);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar elementos:', err);
+        this.loading.set(false);
+      },
+      complete: () => {
+        this.loading.set(false);
+      },
     });
   }
 
@@ -162,5 +176,10 @@ export class PeriodicTable implements OnInit {
 
   ngOnInit(): void {
     this.carregarDados();
+  }
+
+  ngAfterViewInit(): void {
+    const el = document.querySelector('l-grid');
+    el?.addEventListener('someEvent', (e: Event) => console.log(e));
   }
 }

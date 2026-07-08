@@ -90,7 +90,7 @@ export class ScatterChartComponent implements OnDestroy {
     { id: 'all', label: 'Todas' },
     ...this.yConfigs().map((s) => ({
       id: s.id,
-      label: s.label.split(' ')[0],
+      label: s.label,
       color: s.color,
     })),
   ]);

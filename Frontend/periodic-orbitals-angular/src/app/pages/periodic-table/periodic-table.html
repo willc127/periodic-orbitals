@@ -1,30 +1,37 @@
-<div class="periodic-table">
-  <app-selectors></app-selectors>
-  @for (elem of elements; track elem) {
-    @if (elem.numeroAtomico != null) {
-      <div
-        class="element"
-        [style.gridColumn]="elem.grupo"
-        [style.gridRow]="elem.periodo"
-        [ngClass]="elem.tipo"
-        (click)="abrirModal(elem)"
-      >
-        <strong>{{ elem.simbolo }}</strong>
-        <small class="name">{{ elem.nome }}</small>
-        <small>{{ elem.numeroAtomico }}</small>
-      </div>
-    } @else {
-      <div
-        class="element"
-        [style.gridColumn]="elem.grupo"
-        [style.gridRow]="elem.periodo"
-        [ngClass]="elem.tipo"
-      >
-        <strong>{{ elem.simbolo }}</strong>
-        <small class="name">{{ elem.nome }}</small>
-        <small class="atomicNumber">{{ elem.numeroAtomico }}</small>
-      </div>
-    }
-  }
-</div>
+@if (loading()) {
+  <div class="loading-periodic-table">
+    <l-grid size="150" speed="1" color="#7db0e4"></l-grid>
+    Carregando dados...
+  </div>
+} @else {
+  <div class="periodic-table">
+    <app-selectors></app-selectors>
 
+    @for (elem of elements; track elem) {
+      @if (elem.numeroAtomico != null) {
+        <div
+          class="element"
+          [style.gridColumn]="elem.grupo"
+          [style.gridRow]="elem.periodo"
+          [ngClass]="elem.tipo"
+          (click)="abrirModal(elem)"
+        >
+          <strong>{{ elem.simbolo }}</strong>
+          <small class="name">{{ elem.nome }}</small>
+          <small>{{ elem.numeroAtomico }}</small>
+        </div>
+      } @else {
+        <div
+          class="element"
+          [style.gridColumn]="elem.grupo"
+          [style.gridRow]="elem.periodo"
+          [ngClass]="elem.tipo"
+        >
+          <strong>{{ elem.simbolo }}</strong>
+          <small class="name">{{ elem.nome }}</small>
+          <small class="atomicNumber">{{ elem.numeroAtomico }}</small>
+        </div>
+      }
+    }
+  </div>
+}
