@@ -16,9 +16,26 @@
           [ngClass]="elem.tipo"
           (click)="abrirModal(elem)"
         >
-          <strong>{{ elem.simbolo }}</strong>
+        <strong>
+          {{ elem.simbolo }}
+          @switch (obterEstadoFisico(elem)) {
+            @case ('solido') {
+              <ng-icon name="gameRock" size="1em" />
+            }
+            @case ('liquido') {
+              <ng-icon name="gameDrop" size="1em" />
+            }
+            @case ('gasoso') {
+              <ng-icon name="gameSteam" size="1em" />
+            }
+            @case ('desconhecido') {
+              ?
+            }
+          }
+        </strong>
+
           <small class="name">{{ elem.nome }}</small>
-          <small>{{ elem.numeroAtomico }}</small>
+          <small class="atomicNumber">{{ elem.numeroAtomico }}</small>
         </div>
       } @else {
         <div

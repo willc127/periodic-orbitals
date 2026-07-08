@@ -5,11 +5,18 @@ import { CommonModule } from '@angular/common';
 import { DadosElementosService } from './periodic-table.service';
 import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.component';
 import { SelectorsComponent } from './selectors/selectors.component';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { gameRock,gameDrop, gameSteam } from '@ng-icons/game-icons';
+
+type EstadoFisico = 'solido' | 'liquido' | 'gasoso' | 'desconhecido';
 
 @Component({
   selector: 'app-periodic-table',
   standalone: true,
-  imports: [CommonModule, SelectorsComponent],
+  imports: [CommonModule, SelectorsComponent, NgIcon],
+  providers: [
+    provideIcons({ gameRock,gameDrop, gameSteam }),
+  ],
   templateUrl: './periodic-table.html',
   styleUrls: ['./periodic-table.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -182,4 +189,28 @@ export class PeriodicTable implements OnInit, AfterViewInit {
     const el = document.querySelector('l-grid');
     el?.addEventListener('someEvent', (e: Event) => console.log(e));
   }
+
+
+
+private readonly TEMPERATURA_PADRAO = 298.15;
+
+obterEstadoFisico(elem: IElement): EstadoFisico {
+  const { temperaturaFusao, temperaturaEbulicao } = elem;
+
+  if (temperaturaFusao == null && temperaturaEbulicao == null) {
+    return 'desconhecido';
+  }
+
+  
+  if (this.TEMPERATURA_PADRAO < temperaturaFusao) {
+    return 'solido';
+  }
+  if (this.TEMPERATURA_PADRAO < temperaturaEbulicao) {
+    return 'liquido';
+  }
+  if (this.TEMPERATURA_PADRAO > temperaturaEbulicao) {
+    return 'gasoso';
+  }
+  return 'desconhecido';
+}
 }

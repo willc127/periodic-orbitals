@@ -8,7 +8,7 @@ import {
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { gameMolecule } from '@ng-icons/game-icons'; // importe o ícone desejad
+import { gameMolecule } from '@ng-icons/game-icons';
 
 @Component({
   selector: 'app-button-toggle-principal',
@@ -19,7 +19,7 @@ import { gameMolecule } from '@ng-icons/game-icons'; // importe o ícone desejad
     MatButtonToggleModule,
   ],
   providers: [
-    provideIcons({ gameMolecule }), // <-- registra o ícone
+    provideIcons({ gameMolecule }),
   ],
   templateUrl: './button-toggle-principal.html',
   styleUrl: './button-toggle-principal.scss',

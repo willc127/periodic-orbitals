@@ -21,5 +21,7 @@ export class ModalPeriodicTable {
     this.selectedView.set(newView);
   }
 
+  
+
 
 }

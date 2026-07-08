@@ -22,7 +22,7 @@ from Backend.orbitals_generation.api import router as orbital_router
 # * paths
 DATA_DIR = Path(__file__).parent
 ELEMENTS_FILE = DATA_DIR / "data" / "elements-data.json"
-ELEMENTS_META_FILE = DATA_DIR / "data" / "elements-data.meta.json" 
+ELEMENTS_META_FILE = DATA_DIR / "data" / "elements-data.meta.json"
 
 SPECTRA_DIR = Path(__file__).parent.parent
 SPECTRA_FILE = SPECTRA_DIR / "spectra_lines" / "data" / "spectral_lines.json"
@@ -182,9 +182,14 @@ def _fetch_and_save() -> list[dict]:
         "critical_temperature",
         "critical_pressure",
     ]
+
     df_phases = df_phases[colunas_fases].drop_duplicates(subset=["atomic_number"])
     df = df.merge(df_phases, on="atomic_number", how="left")
     df["series_id"] = df["series_id"].fillna(0).astype(int)
+
+    # Correção do ponto de fusão do estanho e do carbono
+    df.loc[df["atomic_number"] == 50, "melting_point"] = 505.08
+    df.loc[df["atomic_number"] == 6, "melting_point"] = 3915
 
     def classify_group(series_id: int | None, symbol: str) -> str | None:
         match symbol:
