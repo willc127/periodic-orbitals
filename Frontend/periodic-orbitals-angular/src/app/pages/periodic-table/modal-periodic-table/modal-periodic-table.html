@@ -16,6 +16,12 @@
     <app-properties-elements></app-properties-elements>
   }
 
+  @if (selectedView() === "diagrama-config-eletronica") {
+    <app-diagrama-configuracao-eletronica
+      [numeroAtomico]="data.numeroAtomico"
+    ></app-diagrama-configuracao-eletronica>
+  }
+
   @if (selectedView() === "orbitais") {
     <app-quantum-orbital-viewer [element]="data"></app-quantum-orbital-viewer>
   }

@@ -32,7 +32,6 @@ import {
 } from './orbital.models';
 import { OrbitalMathService } from './orbital-math.service';
 import { IElement } from '../../../../interfaces/IElement';
-// `quantum.register()` is called in `src/main.ts`; no-op here to avoid duplicate registration.
 
 // ─────────────────────────────────────────────────────────────
 

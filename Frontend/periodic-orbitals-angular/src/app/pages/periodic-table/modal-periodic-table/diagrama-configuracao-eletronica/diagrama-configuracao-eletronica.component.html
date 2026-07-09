@@ -1,0 +1,158 @@
+<div class="diagrama-container">
+  <div class="notacao">{{ notacaoConfiguracao() }}</div>
+
+  <div class="legenda">
+    <div class="legenda-item">
+      <span class="legenda-cor bloco-s"></span> bloco s
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor bloco-p"></span> bloco p
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor bloco-d"></span> bloco d
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor bloco-f"></span> bloco f
+    </div>
+  </div>
+
+  <div class="grade">
+    @for (linha of linhasPeriodo(); track linha.periodo) {
+      <div class="linha-periodo">
+        @for (
+          grupo of [linha.grupoS, linha.grupoP, linha.grupoD, linha.grupoF];
+          track grupo.bloco
+        ) {
+          <div class="grupo">
+            <span class="rotulo">{{ grupo.rotulo }}</span>
+            @for (caixa of grupo.caixas; track $index) {
+              @if (grupo.existe) {
+                <div
+                  class="caixa"
+                  [class.vazia]="caixa.vazia"
+                  [class.destacada]="caixa.destacada"
+                  [ngClass]="'bloco-' + grupo.bloco"
+                >
+                  @if (caixa.possuiSetaCima) {
+                    <span>↑</span>
+                  }
+                  @if (caixa.possuiSetaBaixo) {
+                    <span>↓</span>
+                  }
+                </div>
+              } @else {
+                <div class="caixa marcador"></div>
+              }
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Inserir dentro de .diagrama-container, como último elemento -->
+<div class="regra-diagonal">
+  <div class="regra-diagonal__titulo">Regra diagonal (Madelung)</div>
+
+  <svg
+    width="250"
+    height="160"
+    viewBox="0 0 250 160"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <marker id="setaRegraDiagonal" markerWidth="7" markerHeight="7" refX="3.2" refY="3.2" orient="auto">
+        <path d="M0,0 L6.4,3.2 L0,6.4 Z" fill="var(--regra-diagonal-seta)"/>
+      </marker>
+    </defs>
+
+    <!-- traços curtos ligando o rótulo da camada ao primeiro orbital -->
+    <g stroke="var(--regra-diagonal-traco)" stroke-width="1.2">
+      <line x1="14" y1="14" x2="30" y2="14"/>
+      <line x1="14" y1="36" x2="30" y2="36"/>
+      <line x1="14" y1="58" x2="30" y2="58"/>
+      <line x1="14" y1="80" x2="30" y2="80"/>
+      <line x1="14" y1="102" x2="30" y2="102"/>
+      <line x1="14" y1="124" x2="30" y2="124"/>
+      <line x1="14" y1="146" x2="30" y2="146"/>
+    </g>
+
+    <!-- rótulos das camadas K..Q -->
+    <g font-family="'Segoe UI', Roboto, Arial, sans-serif" font-size="11" fill="#8a90a2">
+      <text x="0" y="18">K</text>
+      <text x="0" y="40">L</text>
+      <text x="0" y="62">M</text>
+      <text x="0" y="84">N</text>
+      <text x="0" y="106">O</text>
+      <text x="0" y="128">P</text>
+      <text x="0" y="150">Q</text>
+    </g>
+
+    <!-- setas diagonais (n+l constante, ordenado por n crescente).
+         Cada diagonal é desenhada em segmentos curtos, com respiro (inset)
+         nas duas pontas, para nunca cruzar por cima dos rótulos de texto. -->
+    <g stroke="var(--regra-diagonal-seta)" stroke-width="1.6" fill="none" opacity="0.85">
+      <!-- stub -> 1s -->
+      <line x1="63.47" y1="5.39" x2="48.45" y2="10.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- stub -> 2s -->
+      <line x1="63.47" y1="27.39" x2="48.45" y2="32.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 2p -> 3s -->
+      <line x1="91.55" y1="39.10" x2="48.45" y2="54.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 3p -> 4s -->
+      <line x1="91.55" y1="61.10" x2="48.45" y2="76.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 3d -> 4p -> 5s -->
+      <line x1="151.55" y1="61.10" x2="108.45" y2="76.90"/>
+      <line x1="91.55" y1="83.10" x2="48.45" y2="98.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 4d -> 5p -> 6s -->
+      <line x1="151.55" y1="83.10" x2="108.45" y2="98.90"/>
+      <line x1="91.55" y1="105.10" x2="48.45" y2="120.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 4f -> 5d -> 6p -> 7s -->
+      <line x1="211.55" y1="83.10" x2="168.45" y2="98.90"/>
+      <line x1="151.55" y1="105.10" x2="108.45" y2="120.90"/>
+      <line x1="91.55" y1="127.10" x2="48.45" y2="142.90" marker-end="url(#setaRegraDiagonal)"/>
+      <!-- 5f -> 6d -> 7p -->
+      <line x1="211.55" y1="105.10" x2="168.45" y2="120.90"/>
+      <line x1="151.55" y1="127.10" x2="108.45" y2="142.90" marker-end="url(#setaRegraDiagonal)"/>
+    </g>
+
+    <!-- pontos + rótulos das subcamadas, coloridos por bloco -->
+    <g font-family="'Consolas', monospace" font-size="10.5">
+      <!-- s -->
+      <g fill="var(--cor-s)">
+        <circle cx="40" cy="14" r="3"/><circle cx="40" cy="36" r="3"/><circle cx="40" cy="58" r="3"/>
+        <circle cx="40" cy="80" r="3"/><circle cx="40" cy="102" r="3"/><circle cx="40" cy="124" r="3"/><circle cx="40" cy="146" r="3"/>
+      </g>
+      <g fill="#cdeae6">
+        <text x="47" y="17">1s</text><text x="47" y="39">2s</text><text x="47" y="61">3s</text>
+        <text x="47" y="83">4s</text><text x="47" y="105">5s</text><text x="47" y="127">6s</text><text x="47" y="149">7s</text>
+      </g>
+
+      <!-- p -->
+      <g fill="var(--cor-p)">
+        <circle cx="100" cy="36" r="3"/><circle cx="100" cy="58" r="3"/><circle cx="100" cy="80" r="3"/>
+        <circle cx="100" cy="102" r="3"/><circle cx="100" cy="124" r="3"/><circle cx="100" cy="146" r="3"/>
+      </g>
+      <g fill="#d9e2b0">
+        <text x="107" y="39">2p</text><text x="107" y="61">3p</text><text x="107" y="83">4p</text>
+        <text x="107" y="105">5p</text><text x="107" y="127">6p</text><text x="107" y="149">7p</text>
+      </g>
+
+      <!-- d -->
+      <g fill="var(--cor-d)">
+        <circle cx="160" cy="58" r="3"/><circle cx="160" cy="80" r="3"/><circle cx="160" cy="102" r="3"/><circle cx="160" cy="124" r="3"/>
+      </g>
+      <g fill="#eab8d6">
+        <text x="167" y="61">3d</text><text x="167" y="83">4d</text><text x="167" y="105">5d</text><text x="167" y="127">6d</text>
+      </g>
+
+      <!-- f -->
+      <g fill="var(--cor-f)">
+        <circle cx="220" cy="80" r="3"/><circle cx="220" cy="102" r="3"/>
+      </g>
+      <g fill="#b9c6f5">
+        <text x="227" y="83">4f</text><text x="227" y="105">5f</text>
+      </g>
+    </g>
+  </svg>
+</div>
+</div>

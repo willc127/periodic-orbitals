@@ -5,12 +5,13 @@ import { PropertiesElements } from './properties-elements/properties-elements.co
 import { EmissionSpectrumComponent } from './emission-spectrum/emission-spectrum.component';
 import { Description } from './description/description.component';
 import { QuantumOrbitalViewerComponent } from "./quantum-orbital-viewer/quantum-orbital-viewer.component";
+import { DiagramaConfiguracaoEletronicaComponent } from "./diagrama-configuracao-eletronica/diagrama-configuracao-eletronica.component";
 @Component({
   selector: 'app-modal-periodic-table',
   standalone: true,
   templateUrl: './modal-periodic-table.html',
   styleUrls: ['./modal-periodic-table.scss'],
-  imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent, Description, QuantumOrbitalViewerComponent],
+  imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent, Description, QuantumOrbitalViewerComponent, DiagramaConfiguracaoEletronicaComponent],
 })
 export class ModalPeriodicTable {
   selectedView = signal('propriedades');
