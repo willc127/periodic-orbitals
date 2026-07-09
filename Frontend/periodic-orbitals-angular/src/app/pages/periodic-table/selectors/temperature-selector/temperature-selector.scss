@@ -1,1 +1,25 @@
+.wrapper__temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
 
+  mat-slider {
+    --mat-slider-handle-color: #d9e3fc !important;
+    --mat-slider-active-track-color: #233970 !important;
+    --mat-slider-focus-handle-color: #d9e3fc !important;
+    width: 80%;
+  }
+}
+
+.valor__temperatura {
+  color: #ededed;
+  display: flex;
+  align-items: center;
+  font-size: clamp(2rem, 6vw, 4rem);
+  justify-content: center;
+}

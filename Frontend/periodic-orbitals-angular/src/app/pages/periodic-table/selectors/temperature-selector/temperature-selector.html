@@ -1,1 +1,13 @@
-<div>25 ºC</div>
+<div class="wrapper__temperature">
+  <!-- <div class="valor__temperatura">{{temperaturaFarenheit()}} \u00B0C F </div>
+<div class="valor__temperatura">{{temperaturaCelsius()}} \u00B0C C </div> -->
+  <div class="valor__temperatura">{{ temperaturaKelvin() }} K</div>
+
+  <mat-slider min="-273" max="6000" step="1">
+    <input
+      matSliderThumb
+      [value]="temperaturaKelvin()"
+      (valueChange)="temperaturaKelvin.set($event)"
+    />
+  </mat-slider>
+</div>
