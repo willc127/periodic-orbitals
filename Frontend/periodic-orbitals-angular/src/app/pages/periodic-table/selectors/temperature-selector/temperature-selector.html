@@ -1,13 +1,27 @@
 <div class="wrapper__temperature">
-  <!-- <div class="valor__temperatura">{{temperaturaFarenheit()}} \u00B0C F </div>
-<div class="valor__temperatura">{{temperaturaCelsius()}} \u00B0C C </div> -->
-  <div class="valor__temperatura">{{ temperaturaKelvin() }} K</div>
+  <div class="valor__temperatura">
+    <input
+      type="number"
+      class="valor__temperatura-input"
+      [value]="temperaturaKelvin()"
+      (change)="onManualInput($event)"
+      min="0"
+      max="6000"
+      step="1"
+    />
+    <span>K</span>
+  </div>
 
-  <mat-slider min="-273" max="6000" step="1">
+  <mat-slider min="0" max="6000" step="1">
     <input
       matSliderThumb
       [value]="temperaturaKelvin()"
       (valueChange)="temperaturaKelvin.set($event)"
     />
   </mat-slider>
+
+  <div class="temp-range-labels">
+    <span>{{ TEMP_MIN }} K</span>
+    <span>{{ TEMP_MAX }} K</span>
+  </div>
 </div>

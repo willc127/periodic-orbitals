@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { AfterViewInit, Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, signal, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IElement } from '../../interfaces/IElement';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { ModalPeriodicTable } from './modal-periodic-table/modal-periodic-table.
 import { SelectorsComponent } from './selectors/selectors.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { gameRock,gameDrop, gameSteam } from '@ng-icons/game-icons';
+import { TemperatureStateService } from './selectors/temperature-selector/temperature-selector.service';
 
 type EstadoFisico = 'solido' | 'liquido' | 'gasoso' | 'desconhecido';
 
@@ -190,25 +191,24 @@ export class PeriodicTable implements OnInit, AfterViewInit {
     el?.addEventListener('someEvent', (e: Event) => console.log(e));
   }
 
-
-
-private readonly TEMPERATURA_PADRAO = 298.15;
+  private temperatureState = inject(TemperatureStateService);
 
 obterEstadoFisico(elem: IElement): EstadoFisico {
   const { temperaturaFusao, temperaturaEbulicao } = elem;
+  const temperaturaAtual = this.temperatureState.temperaturaKelvin();
 
   if (temperaturaFusao == null && temperaturaEbulicao == null) {
     return 'desconhecido';
   }
 
   
-  if (this.TEMPERATURA_PADRAO < temperaturaFusao) {
+  if (temperaturaAtual < temperaturaFusao) {
     return 'solido';
   }
-  if (this.TEMPERATURA_PADRAO < temperaturaEbulicao) {
+  if (temperaturaAtual < temperaturaEbulicao) {
     return 'liquido';
   }
-  if (this.TEMPERATURA_PADRAO > temperaturaEbulicao) {
+  if (temperaturaAtual > temperaturaEbulicao) {
     return 'gasoso';
   }
   return 'desconhecido';

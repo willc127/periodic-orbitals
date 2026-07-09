@@ -2,17 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   justify-content: space-between;
   box-sizing: border-box;
-  padding-top: 2.5rem;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
 
   mat-slider {
+    display: block;
+    width: 80%;
+    box-sizing: border-box;
     --mat-slider-handle-color: #d9e3fc !important;
     --mat-slider-active-track-color: #233970 !important;
     --mat-slider-focus-handle-color: #d9e3fc !important;
-    width: 80%;
+    --mat-slider-inactive-track-color: #3a3f52 !important;
   }
 }
 
@@ -20,6 +23,40 @@
   color: #ededed;
   display: flex;
   align-items: center;
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: 3rem;
   justify-content: center;
+}
+
+.valor__temperatura-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  width: 5ch;
+  padding: 0;
+  caret-color: #ededed;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+.temp-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #696a76;
+  width: 80%;
+  padding-bottom: 1rem;
+  font: 1rem;
 }
