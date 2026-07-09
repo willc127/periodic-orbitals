@@ -11,7 +11,6 @@
     />
     <span>K</span>
   </div>
-
   <mat-slider min="0" max="6000" step="1">
     <input
       matSliderThumb
@@ -19,9 +18,18 @@
       (valueChange)="temperaturaKelvin.set($event)"
     />
   </mat-slider>
-
   <div class="temp-range-labels">
     <span>{{ TEMP_MIN }} K</span>
+    <button
+      type="button"
+      mat-icon-button
+      class="botao__reset"
+      (click)="resetarTemperatura()"
+      aria-label="Resetar temperatura para o valor inicial"
+      title="Resetar para valor inicial"
+    >
+      <mat-icon>restart_alt</mat-icon>
+    </button>
     <span>{{ TEMP_MAX }} K</span>
   </div>
 </div>

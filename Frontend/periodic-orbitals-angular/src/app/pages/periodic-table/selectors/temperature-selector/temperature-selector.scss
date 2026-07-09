@@ -25,7 +25,9 @@
   align-items: center;
   font-size: 3rem;
   justify-content: center;
+  gap: 0.25rem;
 }
+
 
 .valor__temperatura-input {
   background: transparent;
@@ -53,10 +55,35 @@
 
 .temp-range-labels {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   font-size: 11px;
   color: #696a76;
   width: 80%;
   padding-bottom: 1rem;
   font: 1rem;
+}
+
+.botao__reset {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  // Angular Material 15+ usa este CSS var pro tamanho do touch target
+  --mdc-icon-button-state-layer-size: 20px;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+
+    &:hover {
+      color: #ededed;
+    }
+  }
 }
