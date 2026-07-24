@@ -62,10 +62,7 @@ function numeroCaixas(l: number): number {
   return 2 * l + 1;
 }
 
-/** s/p ficam na linha do próprio n; d desloca +1; f desloca +2 (formato "tabela periódica"). */
 function periodoExibido(n: number, l: number): number {
-  if (l === 2) return n + 1;
-  if (l === 3) return n + 2;
   return n;
 }
 
