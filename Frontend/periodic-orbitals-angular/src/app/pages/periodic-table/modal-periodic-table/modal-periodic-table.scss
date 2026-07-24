@@ -6,11 +6,12 @@
   border-radius: 30px !important;
   color: #ededed;
   height: 100%;
-  min-height: 0; // ← essencial em flex filho
+  min-height: 0;
   padding: 30px;
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  position: relative; // ← necessário pro absolute do botão funcionar
 }
 
 .header_modal {
@@ -21,11 +22,28 @@
   font-size: larger;
   margin-bottom: 32px;
   margin-top: 32px;
+  padding-right: 40px;
 
   app-button-toggle-modal {
     flex: 0 1 75%;
     display: flex;
     justify-content: center;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+  background: transparent;
+  color: #ededed;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #88bff2;
   }
 }
 
