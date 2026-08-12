@@ -122,10 +122,8 @@ export interface DensityResponse {
 @Injectable({ providedIn: 'root' })
 export class OrbitalMathService {
   private readonly baseUrl = 'http://localhost:8000/api/v1/orbitals';
+  //mudar chamada para a geração dos pontos no frontend, para não depender do backend
 
-  // ─── Tokens de requisição para evitar corridas entre chamadas
-  //     concorrentes ao mesmo canvas (ex.: effect() + ResizeObserver
-  //     disparando drawRadial/drawDensity quase ao mesmo tempo) ───
   private radialRequestId = 0;
   private densityRequestId = 0;
 
@@ -156,33 +154,6 @@ export class OrbitalMathService {
     };
   }
 
-  // ─── Marching Cubes (ChemTube3D + Davidson) ───────────────
-  async buildIsosurface(
-    n: number,
-    l: number,
-    m: number,
-    isoValue: number,
-    gridN: number,
-    boxHalf: number,
-  ): Promise<SurfaceData> {
-    const params = new HttpParams()
-      .set('n', n.toString())
-      .set('l', l.toString())
-      .set('m', m.toString())
-      .set('isoValue', isoValue.toString())
-      .set('resolution', gridN.toString())
-      .set('boxHalf', boxHalf.toString());
-
-    const response = await firstValueFrom(
-      this.http.get<SurfaceResponse>(`${this.baseUrl}/surface`, { params }),
-    );
-
-    return {
-      vertices: new Float32Array(response.vertices),
-      normals: new Float32Array(response.normals),
-      phaseColors: new Float32Array(response.phases),
-    };
-  }
 
   // ─── Criar material de nuvem (ShaderMaterial) ─────────────
   createCloudMaterial(pointSize: number): THREE.ShaderMaterial {
@@ -215,31 +186,25 @@ export class OrbitalMathService {
     });
   }
 
-  // ─── Distribuição radial para canvas 2D (Davidson) ────────
+  // ─── Distribuição radial ────────
   async drawRadial(
     canvas: HTMLCanvasElement,
     n: number,
     l: number,
   ): Promise<void> {
-    // Token desta chamada específica: se outra chamada mais nova
-    // terminar depois, esta é descartada silenciosamente.
+
     const requestId = ++this.radialRequestId;
 
     const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
     const cssW = canvas.clientWidth;
     const cssH = canvas.clientHeight;
 
-    // Evita desenhar (e resetar o canvas) quando o elemento ainda
-    // não tem layout — ex.: dentro de uma aba/painel ainda oculto.
     if (cssW === 0 || cssH === 0) return;
 
     canvas.width = Math.round(cssW * dpr);
     canvas.height = Math.round(cssH * dpr);
 
     const ctx = canvas.getContext('2d')!;
-    // setTransform substitui a matriz inteira em vez de multiplicá-la
-    // (como faz scale()), então cada chamada começa sempre de um
-    // estado limpo e conhecido — não acumula escala entre execuções.
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const W = cssW;
@@ -254,7 +219,7 @@ export class OrbitalMathService {
         .set('n', n.toString())
         .set('l', l.toString());
       const response = await firstValueFrom(
-        this.http.get<RadialResponse>(`${this.baseUrl}/radial`, { params }),
+        this.http.get<RadialResponse>(`${this.baseUrl}/radial`, { params }), // puxar do frontend
       );
 
       // Se uma chamada mais recente já assumiu o canvas enquanto
@@ -367,91 +332,5 @@ export class OrbitalMathService {
   }
 
   // ─── Mapa de densidade 2D (Davidson) ──────────────────────
-  async drawDensity(
-    canvas: HTMLCanvasElement,
-    n: number,
-    l: number,
-    m: number,
-    plane: string,
-  ): Promise<void> {
-    const requestId = ++this.densityRequestId;
-
-    const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
-    const cssW = canvas.clientWidth;
-    const cssH = canvas.clientHeight;
-
-    if (cssW === 0 || cssH === 0) return;
-
-    canvas.width = Math.round(cssW * dpr);
-    canvas.height = Math.round(cssH * dpr);
-
-    const ctx = canvas.getContext('2d')!;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const W = cssW;
-    const H = cssH;
-
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#07070f';
-    ctx.fillRect(0, 0, W, H);
-
-    try {
-      // Carrega apenas a imagem gerada pelo backend e a desenha.
-      const proj = plane.toLowerCase();
-      const imgUrl = `${this.baseUrl}/image?n=${n}&l=${l}&m=${m}&plane=${proj}&colormap=viridis`;
-
-      await new Promise<void>((resolve) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = () => {
-          if (requestId !== this.densityRequestId) return resolve();
-
-          const maxGridSide = Math.min(W, H);
-          const gridWidth = maxGridSide;
-          const gridHeight = maxGridSide;
-          const gridLeft = Math.round((W - gridWidth) / 2);
-          const gridTop = Math.round((H - gridHeight) / 2 + 8);
-
-          ctx.drawImage(
-            img,
-            0,
-            0,
-            img.width,
-            img.height,
-            gridLeft,
-            gridTop,
-            gridWidth,
-            gridHeight,
-          );
-
-          ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-          ctx.lineWidth = 1;
-          ctx.strokeRect(gridLeft, gridTop, gridWidth, gridHeight);
-
-          ctx.fillStyle = '#4fa3e3';
-          ctx.font = 'bold 10px monospace';
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'top';
-          ctx.fillText(
-            `Plano ${plane} — n=${n} l=${l} m=${m}`,
-            gridLeft,
-            gridTop - 12,
-          );
-
-          resolve();
-        };
-
-        img.onerror = () => {
-          // Silencioso: se a imagem faltar, não tenta fallback.
-          resolve();
-        };
-
-        img.src = imgUrl;
-      });
-    } catch (error) {
-      if (requestId === this.densityRequestId) {
-        console.error('Erro ao desenhar mapa de densidade:', error);
-      }
-    }
-  }
+  async drawDensity(){}
 }

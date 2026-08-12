@@ -600,32 +600,6 @@ export class QuantumOrbitalViewerComponent
           const pts = new THREE.Points(geo, mat);
           pts.userData['orbital'] = true;
           this.scene.add(pts);
-        } else {
-          const { vertices, normals, phaseColors } =
-            await this.math.buildIsosurface(
-              o.n,
-              o.l,
-              o.m,
-              isoVal,
-              isoRes,
-              boxHalf,
-            );
-          if (vertices.length > 0) {
-            const geo = new THREE.BufferGeometry();
-            geo.setAttribute(
-              'position',
-              new THREE.BufferAttribute(vertices, 3),
-            );
-            geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
-            geo.setAttribute(
-              'phase',
-              new THREE.BufferAttribute(phaseColors, 1),
-            );
-            const mat = this.math.createSurfaceMaterial();
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.userData['orbital'] = true;
-            this.scene.add(mesh);
-          }
         }
       } catch (error) {
         console.error('Erro ao carregar orbital:', error);
