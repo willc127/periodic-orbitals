@@ -1,0 +1,79 @@
+<div class="isotopos-painel">
+  @if (carregando()) {
+    <div class="isotopos-painel__carregando">Carregando isótopos…</div>
+  } @else if (isotoposOrdenados().length === 0) {
+    <div class="isotopos-painel__vazio">Nenhum dado de isótopo disponível para este elemento.</div>
+  } @else {
+    <div class="isotopos-painel__cabecalho">
+      <h3 class="isotopos-painel__titulo">Isótopos</h3>
+      <span class="isotopos-painel__contagem">
+        {{ isotoposOrdenados().length }} isótopo{{ isotoposOrdenados().length > 1 ? 's' : '' }} conhecido{{ isotoposOrdenados().length > 1 ? 's' : '' }}
+      </span>
+    </div>
+
+    <p class="isotopos-painel__legenda-texto">
+      Barra sólida = estável · tracejada = radioativo. Altura representa abundância natural.
+    </p>
+
+    <div class="isotopos-painel__espectro">
+      @for (isotopo of isotoposOrdenados(); track isotopo.numeroMassa) {
+        <button
+          type="button"
+          class="pico"
+          [class.pico--ativo]="isotopoSelecionado() === isotopo"
+          [style.--cor-pico]="corDoIsotopo(isotopo)"
+          [matTooltip]="isotopo.simboloIsotopo"
+          (click)="selecionarIsotopo(isotopo)"
+        >
+          <span class="pico__abundancia">{{ abundanciaFormatada(isotopo) }}</span>
+          <span
+            class="pico__barra"
+            [class.pico__barra--radioativo]="!isotopo.estavel"
+            [style.height.%]="alturaBarra(isotopo)"
+          ></span>
+          <span class="pico__massa">{{ isotopo.numeroMassa }}</span>
+        </button>
+      }
+    </div>
+
+    @if (isotopoSelecionado(); as ativo) {
+      <div class="detalhe" [style.--cor-detalhe]="corDoIsotopo(ativo)">
+        <div class="detalhe__principal">
+          <div class="detalhe__simbolo">{{ ativo.simboloIsotopo }}</div>
+          <div class="detalhe__subtitulo">
+            {{ ativo.estavel ? 'Isótopo estável' : 'Isótopo radioativo' }} · massa {{ ativo.numeroMassa }}
+          </div>
+        </div>
+
+        <div class="detalhe__metricas">
+          <div class="metrica">
+            <span class="metrica__rotulo">Abundância</span>
+            <span class="metrica__valor">{{ abundanciaFormatada(ativo) }}</span>
+          </div>
+
+          @if (!ativo.estavel) {
+            <div class="metrica">
+              <span class="metrica__rotulo">Meia-vida</span>
+              <span class="metrica__valor">{{ ativo.meiaVida }}</span>
+            </div>
+            <div class="metrica">
+              <span class="metrica__rotulo">Decaimento</span>
+              <span class="metrica__valor metrica__valor--decaimento">{{ ativo.modoDecaimento }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="isotopos-painel__legenda-icones">
+      <span class="legenda-item">
+        <span class="legenda-item__marcador" [style.background]="corCategoria()"></span>
+        estável
+      </span>
+      <span class="legenda-item">
+        <span class="legenda-item__marcador legenda-item__marcador--radioativo"></span>
+        radioativo
+      </span>
+    </div>
+  }
+</div>

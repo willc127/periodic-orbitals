@@ -1,0 +1,206 @@
+// Paleta provisória — trocar pelos tokens reais do tema M3 do projeto
+// (ex: var(--mat-sys-surface), var(--mat-sys-on-surface)) quando disponíveis.
+$cor-fundo: #14161a;
+$cor-fundo-card: #1e2126;
+$cor-texto-principal: #f0eee6;
+$cor-texto-secundario: #9da3ac;
+$cor-texto-terciario: #6b7280;
+$cor-borda: #262a31;
+$cor-radioativo: #e08662;
+
+.isotopos-painel {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: $cor-fundo;
+  border-radius: 14px;
+  padding: 24px;
+
+  &__carregando,
+  &__vazio {
+    font-size: 13px;
+    color: $cor-texto-secundario;
+    padding: 24px 0;
+    text-align: center;
+  }
+
+  &__cabecalho {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f0eee6;
+  }
+
+  &__contagem {
+    font-size: 12px;
+    color: $cor-texto-terciario;
+  }
+
+  &__legenda-texto {
+    margin: 0 0 18px;
+    font-size: 12.5px;
+    color: #8a9099;
+  }
+
+  &__espectro {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 8px 4px 4px;
+    border-bottom: 1px solid $cor-borda;
+    margin-bottom: 16px;
+  }
+
+  &__legenda-icones {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 11.5px;
+    color: $cor-texto-terciario;
+  }
+}
+
+.pico {
+  --cor-pico: #5ea8d9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 34px;
+  height: 128px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 120ms ease;
+
+  &:hover,
+  &--ativo {
+    opacity: 1;
+  }
+
+  &--ativo &__barra {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 25%, transparent);
+  }
+
+  &__abundancia {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: $cor-texto-terciario;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__barra {
+    width: 10px;
+    border-radius: 3px 3px 0 0;
+    background: var(--cor-pico);
+
+    &--radioativo {
+      background: repeating-linear-gradient(
+        45deg,
+        var(--cor-pico),
+        var(--cor-pico) 3px,
+        transparent 3px,
+        transparent 6px
+      );
+      border: 1px solid var(--cor-pico);
+    }
+  }
+
+  &__massa {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #e8e6e1;
+    margin-top: 6px;
+  }
+}
+
+.detalhe {
+  --cor-detalhe: #5ea8d9;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);
+  border-left: 3px solid var(--cor-detalhe);
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: $cor-fundo-card;
+
+  &__simbolo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: #f0eee6;
+  }
+
+  &__subtitulo {
+    font-size: 12.5px;
+    color: $cor-texto-secundario;
+    margin-top: 2px;
+  }
+
+  &__metricas {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.metrica {
+  font-size: 12.5px;
+  color: $cor-texto-secundario;
+
+  &__rotulo {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $cor-texto-terciario;
+  }
+
+  &__valor {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: #f0eee6;
+    font-size: 14px;
+
+    &--decaimento {
+      color: var(--cor-detalhe, $cor-radioativo);
+    }
+  }
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &__marcador {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+
+    &--radioativo {
+      border: 1px solid $cor-radioativo;
+      background: repeating-linear-gradient(
+        45deg,
+        $cor-radioativo,
+        $cor-radioativo 2px,
+        transparent 2px,
+        transparent 4px
+      );
+    }
+  }
+}

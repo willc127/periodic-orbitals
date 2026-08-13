@@ -223,6 +223,57 @@ def _fetch_and_save() -> list[dict]:
     df["link_nist"] = df["symbol"].apply(
         lambda atom_symbol: f"https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra={atom_symbol}&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on"
     )
+    df["link_image"] = df["name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/{atom_name.lower()}.jpg"
+    )
+    mask_Uranium = df["name"] == "Uranium"
+    mask_Technetium = df["name"] == "Technetium"
+    mask_Iodine = df["name"] == "Iodine"
+    mask_Phosphorus = df["name"] == "Phosphorus"
+    mask_Tin = df["name"] == "Tin"
+    mask_Cesium = df["name"] == "Cesium"
+    mask_Neptunium = df["name"] == "Neptunium"
+    mask_Einsteinium = df["name"] == "Einsteinium"
+    mask_Californium = df["name"] == "Californium"
+    mask_Fermium = df["name"] == "Fermium"
+    mask_Rutherfordium = df["name"] == "Rutherfordium"
+    mask_104 = df["atomic_number"] >= 104
+    df.loc[mask_Uranium, "link_image"] = df.loc[mask_Uranium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_Technetium, "link_image"] = df.loc[mask_Technetium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_Iodine, "link_image"] = df.loc[mask_Iodine, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/{atom_name.lower()}-2.jpg"
+    )
+    df.loc[mask_Phosphorus, "link_image"] = df.loc[mask_Phosphorus, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/red-{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_Tin, "link_image"] = df.loc[mask_Tin, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/{atom_name.lower()}-2.jpg"
+    )
+    df.loc[mask_Cesium, "link_image"] = df.loc[mask_Cesium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/caesium-3.jpg"
+    )
+    df.loc[mask_Neptunium, "link_image"] = df.loc[mask_Neptunium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_Einsteinium, "link_image"] = df.loc[mask_Einsteinium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}-235.jpg"
+    )
+    df.loc[mask_Californium, "link_image"] = df.loc[mask_Californium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}-disc.jpg"
+    )
+    df.loc[mask_Fermium, "link_image"] = df.loc[mask_Fermium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_Rutherfordium, "link_image"] = df.loc[mask_Rutherfordium, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/{atom_name.lower()}.jpg"
+    )
+    df.loc[mask_104, "link_image"] = df.loc[mask_104, "name"].apply(
+        lambda atom_name: f"https://images-of-elements.com/s/transactinoid.png"
+    )
 
     superscript_map = str.maketrans(
         {

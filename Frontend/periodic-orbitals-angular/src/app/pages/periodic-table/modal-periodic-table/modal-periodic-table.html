@@ -23,6 +23,9 @@
   @if (selectedView() === "propriedades") {
     <app-properties-elements></app-properties-elements>
   }
+  @if (selectedView() === "isotopos") {
+    <app-isotopos [numeroAtomico]="data.numeroAtomico"></app-isotopos>
+  }
 
   @if (selectedView() === "diagrama-config-eletronica") {
     <app-diagrama-configuracao-eletronica

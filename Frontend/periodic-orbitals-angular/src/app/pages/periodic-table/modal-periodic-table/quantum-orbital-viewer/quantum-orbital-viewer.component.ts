@@ -176,23 +176,23 @@ export class QuantumOrbitalViewerComponent
     });
 
     // Plots 2D — orbital ou plano muda
-    effect(() => {
-      const o = this.selectedOrb();
-      const p = this.densityPlane();
-      if (this.densityRef?.nativeElement) {
-        setTimeout(
-          () =>
-            this.math.drawDensity(
-              this.densityRef.nativeElement,
-              o.n,
-              o.l,
-              o.m,
-              p,
-            ),
-          10,
-        );
-      }
-    });
+    // effect(() => {
+    //   const o = this.selectedOrb();
+    //   const p = this.densityPlane();
+    //   if (this.densityRef?.nativeElement) {
+    //     setTimeout(
+    //       () =>
+    //         this.math.drawDensity(
+    //           this.densityRef.nativeElement,
+    //           o.n,
+    //           o.l,
+    //           o.m,
+    //           p,
+    //         ),
+    //       10,
+    //     );
+    //   }
+    // });
   }
 
   ngOnInit(): void {}

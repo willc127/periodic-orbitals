@@ -7,12 +7,13 @@ import { Description } from './description/description.component';
 import { QuantumOrbitalViewerComponent } from "./quantum-orbital-viewer/quantum-orbital-viewer.component";
 import { DiagramaConfiguracaoEletronicaComponent } from "./diagrama-configuracao-eletronica/diagrama-configuracao-eletronica.component";
 import { MatIcon } from "@angular/material/icon";
+import { IsotoposComponent } from "./isotopos/isotopos.component";
 @Component({
   selector: 'app-modal-periodic-table',
   standalone: true,
   templateUrl: './modal-periodic-table.html',
   styleUrls: ['./modal-periodic-table.scss'],
-  imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent, Description, QuantumOrbitalViewerComponent, DiagramaConfiguracaoEletronicaComponent, MatIcon, MatDialogModule],
+  imports: [ButtonToggleModal, PropertiesElements, EmissionSpectrumComponent, Description, QuantumOrbitalViewerComponent, DiagramaConfiguracaoEletronicaComponent, MatIcon, MatDialogModule, IsotoposComponent],
 })
 export class ModalPeriodicTable {
   selectedView = signal('propriedades');

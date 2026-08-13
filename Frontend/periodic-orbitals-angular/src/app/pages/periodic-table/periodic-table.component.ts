@@ -74,6 +74,7 @@ export class PeriodicTable implements OnInit, AfterViewInit {
       spectral_lines: item.spectral_lines,
       protons: item.protons,
       neutrons: item.neutrons,
+      link_imagem: item.link_image,
     }));
   }
 
