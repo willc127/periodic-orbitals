@@ -247,6 +247,8 @@ export interface TabelaRadial {
   r995: number;
 }
 
+export type PlanoSecao = 'XY' | 'XZ' | 'YZ';
+
 export function tabelaRadial(mod: ModeloOrbital, passos = 2400): TabelaRadial {
   const rMax = (3.5 * mod.n * mod.n + 12) / mod.z;
   const dr = rMax / passos;
@@ -266,6 +268,57 @@ export function tabelaRadial(mod: ModeloOrbital, passos = 2400): TabelaRadial {
   for (let i = 0; i <= passos; i++) acum[i] /= soma;
 
   return { r, p, acum, r995: raioParaProbabilidade(r, acum, 0.995) };
+}
+
+export function tabelaRadialSecao(
+  mod: ModeloOrbital,
+  plano: PlanoSecao,
+  offset: number,
+  rMax: number,
+  limiarDensidade: number,
+  passos = 1024,
+  amostrasAngulares = 1024,
+): Pick<TabelaRadial, 'r' | 'p'> {
+  const r = new Float64Array(passos + 1);
+  const p = new Float64Array(passos + 1);
+  const dr = rMax / passos;
+  const dPhi = (2 * Math.PI) / amostrasAngulares;
+  const cosPhi = new Float64Array(amostrasAngulares);
+  const sinPhi = new Float64Array(amostrasAngulares);
+  for (let j = 0; j < amostrasAngulares; j++) {
+    const phi = j * dPhi;
+    cosPhi[j] = Math.cos(phi);
+    sinPhi[j] = Math.sin(phi);
+  }
+
+  for (let i = 0; i <= passos; i++) {
+    const rho = i * dr;
+    let densidadeAngular = 0;
+    for (let j = 0; j < amostrasAngulares; j++) {
+      const u = rho * cosPhi[j];
+      const v = rho * sinPhi[j];
+      const psi =
+        plano === 'XY'
+          ? mod.psi(u, v, offset)
+          : plano === 'XZ'
+            ? mod.psi(u, offset, v)
+            : mod.psi(offset, u, v);
+      const densidade = psi * psi;
+      if (densidade >= limiarDensidade) densidadeAngular += densidade;
+    }
+    r[i] = rho;
+    p[i] = rho * densidadeAngular * dPhi;
+  }
+
+  let integral = 0;
+  for (let i = 1; i <= passos; i++) {
+    integral += 0.5 * (p[i - 1] + p[i]) * dr;
+  }
+  if (integral > 0) {
+    for (let i = 0; i <= passos; i++) p[i] /= integral;
+  }
+
+  return { r, p };
 }
 
 function raioParaProbabilidade(

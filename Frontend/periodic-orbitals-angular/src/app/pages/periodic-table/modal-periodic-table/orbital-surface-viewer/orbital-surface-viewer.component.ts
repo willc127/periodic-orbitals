@@ -25,12 +25,14 @@ import {
   ModeloOrbital,
   ModoVisual,
   PALETA_FASE,
+  PlanoSecao,
   PONTOS_POR_E,
   TabelaRadial,
   amostrarCampo,
   amostrarNuvem,
   criarModeloOrbital,
   limiarProbabilidade,
+  tabelaRadialSecao,
   tabelaRadial,
 } from './orbital-surface.logica';
 import { extrairIsosuperficie, MalhaIso } from './surface-nets';
@@ -80,7 +82,8 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   // ── Estado ────────────────────────────────────────────────
   readonly modo = signal<ModoVisual>('solido');
   readonly escalaE = signal(3);
-  readonly plano = signal<'XY' | 'XZ' | 'YZ'>('XY');
+  readonly probabilidadeSuperficie = signal(Math.round(MASSA_ISO * 100));
+  readonly plano = signal<PlanoSecao>('XY');
   readonly offsetSecao = signal(0);
   readonly mostrarPlanoCorte = signal(true);
   readonly autoRotacao = signal(
@@ -90,6 +93,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   );
   readonly ajudaAberta = signal(false);
   private readonly pronto = signal(false);
+  private readonly limitesSuperficie = signal({ x: 0, y: 0, z: 0 });
 
   readonly modos: { id: ModoVisual; rotulo: string }[] = [
     { id: 'densidade', rotulo: 'Densidade' },
@@ -97,11 +101,15 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     { id: 'translucido', rotulo: 'Translúcido' },
   ];
   readonly planos: readonly ('XY' | 'XZ' | 'YZ')[] = ['XY', 'XZ', 'YZ'];
+  readonly limiteOffset = computed(() => {
+    const eixo = this.eixoOffset();
+    return Math.max(this.limitesSuperficie()[eixo] * 1.05, 0.1);
+  });
   readonly passoOffset = computed(() =>
-    Math.max(0.1, +(this.extensao() / 100).toFixed(1)),
+    Math.max(0.1, +(this.limiteOffset() / 100).toFixed(1)),
   );
   readonly eixoOffset = computed(
-    () => ({ XY: 'z', XZ: 'y', YZ: 'x' })[this.plano()],
+    () => ({ XY: 'z', XZ: 'y', YZ: 'x' } as const)[this.plano()],
   );
 
   // ── Derivados ─────────────────────────────────────────────
@@ -176,6 +184,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     THREE.PlaneGeometry,
     THREE.MeshBasicMaterial
   > | null = null;
+  private linhaIntersecao: THREE.LineSegments | null = null;
   private meshPos: THREE.Mesh | null = null;
   private meshNeg: THREE.Mesh | null = null;
   private nuvem: THREE.Points | null = null;
@@ -219,10 +228,11 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   private sprite!: THREE.CanvasTexture;
 
   constructor(private readonly ngZone: NgZone) {
-    // 1) Reconstrói o modelo (campo + malhas) quando orbital ou Z mudam.
+    // 1) Reconstrói o modelo quando orbital, Z ou probabilidade mudam.
     effect(() => {
       const o = this._orbital();
       const z = this._z();
+      this.probabilidadeSuperficie();
       if (!this.pronto()) return;
       untracked(() => {
         this.construirModelo(o, o.n, z);
@@ -242,6 +252,9 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     effect(() => {
       this._orbital();
       this._z();
+      this.plano();
+      this.offsetSecao();
+      this.probabilidadeSuperficie();
       this.corTitulo();
       this.pronto();
       untracked(() => this.desenharRadial());
@@ -252,6 +265,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
       this._z();
       this.plano();
       this.offsetSecao();
+      this.probabilidadeSuperficie();
       this.corPos();
       this.corNeg();
       this.pronto();
@@ -259,7 +273,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     });
 
     effect(() => {
-      const limite = this.extensao();
+      const limite = this.limiteOffset();
       untracked(() => {
         this.offsetSecao.update((offset) =>
           Math.min(limite, Math.max(-limite, offset)),
@@ -298,6 +312,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     this.limpezas.forEach((fn) => fn());
     this.limparSuperficies();
     this.limparNuvem();
+    this.limparLinhaIntersecao();
     this.planoCorte?.geometry.dispose();
     this.planoCorte?.material.dispose();
     Object.values(this.mats).forEach((par) => {
@@ -478,7 +493,10 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     const escala = ESCALA_CENA / meio;
 
     const campo = amostrarCampo(mod, meio, GRADE);
-    const limiar = limiarProbabilidade(campo, MASSA_ISO);
+    const limiar = limiarProbabilidade(
+      campo,
+      this.probabilidadeSuperficie() / 100,
+    );
 
     // Lóbulos de fase positiva: ψ − t > 0 | fase negativa: −ψ − t > 0
     const fPos = new Float32Array(campo.length);
@@ -494,6 +512,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     this.meshNeg = this.criarMesh(
       extrairIsosuperficie(fNeg, GRADE, -meio, passo, escala),
     );
+    this.limitesSuperficie.set(this.calcularLimitesSuperficie(escala));
 
     const paleta = PALETA_FASE[o.g];
     (['solido', 'translucido'] as const).forEach((k) => {
@@ -502,6 +521,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     });
 
     this.modelo = { versao: ++this.versao, mod, tab, escala, limiar };
+    this.atualizarPlanoCorte();
   }
 
   private criarMesh(malha: MalhaIso | null): THREE.Mesh | null {
@@ -516,12 +536,35 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   }
 
   private limparSuperficies(): void {
+    this.limparLinhaIntersecao();
     [this.meshPos, this.meshNeg].forEach((m) => {
       if (!m) return;
       this.grupoSuperficies.remove(m);
       m.geometry.dispose();
     });
     this.meshPos = this.meshNeg = null;
+  }
+
+  private calcularLimitesSuperficie(escala: number): {
+    x: number;
+    y: number;
+    z: number;
+  } {
+    const limites = { x: 0, y: 0, z: 0 };
+    for (const mesh of [this.meshPos, this.meshNeg]) {
+      if (!mesh) continue;
+      mesh.geometry.computeBoundingBox();
+      const caixa = mesh.geometry.boundingBox;
+      if (!caixa) continue;
+      limites.x = Math.max(limites.x, Math.abs(caixa.min.x), Math.abs(caixa.max.x));
+      limites.y = Math.max(limites.y, Math.abs(caixa.min.y), Math.abs(caixa.max.y));
+      limites.z = Math.max(limites.z, Math.abs(caixa.min.z), Math.abs(caixa.max.z));
+    }
+    return {
+      x: limites.x / escala,
+      y: limites.y / escala,
+      z: limites.z / escala,
+    };
   }
 
   private limparNuvem(): void {
@@ -555,7 +598,108 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
         break;
     }
     plano.visible = this.mostrarPlanoCorte();
+    this.atualizarLinhaIntersecao(modelo, offset);
     this.sujo = true;
+  }
+
+  private atualizarLinhaIntersecao(modelo: ModeloCena, offset: number): void {
+    this.limparLinhaIntersecao();
+    if (!this.mostrarPlanoCorte()) return;
+
+    const eixo = ({ XY: 'z', XZ: 'y', YZ: 'x' } as const)[this.plano()];
+    const segmentos = [this.meshPos, this.meshNeg]
+      .filter((mesh): mesh is THREE.Mesh => mesh !== null)
+      .flatMap((mesh) => this.intersecoesMalha(mesh, eixo, offset));
+    if (segmentos.length === 0) return;
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(segmentos, 3),
+    );
+    const material = new THREE.LineBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.78,
+      depthWrite: false,
+    });
+    this.linhaIntersecao = new THREE.LineSegments(geometry, material);
+    this.linhaIntersecao.renderOrder = 4;
+    this.linhaIntersecao.visible = this.mostrarPlanoCorte();
+    this.grupoSuperficies.add(this.linhaIntersecao);
+    this.sujo = true;
+  }
+
+  private intersecoesMalha(
+    mesh: THREE.Mesh,
+    eixo: 'x' | 'y' | 'z',
+    offset: number,
+  ): number[] {
+    const positions = mesh.geometry.getAttribute('position');
+    const index = mesh.geometry.getIndex();
+    const segmentos: number[] = [];
+    const ponto = (i: number): THREE.Vector3 =>
+      new THREE.Vector3(
+        positions.getX(i),
+        positions.getY(i),
+        positions.getZ(i),
+      );
+    const distancia = (p: THREE.Vector3): number => p[eixo] - offset;
+    const tolerancia = 1e-6;
+    const vertices = index?.array;
+    const total = vertices ? index.count : positions.count;
+
+    for (let i = 0; i + 2 < total; i += 3) {
+      const indices = vertices
+        ? [vertices[i], vertices[i + 1], vertices[i + 2]]
+        : [i, i + 1, i + 2];
+      const triangulo = indices.map(ponto);
+      const intersecoes: THREE.Vector3[] = [];
+      const adicionar = (p: THREE.Vector3): void => {
+        if (
+          !intersecoes.some((q) => q.distanceToSquared(p) < tolerancia ** 2)
+        ) {
+          intersecoes.push(p);
+        }
+      };
+
+      for (let edge = 0; edge < 3; edge++) {
+        const a = triangulo[edge];
+        const b = triangulo[(edge + 1) % 3];
+        const da = distancia(a);
+        const db = distancia(b);
+        if (Math.abs(da) <= tolerancia) adicionar(a);
+        if (Math.abs(db) <= tolerancia) adicionar(b);
+        if (da * db < 0) {
+          adicionar(a.clone().lerp(b, da / (da - db)));
+        }
+      }
+
+      if (intersecoes.length >= 2) {
+        segmentos.push(
+          intersecoes[0].x,
+          intersecoes[0].y,
+          intersecoes[0].z,
+          intersecoes[1].x,
+          intersecoes[1].y,
+          intersecoes[1].z,
+        );
+      }
+    }
+
+    return segmentos;
+  }
+
+  private limparLinhaIntersecao(): void {
+    const linha = this.linhaIntersecao;
+    if (!linha) return;
+    this.grupoSuperficies.remove(linha);
+    linha.geometry.dispose();
+    const materials = Array.isArray(linha.material)
+      ? linha.material
+      : [linha.material];
+    materials.forEach((material) => material.dispose());
+    this.linhaIntersecao = null;
   }
 
   // ── Modos: sólido | translúcido | densidade ───────────────
@@ -622,6 +766,15 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     const n = o.n;
     const mod = criarModeloOrbital(n, o.l, o.m, this._z());
     const tab = tabelaRadial(mod);
+    const rPlot = tab.r995 * 1.1;
+    const limiarDensidade = (this.modelo?.limiar ?? 0) ** 2;
+    const secao = tabelaRadialSecao(
+      mod,
+      this.plano(),
+      this.offsetSecao(),
+      rPlot,
+      limiarDensidade,
+    );
     const cor = this.corTitulo();
 
     const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
@@ -635,11 +788,8 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
       X1 = cssW - 8,
       Y0 = cssH - 24,
       Y1 = 8;
-    const rPlot = tab.r995 * 1.1;
-    let fim = tab.r.length - 1;
-    while (fim > 0 && tab.r[fim] > rPlot) fim--;
     let pMax = 1e-30;
-    for (let i = 0; i <= fim; i++) pMax = Math.max(pMax, tab.p[i]);
+    for (const p of secao.p) pMax = Math.max(pMax, p);
 
     const px = (r: number) => X0 + (r / rPlot) * (X1 - X0);
     const py = (p: number) => Y0 - (p / pMax) * (Y0 - Y1);
@@ -671,19 +821,19 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
       ctx.fillText(r.toFixed(r < 10 ? 1 : 0), px(r), Y0 + 5);
     }
     ctx.textAlign = 'right';
-    ctx.fillText('r (a₀)', X1, cssH - 11);
+    ctx.fillText('ρ (a₀)', X1, cssH - 11);
 
     // curva + área
     const trilha = () => {
       ctx.beginPath();
-      for (let i = 0; i <= fim; i++) {
-        const x = px(tab.r[i]);
-        const y = py(tab.p[i]);
+      for (let i = 0; i < secao.r.length; i++) {
+        const x = px(secao.r[i]);
+        const y = py(secao.p[i]);
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
     };
     trilha();
-    ctx.lineTo(px(tab.r[fim]), Y0);
+    ctx.lineTo(px(secao.r[secao.r.length - 1]), Y0);
     ctx.lineTo(X0, Y0);
     ctx.closePath();
     const grad = ctx.createLinearGradient(0, Y1, 0, Y0);
@@ -788,6 +938,16 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   // ── Handlers de template ──────────────────────────────────
   aoMudarE(e: Event): void {
     this.escalaE.set(+(e.target as HTMLInputElement).value);
+  }
+
+  aoMudarProbabilidade(e: Event): void {
+    this.probabilidadeSuperficie.set(
+      +(e.target as HTMLInputElement).value,
+    );
+  }
+
+  resetarProbabilidade(): void {
+    this.probabilidadeSuperficie.set(Math.round(MASSA_ISO * 100));
   }
 
   aoMudarOffset(e: Event): void {

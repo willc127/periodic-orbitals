@@ -23,6 +23,35 @@
       }
     </div>
 
+    <label class="slider-wrap">
+      <span class="slider-header">
+        <span>Probabilidade da superfície</span>
+        <span class="slider-value">
+          <span class="slider-val">{{ probabilidadeSuperficie() }}%</span>
+          <button
+            type="button"
+            class="offset-reset"
+            aria-label="Resetar probabilidade para 90%"
+            title="Resetar para 90%"
+            [disabled]="probabilidadeSuperficie() === 90"
+            (click)="resetarProbabilidade()"
+          >
+            <span class="mdi mdi-restore" aria-hidden="true"></span>
+          </button>
+        </span>
+      </span>
+      <input
+        type="range"
+        class="slider"
+        min="50"
+        max="99"
+        step="1"
+        [value]="probabilidadeSuperficie()"
+        aria-label="Probabilidade contida na superfície do orbital"
+        (change)="aoMudarProbabilidade($event)"
+      />
+    </label>
+
     @if (modo() === "densidade") {
       <label class="slider-wrap">
         <span class="slider-header"
@@ -101,7 +130,9 @@
     </section>
 
     <div class="phase-legend">
-      <span>Superfície com aproximadamente 90% da probabilidade.</span
+      <span
+        >Superfície com aproximadamente {{ probabilidadeSuperficie() }}% da
+        probabilidade.</span
       ><span>Arraste para girar; use a roda para aproximar.</span>
     </div>
   </aside>
@@ -109,14 +140,21 @@
   <main class="main-area">
     <section class="bottom-panels" aria-label="Distribuições do orbital">
       <div class="panel panel-radial">
-        <h2 class="panel-title">Distribuição radial P(r)</h2>
+        <h2 class="panel-title">Distribuição radial na seção</h2>
         <canvas
           #radialCanvas
           class="panel-canvas radial-canvas"
-          aria-label="Gráfico da probabilidade radial"
+          [attr.aria-label]="
+            'Distribuição radial da seção ' +
+            plano() +
+            ', offset ' +
+            offsetSecao().toFixed(1) +
+            ' a₀'
+          "
         ></canvas>
         <p class="panel-desc">
-          Probabilidade de encontrar o elétron à distância r (a₀).
+          Distribuição normalizada em anéis de raio ρ no plano
+          {{ plano() }} (offset {{ offsetSecao().toFixed(1) }} a₀).
         </p>
       </div>
 
@@ -158,8 +196,8 @@
           </span>
           <input
             type="range"
-            [attr.min]="-extensao()"
-            [attr.max]="extensao()"
+            [attr.min]="-limiteOffset()"
+            [attr.max]="limiteOffset()"
             [step]="passoOffset()"
             [value]="offsetSecao()"
             aria-label="Offset do plano de corte em a zero"
