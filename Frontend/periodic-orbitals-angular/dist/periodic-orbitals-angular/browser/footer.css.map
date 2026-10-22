@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/footer/footer.scss"],
+  "sourcesContent": ["@import url(\"https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap\");\r\n\r\n.footer {\r\n  align-items: center;\r\n  background: #031030;\r\n  display: flex;\r\n  height: 2rem;\r\n  gap: 30px;\r\n  justify-content: right;\r\n  padding-left: 1.5rem;\r\n  padding-right: 1rem;\r\n  width: 100%;\r\n}\r\n\r\n.footer a {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  height: 100%;\r\n}\r\n\r\na {\r\n  color: #ededed;\r\n  font-family: \"Rubik Mono One\", monospace;\r\n  font-size: 10px;\r\n  font-weight: 400;\r\n  text-decoration: none;\r\n}\r\n\r\n.logo {\r\n  height: 90%;\r\n}\r\n\r\n.footer a img.logo {\r\n  width: auto;\r\n}\r\n"],
+  "mappings": ";;;AAEA,CAAA;AACE,eAAA;AACA,cAAA;AACA,WAAA;AACA,UAAA;AACA,OAAA;AACA,mBAAA;AACA,gBAAA;AACA,iBAAA;AACA,SAAA;;AAGF,CAZA,OAYA;AACE,WAAA;AACA,eAAA;AACA,UAAA;;AAGF;AACE,SAAA;AACA,eAAA,gBAAA,EAAA;AACA,aAAA;AACA,eAAA;AACA,mBAAA;;AAGF,CAAA;AACE,UAAA;;AAGF,CA9BA,OA8BA,EAAA,GAAA,CAJA;AAKE,SAAA;;",
+  "names": []
+}

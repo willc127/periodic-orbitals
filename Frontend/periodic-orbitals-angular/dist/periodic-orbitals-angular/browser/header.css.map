@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/header/header.scss"],
+  "sourcesContent": ["@import url(\"https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap\");\r\n\r\nheader {\r\n  align-items: center;\r\n  background: #031030;\r\n  display: flex;\r\n  height: 4rem;\r\n  justify-content: space-between;\r\n  padding: 0 5rem;\r\n  width: 100%;\r\n}\r\n\r\n.logo-title{\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 16px;\r\n}\r\n\r\nh1 {\r\n  color: #ededed;\r\n  font-family: \"Rubik Mono One\", monospace;\r\n  font-style: normal;\r\n  font-weight: 400;\r\n}\r\n\r\nform {\r\n  height: 100%;\r\n}\r\n\r\nform > mat-form-field {\r\n  width: 200px;\r\n  height: 100%;\r\n\r\n\r\n  mat-label {\r\n    color: #233970;\r\n    font-weight: bold;\r\n  }\r\n  .mdc-text-field {\r\n    border-radius: 5px;\r\n    background: #D9E3FC!important;\r\n  }\r\n\r\n  .mat-mdc-form-field-subscript-wrapper {\r\n    display: none;\r\n  }\r\n  \r\n  .mat-mdc-form-field-bottom-align {\r\n    display: none;\r\n    height: 0;\r\n  }\r\n  \r\n}\r\n"],
+  "mappings": ";;;AAEA;AACE,eAAA;AACA,cAAA;AACA,WAAA;AACA,UAAA;AACA,mBAAA;AACA,WAAA,EAAA;AACA,SAAA;;AAGF,CAAA;AACE,WAAA;AACA,eAAA;AACA,OAAA;;AAGF;AACE,SAAA;AACA,eAAA,gBAAA,EAAA;AACA,cAAA;AACA,eAAA;;AAGF;AACE,UAAA;;AAGF,KAAA,EAAA;AACE,SAAA;AACA,UAAA;;AAGA,KAAA,EAAA,eAAA;AACE,SAAA;AACA,eAAA;;AAEF,KAAA,EAAA,eAAA,CAAA;AACE,iBAAA;AACA,cAAA;;AAGF,KAAA,EAAA,eAAA,CAAA;AACE,WAAA;;AAGF,KAAA,EAAA,eAAA,CAAA;AACE,WAAA;AACA,UAAA;;",
+  "names": []
+}

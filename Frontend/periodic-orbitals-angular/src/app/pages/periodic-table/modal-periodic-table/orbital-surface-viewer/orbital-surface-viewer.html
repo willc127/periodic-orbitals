@@ -1,0 +1,243 @@
+<div class="orb-root" [style.--gc]="corTitulo()">
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <span class="mdi mdi-atom-variant mdi-24px" aria-hidden="true"></span>
+      <div>
+        <div class="sidebar-title">Orbitais Quânticos</div>
+        <div class="sidebar-sub">Visualização 3D · H-like</div>
+      </div>
+    </header>
+
+    <div class="section-label">Modo 3D</div>
+    <div class="mode-btns" role="group" aria-label="Modo 3D">
+      @for (m of modos; track m.id) {
+        <button
+          type="button"
+          class="mode-btn"
+          [class.mode-btn--active]="modo() === m.id"
+          [attr.aria-pressed]="modo() === m.id"
+          (click)="modo.set(m.id)"
+        >
+          {{ m.rotulo }}
+        </button>
+      }
+    </div>
+
+    @if (modo() === "densidade") {
+      <label class="slider-wrap">
+        <span class="slider-header"
+          ><span>Pontos</span
+          ><span class="slider-val">{{
+            (escalaE() * 5000).toLocaleString("pt-BR")
+          }}</span></span
+        >
+        <input
+          type="range"
+          class="slider"
+          min="1"
+          max="10"
+          step="1"
+          [value]="escalaE()"
+          aria-label="Quantidade de pontos"
+          (input)="aoMudarE($event)"
+        />
+      </label>
+    }
+
+    <label class="slider-wrap">
+      <span class="slider-header"
+        ><span>Número quântico N</span
+        ><span class="slider-val">{{ n() }}</span></span
+      >
+      <input
+        type="range"
+        class="slider"
+        [min]="nMin()"
+        max="7"
+        step="1"
+        [value]="n()"
+        aria-label="Número quântico principal"
+        (input)="aoMudarN($event)"
+      />
+    </label>
+
+    <div class="section-label mt14">Fase</div>
+    <div class="phase-row">
+      <span class="phase-dot" [style.background]="corPos()"></span
+      ><span>ψ &gt; 0</span>
+      <span class="phase-dot ml8" [style.background]="corNeg()"></span
+      ><span>ψ &lt; 0</span>
+    </div>
+
+    <button
+      type="button"
+      class="toggle-row"
+      role="switch"
+      [attr.aria-checked]="autoRotacao()"
+      (click)="alternarRotacao()"
+    >
+      <span class="toggle-track" [class.toggle-track--on]="autoRotacao()"
+        ><span
+          class="toggle-thumb"
+          [class.toggle-thumb--on]="autoRotacao()"
+        ></span
+      ></span>
+      <span class="toggle-label">Rotação automática</span>
+    </button>
+
+    <button
+      type="button"
+      class="toggle-row"
+      role="switch"
+      [attr.aria-checked]="mostrarPlanoCorte()"
+      (click)="alternarPlanoCorte()"
+    >
+      <span class="toggle-track" [class.toggle-track--on]="mostrarPlanoCorte()">
+        <span
+          class="toggle-thumb"
+          [class.toggle-thumb--on]="mostrarPlanoCorte()"
+        ></span>
+      </span>
+      <span class="toggle-label">Plano de corte 3D</span>
+    </button>
+
+    <section class="qn-box" aria-label="Números quânticos">
+      <div class="qn-orbital" [style.color]="corTitulo()">
+        {{ rotuloOrbital() }}
+      </div>
+      @for (row of qnRows(); track row[0]) {
+        <div class="qn-row">
+          <span class="qn-key">{{ row[0] }}</span
+          ><span class="qn-val">{{ row[1] }}</span>
+        </div>
+      }
+      <div class="qn-row">
+        <span class="qn-key">Caixa</span
+        ><span class="qn-val">±{{ extensao().toFixed(1) }} a₀</span>
+      </div>
+    </section>
+
+    <div class="phase-legend">
+      <span>Superfície com aproximadamente 90% da probabilidade.</span
+      ><span>Arraste para girar; use a roda para aproximar.</span>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <section class="bottom-panels" aria-label="Distribuições do orbital">
+      <div class="panel panel-radial">
+        <h2 class="panel-title">Distribuição radial P(r)</h2>
+        <canvas
+          #radialCanvas
+          class="panel-canvas radial-canvas"
+          aria-label="Gráfico da probabilidade radial"
+        ></canvas>
+        <p class="panel-desc">
+          Probabilidade de encontrar o elétron à distância r (a₀).
+        </p>
+      </div>
+
+      <div class="panel panel-section">
+        <div class="panel-heading">
+          <h2 class="panel-title">Seção transversal |ψ|²</h2>
+          <div
+            class="plane-btns"
+            role="group"
+            aria-label="Plano da seção transversal"
+          >
+            @for (p of planos; track p) {
+              <button
+                type="button"
+                class="plane-btn"
+                [class.plane-btn--active]="plano() === p"
+                [attr.aria-pressed]="plano() === p"
+                (click)="plano.set(p)"
+              >
+                {{ p }}
+              </button>
+            }
+          </div>
+        </div>
+        <label class="offset-control">
+          <span>Offset {{ eixoOffset() }}</span>
+          <span class="offset-value">
+            <output>{{ offsetSecao().toFixed(1) }} a₀</output>
+            <button
+              type="button"
+              class="offset-reset"
+              aria-label="Resetar offset para zero"
+              title="Resetar offset para zero"
+              [disabled]="offsetSecao() === 0"
+              (click)="resetarOffset()"
+            >
+              <span class="mdi mdi-restore" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input
+            type="range"
+            [attr.min]="-extensao()"
+            [attr.max]="extensao()"
+            [step]="passoOffset()"
+            [value]="offsetSecao()"
+            aria-label="Offset do plano de corte em a zero"
+            (input)="aoMudarOffset($event)"
+          />
+        </label>
+        <canvas
+          #sectionCanvas
+          class="panel-canvas section-canvas"
+          [attr.aria-label]="'Mapa de densidade no plano ' + plano()"
+        ></canvas>
+        <p class="panel-desc">
+          Intensidade representa |ψ|²; cores distinguem as fases.
+        </p>
+      </div>
+
+      <div class="panel panel-info">
+        <h2 class="panel-title">Sobre o orbital</h2>
+        <div class="info-list">
+          @for (linha of linhasPrincipais(); track linha.rotulo) {
+            <div class="info-row">
+              <span class="info-key">{{ linha.rotulo }}</span
+              ><span class="info-value">{{ linha.valor }}</span>
+            </div>
+          }
+          @for (linha of linhasNos(); track linha.rotulo) {
+            <div class="info-row">
+              <span class="info-key">{{ linha.rotulo }}</span
+              ><span class="info-value">{{ linha.valor }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="canvas-wrap"
+      #palco
+      aria-label="Visualização tridimensional do orbital"
+    >
+      <canvas #threeCanvas class="three-canvas"></canvas>
+      <div class="canvas-label">{{ rotuloOrbital() }}</div>
+      <div class="canvas-hint">Arraste · Scroll para zoom</div>
+      <div class="canvas-actions">
+        <button
+          type="button"
+          class="btn-circ"
+          aria-label="Voltar"
+          (click)="voltar.emit()"
+        >
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button
+          type="button"
+          class="btn-circ"
+          aria-label="Fechar"
+          (click)="fechar.emit()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    </section>
+  </main>
+</div>

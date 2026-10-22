@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/graphics/graphics.scss"],
+  "sourcesContent": ["// graphics.scss\r\n:host {\r\n  display: block;\r\n  height: 100vh;\r\n  width: 100%;\r\n}\r\n\r\n.container-graphics {\r\n  display: flex;\r\n  flex-direction: row;\r\n  gap: 1rem;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.esquerda {\r\n  align-items: center;\r\n  display: flex;\r\n  flex: 6;\r\n  justify-content: center;\r\n  padding: 2rem;\r\n}\r\n\r\n.direita {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex: 7;\r\n  padding: 2rem;\r\n}\r\n\r\n// ─── Estado vazio ─────────────────────────────────────────────────────────────\r\n\r\n.empty-state {\r\n  align-items: center;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  gap: 8px;\r\n  min-height: 160px;\r\n  opacity: 0.75;\r\n\r\n  p {\r\n    font-size: 22px;\r\n    color: #EDEDED;\r\n    text-align: center;\r\n  }\r\n}"],
+  "mappings": ";AACA;AACE,WAAA;AACA,UAAA;AACA,SAAA;;AAGF,CAAA;AACE,WAAA;AACA,kBAAA;AACA,OAAA;AACA,UAAA;AACA,SAAA;;AAGF,CAAA;AACE,eAAA;AACA,WAAA;AACA,QAAA;AACA,mBAAA;AACA,WAAA;;AAGF,CAAA;AACE,eAAA;AACA,WAAA;AACA,mBAAA;AACA,QAAA;AACA,WAAA;;AAKF,CAAA;AACE,eAAA;AACA,WAAA;AACA,kBAAA;AACA,mBAAA;AACA,OAAA;AACA,cAAA;AACA,WAAA;;AAEA,CATF,YASE;AACE,aAAA;AACA,SAAA;AACA,cAAA;;",
+  "names": []
+}

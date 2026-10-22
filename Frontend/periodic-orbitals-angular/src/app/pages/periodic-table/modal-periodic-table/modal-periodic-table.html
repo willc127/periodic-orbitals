@@ -1,20 +1,35 @@
 <div class="modal_container">
-  <button
-    mat-icon-button
-    mat-dialog-close
-    class="close-button"
-    aria-label="Fechar"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
-  <div class="header_modal">
-    <a class="link" href="{{ data.link }}" target="_blank">
-      <h1>{{ data.nome }}</h1>
-    </a>
-    <app-button-toggle-modal
-      (checkedChange)="onViewChange($event)"
-    ></app-button-toggle-modal>
-  </div>
+  @if (selectedView() !== "orbitais") {
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="close-button"
+      aria-label="Fechar"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="header_modal">
+      <a class="link" href="{{ data.link }}" target="_blank">
+        <h1>{{ data.nome }}</h1>
+      </a>
+      <app-button-toggle-modal
+        (checkedChange)="onViewChange($event)"
+      ></app-button-toggle-modal>
+    </div>
+  }
+
+  @if (selectedView() === "orbitais") {
+    @defer {
+      <app-orbital-surface-viewer
+        [orbital]="orbitalSelecionado()"
+        [zEff]="1"
+        (voltar)="voltarDosOrbitais()"
+        (fechar)="fecharModal()"
+      />
+    } @placeholder {
+      <div class="orbital-viewer-placeholder"></div>
+    }
+  }
 
   @if (selectedView() === "descricao") {
     <app-description></app-description>
@@ -23,18 +38,17 @@
   @if (selectedView() === "propriedades") {
     <app-properties-elements></app-properties-elements>
   }
-  @if (selectedView() === "isotopos") {
+  @if (selectedView() === "isotopos" && data.numeroAtomico !== null) {
     <app-isotopos [numeroAtomico]="data.numeroAtomico"></app-isotopos>
   }
 
-  @if (selectedView() === "diagrama-config-eletronica") {
+  @if (
+    selectedView() === "diagrama-config-eletronica" &&
+    data.numeroAtomico !== null
+  ) {
     <app-diagrama-configuracao-eletronica
       [numeroAtomico]="data.numeroAtomico"
     ></app-diagrama-configuracao-eletronica>
-  }
-
-  @if (selectedView() === "orbitais") {
-    <app-quantum-orbital-viewer [element]="data"></app-quantum-orbital-viewer>
   }
 
   @if (selectedView() === "espectro") {
