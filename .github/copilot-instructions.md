@@ -1,20 +1,16 @@
 ## graphify
 
-For any question about this repo's architecture, structure, components, or how to add/modify/find
-code, your first action should be `graphify query "<question>"` when `graphify-out/graph.json`
-exists. Use `graphify path "<A>" "<B>"` for relationship questions and `graphify explain "<concept>"`
-for focused-concept questions. These return a scoped subgraph, usually much smaller than the full
-report or raw grep output.
+Before researching, searching, explaining, tracing, or changing anything in this repository,
+consult its generated `graphify-out/graph.json` first with `graphify query "<task>"`. Use
+`graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for a focused
+concept. Treat the graph as the required starting point for repository exploration, not as a
+substitute for source verification: inspect the relevant files before making or describing code
+changes.
 
-Triggers: "how do I…", "where is…", "what does … do", "add/modify a <component>",
-"explain the architecture", or anything that depends on how files or classes relate.
-
-If `graphify-out/wiki/index.md` exists, use it for broad navigation. Read `graphify-out/GRAPH_REPORT.md`
-only for broad architecture review or when query/path/explain do not surface enough context. Only read
-source files when (a) modifying/debugging specific code, (b) the graph lacks the needed detail, or
-(c) the graph is missing or stale.
-
-Type `/graphify` in Copilot Chat to build or update the graph.
+If the graph or CLI is unavailable, say so and continue with repository files. If the graph may be
+stale, use it for navigation, verify against current source, and update it with `/graphify --update`
+when appropriate. For broad navigation, use `graphify-out/wiki/index.md` if it exists; use
+`graphify-out/GRAPH_REPORT.md` for broad architecture context.
 
 
 # GitHub Copilot Instructions

@@ -1,0 +1,632 @@
+{
+  "Backend/elements-data/data/elements-data.json": {
+    "mtime": 1792631405.6078093,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d758c08ae8abbd85ca58d86c286ada0d",
+    "semantic_hash": "d758c08ae8abbd85ca58d86c286ada0d"
+  },
+  "Backend/elements-data/data/elements-data.meta.json": {
+    "mtime": 1792631405.608813,
+    "seen": 1792632311.3067174,
+    "ast_hash": "aba7d0bde8c3e3bda39c75405ed3b8dc",
+    "semantic_hash": "aba7d0bde8c3e3bda39c75405ed3b8dc"
+  },
+  "Backend/elements-data/main.py": {
+    "mtime": 1786586502.394266,
+    "seen": 1792632311.3067174,
+    "ast_hash": "87e995a9bf34fc33a20a790f7b53931b",
+    "semantic_hash": "87e995a9bf34fc33a20a790f7b53931b"
+  },
+  "Backend/spectra_lines/data/spectral_lines.json": {
+    "mtime": 1781046017.4716606,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ce836df0564a6ade98f875be306cf2d2",
+    "semantic_hash": "ce836df0564a6ade98f875be306cf2d2"
+  },
+  "Backend/spectra_lines/nist_spectra.py": {
+    "mtime": 1781047277.6731417,
+    "seen": 1792632311.3067174,
+    "ast_hash": "98298db2ff30c04f33a8f1337d53b539",
+    "semantic_hash": "98298db2ff30c04f33a8f1337d53b539"
+  },
+  "Frontend/periodic-orbitals-angular/.vscode/extensions.json": {
+    "mtime": 1754612702.271686,
+    "seen": 1792632311.3067174,
+    "ast_hash": "66fd9e60d4633b6099fe02e06a7075ea",
+    "semantic_hash": "66fd9e60d4633b6099fe02e06a7075ea"
+  },
+  "Frontend/periodic-orbitals-angular/.vscode/launch.json": {
+    "mtime": 1754612702.271686,
+    "seen": 1792632311.3067174,
+    "ast_hash": "430386a2f03e9d559664c196344c121b",
+    "semantic_hash": "430386a2f03e9d559664c196344c121b"
+  },
+  "Frontend/periodic-orbitals-angular/.vscode/tasks.json": {
+    "mtime": 1754612702.2726917,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d2fc2624d783980be281b4cf0acc2455",
+    "semantic_hash": "d2fc2624d783980be281b4cf0acc2455"
+  },
+  "Frontend/periodic-orbitals-angular/angular.json": {
+    "mtime": 1781572903.535977,
+    "seen": 1792632311.3067174,
+    "ast_hash": "edc488896f3163be487e322a487c9a8b",
+    "semantic_hash": "edc488896f3163be487e322a487c9a8b"
+  },
+  "Frontend/periodic-orbitals-angular/karma.conf.js": {
+    "mtime": 1754612870.0043623,
+    "seen": 1792632311.3067174,
+    "ast_hash": "eb68e77744e075b74e085b279facb27c",
+    "semantic_hash": "eb68e77744e075b74e085b279facb27c"
+  },
+  "Frontend/periodic-orbitals-angular/package.json": {
+    "mtime": 1783290475.6377778,
+    "seen": 1792632311.3067174,
+    "ast_hash": "9e58073755ddaefc2c2d29dd2cad3796",
+    "semantic_hash": "9e58073755ddaefc2c2d29dd2cad3796"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.component.ts": {
+    "mtime": 1782696825.9153488,
+    "seen": 1792632311.3067174,
+    "ast_hash": "1ec899ed07c39bebf71fadb0f6c2a977",
+    "semantic_hash": "1ec899ed07c39bebf71fadb0f6c2a977"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.config.ts": {
+    "mtime": 1779051812.95376,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4e7f65f96d968d166e8960c54a5939f9",
+    "semantic_hash": "4e7f65f96d968d166e8960c54a5939f9"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.module.ts": {
+    "mtime": 1781567261.3251066,
+    "seen": 1792632311.3067174,
+    "ast_hash": "cfed2392de3af6f80a32bd45284f026c",
+    "semantic_hash": "cfed2392de3af6f80a32bd45284f026c"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.routes.ts": {
+    "mtime": 1754612702.2776868,
+    "seen": 1792632311.3067174,
+    "ast_hash": "41e4bac7a1d7cd48f4d03907407942d3",
+    "semantic_hash": "41e4bac7a1d7cd48f4d03907407942d3"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.spec.ts": {
+    "mtime": 1779238904.0495882,
+    "seen": 1792632311.3067174,
+    "ast_hash": "7b275d45df6ae0c92bb033cc99ca8991",
+    "semantic_hash": "7b275d45df6ae0c92bb033cc99ca8991"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/interfaces/IAxisSelector.ts": {
+    "mtime": 1782257523.9392166,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5b1cccb2da0c74326016ca6b33915f18",
+    "semantic_hash": "5b1cccb2da0c74326016ca6b33915f18"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/interfaces/IElement.ts": {
+    "mtime": 1786582909.3370347,
+    "seen": 1792632311.3067174,
+    "ast_hash": "e58b7e672781fe85168378518a219d76",
+    "semantic_hash": "e58b7e672781fe85168378518a219d76"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/interfaces/IScopeConfig.ts": {
+    "mtime": 1779760242.6099284,
+    "seen": 1792632311.3067174,
+    "ast_hash": "1d94e5f956c57207cbbd8673ea6a115f",
+    "semantic_hash": "1d94e5f956c57207cbbd8673ea6a115f"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/interfaces/ISpectra.ts": {
+    "mtime": 1779842230.9778678,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ae1983cee61d25d9526d244f8e3b55df",
+    "semantic_hash": "ae1983cee61d25d9526d244f8e3b55df"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/axis-selector/axis-selector.component.ts": {
+    "mtime": 1782262398.1046498,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4edb39c685ae9923280aff2339bcd12e",
+    "semantic_hash": "4edb39c685ae9923280aff2339bcd12e"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/charts/scatter/scatter-chart.component.ts": {
+    "mtime": 1783535655.448035,
+    "seen": 1792632311.3067174,
+    "ast_hash": "f8cb019b5bd06d3084457b5a5033b04c",
+    "semantic_hash": "f8cb019b5bd06d3084457b5a5033b04c"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/charts/scatter/scatter-chart.config.ts": {
+    "mtime": 1783302434.5329466,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ade44bc250133002882154332240633d",
+    "semantic_hash": "ade44bc250133002882154332240633d"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/graphics.component.ts": {
+    "mtime": 1782263483.001365,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4173a74ff040065343da75cfc6665a36",
+    "semantic_hash": "4173a74ff040065343da75cfc6665a36"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/description/description.component.ts": {
+    "mtime": 1782268422.4515977,
+    "seen": 1792632311.3067174,
+    "ast_hash": "008daea78771404dcfb31aeae679905e",
+    "semantic_hash": "008daea78771404dcfb31aeae679905e"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/description/description.spec.ts": {
+    "mtime": 1781654172.851597,
+    "seen": 1792632311.3067174,
+    "ast_hash": "98bdf52968eb466bf706778b9dae225d",
+    "semantic_hash": "98bdf52968eb466bf706778b9dae225d"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/diagrama-configuracao-eletronica/diagrama-configuracao-eletronica.component.ts": {
+    "mtime": 1783550974.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "b684e6c83fc64abf826e392b87c9de39",
+    "semantic_hash": "b684e6c83fc64abf826e392b87c9de39"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/diagrama-configuracao-eletronica/diagrama-configuracao-eletronica.logica.ts": {
+    "mtime": 1784844474.2082345,
+    "seen": 1792632311.3067174,
+    "ast_hash": "c9569d69d9eb7962098044f67be940f6",
+    "semantic_hash": "c9569d69d9eb7962098044f67be940f6"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.component.ts": {
+    "mtime": 1783303594.4202225,
+    "seen": 1792632311.3067174,
+    "ast_hash": "904d6074e4d80b5f3968a11d80a982e8",
+    "semantic_hash": "904d6074e4d80b5f3968a11d80a982e8"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.service.ts": {
+    "mtime": 1779841605.4147575,
+    "seen": 1792632311.3067174,
+    "ast_hash": "818d8503db42fdcb1fb6d8e2b994226e",
+    "semantic_hash": "818d8503db42fdcb1fb6d8e2b994226e"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/spectrum-canvas.ts": {
+    "mtime": 1782260122.2970524,
+    "seen": 1792632311.3067174,
+    "ast_hash": "55ee05ae3141475f9fa7c9eb8b29b5f5",
+    "semantic_hash": "55ee05ae3141475f9fa7c9eb8b29b5f5"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/wl-utils.ts": {
+    "mtime": 1781047649.6811266,
+    "seen": 1792632311.3067174,
+    "ast_hash": "9ee10c6ce1fddeea243afa696752e937",
+    "semantic_hash": "9ee10c6ce1fddeea243afa696752e937"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.component.ts": {
+    "mtime": 1786592716.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "72e984b0cda58e0f205b0afd536c9833",
+    "semantic_hash": "72e984b0cda58e0f205b0afd536c9833"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.logica.ts": {
+    "mtime": 1786592716.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5788199e29907d5db401fc8cc1f4a833",
+    "semantic_hash": "5788199e29907d5db401fc8cc1f4a833"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.models.ts": {
+    "mtime": 1786592716.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "640e49e905c1fc3892e3787719ad0a56",
+    "semantic_hash": "640e49e905c1fc3892e3787719ad0a56"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.service.ts": {
+    "mtime": 1786592716.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "84091fe7467009eaee603127a633edbb",
+    "semantic_hash": "84091fe7467009eaee603127a633edbb"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.component.ts": {
+    "mtime": 1792630425.813311,
+    "seen": 1792632311.3067174,
+    "ast_hash": "8bdd1e81c370ffc1614d7a8a45f1f76f",
+    "semantic_hash": "8bdd1e81c370ffc1614d7a8a45f1f76f"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.spec.ts": {
+    "mtime": 1779238850.80095,
+    "seen": 1792632311.3067174,
+    "ast_hash": "39cf39817def3f492ce2299aaaa67a9b",
+    "semantic_hash": "39cf39817def3f492ce2299aaaa67a9b"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-selection.service.ts": {
+    "mtime": 1792626955.9051435,
+    "seen": 1792632311.3067174,
+    "ast_hash": "a95fe166f043032f688111a4d9898490",
+    "semantic_hash": "a95fe166f043032f688111a4d9898490"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-surface-viewer.component.ts": {
+    "mtime": 1792630838.1281426,
+    "seen": 1792632311.3067174,
+    "ast_hash": "24d27dac17d49e7a485ce213bbbee676",
+    "semantic_hash": "24d27dac17d49e7a485ce213bbbee676"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-surface.logica.ts": {
+    "mtime": 1792628509.5806894,
+    "seen": 1792632311.3067174,
+    "ast_hash": "56205468dd2d916d1af72a836a2006ed",
+    "semantic_hash": "56205468dd2d916d1af72a836a2006ed"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital.models.ts": {
+    "mtime": 1792626955.9051435,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5ec0220ffee85a19e1cbe2120405a942",
+    "semantic_hash": "5ec0220ffee85a19e1cbe2120405a942"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/surface-nets.ts": {
+    "mtime": 1792626231.2891996,
+    "seen": 1792632311.3067174,
+    "ast_hash": "515f259df823136a2e421991e7d38a45",
+    "semantic_hash": "515f259df823136a2e421991e7d38a45"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/electron-distribution/electron-distribution.component.ts": {
+    "mtime": 1781643223.413916,
+    "seen": 1792632311.3067174,
+    "ast_hash": "40e7d8b1dcddde455daaf5d4dc136c99",
+    "semantic_hash": "40e7d8b1dcddde455daaf5d4dc136c99"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/electron-distribution/electron-distribution.spec.ts": {
+    "mtime": 1779238802.0710182,
+    "seen": 1792632311.3067174,
+    "ast_hash": "24a9a3d16a30f963f81a2df36c268146",
+    "semantic_hash": "24a9a3d16a30f963f81a2df36c268146"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/electron-distribution/electron-distributor.ts": {
+    "mtime": 1755826908.5083492,
+    "seen": 1792632311.3067174,
+    "ast_hash": "8a20e3ea73f347acc2e5b8b3cabcc552",
+    "semantic_hash": "8a20e3ea73f347acc2e5b8b3cabcc552"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/properties-elements.component.ts": {
+    "mtime": 1783301767.8765452,
+    "seen": 1792632311.3067174,
+    "ast_hash": "669b1885feced6caabebe012d6221e39",
+    "semantic_hash": "669b1885feced6caabebe012d6221e39"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/properties-elements.spec.ts": {
+    "mtime": 1781035214.3382165,
+    "seen": 1792632311.3067174,
+    "ast_hash": "3b81079bf3a8d0c0000fbb651fe47eb9",
+    "semantic_hash": "3b81079bf3a8d0c0000fbb651fe47eb9"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/periodic-table.component.ts": {
+    "mtime": 1786582973.9216688,
+    "seen": 1792632311.3067174,
+    "ast_hash": "7ee13119e2b03b7b60cbac67a27f2647",
+    "semantic_hash": "7ee13119e2b03b7b60cbac67a27f2647"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/periodic-table.service.ts": {
+    "mtime": 1779761916.6752293,
+    "seen": 1792632311.3067174,
+    "ast_hash": "a7d0f75ab08e291dc7103082c2db785c",
+    "semantic_hash": "a7d0f75ab08e291dc7103082c2db785c"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/periodic-table.spec.ts": {
+    "mtime": 1779238880.3969598,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4996e66ae56b6ef7038d38672e92a2b8",
+    "semantic_hash": "4996e66ae56b6ef7038d38672e92a2b8"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/selectors.component.spec.ts": {
+    "mtime": 1779501422.7465346,
+    "seen": 1792632311.3067174,
+    "ast_hash": "45d8fedb2b6f53ad2da09c957acae937",
+    "semantic_hash": "45d8fedb2b6f53ad2da09c957acae937"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/selectors.component.ts": {
+    "mtime": 1783548266.9993904,
+    "seen": 1792632311.3067174,
+    "ast_hash": "92c187d3b8ee70e67080e43673bad487",
+    "semantic_hash": "92c187d3b8ee70e67080e43673bad487"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/temperature-selector/temperature-selector.component.ts": {
+    "mtime": 1783564452.6162686,
+    "seen": 1792632311.3067174,
+    "ast_hash": "c209e85eba102eb00c24c64658f1c86e",
+    "semantic_hash": "c209e85eba102eb00c24c64658f1c86e"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/temperature-selector/temperature-selector.service.ts": {
+    "mtime": 1783557112.2858236,
+    "seen": 1792632311.3067174,
+    "ast_hash": "f5575825daf54f7fa9d1940825931a7d",
+    "semantic_hash": "f5575825daf54f7fa9d1940825931a7d"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/temperature-selector/temperature-selector.spec.ts": {
+    "mtime": 1783547912.415226,
+    "seen": 1792632311.3067174,
+    "ast_hash": "16048a978f51447de2048f66e3f5e5d6",
+    "semantic_hash": "16048a978f51447de2048f66e3f5e5d6"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/button-toggle-modal/button-toggle-modal.component.ts": {
+    "mtime": 1783297065.961568,
+    "seen": 1792632311.3067174,
+    "ast_hash": "362fc332f8c39e22e4ac5c527d93fe46",
+    "semantic_hash": "362fc332f8c39e22e4ac5c527d93fe46"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/button-toggle-modal/button-toggle-modal.spec.ts": {
+    "mtime": 1781032763.5179293,
+    "seen": 1792632311.3067174,
+    "ast_hash": "af736a5ec7da3c1fdb6a6790bb909424",
+    "semantic_hash": "af736a5ec7da3c1fdb6a6790bb909424"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/footer/footer.component.ts": {
+    "mtime": 1779040187.2269738,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d17113bb79ef64e263b5c48a8e4aba75",
+    "semantic_hash": "d17113bb79ef64e263b5c48a8e4aba75"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/footer/footer.spec.ts": {
+    "mtime": 1779238756.6670766,
+    "seen": 1792632311.3067174,
+    "ast_hash": "74d8cad0cf1ae5a82246ef09cc79da16",
+    "semantic_hash": "74d8cad0cf1ae5a82246ef09cc79da16"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/atom-animation/atom-animation.component.ts": {
+    "mtime": 1779582429.3693886,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5d713db331c78f1dce73f205c47f2de1",
+    "semantic_hash": "5d713db331c78f1dce73f205c47f2de1"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/button-toggle-principal/button-toggle-principal.component.ts": {
+    "mtime": 1783539312.3003688,
+    "seen": 1792632311.3067174,
+    "ast_hash": "7e8ea0b09d478bac07e05498fdb205d3",
+    "semantic_hash": "7e8ea0b09d478bac07e05498fdb205d3"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/button-toggle-principal/button-toggle-principal.spec.ts": {
+    "mtime": 1781032688.7113032,
+    "seen": 1792632311.3067174,
+    "ast_hash": "068184510cbf1b39c622b2da35924681",
+    "semantic_hash": "068184510cbf1b39c622b2da35924681"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/header.component.ts": {
+    "mtime": 1783266618.3063748,
+    "seen": 1792632311.3067174,
+    "ast_hash": "05d569dec817e69749c814d81440fc4f",
+    "semantic_hash": "05d569dec817e69749c814d81440fc4f"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/header.spec.ts": {
+    "mtime": 1779238777.1555343,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d1ea49b49a6c7eecc329cf7684fc2fa4",
+    "semantic_hash": "d1ea49b49a6c7eecc329cf7684fc2fa4"
+  },
+  "Frontend/periodic-orbitals-angular/src/main.ts": {
+    "mtime": 1783536174.3198807,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4f553be145429c6f6c0e5d8f4cfed7f1",
+    "semantic_hash": "4f553be145429c6f6c0e5d8f4cfed7f1"
+  },
+  "Frontend/periodic-orbitals-angular/src/typings.d.ts": {
+    "mtime": 1783536219.945141,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d68ed3a54a1b86d67e2786ec3bf9167e",
+    "semantic_hash": "d68ed3a54a1b86d67e2786ec3bf9167e"
+  },
+  "Frontend/periodic-orbitals-angular/tsconfig.app.json": {
+    "mtime": 1783290994.0246174,
+    "seen": 1792632311.3067174,
+    "ast_hash": "b54e2f804043951a78834b0bcd35f229",
+    "semantic_hash": "b54e2f804043951a78834b0bcd35f229"
+  },
+  "Frontend/periodic-orbitals-angular/tsconfig.doc.json": {
+    "mtime": 1758252644.1802356,
+    "seen": 1792632311.3067174,
+    "ast_hash": "2c3c8bad224028722b8e4d2b197ed2e4",
+    "semantic_hash": "2c3c8bad224028722b8e4d2b197ed2e4"
+  },
+  "Frontend/periodic-orbitals-angular/tsconfig.json": {
+    "mtime": 1779043260.768653,
+    "seen": 1792632311.3067174,
+    "ast_hash": "626b8221f0f275b555aba712af29ac0f",
+    "semantic_hash": "626b8221f0f275b555aba712af29ac0f"
+  },
+  "Frontend/periodic-orbitals-angular/tsconfig.spec.json": {
+    "mtime": 1779043188.0212004,
+    "seen": 1792632311.3067174,
+    "ast_hash": "c602ef8f3c2ac034ec13dfa404cf3c6a",
+    "semantic_hash": "c602ef8f3c2ac034ec13dfa404cf3c6a"
+  },
+  ".github/copilot-instructions.md": {
+    "mtime": 1783106732.6945925,
+    "seen": 1792632311.3067174,
+    "ast_hash": "72f45647b46342f18f61c8b5c4a02097",
+    "semantic_hash": "72f45647b46342f18f61c8b5c4a02097"
+  },
+  "Backend/README.md": {
+    "mtime": 1777600465.6464982,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ddb860d3c84dc12ead9c4cf272278abd",
+    "semantic_hash": "ddb860d3c84dc12ead9c4cf272278abd"
+  },
+  "Backend/requirements.txt": {
+    "mtime": 1783277470.3522341,
+    "seen": 1792632311.3067174,
+    "ast_hash": "356509cfd639fdcb63a02a7a6990cd22",
+    "semantic_hash": "356509cfd639fdcb63a02a7a6990cd22"
+  },
+  "Frontend/periodic-orbitals-angular/README.md": {
+    "mtime": 1777600552.175238,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ec1d46285df12bdb7c6bbb30fcc87c43",
+    "semantic_hash": "ec1d46285df12bdb7c6bbb30fcc87c43"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/app.html": {
+    "mtime": 1782696948.43566,
+    "seen": 1792632311.3067174,
+    "ast_hash": "e3a043e092268e0309af14a52d0867e0",
+    "semantic_hash": "e3a043e092268e0309af14a52d0867e0"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/axis-selector/axis-selector.component.html": {
+    "mtime": 1782263285.6077604,
+    "seen": 1792632311.3067174,
+    "ast_hash": "47546c9be8a51c990b4d1033192b89bf",
+    "semantic_hash": "47546c9be8a51c990b4d1033192b89bf"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/charts/scatter/scatter-chart.component.html": {
+    "mtime": 1782259989.5244923,
+    "seen": 1792632311.3067174,
+    "ast_hash": "a876ce6f2640b86e68ea207c53b4cbd3",
+    "semantic_hash": "a876ce6f2640b86e68ea207c53b4cbd3"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/graphics/graphics.html": {
+    "mtime": 1782260021.8055675,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4cbbcec033f502fbd8cdcdf08f7b1012",
+    "semantic_hash": "4cbbcec033f502fbd8cdcdf08f7b1012"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/description/description.html": {
+    "mtime": 1786583172.7011633,
+    "seen": 1792632311.3067174,
+    "ast_hash": "77be62fa91b7b3bf33ff04e79bae45b4",
+    "semantic_hash": "77be62fa91b7b3bf33ff04e79bae45b4"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/diagrama-configuracao-eletronica/diagrama-configuracao-eletronica.component.html": {
+    "mtime": 1784851358.5354373,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d3b10b68ff79454ca0a1f168a662de74",
+    "semantic_hash": "d3b10b68ff79454ca0a1f168a662de74"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.component.html": {
+    "mtime": 1783303871.4692273,
+    "seen": 1792632311.3067174,
+    "ast_hash": "c43fdfc6961be53085ae925c65462d08",
+    "semantic_hash": "c43fdfc6961be53085ae925c65462d08"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.component.html": {
+    "mtime": 1786592716.0,
+    "seen": 1792632311.3067174,
+    "ast_hash": "f28c94903fd837224a30e2a12065aea3",
+    "semantic_hash": "f28c94903fd837224a30e2a12065aea3"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.html": {
+    "mtime": 1792630425.763708,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d0f639c53fe59aefdc07e46bec20ffd0",
+    "semantic_hash": "d0f639c53fe59aefdc07e46bec20ffd0"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-surface-viewer.html": {
+    "mtime": 1792630425.8963404,
+    "seen": 1792632311.3067174,
+    "ast_hash": "3823b624a036f77c7830b80dec5a3f89",
+    "semantic_hash": "3823b624a036f77c7830b80dec5a3f89"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/electron-distribution/electron-distribution.html": {
+    "mtime": 1779223943.968033,
+    "seen": 1792632311.3067174,
+    "ast_hash": "d381cb26ed67adaae4665ca8db96bc09",
+    "semantic_hash": "d381cb26ed67adaae4665ca8db96bc09"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/modal-periodic-table/properties-elements/properties-elements.html": {
+    "mtime": 1783301833.5042405,
+    "seen": 1792632311.3067174,
+    "ast_hash": "fc3d28bee45b77fef776bf7453060db9",
+    "semantic_hash": "fc3d28bee45b77fef776bf7453060db9"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/periodic-table.html": {
+    "mtime": 1783548173.5293107,
+    "seen": 1792632311.3067174,
+    "ast_hash": "1801388cb21fb7583465f6b97d34784b",
+    "semantic_hash": "1801388cb21fb7583465f6b97d34784b"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/selectors.component.html": {
+    "mtime": 1783548335.9648943,
+    "seen": 1792632311.3067174,
+    "ast_hash": "9f8922ecb10e0ec98a012619c3dfb947",
+    "semantic_hash": "9f8922ecb10e0ec98a012619c3dfb947"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/pages/periodic-table/selectors/temperature-selector/temperature-selector.html": {
+    "mtime": 1783564566.668873,
+    "seen": 1792632311.3067174,
+    "ast_hash": "3bb4ddfa05a8b96dbc696474d3d558a6",
+    "semantic_hash": "3bb4ddfa05a8b96dbc696474d3d558a6"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/button-toggle-modal/button-toggle-modal.html": {
+    "mtime": 1786582152.4374156,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4bf9e89205b4d043d9409bf06af97c3e",
+    "semantic_hash": "4bf9e89205b4d043d9409bf06af97c3e"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/footer/footer.html": {
+    "mtime": 1779326021.6975424,
+    "seen": 1792632311.3067174,
+    "ast_hash": "09919d9e3f2428f5ecb7f686af326cde",
+    "semantic_hash": "09919d9e3f2428f5ecb7f686af326cde"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/atom-animation/atom-animation.html": {
+    "mtime": 1779581342.3029115,
+    "seen": 1792632311.3067174,
+    "ast_hash": "122b73be08dcec49ab3f72920a741637",
+    "semantic_hash": "122b73be08dcec49ab3f72920a741637"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/button-toggle-principal/button-toggle-principal.html": {
+    "mtime": 1782696627.7713563,
+    "seen": 1792632311.3067174,
+    "ast_hash": "6ac5d7ea5ef832128edf644a5e60bcc1",
+    "semantic_hash": "6ac5d7ea5ef832128edf644a5e60bcc1"
+  },
+  "Frontend/periodic-orbitals-angular/src/app/shared/header/header.html": {
+    "mtime": 1781048854.3244977,
+    "seen": 1792632311.3067174,
+    "ast_hash": "db491a2fbe34058de98a4a3f2e028704",
+    "semantic_hash": "db491a2fbe34058de98a4a3f2e028704"
+  },
+  "Frontend/periodic-orbitals-angular/src/index.html": {
+    "mtime": 1779155824.1784155,
+    "seen": 1792632311.3067174,
+    "ast_hash": "7250acccd210cb87f607349b74e8063b",
+    "semantic_hash": "7250acccd210cb87f607349b74e8063b"
+  },
+  "README.md": {
+    "mtime": 1779326823.8667085,
+    "seen": 1792632311.3067174,
+    "ast_hash": "a561b722b9397a24514d3bfe62a8658c",
+    "semantic_hash": "a561b722b9397a24514d3bfe62a8658c"
+  },
+  "trees/BACKEND.txt": {
+    "mtime": 1783266402.7440643,
+    "seen": 1792632311.3067174,
+    "ast_hash": "137bcde3f03fa19d427571547b66a554",
+    "semantic_hash": "137bcde3f03fa19d427571547b66a554"
+  },
+  "trees/FRONTEND.txt": {
+    "mtime": 1783266366.6285803,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5c935608a99ffbe58185c4dc628a7569",
+    "semantic_hash": "5c935608a99ffbe58185c4dc628a7569"
+  },
+  "Frontend/periodic-orbitals-angular/public/image.png": {
+    "mtime": 1781576546.2697666,
+    "seen": 1792632311.3067174,
+    "ast_hash": "be9c12c12be93584d8e8e553a8fdeafd",
+    "semantic_hash": "be9c12c12be93584d8e8e553a8fdeafd"
+  },
+  "Frontend/periodic-orbitals-angular/src/assets/Angular_gradient_logo.png": {
+    "mtime": 1779225755.4756055,
+    "seen": 1792632311.3067174,
+    "ast_hash": "2a587597bc24a06e8f0cf6fd039a021d",
+    "semantic_hash": "2a587597bc24a06e8f0cf6fd039a021d"
+  },
+  "Frontend/periodic-orbitals-angular/src/assets/Python-logo.png": {
+    "mtime": 1779225787.726886,
+    "seen": 1792632311.3067174,
+    "ast_hash": "04cd43f234ad3f9e8bb9fa236471f41b",
+    "semantic_hash": "04cd43f234ad3f9e8bb9fa236471f41b"
+  },
+  "Frontend/periodic-orbitals-angular/src/assets/astropy_project_logo.svg": {
+    "mtime": 1779325403.20007,
+    "seen": 1792632311.3067174,
+    "ast_hash": "4816e53d8d41340a12dba50830d18df8",
+    "semantic_hash": "4816e53d8d41340a12dba50830d18df8"
+  },
+  "Frontend/periodic-orbitals-angular/src/assets/logo-teal.png": {
+    "mtime": 1779325923.9473417,
+    "seen": 1792632311.3067174,
+    "ast_hash": "5f6d1d433b2793d87f70b1b63dd46622",
+    "semantic_hash": "5f6d1d433b2793d87f70b1b63dd46622"
+  },
+  "Frontend/periodic-orbitals-angular/src/assets/mendeleev.png": {
+    "mtime": 1779215049.6469624,
+    "seen": 1792632311.3067174,
+    "ast_hash": "ec4d9c32dd123c74c0a61805ba9e6392",
+    "semantic_hash": "ec4d9c32dd123c74c0a61805ba9e6392"
+  }
+}
