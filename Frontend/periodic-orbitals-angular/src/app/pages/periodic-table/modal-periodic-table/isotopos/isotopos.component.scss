@@ -8,11 +8,26 @@ $cor-texto-terciario: #6b7280;
 $cor-borda: #262a31;
 $cor-radioativo: #e08662;
 
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
 .isotopos-painel {
-  font-family: 'Inter', -apple-system, sans-serif;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
   background: $cor-fundo;
   border-radius: 14px;
   padding: 24px;
+  min-height: 0;
+  box-sizing: border-box;
 
   &__carregando,
   &__vazio {
@@ -41,26 +56,26 @@ $cor-radioativo: #e08662;
     color: $cor-texto-terciario;
   }
 
-  &__legenda-texto {
-    margin: 0 0 18px;
-    font-size: 12.5px;
-    color: #8a9099;
-  }
-
   &__espectro {
     display: flex;
+    flex: 1 1 auto;
+    align-items: flex-end;
     gap: 6px;
     overflow-x: auto;
     padding: 8px 4px 4px;
     border-bottom: 1px solid $cor-borda;
     margin-bottom: 16px;
+    width: 100%;
+    min-height: 220px;
+    box-sizing: border-box;
   }
 
   &__legenda-icones {
     display: flex;
+    align-items: center;
     gap: 16px;
     margin-top: 14px;
-    font-size: 11.5px;
+    font-size: 18px;
     color: $cor-texto-terciario;
   }
 }
@@ -72,9 +87,9 @@ $cor-radioativo: #e08662;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  width: 34px;
-  height: 128px;
-  flex-shrink: 0;
+  flex: 1 0 44px;
+  min-width: 44px;
+  height: 100%;
   background: none;
   border: none;
   cursor: pointer;
@@ -92,7 +107,7 @@ $cor-radioativo: #e08662;
   }
 
   &__abundancia {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     font-size: 10px;
     color: $cor-texto-terciario;
     margin-bottom: 4px;
@@ -100,7 +115,7 @@ $cor-radioativo: #e08662;
   }
 
   &__barra {
-    width: 10px;
+    width: 50px;
     border-radius: 3px 3px 0 0;
     background: var(--cor-pico);
 
@@ -117,7 +132,7 @@ $cor-radioativo: #e08662;
   }
 
   &__massa {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     font-size: 11px;
     font-weight: 600;
     color: #e8e6e1;
@@ -139,7 +154,7 @@ $cor-radioativo: #e08662;
   background: $cor-fundo-card;
 
   &__simbolo {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     font-size: 20px;
     font-weight: 600;
     color: #f0eee6;
@@ -170,7 +185,7 @@ $cor-radioativo: #e08662;
   }
 
   &__valor {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     font-weight: 600;
     color: #f0eee6;
     font-size: 14px;
@@ -187,8 +202,9 @@ $cor-radioativo: #e08662;
   gap: 5px;
 
   &__marcador {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
     border-radius: 2px;
     display: inline-block;
 

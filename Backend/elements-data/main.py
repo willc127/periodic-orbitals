@@ -11,6 +11,7 @@ from mendeleev.fetch import fetch_table
 import numpy as np
 import pandas as pd
 import re
+from router_isotopos import router as isotopos_router
 
 # Ensure Backend package can be imported when script is run from Backend/elements-data
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -78,6 +79,7 @@ app = FastAPI(
     description="Elementos químicos com linhas espectrais",
     version="1.0.0",
 )
+app.include_router(isotopos_router)
 
 
 # * Adiciona favicon

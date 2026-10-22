@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { switchMap } from 'rxjs';
+import { catchError, of, startWith, switchMap } from 'rxjs';
 import { Isotopo } from './isotopos.models';
 import {
   calcularAbundanciaMaxima,
@@ -27,11 +27,22 @@ export class IsotoposComponent {
   // Recebidos do componente pai (o modal de detalhes do elemento)
   numeroAtomico = input.required<number>();
   corCategoria = input<string>('#5EA8D9');
+  protected readonly erroCarregamento = signal(false);
 
   // Refaz a requisição sempre que numeroAtomico mudar (ex: navegação entre elementos sem fechar o modal)
   private readonly dadosSignal = toSignal(
     toObservable(this.numeroAtomico).pipe(
-      switchMap((numeroAtomico) => this.isotoposService.buscarIsotopos(numeroAtomico)),
+      switchMap((numeroAtomico) => {
+        this.erroCarregamento.set(false);
+        return this.isotoposService.buscarIsotopos(numeroAtomico).pipe(
+          catchError((error: unknown) => {
+            this.erroCarregamento.set(true);
+            console.error('Não foi possível carregar os isótopos.', error);
+            return of(null);
+          }),
+          startWith(undefined),
+        );
+      }),
     ),
   );
 

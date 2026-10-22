@@ -6,7 +6,7 @@ import { DadosIsotoposElemento } from './isotopos.models';
 @Injectable({ providedIn: 'root' })
 export class IsotoposService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = '/api/elementos';
+  private readonly baseUrl = 'http://localhost:8000/api/elementos';
 
   // Cache por elemento — evita refetch ao trocar de aba/reabrir o modal para o mesmo elemento.
   private readonly cachePorElemento = new Map<number, Observable<DadosIsotoposElemento>>();

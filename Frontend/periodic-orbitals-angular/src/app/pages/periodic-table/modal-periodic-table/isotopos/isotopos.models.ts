@@ -11,6 +11,5 @@ export interface DadosIsotoposElemento {
   numeroAtomico: number;
   simboloElemento: string;
   nomeElemento: string;
-  corCategoria: string; // hex vindo do mapeamento de categorias do elemento
   isotopos: Isotopo[];
 }
