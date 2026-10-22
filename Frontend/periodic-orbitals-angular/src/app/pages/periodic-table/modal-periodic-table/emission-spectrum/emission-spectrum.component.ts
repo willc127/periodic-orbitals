@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpectrumCanvasComponent } from './spectrum-canvas';
-import { pct, rgbToHsl, wlToCSS, wlToRGB } from './wl-utils';
+import { combineVisibleLines, pct, rgbToHsl, wlToRGB } from './wl-utils';
 import { ISpectrum } from '../../../../interfaces/ISpectra';
 import { DadosElementosService } from './emission-spectrum.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -19,9 +19,11 @@ export class EmissionSpectrumComponent implements OnInit {
   lines: [number, number][] = [];
   mainLines: [number, number][] = [];
   ticks: number[] = [];
+  totalColor: string | null = null;
 
-  constructor(private spectrumService: DadosElementosService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+  constructor(
+    private spectrumService: DadosElementosService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   carregarEspectros(symbol: string): void {
@@ -33,13 +35,21 @@ export class EmissionSpectrumComponent implements OnInit {
           Number(l.w),
           Number(l.i),
         ]);
+        const rgb = combineVisibleLines(this.lines);
+        if (rgb) {
+          const hex = rgb
+            .map((channel) => channel.toString(16).padStart(2, '0'))
+            .join('');
+          this.totalColor = `#${hex}`.toUpperCase();
+        } else {
+          this.totalColor = null;
+        }
 
-        this.mainLines = this.lines
+        // cópia para não alterar a ordem original de this.lines
+        this.mainLines = [...this.lines]
           .sort((a, b) => b[1] - a[1])
           .slice(0, 20) // escolher as 20 linhas mais intensas
           .sort((a, b) => a[0] - b[0]);
-
-          console.log('Main lines:', this.mainLines);
       });
   }
 
