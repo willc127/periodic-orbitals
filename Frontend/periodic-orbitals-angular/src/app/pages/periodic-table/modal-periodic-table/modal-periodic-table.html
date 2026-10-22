@@ -1,30 +1,29 @@
-<div class="modal_container">
-  @if (selectedView() !== "orbitais") {
-    <button
-      mat-icon-button
-      mat-dialog-close
-      class="close-button"
-      aria-label="Fechar"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-    <div class="header_modal">
-      <a class="link" href="{{ data.link }}" target="_blank">
-        <h1>{{ data.nome }}</h1>
-      </a>
-      <app-button-toggle-modal
-        (checkedChange)="onViewChange($event)"
-      ></app-button-toggle-modal>
-    </div>
-  }
+<div
+  class="modal_container"
+  [class.modal_container--orbitais]="selectedView() === 'orbitais'"
+>
+  <button
+    mat-icon-button
+    mat-dialog-close
+    class="close-button"
+    aria-label="Fechar"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="header_modal">
+    <a class="link" href="{{ data.link }}" target="_blank">
+      <h1>{{ data.nome }}</h1>
+    </a>
+    <app-button-toggle-modal
+      (checkedChange)="onViewChange($event)"
+    ></app-button-toggle-modal>
+  </div>
 
   @if (selectedView() === "orbitais") {
     @defer {
       <app-orbital-surface-viewer
         [orbital]="orbitalSelecionado()"
         [zEff]="1"
-        (voltar)="voltarDosOrbitais()"
-        (fechar)="fecharModal()"
       />
     } @placeholder {
       <div class="orbital-viewer-placeholder"></div>

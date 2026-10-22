@@ -185,7 +185,7 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background: #171b24;
+  background: #07070f;
   transition: background 0.25s ease;
 }
 
@@ -533,16 +533,23 @@
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  height: auto;
   margin-bottom: 18px;
+  padding: 0;
+  background: transparent;
 }
 
 .sidebar-header .mdi {
+  flex: 0 0 auto;
   color: #4fa3e3;
   font-size: 24px;
 }
 
 .sidebar-title {
+  white-space: nowrap;
   color: #4fa3e3;
   font-size: 12px;
   font-weight: 700;
@@ -552,6 +559,7 @@
   margin-top: 1px;
   color: rgba(255, 255, 255, 0.38);
   font-size: 9px;
+  white-space: nowrap;
 }
 
 .section-label,
@@ -921,10 +929,35 @@
   min-height: 155px;
 }
 
-.info-list {
+.info-card-grid {
   display: grid;
-  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));
+  gap: 8px;
   overflow-y: auto;
+}
+
+.info-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+  padding: 9px 10px;
+  border: 1px solid rgba(79, 163, 227, 0.14);
+  border-radius: 6px;
+  background: rgba(79, 163, 227, 0.05);
+}
+
+.info-card .info-key {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+
+.info-card .info-value {
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-align: left;
 }
 
 .canvas-wrap {
@@ -964,38 +997,9 @@
   pointer-events: none;
 }
 
-.canvas-actions {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  display: flex;
-  gap: 7px;
-}
-
-.btn-circ {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-  background: rgba(12, 12, 24, 0.8);
-  color: #dde8f2;
-  cursor: pointer;
-  font: inherit;
-  font-size: 22px;
-  line-height: 1;
-}
-
-.btn-circ:hover {
-  border-color: #4fa3e3;
-  color: #4fa3e3;
-}
-
 .mode-btn:focus-visible,
 .toggle-row:focus-visible,
 .plane-btn:focus-visible,
-.btn-circ:focus-visible,
 .slider:focus-visible {
   outline: 2px solid #4fa3e3;
   outline-offset: 3px;

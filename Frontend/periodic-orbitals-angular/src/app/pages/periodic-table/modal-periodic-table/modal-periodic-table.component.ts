@@ -2,7 +2,6 @@ import { Component, Inject, signal } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
-  MatDialogRef,
 } from '@angular/material/dialog';
 import { ButtonToggleModal } from '../../../shared/button-toggle-modal/button-toggle-modal.component';
 import { PropertiesElements } from './properties-elements/properties-elements.component';
@@ -41,7 +40,6 @@ export class ModalPeriodicTable {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IElement,
-    private readonly dialogRef: MatDialogRef<ModalPeriodicTable>,
     private readonly orbitalSelection: OrbitalSelectionService,
   ) {
     void this.carregarOrbital();
@@ -56,11 +54,4 @@ export class ModalPeriodicTable {
     this.selectedView.set(newView);
   }
 
-  voltarDosOrbitais(): void {
-    this.selectedView.set('propriedades');
-  }
-
-  fecharModal(): void {
-    this.dialogRef.close();
-  }
 }

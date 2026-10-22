@@ -44,23 +44,6 @@
       </label>
     }
 
-    <label class="slider-wrap">
-      <span class="slider-header"
-        ><span>Número quântico N</span
-        ><span class="slider-val">{{ n() }}</span></span
-      >
-      <input
-        type="range"
-        class="slider"
-        [min]="nMin()"
-        max="7"
-        step="1"
-        [value]="n()"
-        aria-label="Número quântico principal"
-        (input)="aoMudarN($event)"
-      />
-    </label>
-
     <div class="section-label mt14">Fase</div>
     <div class="phase-row">
       <span class="phase-dot" [style.background]="corPos()"></span
@@ -195,15 +178,9 @@
 
       <div class="panel panel-info">
         <h2 class="panel-title">Sobre o orbital</h2>
-        <div class="info-list">
+        <div class="info-card-grid">
           @for (linha of linhasPrincipais(); track linha.rotulo) {
-            <div class="info-row">
-              <span class="info-key">{{ linha.rotulo }}</span
-              ><span class="info-value">{{ linha.valor }}</span>
-            </div>
-          }
-          @for (linha of linhasNos(); track linha.rotulo) {
-            <div class="info-row">
+            <div class="info-card">
               <span class="info-key">{{ linha.rotulo }}</span
               ><span class="info-value">{{ linha.valor }}</span>
             </div>
@@ -220,24 +197,6 @@
       <canvas #threeCanvas class="three-canvas"></canvas>
       <div class="canvas-label">{{ rotuloOrbital() }}</div>
       <div class="canvas-hint">Arraste · Scroll para zoom</div>
-      <div class="canvas-actions">
-        <button
-          type="button"
-          class="btn-circ"
-          aria-label="Voltar"
-          (click)="voltar.emit()"
-        >
-          <span aria-hidden="true">‹</span>
-        </button>
-        <button
-          type="button"
-          class="btn-circ"
-          aria-label="Fechar"
-          (click)="fechar.emit()"
-        >
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
     </section>
   </main>
 </div>

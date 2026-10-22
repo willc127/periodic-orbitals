@@ -3,11 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
   Input,
   NgZone,
   OnDestroy,
-  Output,
   ViewChild,
   computed,
   effect,
@@ -45,8 +43,8 @@ interface ModeloCena {
   limiar: number;
 }
 
-const FUNDO_SUPERFICIE = 0x171b24;
-const FUNDO_DENSIDADE = 0x05050d;
+const FUNDO_SUPERFICIE = 0x07070f;
+const FUNDO_DENSIDADE = 0x07070f;
 
 @Component({
   selector: 'app-orbital-surface-viewer',
@@ -59,20 +57,16 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   private readonly _orbital = signal<OrbitalDef>(ORBITALS[0]);
   private readonly _z = signal(1);
 
-  /** Orbital inicial (o slider N pode trocar o n depois). */
+  /** Orbital selecionado para visualização. */
   @Input({ required: true }) set orbital(o: OrbitalDef | null) {
     if (!o) return;
     this._orbital.set(o);
-    this.n.set(o.n);
   }
 
   /** Carga nuclear efetiva (1 = hidrogenoide puro). Escala o tamanho radial. */
   @Input() set zEff(v: number | null | undefined) {
     this._z.set(v && v > 0 ? v : 1);
   }
-
-  @Output() voltar = new EventEmitter<void>();
-  @Output() fechar = new EventEmitter<void>();
 
   // ── Referências de template ───────────────────────────────
   @ViewChild('palco', { static: true }) palcoRef!: ElementRef<HTMLDivElement>;
@@ -84,7 +78,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   sectionRef!: ElementRef<HTMLCanvasElement>;
 
   // ── Estado ────────────────────────────────────────────────
-  readonly n = signal(1);
   readonly modo = signal<ModoVisual>('solido');
   readonly escalaE = signal(3);
   readonly plano = signal<'XY' | 'XZ' | 'YZ'>('XY');
@@ -117,8 +110,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   readonly corTitulo = computed(() => COR_TITULO[this.grupo()]);
   readonly corPos = computed(() => PALETA_FASE[this.grupo()].pos);
   readonly corNeg = computed(() => PALETA_FASE[this.grupo()].neg);
-  readonly nMin = computed(() => this._orbital().l + 1);
-
   private readonly meta = computed<MetaOrbital>(() => {
     const o = this._orbital();
     return (
@@ -134,7 +125,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   });
   readonly qnRows = computed(() => {
     const orbital = this._orbital();
-    const n = this.n();
+    const n = orbital.n;
     return [
       ['n', String(n)],
       ['ℓ', String(orbital.l)],
@@ -148,7 +139,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     const l = this._orbital().l;
     const m = this.meta();
     return [
-      { rotulo: 'Momento angular ℓ', valor: String(l), texto: false },
       {
         rotulo: 'Orbitais na subcamada',
         valor: String(2 * l + 1),
@@ -156,24 +146,14 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
       },
       { rotulo: 'Orientação', valor: m.orientacao, texto: true },
       { rotulo: 'Forma', valor: m.forma, texto: true },
-      { rotulo: 'Máximo de elétrons', valor: '2 e⁻', texto: false },
-    ];
-  });
-
-  readonly linhasNos = computed(() => {
-    const l = this._orbital().l;
-    const n = this.n();
-    return [
-      { rotulo: 'Nós angulares', valor: String(l) },
-      { rotulo: 'Nós radiais', valor: String(Math.max(0, n - l - 1)) },
-      { rotulo: 'Total de nós', valor: String(n - 1) },
+      { rotulo: 'Elétrons por orbital', valor: '2 e⁻', texto: false },
     ];
   });
 
   /** Meia-aresta da caixa [a₀] (mesma regra usada para montar a grade). */
   readonly extensao = computed(() => {
     const o = this._orbital();
-    const mod = criarModeloOrbital(this.n(), o.l, o.m, this._z());
+    const mod = criarModeloOrbital(o.n, o.l, o.m, this._z());
     return this.meiaAresta(tabelaRadial(mod));
   });
 
@@ -239,14 +219,13 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   private sprite!: THREE.CanvasTexture;
 
   constructor(private readonly ngZone: NgZone) {
-    // 1) Reconstrói o modelo (campo + malhas) quando orbital, n ou Z mudam.
+    // 1) Reconstrói o modelo (campo + malhas) quando orbital ou Z mudam.
     effect(() => {
       const o = this._orbital();
-      const n = this.n();
       const z = this._z();
       if (!this.pronto()) return;
       untracked(() => {
-        this.construirModelo(o, n, z);
+        this.construirModelo(o, o.n, z);
         this.aplicarModo(this.modo(), this.escalaE());
       });
     });
@@ -262,7 +241,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     // 3) Gráfico da distribuição radial (2D, calculado aqui no frontend).
     effect(() => {
       this._orbital();
-      this.n();
       this._z();
       this.corTitulo();
       this.pronto();
@@ -271,7 +249,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
 
     effect(() => {
       this._orbital();
-      this.n();
       this._z();
       this.plano();
       this.offsetSecao();
@@ -642,7 +619,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
     if (!cssW || !cssH) return;
 
     const o = this._orbital();
-    const n = this.n();
+    const n = o.n;
     const mod = criarModeloOrbital(n, o.l, o.m, this._z());
     const tab = tabelaRadial(mod);
     const cor = this.corTitulo();
@@ -732,7 +709,7 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
 
     const orbital = this._orbital();
     const modelo = criarModeloOrbital(
-      this.n(),
+      orbital.n,
       orbital.l,
       orbital.m,
       this._z(),
@@ -809,10 +786,6 @@ export class OrbitalSurfaceViewerComponent implements AfterViewInit, OnDestroy {
   }
 
   // ── Handlers de template ──────────────────────────────────
-  aoMudarN(e: Event): void {
-    this.n.set(+(e.target as HTMLInputElement).value);
-  }
-
   aoMudarE(e: Event): void {
     this.escalaE.set(+(e.target as HTMLInputElement).value);
   }

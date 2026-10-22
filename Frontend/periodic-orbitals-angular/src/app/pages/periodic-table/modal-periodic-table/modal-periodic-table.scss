@@ -31,6 +31,18 @@
   }
 }
 
+.modal_container--orbitais .header_modal {
+  flex: 0 0 auto;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.modal_container--orbitais app-orbital-surface-viewer {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+
 .close-button {
   position: absolute;
   top: 24px;
