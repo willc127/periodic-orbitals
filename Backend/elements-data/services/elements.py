@@ -149,12 +149,12 @@ def _set_image_links(df: pd.DataFrame) -> None:
     )
     for name, template in image_templates.items():
         image_path = template.format(name=name.lower())
-        df.loc[df["name"] == name, "link_image"] = (
-            f"https://images-of-elements.com/{image_path}"
-        )
-    df.loc[df["atomic_number"] >= 104, "link_image"] = (
-        "https://images-of-elements.com/s/transactinoid.png"
-    )
+        df.loc[
+            df["name"] == name, "link_image"
+        ] = f"https://images-of-elements.com/{image_path}"
+    df.loc[
+        df["atomic_number"] >= 104, "link_image"
+    ] = "https://images-of-elements.com/s/transactinoid.png"
 
 
 def _format_electronic_configuration(value: object) -> object:

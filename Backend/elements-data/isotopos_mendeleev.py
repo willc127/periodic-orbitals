@@ -113,12 +113,27 @@ def converter_isotopo(
 
 # Fatores de conversão para segundos, usados apenas para o filtro de relevância abaixo.
 _SEGUNDOS_POR_UNIDADE = {
-    "asec": 1e-18, "fsec": 1e-15, "ysec": 1e-24, "zsec": 1e-21,
-    "psec": 1e-12, "nsec": 1e-9, "usec": 1e-6, "msec": 1e-3,
-    "sec": 1, "minute": 60, "hour": 3600, "day": 86400,
-    "year": 31557600, "kyear": 31557600e3, "Myear": 31557600e6,
-    "Gyear": 31557600e9, "Tyear": 31557600e12, "Pyear": 31557600e15,
-    "Eyear": 31557600e18, "Zyear": 31557600e21, "Yyear": 31557600e24,
+    "asec": 1e-18,
+    "fsec": 1e-15,
+    "ysec": 1e-24,
+    "zsec": 1e-21,
+    "psec": 1e-12,
+    "nsec": 1e-9,
+    "usec": 1e-6,
+    "msec": 1e-3,
+    "sec": 1,
+    "minute": 60,
+    "hour": 3600,
+    "day": 86400,
+    "year": 31557600,
+    "kyear": 31557600e3,
+    "Myear": 31557600e6,
+    "Gyear": 31557600e9,
+    "Tyear": 31557600e12,
+    "Pyear": 31557600e15,
+    "Eyear": 31557600e18,
+    "Zyear": 31557600e21,
+    "Yyear": 31557600e24,
 }
 
 LIMIAR_MEIA_VIDA_RELEVANTE_SEGUNDOS = 3600  # 1 hora
@@ -154,6 +169,8 @@ def converter_isotopos_elemento(
     apenas_relevantes: bool = True,
 ) -> list[IsotopoDados]:
     selecionados = (
-        [i for i in isotopos if isotopo_e_relevante(i)] if apenas_relevantes else isotopos
+        [i for i in isotopos if isotopo_e_relevante(i)]
+        if apenas_relevantes
+        else isotopos
     )
     return [converter_isotopo(i, simbolo_elemento) for i in selecionados]

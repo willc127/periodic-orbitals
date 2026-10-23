@@ -10,7 +10,7 @@ from astropy.table import Table
 
 warnings.filterwarnings("ignore")
 
-# * Busca e salva dados de linhas espectrais do NIST para os elementos listados em ALL_ELEMENTS 
+# * Busca e salva dados de linhas espectrais do NIST para os elementos listados em ALL_ELEMENTS
 
 ALL_ELEMENTS = [
     "H",
@@ -130,7 +130,7 @@ ALL_ELEMENTS = [
     "Mc",
     "Lv",
     "Ts",
-    "Og"
+    "Og",
 ]
 
 WL_MIN = 380
@@ -176,7 +176,9 @@ def fetch_element(symbol: str) -> list[dict]:
 def nist_spectra() -> None:
     parser = argparse.ArgumentParser(description="Busca espectros do NIST ASD")
     parser.add_argument("--elements", nargs="+", default=ALL_ELEMENTS)
-    parser.add_argument("--out", default="Backend/spectra_lines/data/spectral_lines.json")
+    parser.add_argument(
+        "--out", default="Backend/spectra_lines/data/spectral_lines.json"
+    )
     args = parser.parse_args()
 
     result: dict[str, list] = {}

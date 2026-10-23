@@ -62,6 +62,21 @@ python -m uvicorn main:app --reload
 
 O CORS permite atualmente o frontend em `http://localhost:4200`.
 
+## Formatação Python
+
+O Black está incluído em `Backend/requirements.txt`. Na raiz do repositório,
+formate os arquivos Python do backend com:
+
+```bash
+python -m black Backend
+```
+
+Para verificar a formatação sem alterar arquivos:
+
+```bash
+python -m black --check Backend
+```
+
 ## Endpoints
 
 Base local: `http://localhost:8000`.
