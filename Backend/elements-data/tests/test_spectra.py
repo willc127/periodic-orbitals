@@ -6,8 +6,8 @@ import pytest
 from fastapi import HTTPException
 from pytest import MonkeyPatch
 
-from api import cache as cache_api
-from api import spectra as spectra_api
+from api.endpoints import cache as cache_api
+from api.endpoints import spectra as spectra_api
 from services import spectra
 
 

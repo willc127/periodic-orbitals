@@ -14,7 +14,7 @@ from schemas_isotopos import DadosIsotoposElemento
 router = APIRouter(prefix="/api/elementos", tags=["isotopos"])
 
 # Cache separado por filtro para não reutilizar uma lista reduzida na consulta completa.
-CACHE_DIR = Path(__file__).resolve().parent / "cache" / "isotopos"
+CACHE_DIR = Path(__file__).resolve().parents[2] / "cache" / "isotopos"
 CACHE_TTL_DAYS = 30
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 

@@ -6,7 +6,7 @@ import pytest
 from fastapi import HTTPException
 from pytest import MonkeyPatch
 
-import router_isotopos
+from api.endpoints import isotopos as router_isotopos
 
 CACHED_RESPONSE = {
     "numeroAtomico": 26,

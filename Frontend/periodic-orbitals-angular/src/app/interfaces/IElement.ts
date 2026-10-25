@@ -35,6 +35,7 @@ export interface IElement {
   link?: string;
   link_nist?: string;
   link_imagem?: string;
+  link_imagem_fonte?: string;
   spectral_lines?: [number, number][];
   protons: number;
   neutrons: number;

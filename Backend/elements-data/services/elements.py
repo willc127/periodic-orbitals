@@ -14,6 +14,27 @@ ELEMENTS_FILE = DATA_DIR / "data" / "elements-data.json"
 ELEMENTS_META_FILE = DATA_DIR / "data" / "elements-data.meta.json"
 TTL_DAYS = 30
 
+IMAGE_TEMPLATES = {
+    "Uranium": "s/{name}.jpg",
+    "Technetium": "s/{name}.jpg",
+    "Rhodium": "s/{name}.jpg",
+    "Iodine": "{name}-2.jpg",
+    "Aluminum": "aluminium.jpg",
+    "Phosphorus": "red-{name}.jpg",
+    "Tin": "{name}-2.jpg",
+    "Cesium": "caesium-3.jpg",
+    "Thorium": None,
+    "Plutonium": "s/{name}.jpg",
+    "Americium": "s/{name}.jpg",
+    "Neptunium": "s/{name}.jpg",
+    "Einsteinium": "s/{name}-253.jpg",
+    "Californium": "s/{name}-disc.jpg",
+    "Fermium": "s/{name}.jpg",
+    "Mendelevium": "s/{name}.jpg",
+    "Rutherfordium": "s/{name}.jpg",
+}
+ELEMENT_PAGE_SLUGS = {"Aluminum": "aluminium", "Cesium": "caesium"}
+
 
 def _cache_is_valid() -> bool:
     if not ELEMENTS_FILE.exists():
@@ -45,8 +66,30 @@ def load_elements() -> list[dict[str, object]]:
     elements: list[dict[str, object]] = json.loads(
         ELEMENTS_FILE.read_text(encoding="utf-8")
     )
+    image_links_updated = False
     for element in elements:
         element.pop("spectral_lines", None)
+        name = element.get("name")
+        symbol = element.get("symbol")
+        atomic_number = element.get("atomic_number")
+        if (
+            isinstance(name, str)
+            and isinstance(symbol, str)
+            and isinstance(atomic_number, int)
+        ):
+            local_image_path = _local_image_path(symbol, atomic_number, name)
+            image_source_url = _image_page_url(name)
+            if (
+                element.get("link_image") != local_image_path
+                or element.get("link_image_source") != image_source_url
+            ):
+                image_links_updated = True
+                element["link_image"] = local_image_path
+                element["link_image_source"] = image_source_url
+    if image_links_updated:
+        ELEMENTS_FILE.write_text(
+            json.dumps(elements, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
     return elements
 
 
@@ -130,31 +173,40 @@ def _classify_group(series_id: int | None, symbol: str) -> str | None:
     }.get(series_id)
 
 
-def _set_image_links(df: pd.DataFrame) -> None:
-    image_templates = {
-        "Uranium": "s/{name}.jpg",
-        "Technetium": "s/{name}.jpg",
-        "Iodine": "{name}-2.jpg",
-        "Phosphorus": "red-{name}.jpg",
-        "Tin": "{name}-2.jpg",
-        "Cesium": "caesium-3.jpg",
-        "Neptunium": "s/{name}.jpg",
-        "Einsteinium": "s/{name}-235.jpg",
-        "Californium": "s/{name}-disc.jpg",
-        "Fermium": "s/{name}.jpg",
-        "Rutherfordium": "s/{name}.jpg",
-    }
-    df["link_image"] = df["name"].apply(
-        lambda name: f"https://images-of-elements.com/{str(name).lower()}.jpg"
-    )
-    for name, template in image_templates.items():
+def _source_image_url(name: str, atomic_number: int) -> str | None:
+    if atomic_number >= 104:
+        image_path = "s/transactinoid.png"
+    else:
+        template = IMAGE_TEMPLATES.get(name, "{name}.jpg")
+        if template is None:
+            return None
         image_path = template.format(name=name.lower())
-        df.loc[
-            df["name"] == name, "link_image"
-        ] = f"https://images-of-elements.com/{image_path}"
-    df.loc[
-        df["atomic_number"] >= 104, "link_image"
-    ] = "https://images-of-elements.com/s/transactinoid.png"
+    return f"https://images-of-elements.com/{image_path}"
+
+
+def _image_page_url(name: str) -> str:
+    slug = ELEMENT_PAGE_SLUGS.get(name, name.lower())
+    return f"https://images-of-elements.com/{slug}.php"
+
+
+def _local_image_path(symbol: str, atomic_number: int, name: str) -> str | None:
+    if name in IMAGE_TEMPLATES and IMAGE_TEMPLATES[name] is None:
+        return None
+    if atomic_number >= 104:
+        filename = "transactinoid.png"
+    else:
+        filename = f"{symbol.lower()}.jpg"
+    return f"/assets/elements/{filename}"
+
+
+def _set_image_links(df: pd.DataFrame) -> None:
+    df["link_image"] = [
+        _local_image_path(str(symbol), int(atomic_number), str(name))
+        for symbol, atomic_number, name in zip(
+            df["symbol"], df["atomic_number"], df["name"], strict=True
+        )
+    ]
+    df["link_image_source"] = df["name"].apply(lambda name: _image_page_url(str(name)))
 
 
 def _format_electronic_configuration(value: object) -> object:

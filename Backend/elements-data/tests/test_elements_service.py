@@ -62,6 +62,39 @@ def test_load_elements_removes_embedded_spectral_lines(
     elements.load_elements.cache_clear()
 
 
+def test_load_elements_updates_legacy_image_links(
+    monkeypatch: MonkeyPatch, tmp_path: Path
+) -> None:
+    data_file = tmp_path / "elements.json"
+    data_file.write_text(
+        json.dumps(
+            [
+                {
+                    "symbol": "Au",
+                    "name": "Gold",
+                    "atomic_number": 79,
+                    "link_image": "https://images-of-elements.com/gold.jpg",
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(elements, "ELEMENTS_FILE", data_file)
+    elements.load_elements.cache_clear()
+
+    assert elements.load_elements() == [
+        {
+            "symbol": "Au",
+            "name": "Gold",
+            "atomic_number": 79,
+            "link_image": "/assets/elements/au.jpg",
+            "link_image_source": "https://images-of-elements.com/gold.php",
+        }
+    ]
+    assert json.loads(data_file.read_text(encoding="utf-8")) == elements.load_elements()
+    elements.load_elements.cache_clear()
+
+
 def test_load_elements_raises_when_cache_file_is_missing(
     monkeypatch: MonkeyPatch, tmp_path: Path
 ) -> None:
@@ -123,17 +156,25 @@ def test_format_electronic_configuration(value: object, expected: object) -> Non
 def test_set_image_links_handles_default_overrides_and_superheavy_elements() -> None:
     frame = pd.DataFrame(
         {
-            "name": ["Gold", "Cesium", "Oganesson"],
-            "atomic_number": [79, 55, 118],
+            "symbol": ["Au", "Cs", "Th", "Og"],
+            "name": ["Gold", "Cesium", "Thorium", "Oganesson"],
+            "atomic_number": [79, 55, 90, 118],
         }
     )
 
     elements._set_image_links(frame)
 
-    assert frame["link_image"].tolist() == [
-        "https://images-of-elements.com/gold.jpg",
-        "https://images-of-elements.com/caesium-3.jpg",
-        "https://images-of-elements.com/s/transactinoid.png",
+    assert frame["link_image"].iloc[[0, 1, 3]].tolist() == [
+        "/assets/elements/au.jpg",
+        "/assets/elements/cs.jpg",
+        "/assets/elements/transactinoid.png",
+    ]
+    assert pd.isna(frame["link_image"].iloc[2])
+    assert frame["link_image_source"].tolist() == [
+        "https://images-of-elements.com/gold.php",
+        "https://images-of-elements.com/caesium.php",
+        "https://images-of-elements.com/thorium.php",
+        "https://images-of-elements.com/oganesson.php",
     ]
 
 
@@ -264,8 +305,9 @@ def test_fetch_and_save_transforms_and_persists_element_tables(
     assert by_symbol["La"]["period"] == 8
     assert by_symbol["Ac"]["type"] == "Actinide"
     assert by_symbol["Ac"]["period"] == 9
-    assert by_symbol["Og"]["link_image"] == (
-        "https://images-of-elements.com/s/transactinoid.png"
+    assert by_symbol["Og"]["link_image"] == "/assets/elements/transactinoid.png"
+    assert by_symbol["Og"]["link_image_source"] == (
+        "https://images-of-elements.com/oganesson.php"
     )
     assert data_file.exists()
     assert meta_file.exists()

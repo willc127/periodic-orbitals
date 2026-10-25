@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
   NgZone,
   ORBITALS,
-  Output,
   ViewChild,
   __async,
   __spreadProps,
@@ -41,8 +39,9 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
+  ɵɵtextInterpolate2,
   ɵɵviewQuery
-} from "./chunk-TUAFVZTS.js";
+} from "./chunk-RJBEOSQF.js";
 
 // node_modules/three/build/three.core.js
 var REVISION = "185";
@@ -12295,6 +12294,228 @@ var Frustum = class {
    */
   clone() {
     return new this.constructor().copy(this);
+  }
+};
+var LineBasicMaterial = class extends Material {
+  /**
+   * Constructs a new line basic material.
+   *
+   * @param {Object} [parameters] - An object with one or more properties
+   * defining the material's appearance. Any property of the material
+   * (including any property from inherited materials) can be passed
+   * in here. Color values can be passed any type of value accepted
+   * by {@link Color#set}.
+   */
+  constructor(parameters) {
+    super();
+    this.isLineBasicMaterial = true;
+    this.type = "LineBasicMaterial";
+    this.color = new Color(16777215);
+    this.map = null;
+    this.linewidth = 1;
+    this.linecap = "round";
+    this.linejoin = "round";
+    this.fog = true;
+    this.setValues(parameters);
+  }
+  copy(source) {
+    super.copy(source);
+    this.color.copy(source.color);
+    this.map = source.map;
+    this.linewidth = source.linewidth;
+    this.linecap = source.linecap;
+    this.linejoin = source.linejoin;
+    this.fog = source.fog;
+    return this;
+  }
+};
+var _vStart = /* @__PURE__ */ new Vector3();
+var _vEnd = /* @__PURE__ */ new Vector3();
+var _inverseMatrix$1 = /* @__PURE__ */ new Matrix4();
+var _ray$1 = /* @__PURE__ */ new Ray();
+var _sphere$1 = /* @__PURE__ */ new Sphere();
+var _intersectPointOnRay = /* @__PURE__ */ new Vector3();
+var _intersectPointOnSegment = /* @__PURE__ */ new Vector3();
+var Line = class extends Object3D {
+  /**
+   * Constructs a new line.
+   *
+   * @param {BufferGeometry} [geometry] - The line geometry.
+   * @param {Material|Array<Material>} [material] - The line material.
+   */
+  constructor(geometry = new BufferGeometry(), material = new LineBasicMaterial()) {
+    super();
+    this.isLine = true;
+    this.type = "Line";
+    this.geometry = geometry;
+    this.material = material;
+    this.morphTargetDictionary = void 0;
+    this.morphTargetInfluences = void 0;
+    this.updateMorphTargets();
+  }
+  copy(source, recursive) {
+    super.copy(source, recursive);
+    this.material = Array.isArray(source.material) ? source.material.slice() : source.material;
+    this.geometry = source.geometry;
+    return this;
+  }
+  /**
+   * Computes an array of distance values which are necessary for rendering dashed lines.
+   * For each vertex in the geometry, the method calculates the cumulative length from the
+   * current point to the very beginning of the line.
+   *
+   * @return {Line} A reference to this line.
+   */
+  computeLineDistances() {
+    const geometry = this.geometry;
+    if (geometry.index === null) {
+      const positionAttribute = geometry.attributes.position;
+      const lineDistances = [0];
+      for (let i = 1, l = positionAttribute.count; i < l; i++) {
+        _vStart.fromBufferAttribute(positionAttribute, i - 1);
+        _vEnd.fromBufferAttribute(positionAttribute, i);
+        lineDistances[i] = lineDistances[i - 1];
+        lineDistances[i] += _vStart.distanceTo(_vEnd);
+      }
+      geometry.setAttribute("lineDistance", new Float32BufferAttribute(lineDistances, 1));
+    } else {
+      warn("Line.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.");
+    }
+    return this;
+  }
+  /**
+   * Computes intersection points between a casted ray and this line.
+   *
+   * @param {Raycaster} raycaster - The raycaster.
+   * @param {Array<Object>} intersects - The target array that holds the intersection points.
+   */
+  raycast(raycaster, intersects) {
+    const geometry = this.geometry;
+    const matrixWorld = this.matrixWorld;
+    const threshold = raycaster.params.Line.threshold;
+    const drawRange = geometry.drawRange;
+    if (geometry.boundingSphere === null) geometry.computeBoundingSphere();
+    _sphere$1.copy(geometry.boundingSphere);
+    _sphere$1.applyMatrix4(matrixWorld);
+    _sphere$1.radius += threshold;
+    if (raycaster.ray.intersectsSphere(_sphere$1) === false) return;
+    _inverseMatrix$1.copy(matrixWorld).invert();
+    _ray$1.copy(raycaster.ray).applyMatrix4(_inverseMatrix$1);
+    const localThreshold = threshold / ((this.scale.x + this.scale.y + this.scale.z) / 3);
+    const localThresholdSq = localThreshold * localThreshold;
+    const step = this.isLineSegments ? 2 : 1;
+    const index = geometry.index;
+    const attributes = geometry.attributes;
+    const positionAttribute = attributes.position;
+    if (index !== null) {
+      const start = Math.max(0, drawRange.start);
+      const end = Math.min(index.count, drawRange.start + drawRange.count);
+      for (let i = start, l = end - 1; i < l; i += step) {
+        const a = index.getX(i);
+        const b = index.getX(i + 1);
+        const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b, i);
+        if (intersect) {
+          intersects.push(intersect);
+        }
+      }
+      if (this.isLineLoop) {
+        const a = index.getX(end - 1);
+        const b = index.getX(start);
+        const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b, end - 1);
+        if (intersect) {
+          intersects.push(intersect);
+        }
+      }
+    } else {
+      const start = Math.max(0, drawRange.start);
+      const end = Math.min(positionAttribute.count, drawRange.start + drawRange.count);
+      for (let i = start, l = end - 1; i < l; i += step) {
+        const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, i, i + 1, i);
+        if (intersect) {
+          intersects.push(intersect);
+        }
+      }
+      if (this.isLineLoop) {
+        const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, end - 1, start, end - 1);
+        if (intersect) {
+          intersects.push(intersect);
+        }
+      }
+    }
+  }
+  /**
+   * Sets the values of {@link Line#morphTargetDictionary} and {@link Line#morphTargetInfluences}
+   * to make sure existing morph targets can influence this 3D object.
+   */
+  updateMorphTargets() {
+    const geometry = this.geometry;
+    const morphAttributes = geometry.morphAttributes;
+    const keys = Object.keys(morphAttributes);
+    if (keys.length > 0) {
+      const morphAttribute = morphAttributes[keys[0]];
+      if (morphAttribute !== void 0) {
+        this.morphTargetInfluences = [];
+        this.morphTargetDictionary = {};
+        for (let m = 0, ml = morphAttribute.length; m < ml; m++) {
+          const name = morphAttribute[m].name || String(m);
+          this.morphTargetInfluences.push(0);
+          this.morphTargetDictionary[name] = m;
+        }
+      }
+    }
+  }
+};
+function checkIntersection(object, raycaster, ray, thresholdSq, a, b, i) {
+  const positionAttribute = object.geometry.attributes.position;
+  _vStart.fromBufferAttribute(positionAttribute, a);
+  _vEnd.fromBufferAttribute(positionAttribute, b);
+  const distSq = ray.distanceSqToSegment(_vStart, _vEnd, _intersectPointOnRay, _intersectPointOnSegment);
+  if (distSq > thresholdSq) return;
+  _intersectPointOnRay.applyMatrix4(object.matrixWorld);
+  const distance = raycaster.ray.origin.distanceTo(_intersectPointOnRay);
+  if (distance < raycaster.near || distance > raycaster.far) return;
+  return {
+    distance,
+    // What do we want? intersection point on the ray or on the segment??
+    // point: raycaster.ray.at( distance ),
+    point: _intersectPointOnSegment.clone().applyMatrix4(object.matrixWorld),
+    index: i,
+    face: null,
+    faceIndex: null,
+    barycoord: null,
+    object
+  };
+}
+var _start = /* @__PURE__ */ new Vector3();
+var _end = /* @__PURE__ */ new Vector3();
+var LineSegments = class extends Line {
+  /**
+   * Constructs a new line segments.
+   *
+   * @param {BufferGeometry} [geometry] - The line geometry.
+   * @param {Material|Array<Material>} [material] - The line material.
+   */
+  constructor(geometry, material) {
+    super(geometry, material);
+    this.isLineSegments = true;
+    this.type = "LineSegments";
+  }
+  computeLineDistances() {
+    const geometry = this.geometry;
+    if (geometry.index === null) {
+      const positionAttribute = geometry.attributes.position;
+      const lineDistances = [];
+      for (let i = 0, l = positionAttribute.count; i < l; i += 2) {
+        _start.fromBufferAttribute(positionAttribute, i);
+        _end.fromBufferAttribute(positionAttribute, i + 1);
+        lineDistances[i] = i === 0 ? 0 : lineDistances[i - 1];
+        lineDistances[i + 1] = lineDistances[i] + _start.distanceTo(_end);
+      }
+      geometry.setAttribute("lineDistance", new Float32BufferAttribute(lineDistances, 1));
+    } else {
+      warn("LineSegments.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.");
+    }
+    return this;
   }
 };
 var PointsMaterial = class extends Material {
@@ -27239,6 +27460,42 @@ function tabelaRadial(mod, passos = 2400) {
     acum[i] /= soma;
   return { r, p, acum, r995: raioParaProbabilidade(r, acum, 0.995) };
 }
+function tabelaRadialSecao(mod, plano, offset, rMax, limiarDensidade, passos = 1024, amostrasAngulares = 1024) {
+  const r = new Float64Array(passos + 1);
+  const p = new Float64Array(passos + 1);
+  const dr = rMax / passos;
+  const dPhi = 2 * Math.PI / amostrasAngulares;
+  const cosPhi = new Float64Array(amostrasAngulares);
+  const sinPhi = new Float64Array(amostrasAngulares);
+  for (let j = 0; j < amostrasAngulares; j++) {
+    const phi = j * dPhi;
+    cosPhi[j] = Math.cos(phi);
+    sinPhi[j] = Math.sin(phi);
+  }
+  for (let i = 0; i <= passos; i++) {
+    const rho = i * dr;
+    let densidadeAngular = 0;
+    for (let j = 0; j < amostrasAngulares; j++) {
+      const u = rho * cosPhi[j];
+      const v = rho * sinPhi[j];
+      const psi = plano === "XY" ? mod.psi(u, v, offset) : plano === "XZ" ? mod.psi(u, offset, v) : mod.psi(offset, u, v);
+      const densidade = psi * psi;
+      if (densidade >= limiarDensidade)
+        densidadeAngular += densidade;
+    }
+    r[i] = rho;
+    p[i] = rho * densidadeAngular * dPhi;
+  }
+  let integral = 0;
+  for (let i = 1; i <= passos; i++) {
+    integral += 0.5 * (p[i - 1] + p[i]) * dr;
+  }
+  if (integral > 0) {
+    for (let i = 0; i <= passos; i++)
+      p[i] /= integral;
+  }
+  return { r, p };
+}
 function raioParaProbabilidade(r, acum, u) {
   let lo = 0;
   let hi = acum.length - 1;
@@ -27458,7 +27715,7 @@ var _forTrack2 = ($index, $item) => $item.rotulo;
 function OrbitalSurfaceViewerComponent_For_13_Template(rf, ctx) {
   if (rf & 1) {
     const _r2 = \u0275\u0275getCurrentView();
-    \u0275\u0275domElementStart(0, "button", 58);
+    \u0275\u0275domElementStart(0, "button", 56);
     \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_For_13_Template_button_click_0_listener() {
       const m_r3 = \u0275\u0275restoreView(_r2).$implicit;
       const ctx_r3 = \u0275\u0275nextContext();
@@ -27476,17 +27733,17 @@ function OrbitalSurfaceViewerComponent_For_13_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", m_r3.rotulo, " ");
   }
 }
-function OrbitalSurfaceViewerComponent_Conditional_14_Template(rf, ctx) {
+function OrbitalSurfaceViewerComponent_Conditional_24_Template(rf, ctx) {
   if (rf & 1) {
     const _r5 = \u0275\u0275getCurrentView();
     \u0275\u0275domElementStart(0, "label", 13)(1, "span", 14)(2, "span");
     \u0275\u0275text(3, "Pontos");
     \u0275\u0275domElementEnd();
-    \u0275\u0275domElementStart(4, "span", 15);
+    \u0275\u0275domElementStart(4, "span", 16);
     \u0275\u0275text(5);
     \u0275\u0275domElementEnd()();
-    \u0275\u0275domElementStart(6, "input", 59);
-    \u0275\u0275domListener("input", function OrbitalSurfaceViewerComponent_Conditional_14_Template_input_input_6_listener($event) {
+    \u0275\u0275domElementStart(6, "input", 57);
+    \u0275\u0275domListener("input", function OrbitalSurfaceViewerComponent_Conditional_24_Template_input_input_6_listener($event) {
       \u0275\u0275restoreView(_r5);
       const ctx_r3 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r3.aoMudarE($event));
@@ -27501,12 +27758,12 @@ function OrbitalSurfaceViewerComponent_Conditional_14_Template(rf, ctx) {
     \u0275\u0275domProperty("value", ctx_r3.escalaE());
   }
 }
-function OrbitalSurfaceViewerComponent_For_45_Template(rf, ctx) {
+function OrbitalSurfaceViewerComponent_For_48_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275domElementStart(0, "div", 27)(1, "span", 28);
+    \u0275\u0275domElementStart(0, "div", 30)(1, "span", 31);
     \u0275\u0275text(2);
     \u0275\u0275domElementEnd();
-    \u0275\u0275domElementStart(3, "span", 29);
+    \u0275\u0275domElementStart(3, "span", 32);
     \u0275\u0275text(4);
     \u0275\u0275domElementEnd()();
   }
@@ -27518,11 +27775,11 @@ function OrbitalSurfaceViewerComponent_For_45_Template(rf, ctx) {
     \u0275\u0275textInterpolate(row_r6[1]);
   }
 }
-function OrbitalSurfaceViewerComponent_For_71_Template(rf, ctx) {
+function OrbitalSurfaceViewerComponent_For_74_Template(rf, ctx) {
   if (rf & 1) {
     const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275domElementStart(0, "button", 60);
-    \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_For_71_Template_button_click_0_listener() {
+    \u0275\u0275domElementStart(0, "button", 58);
+    \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_For_74_Template_button_click_0_listener() {
       const p_r8 = \u0275\u0275restoreView(_r7).$implicit;
       const ctx_r3 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r3.plano.set(p_r8));
@@ -27539,12 +27796,12 @@ function OrbitalSurfaceViewerComponent_For_71_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", p_r8, " ");
   }
 }
-function OrbitalSurfaceViewerComponent_For_90_Template(rf, ctx) {
+function OrbitalSurfaceViewerComponent_For_93_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275domElementStart(0, "div", 49)(1, "span", 61);
+    \u0275\u0275domElementStart(0, "div", 51)(1, "span", 59);
     \u0275\u0275text(2);
     \u0275\u0275domElementEnd();
-    \u0275\u0275domElementStart(3, "span", 62);
+    \u0275\u0275domElementStart(3, "span", 60);
     \u0275\u0275text(4);
     \u0275\u0275domElementEnd()();
   }
@@ -27556,65 +27813,50 @@ function OrbitalSurfaceViewerComponent_For_90_Template(rf, ctx) {
     \u0275\u0275textInterpolate(linha_r9.valor);
   }
 }
-function OrbitalSurfaceViewerComponent_For_92_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275domElementStart(0, "div", 49)(1, "span", 61);
-    \u0275\u0275text(2);
-    \u0275\u0275domElementEnd();
-    \u0275\u0275domElementStart(3, "span", 62);
-    \u0275\u0275text(4);
-    \u0275\u0275domElementEnd()();
-  }
-  if (rf & 2) {
-    const linha_r10 = ctx.$implicit;
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(linha_r10.rotulo);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(linha_r10.valor);
-  }
-}
-var FUNDO_SUPERFICIE = 1514276;
-var FUNDO_DENSIDADE = 328973;
+var FUNDO_SUPERFICIE = 460559;
+var FUNDO_DENSIDADE = 460559;
 var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
   ngZone;
   // ── Entradas / saídas ─────────────────────────────────────
   _orbital = signal(ORBITALS[0], ...ngDevMode ? [{ debugName: "_orbital" }] : []);
   _z = signal(1, ...ngDevMode ? [{ debugName: "_z" }] : []);
-  /** Orbital inicial (o slider N pode trocar o n depois). */
+  /** Orbital selecionado para visualização. */
   set orbital(o) {
     if (!o)
       return;
     this._orbital.set(o);
-    this.n.set(o.n);
   }
   /** Carga nuclear efetiva (1 = hidrogenoide puro). Escala o tamanho radial. */
   set zEff(v) {
     this._z.set(v && v > 0 ? v : 1);
   }
-  voltar = new EventEmitter();
-  fechar = new EventEmitter();
   // ── Referências de template ───────────────────────────────
   palcoRef;
   canvasRef;
   radialRef;
   sectionRef;
   // ── Estado ────────────────────────────────────────────────
-  n = signal(1, ...ngDevMode ? [{ debugName: "n" }] : []);
   modo = signal("solido", ...ngDevMode ? [{ debugName: "modo" }] : []);
   escalaE = signal(3, ...ngDevMode ? [{ debugName: "escalaE" }] : []);
+  probabilidadeSuperficie = signal(Math.round(MASSA_ISO * 100), ...ngDevMode ? [{ debugName: "probabilidadeSuperficie" }] : []);
   plano = signal("XY", ...ngDevMode ? [{ debugName: "plano" }] : []);
   offsetSecao = signal(0, ...ngDevMode ? [{ debugName: "offsetSecao" }] : []);
   mostrarPlanoCorte = signal(true, ...ngDevMode ? [{ debugName: "mostrarPlanoCorte" }] : []);
   autoRotacao = signal(typeof matchMedia === "function" ? !matchMedia("(prefers-reduced-motion: reduce)").matches : true, ...ngDevMode ? [{ debugName: "autoRotacao" }] : []);
   ajudaAberta = signal(false, ...ngDevMode ? [{ debugName: "ajudaAberta" }] : []);
   pronto = signal(false, ...ngDevMode ? [{ debugName: "pronto" }] : []);
+  limitesSuperficie = signal({ x: 0, y: 0, z: 0 }, ...ngDevMode ? [{ debugName: "limitesSuperficie" }] : []);
   modos = [
     { id: "densidade", rotulo: "Densidade" },
     { id: "solido", rotulo: "S\xF3lido" },
     { id: "translucido", rotulo: "Transl\xFAcido" }
   ];
   planos = ["XY", "XZ", "YZ"];
-  passoOffset = computed(() => Math.max(0.1, +(this.extensao() / 100).toFixed(1)), ...ngDevMode ? [{ debugName: "passoOffset" }] : []);
+  limiteOffset = computed(() => {
+    const eixo = this.eixoOffset();
+    return Math.max(this.limitesSuperficie()[eixo] * 1.05, 0.1);
+  }, ...ngDevMode ? [{ debugName: "limiteOffset" }] : []);
+  passoOffset = computed(() => Math.max(0.1, +(this.limiteOffset() / 100).toFixed(1)), ...ngDevMode ? [{ debugName: "passoOffset" }] : []);
   eixoOffset = computed(() => ({ XY: "z", XZ: "y", YZ: "x" })[this.plano()], ...ngDevMode ? [{ debugName: "eixoOffset" }] : []);
   // ── Derivados ─────────────────────────────────────────────
   grupo = computed(() => this._orbital().g, ...ngDevMode ? [{ debugName: "grupo" }] : []);
@@ -27622,7 +27864,6 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
   corTitulo = computed(() => COR_TITULO[this.grupo()], ...ngDevMode ? [{ debugName: "corTitulo" }] : []);
   corPos = computed(() => PALETA_FASE[this.grupo()].pos, ...ngDevMode ? [{ debugName: "corPos" }] : []);
   corNeg = computed(() => PALETA_FASE[this.grupo()].neg, ...ngDevMode ? [{ debugName: "corNeg" }] : []);
-  nMin = computed(() => this._orbital().l + 1, ...ngDevMode ? [{ debugName: "nMin" }] : []);
   meta = computed(() => {
     const o = this._orbital();
     return META_ORBITAL[`${o.l}:${o.m}`] ?? { sub: "", orientacao: "\u2014", forma: "\u2014" };
@@ -27635,7 +27876,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
   }, ...ngDevMode ? [{ debugName: "rotuloOrbital" }] : []);
   qnRows = computed(() => {
     const orbital = this._orbital();
-    const n = this.n();
+    const n = orbital.n;
     return [
       ["n", String(n)],
       ["\u2113", String(orbital.l)],
@@ -27648,7 +27889,6 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     const l = this._orbital().l;
     const m = this.meta();
     return [
-      { rotulo: "Momento angular \u2113", valor: String(l), texto: false },
       {
         rotulo: "Orbitais na subcamada",
         valor: String(2 * l + 1),
@@ -27656,22 +27896,13 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       },
       { rotulo: "Orienta\xE7\xE3o", valor: m.orientacao, texto: true },
       { rotulo: "Forma", valor: m.forma, texto: true },
-      { rotulo: "M\xE1ximo de el\xE9trons", valor: "2 e\u207B", texto: false }
+      { rotulo: "El\xE9trons por orbital", valor: "2 e\u207B", texto: false }
     ];
   }, ...ngDevMode ? [{ debugName: "linhasPrincipais" }] : []);
-  linhasNos = computed(() => {
-    const l = this._orbital().l;
-    const n = this.n();
-    return [
-      { rotulo: "N\xF3s angulares", valor: String(l) },
-      { rotulo: "N\xF3s radiais", valor: String(Math.max(0, n - l - 1)) },
-      { rotulo: "Total de n\xF3s", valor: String(n - 1) }
-    ];
-  }, ...ngDevMode ? [{ debugName: "linhasNos" }] : []);
   /** Meia-aresta da caixa [a₀] (mesma regra usada para montar a grade). */
   extensao = computed(() => {
     const o = this._orbital();
-    const mod = criarModeloOrbital(this.n(), o.l, o.m, this._z());
+    const mod = criarModeloOrbital(o.n, o.l, o.m, this._z());
     return this.meiaAresta(tabelaRadial(mod));
   }, ...ngDevMode ? [{ debugName: "extensao" }] : []);
   // ── Three.js (fora do Angular zone) ───────────────────────
@@ -27688,6 +27919,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
   raio = 30;
   grupoSuperficies = new Group();
   planoCorte = null;
+  linhaIntersecao = null;
   meshPos = null;
   meshNeg = null;
   nuvem = null;
@@ -27732,12 +27964,12 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     this.ngZone = ngZone;
     effect(() => {
       const o = this._orbital();
-      const n = this.n();
       const z = this._z();
+      this.probabilidadeSuperficie();
       if (!this.pronto())
         return;
       untracked(() => {
-        this.construirModelo(o, n, z);
+        this.construirModelo(o, o.n, z);
         this.aplicarModo(this.modo(), this.escalaE());
       });
     });
@@ -27750,25 +27982,27 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     });
     effect(() => {
       this._orbital();
-      this.n();
       this._z();
+      this.plano();
+      this.offsetSecao();
+      this.probabilidadeSuperficie();
       this.corTitulo();
       this.pronto();
       untracked(() => this.desenharRadial());
     });
     effect(() => {
       this._orbital();
-      this.n();
       this._z();
       this.plano();
       this.offsetSecao();
+      this.probabilidadeSuperficie();
       this.corPos();
       this.corNeg();
       this.pronto();
       untracked(() => this.desenharSecao());
     });
     effect(() => {
-      const limite = this.extensao();
+      const limite = this.limiteOffset();
       untracked(() => {
         this.offsetSecao.update((offset) => Math.min(limite, Math.max(-limite, offset)));
       });
@@ -27801,6 +28035,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     this.limpezas.forEach((fn) => fn());
     this.limparSuperficies();
     this.limparNuvem();
+    this.limparLinhaIntersecao();
     this.planoCorte?.geometry.dispose();
     this.planoCorte?.material.dispose();
     Object.values(this.mats).forEach((par) => {
@@ -27950,7 +28185,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     const passo = 2 * meio / (GRADE - 1);
     const escala = ESCALA_CENA / meio;
     const campo = amostrarCampo(mod, meio, GRADE);
-    const limiar = limiarProbabilidade(campo, MASSA_ISO);
+    const limiar = limiarProbabilidade(campo, this.probabilidadeSuperficie() / 100);
     const fPos = new Float32Array(campo.length);
     const fNeg = new Float32Array(campo.length);
     for (let i = 0; i < campo.length; i++) {
@@ -27959,12 +28194,14 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     }
     this.meshPos = this.criarMesh(extrairIsosuperficie(fPos, GRADE, -meio, passo, escala));
     this.meshNeg = this.criarMesh(extrairIsosuperficie(fNeg, GRADE, -meio, passo, escala));
+    this.limitesSuperficie.set(this.calcularLimitesSuperficie(escala));
     const paleta = PALETA_FASE[o.g];
     ["solido", "translucido"].forEach((k) => {
       this.mats[k].pos.color.set(paleta.pos);
       this.mats[k].neg.color.set(paleta.neg);
     });
     this.modelo = { versao: ++this.versao, mod, tab, escala, limiar };
+    this.atualizarPlanoCorte();
   }
   criarMesh(malha) {
     if (!malha)
@@ -27978,6 +28215,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     return mesh;
   }
   limparSuperficies() {
+    this.limparLinhaIntersecao();
     [this.meshPos, this.meshNeg].forEach((m) => {
       if (!m)
         return;
@@ -27985,6 +28223,25 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       m.geometry.dispose();
     });
     this.meshPos = this.meshNeg = null;
+  }
+  calcularLimitesSuperficie(escala) {
+    const limites = { x: 0, y: 0, z: 0 };
+    for (const mesh of [this.meshPos, this.meshNeg]) {
+      if (!mesh)
+        continue;
+      mesh.geometry.computeBoundingBox();
+      const caixa = mesh.geometry.boundingBox;
+      if (!caixa)
+        continue;
+      limites.x = Math.max(limites.x, Math.abs(caixa.min.x), Math.abs(caixa.max.x));
+      limites.y = Math.max(limites.y, Math.abs(caixa.min.y), Math.abs(caixa.max.y));
+      limites.z = Math.max(limites.z, Math.abs(caixa.min.z), Math.abs(caixa.max.z));
+    }
+    return {
+      x: limites.x / escala,
+      y: limites.y / escala,
+      z: limites.z / escala
+    };
   }
   limparNuvem() {
     if (this.nuvem) {
@@ -28016,7 +28273,77 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
         break;
     }
     plano.visible = this.mostrarPlanoCorte();
+    this.atualizarLinhaIntersecao(modelo, offset);
     this.sujo = true;
+  }
+  atualizarLinhaIntersecao(modelo, offset) {
+    this.limparLinhaIntersecao();
+    if (!this.mostrarPlanoCorte())
+      return;
+    const eixo = { XY: "z", XZ: "y", YZ: "x" }[this.plano()];
+    const segmentos = [this.meshPos, this.meshNeg].filter((mesh) => mesh !== null).flatMap((mesh) => this.intersecoesMalha(mesh, eixo, offset));
+    if (segmentos.length === 0)
+      return;
+    const geometry = new BufferGeometry();
+    geometry.setAttribute("position", new Float32BufferAttribute(segmentos, 3));
+    const material = new LineBasicMaterial({
+      color: 0,
+      transparent: true,
+      opacity: 0.78,
+      depthWrite: false
+    });
+    this.linhaIntersecao = new LineSegments(geometry, material);
+    this.linhaIntersecao.renderOrder = 4;
+    this.linhaIntersecao.visible = this.mostrarPlanoCorte();
+    this.grupoSuperficies.add(this.linhaIntersecao);
+    this.sujo = true;
+  }
+  intersecoesMalha(mesh, eixo, offset) {
+    const positions = mesh.geometry.getAttribute("position");
+    const index = mesh.geometry.getIndex();
+    const segmentos = [];
+    const ponto = (i) => new Vector3(positions.getX(i), positions.getY(i), positions.getZ(i));
+    const distancia = (p) => p[eixo] - offset;
+    const tolerancia = 1e-6;
+    const vertices = index?.array;
+    const total = vertices ? index.count : positions.count;
+    for (let i = 0; i + 2 < total; i += 3) {
+      const indices = vertices ? [vertices[i], vertices[i + 1], vertices[i + 2]] : [i, i + 1, i + 2];
+      const triangulo = indices.map(ponto);
+      const intersecoes = [];
+      const adicionar = (p) => {
+        if (!intersecoes.some((q) => q.distanceToSquared(p) < tolerancia ** 2)) {
+          intersecoes.push(p);
+        }
+      };
+      for (let edge = 0; edge < 3; edge++) {
+        const a = triangulo[edge];
+        const b = triangulo[(edge + 1) % 3];
+        const da = distancia(a);
+        const db = distancia(b);
+        if (Math.abs(da) <= tolerancia)
+          adicionar(a);
+        if (Math.abs(db) <= tolerancia)
+          adicionar(b);
+        if (da * db < 0) {
+          adicionar(a.clone().lerp(b, da / (da - db)));
+        }
+      }
+      if (intersecoes.length >= 2) {
+        segmentos.push(intersecoes[0].x, intersecoes[0].y, intersecoes[0].z, intersecoes[1].x, intersecoes[1].y, intersecoes[1].z);
+      }
+    }
+    return segmentos;
+  }
+  limparLinhaIntersecao() {
+    const linha = this.linhaIntersecao;
+    if (!linha)
+      return;
+    this.grupoSuperficies.remove(linha);
+    linha.geometry.dispose();
+    const materials = Array.isArray(linha.material) ? linha.material : [linha.material];
+    materials.forEach((material) => material.dispose());
+    this.linhaIntersecao = null;
   }
   // ── Modos: sólido | translúcido | densidade ───────────────
   aplicarModo(modo, e) {
@@ -28073,9 +28400,12 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     if (!cssW || !cssH)
       return;
     const o = this._orbital();
-    const n = this.n();
+    const n = o.n;
     const mod = criarModeloOrbital(n, o.l, o.m, this._z());
     const tab = tabelaRadial(mod);
+    const rPlot = tab.r995 * 1.1;
+    const limiarDensidade = (this.modelo?.limiar ?? 0) ** 2;
+    const secao = tabelaRadialSecao(mod, this.plano(), this.offsetSecao(), rPlot, limiarDensidade);
     const cor = this.corTitulo();
     const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
     canvas.width = Math.round(cssW * dpr);
@@ -28084,13 +28414,9 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cssW, cssH);
     const X0 = 30, X1 = cssW - 8, Y0 = cssH - 24, Y1 = 8;
-    const rPlot = tab.r995 * 1.1;
-    let fim = tab.r.length - 1;
-    while (fim > 0 && tab.r[fim] > rPlot)
-      fim--;
     let pMax = 1e-30;
-    for (let i = 0; i <= fim; i++)
-      pMax = Math.max(pMax, tab.p[i]);
+    for (const p of secao.p)
+      pMax = Math.max(pMax, p);
     const px = (r) => X0 + r / rPlot * (X1 - X0);
     const py = (p) => Y0 - p / pMax * (Y0 - Y1);
     ctx.strokeStyle = "rgba(255,255,255,0.11)";
@@ -28117,17 +28443,17 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       ctx.fillText(r.toFixed(r < 10 ? 1 : 0), px(r), Y0 + 5);
     }
     ctx.textAlign = "right";
-    ctx.fillText("r (a\u2080)", X1, cssH - 11);
+    ctx.fillText("\u03C1 (a\u2080)", X1, cssH - 11);
     const trilha = () => {
       ctx.beginPath();
-      for (let i = 0; i <= fim; i++) {
-        const x = px(tab.r[i]);
-        const y = py(tab.p[i]);
+      for (let i = 0; i < secao.r.length; i++) {
+        const x = px(secao.r[i]);
+        const y = py(secao.p[i]);
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
     };
     trilha();
-    ctx.lineTo(px(tab.r[fim]), Y0);
+    ctx.lineTo(px(secao.r[secao.r.length - 1]), Y0);
     ctx.lineTo(X0, Y0);
     ctx.closePath();
     const grad = ctx.createLinearGradient(0, Y1, 0, Y0);
@@ -28152,7 +28478,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     if (!cssW || !cssH)
       return;
     const orbital = this._orbital();
-    const modelo = criarModeloOrbital(this.n(), orbital.l, orbital.m, this._z());
+    const modelo = criarModeloOrbital(orbital.n, orbital.l, orbital.m, this._z());
     const offset = this.offsetSecao();
     const limiarDensidade = modeloCena.limiar * modeloCena.limiar;
     const meio = this.meiaAresta(tabelaRadial(modelo));
@@ -28213,11 +28539,14 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     return [value >> 16 & 255, value >> 8 & 255, value & 255];
   }
   // ── Handlers de template ──────────────────────────────────
-  aoMudarN(e) {
-    this.n.set(+e.target.value);
-  }
   aoMudarE(e) {
     this.escalaE.set(+e.target.value);
+  }
+  aoMudarProbabilidade(e) {
+    this.probabilidadeSuperficie.set(+e.target.value);
+  }
+  resetarProbabilidade() {
+    this.probabilidadeSuperficie.set(Math.round(MASSA_ISO * 100));
   }
   aoMudarOffset(e) {
     this.offsetSecao.set(+e.target.value);
@@ -28248,7 +28577,7 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.radialRef = _t.first);
       \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.sectionRef = _t.first);
     }
-  }, inputs: { orbital: "orbital", zEff: "zEff" }, outputs: { voltar: "voltar", fechar: "fechar" }, decls: 108, vars: 33, consts: [["radialCanvas", ""], ["sectionCanvas", ""], ["palco", ""], ["threeCanvas", ""], [1, "orb-root"], [1, "sidebar"], [1, "sidebar-header"], ["aria-hidden", "true", 1, "mdi", "mdi-atom-variant", "mdi-24px"], [1, "sidebar-title"], [1, "sidebar-sub"], [1, "section-label"], ["role", "group", "aria-label", "Modo 3D", 1, "mode-btns"], ["type", "button", 1, "mode-btn", 3, "mode-btn--active"], [1, "slider-wrap"], [1, "slider-header"], [1, "slider-val"], ["type", "range", "max", "7", "step", "1", "aria-label", "N\xFAmero qu\xE2ntico principal", 1, "slider", 3, "input", "min", "value"], [1, "section-label", "mt14"], [1, "phase-row"], [1, "phase-dot"], [1, "phase-dot", "ml8"], ["type", "button", "role", "switch", 1, "toggle-row", 3, "click"], [1, "toggle-track"], [1, "toggle-thumb"], [1, "toggle-label"], ["aria-label", "N\xFAmeros qu\xE2nticos", 1, "qn-box"], [1, "qn-orbital"], [1, "qn-row"], [1, "qn-key"], [1, "qn-val"], [1, "phase-legend"], [1, "main-area"], ["aria-label", "Distribui\xE7\xF5es do orbital", 1, "bottom-panels"], [1, "panel", "panel-radial"], [1, "panel-title"], ["aria-label", "Gr\xE1fico da probabilidade radial", 1, "panel-canvas", "radial-canvas"], [1, "panel-desc"], [1, "panel", "panel-section"], [1, "panel-heading"], ["role", "group", "aria-label", "Plano da se\xE7\xE3o transversal", 1, "plane-btns"], ["type", "button", 1, "plane-btn", 3, "plane-btn--active"], [1, "offset-control"], [1, "offset-value"], ["type", "button", "aria-label", "Resetar offset para zero", "title", "Resetar offset para zero", 1, "offset-reset", 3, "click", "disabled"], ["aria-hidden", "true", 1, "mdi", "mdi-restore"], ["type", "range", "aria-label", "Offset do plano de corte em a zero", 3, "input", "step", "value"], [1, "panel-canvas", "section-canvas"], [1, "panel", "panel-info"], [1, "info-list"], [1, "info-row"], ["aria-label", "Visualiza\xE7\xE3o tridimensional do orbital", 1, "canvas-wrap"], [1, "three-canvas"], [1, "canvas-label"], [1, "canvas-hint"], [1, "canvas-actions"], ["type", "button", "aria-label", "Voltar", 1, "btn-circ", 3, "click"], ["aria-hidden", "true"], ["type", "button", "aria-label", "Fechar", 1, "btn-circ", 3, "click"], ["type", "button", 1, "mode-btn", 3, "click"], ["type", "range", "min", "1", "max", "10", "step", "1", "aria-label", "Quantidade de pontos", 1, "slider", 3, "input", "value"], ["type", "button", 1, "plane-btn", 3, "click"], [1, "info-key"], [1, "info-value"]], template: function OrbitalSurfaceViewerComponent_Template(rf, ctx) {
+  }, inputs: { orbital: "orbital", zEff: "zEff" }, decls: 102, vars: 37, consts: [["radialCanvas", ""], ["sectionCanvas", ""], ["palco", ""], ["threeCanvas", ""], [1, "orb-root"], [1, "sidebar"], [1, "sidebar-header"], ["aria-hidden", "true", 1, "mdi", "mdi-atom-variant", "mdi-24px"], [1, "sidebar-title"], [1, "sidebar-sub"], [1, "section-label"], ["role", "group", "aria-label", "Modo 3D", 1, "mode-btns"], ["type", "button", 1, "mode-btn", 3, "mode-btn--active"], [1, "slider-wrap"], [1, "slider-header"], [1, "slider-value"], [1, "slider-val"], ["type", "button", "aria-label", "Resetar probabilidade para 90%", "title", "Resetar para 90%", 1, "offset-reset", 3, "click", "disabled"], ["aria-hidden", "true", 1, "mdi", "mdi-restore"], ["type", "range", "min", "50", "max", "99", "step", "1", "aria-label", "Probabilidade contida na superf\xEDcie do orbital", 1, "slider", 3, "change", "value"], [1, "section-label", "mt14"], [1, "phase-row"], [1, "phase-dot"], [1, "phase-dot", "ml8"], ["type", "button", "role", "switch", 1, "toggle-row", 3, "click"], [1, "toggle-track"], [1, "toggle-thumb"], [1, "toggle-label"], ["aria-label", "N\xFAmeros qu\xE2nticos", 1, "qn-box"], [1, "qn-orbital"], [1, "qn-row"], [1, "qn-key"], [1, "qn-val"], [1, "phase-legend"], [1, "main-area"], ["aria-label", "Distribui\xE7\xF5es do orbital", 1, "bottom-panels"], [1, "panel", "panel-radial"], [1, "panel-title"], [1, "panel-canvas", "radial-canvas"], [1, "panel-desc"], [1, "panel", "panel-section"], [1, "panel-heading"], ["role", "group", "aria-label", "Plano da se\xE7\xE3o transversal", 1, "plane-btns"], ["type", "button", 1, "plane-btn", 3, "plane-btn--active"], [1, "offset-control"], [1, "offset-value"], ["type", "button", "aria-label", "Resetar offset para zero", "title", "Resetar offset para zero", 1, "offset-reset", 3, "click", "disabled"], ["type", "range", "aria-label", "Offset do plano de corte em a zero", 3, "input", "step", "value"], [1, "panel-canvas", "section-canvas"], [1, "panel", "panel-info"], [1, "info-card-grid"], [1, "info-card"], ["aria-label", "Visualiza\xE7\xE3o tridimensional do orbital", 1, "canvas-wrap"], [1, "three-canvas"], [1, "canvas-label"], [1, "canvas-hint"], ["type", "button", 1, "mode-btn", 3, "click"], ["type", "range", "min", "1", "max", "10", "step", "1", "aria-label", "Quantidade de pontos", 1, "slider", 3, "input", "value"], ["type", "button", 1, "plane-btn", 3, "click"], [1, "info-key"], [1, "info-value"]], template: function OrbitalSurfaceViewerComponent_Template(rf, ctx) {
     if (rf & 1) {
       const _r1 = \u0275\u0275getCurrentView();
       \u0275\u0275domElementStart(0, "div", 4)(1, "aside", 5)(2, "header", 6);
@@ -28265,147 +28594,139 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       \u0275\u0275domElementStart(11, "div", 11);
       \u0275\u0275repeaterCreate(12, OrbitalSurfaceViewerComponent_For_13_Template, 2, 4, "button", 12, _forTrack0);
       \u0275\u0275domElementEnd();
-      \u0275\u0275conditionalCreate(14, OrbitalSurfaceViewerComponent_Conditional_14_Template, 7, 2, "label", 13);
-      \u0275\u0275domElementStart(15, "label", 13)(16, "span", 14)(17, "span");
-      \u0275\u0275text(18, "N\xFAmero qu\xE2ntico N");
+      \u0275\u0275domElementStart(14, "label", 13)(15, "span", 14)(16, "span");
+      \u0275\u0275text(17, "Probabilidade da superf\xEDcie");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(19, "span", 15);
+      \u0275\u0275domElementStart(18, "span", 15)(19, "span", 16);
       \u0275\u0275text(20);
-      \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(21, "input", 16);
-      \u0275\u0275domListener("input", function OrbitalSurfaceViewerComponent_Template_input_input_21_listener($event) {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(21, "button", 17);
+      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_21_listener() {
         \u0275\u0275restoreView(_r1);
-        return \u0275\u0275resetView(ctx.aoMudarN($event));
+        return \u0275\u0275resetView(ctx.resetarProbabilidade());
+      });
+      \u0275\u0275domElement(22, "span", 18);
+      \u0275\u0275domElementEnd()()();
+      \u0275\u0275domElementStart(23, "input", 19);
+      \u0275\u0275domListener("change", function OrbitalSurfaceViewerComponent_Template_input_change_23_listener($event) {
+        \u0275\u0275restoreView(_r1);
+        return \u0275\u0275resetView(ctx.aoMudarProbabilidade($event));
       });
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(22, "div", 17);
-      \u0275\u0275text(23, "Fase");
+      \u0275\u0275conditionalCreate(24, OrbitalSurfaceViewerComponent_Conditional_24_Template, 7, 2, "label", 13);
+      \u0275\u0275domElementStart(25, "div", 20);
+      \u0275\u0275text(26, "Fase");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(24, "div", 18);
-      \u0275\u0275domElement(25, "span", 19);
-      \u0275\u0275domElementStart(26, "span");
-      \u0275\u0275text(27, "\u03C8 > 0");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElement(28, "span", 20);
+      \u0275\u0275domElementStart(27, "div", 21);
+      \u0275\u0275domElement(28, "span", 22);
       \u0275\u0275domElementStart(29, "span");
-      \u0275\u0275text(30, "\u03C8 < 0");
+      \u0275\u0275text(30, "\u03C8 > 0");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElement(31, "span", 23);
+      \u0275\u0275domElementStart(32, "span");
+      \u0275\u0275text(33, "\u03C8 < 0");
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(31, "button", 21);
-      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_31_listener() {
+      \u0275\u0275domElementStart(34, "button", 24);
+      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_34_listener() {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.alternarRotacao());
       });
-      \u0275\u0275domElementStart(32, "span", 22);
-      \u0275\u0275domElement(33, "span", 23);
+      \u0275\u0275domElementStart(35, "span", 25);
+      \u0275\u0275domElement(36, "span", 26);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(34, "span", 24);
-      \u0275\u0275text(35, "Rota\xE7\xE3o autom\xE1tica");
+      \u0275\u0275domElementStart(37, "span", 27);
+      \u0275\u0275text(38, "Rota\xE7\xE3o autom\xE1tica");
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(36, "button", 21);
-      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_36_listener() {
+      \u0275\u0275domElementStart(39, "button", 24);
+      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_39_listener() {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.alternarPlanoCorte());
       });
-      \u0275\u0275domElementStart(37, "span", 22);
-      \u0275\u0275domElement(38, "span", 23);
+      \u0275\u0275domElementStart(40, "span", 25);
+      \u0275\u0275domElement(41, "span", 26);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(39, "span", 24);
-      \u0275\u0275text(40, "Plano de corte 3D");
+      \u0275\u0275domElementStart(42, "span", 27);
+      \u0275\u0275text(43, "Plano de corte 3D");
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(41, "section", 25)(42, "div", 26);
-      \u0275\u0275text(43);
+      \u0275\u0275domElementStart(44, "section", 28)(45, "div", 29);
+      \u0275\u0275text(46);
       \u0275\u0275domElementEnd();
-      \u0275\u0275repeaterCreate(44, OrbitalSurfaceViewerComponent_For_45_Template, 5, 2, "div", 27, _forTrack1);
-      \u0275\u0275domElementStart(46, "div", 27)(47, "span", 28);
-      \u0275\u0275text(48, "Caixa");
+      \u0275\u0275repeaterCreate(47, OrbitalSurfaceViewerComponent_For_48_Template, 5, 2, "div", 30, _forTrack1);
+      \u0275\u0275domElementStart(49, "div", 30)(50, "span", 31);
+      \u0275\u0275text(51, "Caixa");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(49, "span", 29);
-      \u0275\u0275text(50);
+      \u0275\u0275domElementStart(52, "span", 32);
+      \u0275\u0275text(53);
       \u0275\u0275domElementEnd()()();
-      \u0275\u0275domElementStart(51, "div", 30)(52, "span");
-      \u0275\u0275text(53, "Superf\xEDcie com aproximadamente 90% da probabilidade.");
+      \u0275\u0275domElementStart(54, "div", 33)(55, "span");
+      \u0275\u0275text(56);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(54, "span");
-      \u0275\u0275text(55, "Arraste para girar; use a roda para aproximar.");
+      \u0275\u0275domElementStart(57, "span");
+      \u0275\u0275text(58, "Arraste para girar; use a roda para aproximar.");
       \u0275\u0275domElementEnd()()();
-      \u0275\u0275domElementStart(56, "main", 31)(57, "section", 32)(58, "div", 33)(59, "h2", 34);
-      \u0275\u0275text(60, "Distribui\xE7\xE3o radial P(r)");
+      \u0275\u0275domElementStart(59, "main", 34)(60, "section", 35)(61, "div", 36)(62, "h2", 37);
+      \u0275\u0275text(63, "Distribui\xE7\xE3o radial na se\xE7\xE3o");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElement(61, "canvas", 35, 0);
-      \u0275\u0275domElementStart(63, "p", 36);
-      \u0275\u0275text(64, " Probabilidade de encontrar o el\xE9tron \xE0 dist\xE2ncia r (a\u2080). ");
+      \u0275\u0275domElement(64, "canvas", 38, 0);
+      \u0275\u0275domElementStart(66, "p", 39);
+      \u0275\u0275text(67);
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(65, "div", 37)(66, "div", 38)(67, "h2", 34);
-      \u0275\u0275text(68, "Se\xE7\xE3o transversal |\u03C8|\xB2");
+      \u0275\u0275domElementStart(68, "div", 40)(69, "div", 41)(70, "h2", 37);
+      \u0275\u0275text(71, "Se\xE7\xE3o transversal |\u03C8|\xB2");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(69, "div", 39);
-      \u0275\u0275repeaterCreate(70, OrbitalSurfaceViewerComponent_For_71_Template, 2, 4, "button", 40, \u0275\u0275repeaterTrackByIdentity);
+      \u0275\u0275domElementStart(72, "div", 42);
+      \u0275\u0275repeaterCreate(73, OrbitalSurfaceViewerComponent_For_74_Template, 2, 4, "button", 43, \u0275\u0275repeaterTrackByIdentity);
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(72, "label", 41)(73, "span");
-      \u0275\u0275text(74);
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(75, "span", 42)(76, "output");
+      \u0275\u0275domElementStart(75, "label", 44)(76, "span");
       \u0275\u0275text(77);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(78, "button", 43);
-      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_78_listener() {
+      \u0275\u0275domElementStart(78, "span", 45)(79, "output");
+      \u0275\u0275text(80);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(81, "button", 46);
+      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_81_listener() {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.resetarOffset());
       });
-      \u0275\u0275domElement(79, "span", 44);
+      \u0275\u0275domElement(82, "span", 18);
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(80, "input", 45);
-      \u0275\u0275domListener("input", function OrbitalSurfaceViewerComponent_Template_input_input_80_listener($event) {
+      \u0275\u0275domElementStart(83, "input", 47);
+      \u0275\u0275domListener("input", function OrbitalSurfaceViewerComponent_Template_input_input_83_listener($event) {
         \u0275\u0275restoreView(_r1);
         return \u0275\u0275resetView(ctx.aoMudarOffset($event));
       });
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElement(81, "canvas", 46, 1);
-      \u0275\u0275domElementStart(83, "p", 36);
-      \u0275\u0275text(84, " Intensidade representa |\u03C8|\xB2; cores distinguem as fases. ");
+      \u0275\u0275domElement(84, "canvas", 48, 1);
+      \u0275\u0275domElementStart(86, "p", 39);
+      \u0275\u0275text(87, " Intensidade representa |\u03C8|\xB2; cores distinguem as fases. ");
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(85, "div", 47)(86, "h2", 34);
-      \u0275\u0275text(87, "Sobre o orbital");
+      \u0275\u0275domElementStart(88, "div", 49)(89, "h2", 37);
+      \u0275\u0275text(90, "Sobre o orbital");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(88, "div", 48);
-      \u0275\u0275repeaterCreate(89, OrbitalSurfaceViewerComponent_For_90_Template, 5, 2, "div", 49, _forTrack2);
-      \u0275\u0275repeaterCreate(91, OrbitalSurfaceViewerComponent_For_92_Template, 5, 2, "div", 49, _forTrack2);
+      \u0275\u0275domElementStart(91, "div", 50);
+      \u0275\u0275repeaterCreate(92, OrbitalSurfaceViewerComponent_For_93_Template, 5, 2, "div", 51, _forTrack2);
       \u0275\u0275domElementEnd()()();
-      \u0275\u0275domElementStart(93, "section", 50, 2);
-      \u0275\u0275domElement(95, "canvas", 51, 3);
-      \u0275\u0275domElementStart(97, "div", 52);
-      \u0275\u0275text(98);
+      \u0275\u0275domElementStart(94, "section", 52, 2);
+      \u0275\u0275domElement(96, "canvas", 53, 3);
+      \u0275\u0275domElementStart(98, "div", 54);
+      \u0275\u0275text(99);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(99, "div", 53);
-      \u0275\u0275text(100, "Arraste \xB7 Scroll para zoom");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(101, "div", 54)(102, "button", 55);
-      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_102_listener() {
-        \u0275\u0275restoreView(_r1);
-        return \u0275\u0275resetView(ctx.voltar.emit());
-      });
-      \u0275\u0275domElementStart(103, "span", 56);
-      \u0275\u0275text(104, "\u2039");
-      \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(105, "button", 57);
-      \u0275\u0275domListener("click", function OrbitalSurfaceViewerComponent_Template_button_click_105_listener() {
-        \u0275\u0275restoreView(_r1);
-        return \u0275\u0275resetView(ctx.fechar.emit());
-      });
-      \u0275\u0275domElementStart(106, "span", 56);
-      \u0275\u0275text(107, "\xD7");
-      \u0275\u0275domElementEnd()()()()()();
+      \u0275\u0275domElementStart(100, "div", 55);
+      \u0275\u0275text(101, "Arraste \xB7 Scroll para zoom");
+      \u0275\u0275domElementEnd()()()();
     }
     if (rf & 2) {
       \u0275\u0275styleProp("--gc", ctx.corTitulo());
       \u0275\u0275advance(12);
       \u0275\u0275repeater(ctx.modos);
-      \u0275\u0275advance(2);
-      \u0275\u0275conditional(ctx.modo() === "densidade" ? 14 : -1);
-      \u0275\u0275advance(6);
-      \u0275\u0275textInterpolate(ctx.n());
+      \u0275\u0275advance(8);
+      \u0275\u0275textInterpolate1("", ctx.probabilidadeSuperficie(), "%");
       \u0275\u0275advance();
-      \u0275\u0275domProperty("min", ctx.nMin())("value", ctx.n());
+      \u0275\u0275domProperty("disabled", ctx.probabilidadeSuperficie() === 90);
+      \u0275\u0275advance(2);
+      \u0275\u0275domProperty("value", ctx.probabilidadeSuperficie());
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.modo() === "densidade" ? 24 : -1);
       \u0275\u0275advance(4);
       \u0275\u0275styleProp("background", ctx.corPos());
       \u0275\u0275advance(3);
@@ -28430,7 +28751,13 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       \u0275\u0275repeater(ctx.qnRows());
       \u0275\u0275advance(6);
       \u0275\u0275textInterpolate1("\xB1", ctx.extensao().toFixed(1), " a\u2080");
-      \u0275\u0275advance(20);
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate1("Superf\xEDcie com aproximadamente ", ctx.probabilidadeSuperficie(), "% da probabilidade.");
+      \u0275\u0275advance(8);
+      \u0275\u0275attribute("aria-label", "Distribui\xE7\xE3o radial da se\xE7\xE3o " + ctx.plano() + ", offset " + ctx.offsetSecao().toFixed(1) + " a\u2080");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate2(" Distribui\xE7\xE3o normalizada em an\xE9is de raio \u03C1 no plano ", ctx.plano(), " (offset ", ctx.offsetSecao().toFixed(1), " a\u2080). ");
+      \u0275\u0275advance(6);
       \u0275\u0275repeater(ctx.planos);
       \u0275\u0275advance(4);
       \u0275\u0275textInterpolate1("Offset ", ctx.eixoOffset());
@@ -28440,17 +28767,15 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       \u0275\u0275domProperty("disabled", ctx.offsetSecao() === 0);
       \u0275\u0275advance(2);
       \u0275\u0275domProperty("step", ctx.passoOffset())("value", ctx.offsetSecao());
-      \u0275\u0275attribute("min", -ctx.extensao())("max", ctx.extensao());
+      \u0275\u0275attribute("min", -ctx.limiteOffset())("max", ctx.limiteOffset());
       \u0275\u0275advance();
       \u0275\u0275attribute("aria-label", "Mapa de densidade no plano " + ctx.plano());
       \u0275\u0275advance(8);
       \u0275\u0275repeater(ctx.linhasPrincipais());
-      \u0275\u0275advance(2);
-      \u0275\u0275repeater(ctx.linhasNos());
       \u0275\u0275advance(7);
       \u0275\u0275textInterpolate(ctx.rotuloOrbital());
     }
-  }, styles: ['@charset "UTF-8";\n\n\n\n[_nghost-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  min-height: 0;\n}\n.vo[_ngcontent-%COMP%] {\n  --fundo-modal: #12151d;\n  --fundo-topo: #1a1e28;\n  --fundo-cartao: #1a1f2b;\n  --texto: #eef2f8;\n  --texto-suave: #a9b3c6;\n  --linha: rgba(255, 255, 255, 0.09);\n  display: grid;\n  grid-template-columns: clamp(320px, 33%, 600px) minmax(0, 1fr);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  border-radius: 28px;\n  background: var(--fundo-modal);\n  color: var(--texto);\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.painel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  background: #0f121a;\n}\n.painel-topo[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 2.5rem;\n  padding: 0.9rem 3rem;\n  background: var(--fundo-topo);\n  border-bottom: 1px solid var(--linha);\n}\n.painel-letra[_ngcontent-%COMP%] {\n  font-size: 4rem;\n  font-weight: 800;\n  line-height: 1;\n  letter-spacing: -0.02em;\n}\n.painel-formula[_ngcontent-%COMP%] {\n  font-family:\n    "Cambria",\n    "Georgia",\n    serif;\n  font-style: italic;\n  font-size: 2rem;\n  line-height: 1;\n}\n.painel-formula[_ngcontent-%COMP%]   sub[_ngcontent-%COMP%], \n.painel-formula[_ngcontent-%COMP%]   sup[_ngcontent-%COMP%] {\n  font-size: 0.6em;\n}\n.painel-corpo[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 3rem 3.1rem;\n  scrollbar-width: thin;\n  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;\n}\n.cartao[_ngcontent-%COMP%] {\n  padding: 1.1rem 1.5rem 0.6rem;\n  border-radius: 28px;\n  background: var(--fundo-cartao);\n}\n.linha[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.62rem 0;\n}\n.linha-rotulo[_ngcontent-%COMP%] {\n  font-size: 0.8rem;\n  font-weight: 600;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: var(--texto-suave);\n}\n.linha-valor[_ngcontent-%COMP%] {\n  font-size: 1.55rem;\n  font-weight: 700;\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.linha-valor--texto[_ngcontent-%COMP%] {\n  font-size: 1.35rem;\n}\n.divisor[_ngcontent-%COMP%] {\n  margin: 0.45rem 0;\n  border: 0;\n  height: 1px;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      var(--linha) 15%,\n      var(--linha) 85%,\n      transparent);\n}\n.acordeao[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.9rem 0.2rem;\n  border: 0;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.82rem;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  cursor: pointer;\n  border-radius: 12px;\n}\n.acordeao[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.acordeao-seta[_ngcontent-%COMP%] {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  transition: transform 0.25s ease;\n}\n.acordeao-seta--aberta[_ngcontent-%COMP%] {\n  transform: rotate(180deg);\n}\n.radial[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-rows: 0fr;\n  transition: grid-template-rows 0.28s ease;\n}\n.radial--aberto[_ngcontent-%COMP%] {\n  grid-template-rows: 1fr;\n}\n.radial-interno[_ngcontent-%COMP%] {\n  min-height: 0;\n  overflow: hidden;\n}\n.radial-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 150px;\n}\n.radial-legenda[_ngcontent-%COMP%] {\n  margin: 0.2rem 0 0.9rem;\n  font-size: 0.72rem;\n  line-height: 1.4;\n  color: rgba(255, 255, 255, 0.38);\n}\n.palco[_ngcontent-%COMP%] {\n  position: relative;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  background: #171b24;\n  transition: background 0.25s ease;\n}\n.palco--densidade[_ngcontent-%COMP%] {\n  background: #05050d;\n}\n.palco-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n  cursor: grab;\n}\n.palco-canvas[_ngcontent-%COMP%]:active {\n  cursor: grabbing;\n}\n.palco-medida[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 18px;\n  left: 22px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.72rem;\n  color: rgba(120, 160, 210, 0.7);\n  pointer-events: none;\n}\n.palco-topo[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 22px;\n  right: 24px;\n  display: flex;\n  gap: 10px;\n}\n.btn-circ[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center;\n  width: 50px;\n  height: 50px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 50%;\n  background: rgba(36, 41, 54, 0.85);\n  color: var(--texto);\n  font: inherit;\n  font-size: 1.35rem;\n  font-weight: 800;\n  cursor: pointer;\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n  transition: background 0.15s ease;\n}\n.btn-circ[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2.2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n}\n.btn-circ[_ngcontent-%COMP%]:hover {\n  background: rgba(56, 63, 82, 0.95);\n}\n.btn-ajuda[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 24px;\n  bottom: 22px;\n}\n.ctrl-sliders[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 34px;\n  bottom: 22px;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  width: 240px;\n  padding: 16px 18px;\n  border-radius: 26px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.ctrl-linha[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.ctrl-rotulo[_ngcontent-%COMP%] {\n  min-width: 36px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.82rem;\n  font-weight: 700;\n  color: var(--texto-suave);\n}\n.slider[_ngcontent-%COMP%] {\n  flex: 1;\n  height: 4px;\n  -webkit-appearance: none;\n  appearance: none;\n  border-radius: 2px;\n  background: rgba(255, 255, 255, 0.18);\n  outline: none;\n  cursor: pointer;\n}\n.slider[_ngcontent-%COMP%]::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #f2f4f8;\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);\n}\n.slider[_ngcontent-%COMP%]::-moz-range-thumb {\n  width: 18px;\n  height: 18px;\n  border: 0;\n  border-radius: 50%;\n  background: #f2f4f8;\n}\n.slider[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 6px;\n}\n.ctrl-modos[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 50%;\n  bottom: 22px;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  padding: 6px;\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.btn-pausa[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  border: 0;\n  border-radius: 50%;\n  background: none;\n  color: var(--texto-suave);\n  cursor: pointer;\n}\n.btn-pausa[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]   path[_ngcontent-%COMP%] {\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-linecap: round;\n  fill: none;\n}\n.btn-pausa[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]   path.cheio[_ngcontent-%COMP%] {\n  fill: currentColor;\n  stroke-linejoin: round;\n}\n.btn-pausa[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.segmentos[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n  padding: 4px;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.04);\n}\n.segmento[_ngcontent-%COMP%] {\n  padding: 0.65rem 1.25rem;\n  border: 0;\n  border-radius: 999px;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.98rem;\n  font-weight: 600;\n  cursor: pointer;\n  transition: background 0.15s ease, color 0.15s ease;\n}\n.segmento[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.segmento--ativo[_ngcontent-%COMP%] {\n  background: #333948;\n  color: #fff;\n}\n.btn-pausa[_ngcontent-%COMP%]:focus-visible, \n.segmento[_ngcontent-%COMP%]:focus-visible, \n.btn-circ[_ngcontent-%COMP%]:focus-visible, \n.acordeao[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 2px;\n}\n.ajuda[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 24px;\n  bottom: 86px;\n  width: min(320px, 100% - 48px);\n  padding: 16px 18px;\n  border-radius: 20px;\n  border: 1px solid rgba(255, 255, 255, 0.09);\n  background: rgba(24, 28, 38, 0.96);\n  font-size: 0.85rem;\n  line-height: 1.5;\n  color: var(--texto-suave);\n}\n.ajuda[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 0.55rem;\n}\n.ajuda[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.ajuda[_ngcontent-%COMP%]   b[_ngcontent-%COMP%] {\n  color: var(--texto);\n}\n.ajuda-fases[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 18px;\n  margin-bottom: 0.7rem;\n  color: var(--texto);\n}\n.fase[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n.fase[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n}\n@media (max-width: 820px) {\n  .vo[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(0, 40%) minmax(0, 1fr);\n  }\n  .painel-topo[_ngcontent-%COMP%] {\n    padding: 0.5rem 1.4rem;\n    gap: 1.4rem;\n  }\n  .painel-letra[_ngcontent-%COMP%] {\n    font-size: 2.6rem;\n  }\n  .painel-corpo[_ngcontent-%COMP%] {\n    padding: 1rem 1.2rem;\n  }\n  .ctrl-sliders[_ngcontent-%COMP%] {\n    left: 12px;\n    bottom: 84px;\n    width: 200px;\n  }\n  .ctrl-modos[_ngcontent-%COMP%] {\n    bottom: 14px;\n  }\n  .segmento[_ngcontent-%COMP%] {\n    padding: 0.55rem 0.8rem;\n    font-size: 0.85rem;\n  }\n  .btn-ajuda[_ngcontent-%COMP%] {\n    right: 12px;\n    bottom: 84px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .radial[_ngcontent-%COMP%], \n   .acordeao-seta[_ngcontent-%COMP%], \n   .palco[_ngcontent-%COMP%] {\n    transition: none;\n  }\n}\n[_nghost-%COMP%] {\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.orb-root[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  border-radius: 6px;\n  background: #07070f;\n  color: #dde8f2;\n}\n.sidebar[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 0 0 242px;\n  flex-direction: column;\n  gap: 0;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 14px 12px;\n  background: #0c0c18;\n  font-size: 12px;\n  scrollbar-color: rgba(79, 163, 227, 0.2) transparent;\n  scrollbar-width: thin;\n}\n.sidebar-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  margin-bottom: 18px;\n}\n.sidebar-header[_ngcontent-%COMP%]   .mdi[_ngcontent-%COMP%] {\n  color: #4fa3e3;\n  font-size: 24px;\n}\n.sidebar-title[_ngcontent-%COMP%] {\n  color: #4fa3e3;\n  font-size: 12px;\n  font-weight: 700;\n}\n.sidebar-sub[_ngcontent-%COMP%] {\n  margin-top: 1px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n}\n.section-label[_ngcontent-%COMP%], \n.panel-title[_ngcontent-%COMP%] {\n  margin: 0 0 6px;\n  color: rgba(79, 163, 227, 0.62);\n  font-size: 9px;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\n.mt14[_ngcontent-%COMP%] {\n  margin-top: 14px;\n}\n.mode-btns[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 5px;\n  margin-bottom: 10px;\n}\n.mode-btn[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n  padding: 7px 4px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 5px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.55);\n  cursor: pointer;\n  font: inherit;\n  font-size: 10px;\n  transition: background 0.13s ease, color 0.13s ease;\n}\n.mode-btn[_ngcontent-%COMP%]:hover, \n.mode-btn--active[_ngcontent-%COMP%] {\n  border-color: var(--gc);\n  background: color-mix(in srgb, var(--gc) 16%, transparent);\n  color: var(--gc);\n}\n.slider-wrap[_ngcontent-%COMP%] {\n  display: block;\n  margin-bottom: 9px;\n}\n.slider-header[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 5px;\n  color: rgba(255, 255, 255, 0.48);\n  font-size: 10px;\n}\n.slider-val[_ngcontent-%COMP%] {\n  color: rgba(79, 163, 227, 0.8);\n  font-variant-numeric: tabular-nums;\n}\n.slider[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 4px;\n  border-radius: 2px;\n  background: rgba(79, 163, 227, 0.2);\n}\n.slider[_ngcontent-%COMP%]::-webkit-slider-thumb {\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.slider[_ngcontent-%COMP%]::-moz-range-thumb {\n  width: 13px;\n  height: 13px;\n  border: 0;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.phase-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  margin-bottom: 12px;\n  color: rgba(255, 255, 255, 0.56);\n  font-size: 10px;\n}\n.phase-dot[_ngcontent-%COMP%] {\n  width: 9px;\n  height: 9px;\n  flex: 0 0 9px;\n  border-radius: 50%;\n}\n.ml8[_ngcontent-%COMP%] {\n  margin-left: 7px;\n}\n.toggle-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin: 0 0 9px;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  text-align: left;\n}\n.toggle-track[_ngcontent-%COMP%] {\n  position: relative;\n  width: 28px;\n  height: 15px;\n  flex: 0 0 28px;\n  border-radius: 8px;\n  background: rgba(255, 255, 255, 0.12);\n}\n.toggle-track--on[_ngcontent-%COMP%] {\n  background: rgba(79, 163, 227, 0.45);\n}\n.toggle-thumb[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 2px;\n  left: 2px;\n  width: 11px;\n  height: 11px;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transition: transform 0.2s ease, background 0.2s ease;\n}\n.toggle-thumb--on[_ngcontent-%COMP%] {\n  transform: translateX(13px);\n  background: #4fa3e3;\n}\n.toggle-label[_ngcontent-%COMP%] {\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 10px;\n}\n.qn-box[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px;\n  border: 1px solid rgba(79, 163, 227, 0.12);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.qn-orbital[_ngcontent-%COMP%] {\n  margin-bottom: 8px;\n  font-size: 16px;\n  font-weight: 700;\n}\n.qn-row[_ngcontent-%COMP%], \n.info-row[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 5px;\n  font-size: 10px;\n}\n.qn-row[_ngcontent-%COMP%]:last-child, \n.info-row[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.qn-key[_ngcontent-%COMP%], \n.info-key[_ngcontent-%COMP%] {\n  color: rgba(79, 163, 227, 0.68);\n  font-weight: 600;\n}\n.qn-val[_ngcontent-%COMP%], \n.info-value[_ngcontent-%COMP%] {\n  color: rgba(255, 255, 255, 0.8);\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.phase-legend[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 6px;\n  margin-top: 12px;\n  padding-top: 10px;\n  border-top: 1px solid rgba(255, 255, 255, 0.06);\n  color: rgba(255, 255, 255, 0.36);\n  font-size: 9px;\n  line-height: 1.45;\n}\n.main-area[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.bottom-panels[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  min-width: 220px;\n  min-height: 0;\n  overflow-y: auto;\n  border-right: 1px solid rgba(255, 255, 255, 0.06);\n  scrollbar-width: thin;\n}\n.panel[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 0 170px;\n  flex-direction: column;\n  min-height: 0;\n  padding: 10px 14px;\n  border-bottom: 1px solid rgba(79, 163, 227, 0.1);\n}\n.panel-radial[_ngcontent-%COMP%], \n.panel-section[_ngcontent-%COMP%] {\n  min-height: 190px;\n}\n.panel-section[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 280px;\n}\n.panel-heading[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n}\n.offset-control[_ngcontent-%COMP%] {\n  display: grid;\n  align-items: center;\n  gap: 4px 8px;\n  margin: 2px 0 5px;\n  color: rgba(255, 255, 255, 0.6);\n  font-size: 9px;\n}\n.offset-control[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n}\n.offset-value[_ngcontent-%COMP%] {\n  align-items: center;\n  gap: 4px;\n}\n.offset-reset[_ngcontent-%COMP%] {\n  display: grid;\n  width: 20px;\n  height: 20px;\n  place-items: center;\n  padding: 0;\n  border: 0;\n  border-radius: 4px;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.65);\n  cursor: pointer;\n}\n.offset-reset[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background: rgba(79, 163, 227, 0.14);\n  color: #4fa3e3;\n}\n.offset-reset[_ngcontent-%COMP%]:disabled {\n  color: rgba(255, 255, 255, 0.25);\n  cursor: default;\n}\n.offset-reset[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 1px;\n}\n.offset-control[_ngcontent-%COMP%]   output[_ngcontent-%COMP%] {\n  color: #fff;\n  font-variant-numeric: tabular-nums;\n}\n.offset-control[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 3px;\n  accent-color: #4fa3e3;\n}\n.panel-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  min-height: 0;\n  flex: 1 1 auto;\n  border-radius: 4px;\n}\n.radial-canvas[_ngcontent-%COMP%] {\n  min-height: 125px;\n}\n.section-canvas[_ngcontent-%COMP%] {\n  width: min(100%, 160px);\n  height: auto;\n  min-height: 0;\n  flex: 0 0 auto;\n  align-self: center;\n  aspect-ratio: 1/1;\n  background: #07070f;\n  image-rendering: auto;\n  margin-top: 1rem;\n}\n.panel-desc[_ngcontent-%COMP%] {\n  margin: 5px 0 0;\n  color: rgba(255, 255, 255, 0.34);\n  font-size: 9px;\n  line-height: 1.4;\n}\n.plane-btns[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n}\n.plane-btn[_ngcontent-%COMP%] {\n  min-width: 32px;\n  padding: 3px 6px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 4px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.52);\n  cursor: pointer;\n  font: inherit;\n  font-size: 9px;\n}\n.plane-btn--active[_ngcontent-%COMP%] {\n  border-color: #4fa3e3;\n  background: rgba(79, 163, 227, 0.16);\n  color: #4fa3e3;\n}\n.panel-info[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 155px;\n}\n.info-list[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 5px;\n  overflow-y: auto;\n}\n.canvas-wrap[_ngcontent-%COMP%] {\n  position: relative;\n  flex: 0 0 min(54%, 600px);\n  min-width: 300px;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n}\n.three-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n}\n.canvas-label[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 15px;\n  left: 50%;\n  transform: translateX(-50%);\n  color: color-mix(in srgb, var(--gc) 86%, white);\n  font-size: 15px;\n  font-weight: 700;\n  pointer-events: none;\n  text-shadow: 0 0 20px color-mix(in srgb, var(--gc) 25%, transparent);\n}\n.canvas-hint[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 12px;\n  bottom: 10px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  pointer-events: none;\n}\n.canvas-actions[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  display: flex;\n  gap: 7px;\n}\n.btn-circ[_ngcontent-%COMP%] {\n  display: grid;\n  width: 34px;\n  height: 34px;\n  place-items: center;\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  border-radius: 50%;\n  background: rgba(12, 12, 24, 0.8);\n  color: #dde8f2;\n  cursor: pointer;\n  font: inherit;\n  font-size: 22px;\n  line-height: 1;\n}\n.btn-circ[_ngcontent-%COMP%]:hover {\n  border-color: #4fa3e3;\n  color: #4fa3e3;\n}\n.mode-btn[_ngcontent-%COMP%]:focus-visible, \n.toggle-row[_ngcontent-%COMP%]:focus-visible, \n.plane-btn[_ngcontent-%COMP%]:focus-visible, \n.btn-circ[_ngcontent-%COMP%]:focus-visible, \n.slider[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 3px;\n}\n@media (max-width: 980px) {\n  .sidebar[_ngcontent-%COMP%] {\n    flex-basis: 210px;\n  }\n  .canvas-wrap[_ngcontent-%COMP%] {\n    flex-basis: 48%;\n    min-width: 260px;\n  }\n  .bottom-panels[_ngcontent-%COMP%] {\n    min-width: 190px;\n  }\n}\n@media (max-width: 720px) {\n  .orb-root[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .sidebar[_ngcontent-%COMP%] {\n    display: grid;\n    flex: 0 0 auto;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: 5px 12px;\n    max-height: 38%;\n    overflow-y: auto;\n    padding: 9px 12px;\n  }\n  .sidebar-header[_ngcontent-%COMP%], \n   .qn-box[_ngcontent-%COMP%], \n   .phase-legend[_ngcontent-%COMP%] {\n    grid-column: 1/-1;\n  }\n  .sidebar-header[_ngcontent-%COMP%] {\n    margin-bottom: 3px;\n  }\n  .section-label[_ngcontent-%COMP%], \n   .mt14[_ngcontent-%COMP%] {\n    margin-top: 0;\n  }\n  .phase-row[_ngcontent-%COMP%], \n   .toggle-row[_ngcontent-%COMP%], \n   .slider-wrap[_ngcontent-%COMP%], \n   .mode-btns[_ngcontent-%COMP%] {\n    margin: 0;\n  }\n  .qn-box[_ngcontent-%COMP%], \n   .phase-legend[_ngcontent-%COMP%] {\n    display: none;\n  }\n  .main-area[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .canvas-wrap[_ngcontent-%COMP%] {\n    order: 0;\n    flex: 1 1 55%;\n    min-width: 0;\n  }\n  .bottom-panels[_ngcontent-%COMP%] {\n    order: 1;\n    display: grid;\n    flex: 0 0 42%;\n    grid-template-columns: repeat(3, minmax(180px, 1fr));\n    grid-auto-rows: minmax(280px, auto);\n    min-width: 0;\n    overflow-x: auto;\n    overflow-y: auto;\n    border-top: 1px solid rgba(79, 163, 227, 0.1);\n  }\n  .panel[_ngcontent-%COMP%], \n   .panel-radial[_ngcontent-%COMP%], \n   .panel-section[_ngcontent-%COMP%], \n   .panel-info[_ngcontent-%COMP%] {\n    min-height: 0;\n    border-bottom: 0;\n    border-right: 1px solid rgba(255, 255, 255, 0.06);\n  }\n  .panel-canvas[_ngcontent-%COMP%] {\n    min-height: 80px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .mode-btn[_ngcontent-%COMP%], \n   .toggle-thumb[_ngcontent-%COMP%] {\n    transition: none;\n  }\n}\n/*# sourceMappingURL=orbital-surface-viewer.css.map */'], changeDetection: 0 });
+  }, styles: ['@charset "UTF-8";\n\n\n\n[_nghost-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  min-height: 0;\n}\n.vo[_ngcontent-%COMP%] {\n  --fundo-modal: #12151d;\n  --fundo-topo: #1a1e28;\n  --fundo-cartao: #1a1f2b;\n  --texto: #eef2f8;\n  --texto-suave: #a9b3c6;\n  --linha: rgba(255, 255, 255, 0.09);\n  display: grid;\n  grid-template-columns: clamp(320px, 33%, 600px) minmax(0, 1fr);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  border-radius: 28px;\n  background: var(--fundo-modal);\n  color: var(--texto);\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.painel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  background: #0f121a;\n}\n.painel-topo[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 2.5rem;\n  padding: 0.9rem 3rem;\n  background: var(--fundo-topo);\n  border-bottom: 1px solid var(--linha);\n}\n.painel-letra[_ngcontent-%COMP%] {\n  font-size: 4rem;\n  font-weight: 800;\n  line-height: 1;\n  letter-spacing: -0.02em;\n}\n.painel-formula[_ngcontent-%COMP%] {\n  font-family:\n    "Cambria",\n    "Georgia",\n    serif;\n  font-style: italic;\n  font-size: 2rem;\n  line-height: 1;\n}\n.painel-formula[_ngcontent-%COMP%]   sub[_ngcontent-%COMP%], \n.painel-formula[_ngcontent-%COMP%]   sup[_ngcontent-%COMP%] {\n  font-size: 0.6em;\n}\n.painel-corpo[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 3rem 3.1rem;\n  scrollbar-width: thin;\n  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;\n}\n.cartao[_ngcontent-%COMP%] {\n  padding: 1.1rem 1.5rem 0.6rem;\n  border-radius: 28px;\n  background: var(--fundo-cartao);\n}\n.linha[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.62rem 0;\n}\n.linha-rotulo[_ngcontent-%COMP%] {\n  font-size: 0.8rem;\n  font-weight: 600;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: var(--texto-suave);\n}\n.linha-valor[_ngcontent-%COMP%] {\n  font-size: 1.55rem;\n  font-weight: 700;\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.linha-valor--texto[_ngcontent-%COMP%] {\n  font-size: 1.35rem;\n}\n.divisor[_ngcontent-%COMP%] {\n  margin: 0.45rem 0;\n  border: 0;\n  height: 1px;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      var(--linha) 15%,\n      var(--linha) 85%,\n      transparent);\n}\n.acordeao[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.9rem 0.2rem;\n  border: 0;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.82rem;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  cursor: pointer;\n  border-radius: 12px;\n}\n.acordeao[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.acordeao-seta[_ngcontent-%COMP%] {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  transition: transform 0.25s ease;\n}\n.acordeao-seta--aberta[_ngcontent-%COMP%] {\n  transform: rotate(180deg);\n}\n.radial[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-rows: 0fr;\n  transition: grid-template-rows 0.28s ease;\n}\n.radial--aberto[_ngcontent-%COMP%] {\n  grid-template-rows: 1fr;\n}\n.radial-interno[_ngcontent-%COMP%] {\n  min-height: 0;\n  overflow: hidden;\n}\n.radial-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 150px;\n}\n.radial-legenda[_ngcontent-%COMP%] {\n  margin: 0.2rem 0 0.9rem;\n  font-size: 0.72rem;\n  line-height: 1.4;\n  color: rgba(255, 255, 255, 0.38);\n}\n.palco[_ngcontent-%COMP%] {\n  position: relative;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n  transition: background 0.25s ease;\n}\n.palco--densidade[_ngcontent-%COMP%] {\n  background: #05050d;\n}\n.palco-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n  cursor: grab;\n}\n.palco-canvas[_ngcontent-%COMP%]:active {\n  cursor: grabbing;\n}\n.palco-medida[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 18px;\n  left: 22px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.72rem;\n  color: rgba(120, 160, 210, 0.7);\n  pointer-events: none;\n}\n.palco-topo[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 22px;\n  right: 24px;\n  display: flex;\n  gap: 10px;\n}\n.btn-circ[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center;\n  width: 50px;\n  height: 50px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 50%;\n  background: rgba(36, 41, 54, 0.85);\n  color: var(--texto);\n  font: inherit;\n  font-size: 1.35rem;\n  font-weight: 800;\n  cursor: pointer;\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n  transition: background 0.15s ease;\n}\n.btn-circ[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2.2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n}\n.btn-circ[_ngcontent-%COMP%]:hover {\n  background: rgba(56, 63, 82, 0.95);\n}\n.btn-ajuda[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 24px;\n  bottom: 22px;\n}\n.ctrl-sliders[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 34px;\n  bottom: 22px;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  width: 240px;\n  padding: 16px 18px;\n  border-radius: 26px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.ctrl-linha[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.ctrl-rotulo[_ngcontent-%COMP%] {\n  min-width: 36px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.82rem;\n  font-weight: 700;\n  color: var(--texto-suave);\n}\n.slider[_ngcontent-%COMP%] {\n  flex: 1;\n  height: 4px;\n  -webkit-appearance: none;\n  appearance: none;\n  border-radius: 2px;\n  background: rgba(255, 255, 255, 0.18);\n  outline: none;\n  cursor: pointer;\n}\n.slider[_ngcontent-%COMP%]::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #f2f4f8;\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);\n}\n.slider[_ngcontent-%COMP%]::-moz-range-thumb {\n  width: 18px;\n  height: 18px;\n  border: 0;\n  border-radius: 50%;\n  background: #f2f4f8;\n}\n.slider[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 6px;\n}\n.ctrl-modos[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 50%;\n  bottom: 22px;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  padding: 6px;\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.btn-pausa[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  border: 0;\n  border-radius: 50%;\n  background: none;\n  color: var(--texto-suave);\n  cursor: pointer;\n}\n.btn-pausa[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]   path[_ngcontent-%COMP%] {\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-linecap: round;\n  fill: none;\n}\n.btn-pausa[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]   path.cheio[_ngcontent-%COMP%] {\n  fill: currentColor;\n  stroke-linejoin: round;\n}\n.btn-pausa[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.segmentos[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n  padding: 4px;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.04);\n}\n.segmento[_ngcontent-%COMP%] {\n  padding: 0.65rem 1.25rem;\n  border: 0;\n  border-radius: 999px;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.98rem;\n  font-weight: 600;\n  cursor: pointer;\n  transition: background 0.15s ease, color 0.15s ease;\n}\n.segmento[_ngcontent-%COMP%]:hover {\n  color: var(--texto);\n}\n.segmento--ativo[_ngcontent-%COMP%] {\n  background: #333948;\n  color: #fff;\n}\n.btn-pausa[_ngcontent-%COMP%]:focus-visible, \n.segmento[_ngcontent-%COMP%]:focus-visible, \n.btn-circ[_ngcontent-%COMP%]:focus-visible, \n.acordeao[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 2px;\n}\n.ajuda[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 24px;\n  bottom: 86px;\n  width: min(320px, 100% - 48px);\n  padding: 16px 18px;\n  border-radius: 20px;\n  border: 1px solid rgba(255, 255, 255, 0.09);\n  background: rgba(24, 28, 38, 0.96);\n  font-size: 0.85rem;\n  line-height: 1.5;\n  color: var(--texto-suave);\n}\n.ajuda[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 0.55rem;\n}\n.ajuda[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.ajuda[_ngcontent-%COMP%]   b[_ngcontent-%COMP%] {\n  color: var(--texto);\n}\n.ajuda-fases[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 18px;\n  margin-bottom: 0.7rem;\n  color: var(--texto);\n}\n.fase[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n.fase[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n}\n@media (max-width: 820px) {\n  .vo[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(0, 40%) minmax(0, 1fr);\n  }\n  .painel-topo[_ngcontent-%COMP%] {\n    padding: 0.5rem 1.4rem;\n    gap: 1.4rem;\n  }\n  .painel-letra[_ngcontent-%COMP%] {\n    font-size: 2.6rem;\n  }\n  .painel-corpo[_ngcontent-%COMP%] {\n    padding: 1rem 1.2rem;\n  }\n  .ctrl-sliders[_ngcontent-%COMP%] {\n    left: 12px;\n    bottom: 84px;\n    width: 200px;\n  }\n  .ctrl-modos[_ngcontent-%COMP%] {\n    bottom: 14px;\n  }\n  .segmento[_ngcontent-%COMP%] {\n    padding: 0.55rem 0.8rem;\n    font-size: 0.85rem;\n  }\n  .btn-ajuda[_ngcontent-%COMP%] {\n    right: 12px;\n    bottom: 84px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .radial[_ngcontent-%COMP%], \n   .acordeao-seta[_ngcontent-%COMP%], \n   .palco[_ngcontent-%COMP%] {\n    transition: none;\n  }\n}\n[_nghost-%COMP%] {\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.orb-root[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  border-radius: 6px;\n  background: #07070f;\n  color: #dde8f2;\n}\n.sidebar[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 0 0 242px;\n  flex-direction: column;\n  gap: 0;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 14px 12px;\n  background: #0c0c18;\n  font-size: 12px;\n  scrollbar-color: rgba(79, 163, 227, 0.2) transparent;\n  scrollbar-width: thin;\n}\n.sidebar-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 12px;\n  width: 100%;\n  height: auto;\n  margin-bottom: 18px;\n  padding: 0;\n  background: transparent;\n}\n.sidebar-header[_ngcontent-%COMP%]   .mdi[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  color: #4fa3e3;\n  font-size: 24px;\n}\n.sidebar-title[_ngcontent-%COMP%] {\n  white-space: nowrap;\n  color: #4fa3e3;\n  font-size: 12px;\n  font-weight: 700;\n}\n.sidebar-sub[_ngcontent-%COMP%] {\n  margin-top: 1px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  white-space: nowrap;\n}\n.section-label[_ngcontent-%COMP%], \n.panel-title[_ngcontent-%COMP%] {\n  margin: 0 0 6px;\n  color: rgba(79, 163, 227, 0.62);\n  font-size: 9px;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\n.mt14[_ngcontent-%COMP%] {\n  margin-top: 14px;\n}\n.mode-btns[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 5px;\n  margin-bottom: 10px;\n}\n.mode-btn[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n  padding: 7px 4px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 5px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.55);\n  cursor: pointer;\n  font: inherit;\n  font-size: 10px;\n  transition: background 0.13s ease, color 0.13s ease;\n}\n.mode-btn[_ngcontent-%COMP%]:hover, \n.mode-btn--active[_ngcontent-%COMP%] {\n  border-color: var(--gc);\n  background: color-mix(in srgb, var(--gc) 16%, transparent);\n  color: var(--gc);\n}\n.slider-wrap[_ngcontent-%COMP%] {\n  display: block;\n  margin-bottom: 9px;\n}\n.slider-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 5px;\n  color: rgba(255, 255, 255, 0.48);\n  font-size: 10px;\n}\n.slider-value[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n}\n.slider-val[_ngcontent-%COMP%] {\n  color: rgba(79, 163, 227, 0.8);\n  font-variant-numeric: tabular-nums;\n}\n.slider[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 4px;\n  border-radius: 2px;\n  background: rgba(79, 163, 227, 0.2);\n}\n.slider[_ngcontent-%COMP%]::-webkit-slider-thumb {\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.slider[_ngcontent-%COMP%]::-moz-range-thumb {\n  width: 13px;\n  height: 13px;\n  border: 0;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.phase-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  margin-bottom: 12px;\n  color: rgba(255, 255, 255, 0.56);\n  font-size: 10px;\n}\n.phase-dot[_ngcontent-%COMP%] {\n  width: 9px;\n  height: 9px;\n  flex: 0 0 9px;\n  border-radius: 50%;\n}\n.ml8[_ngcontent-%COMP%] {\n  margin-left: 7px;\n}\n.toggle-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin: 0 0 9px;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  text-align: left;\n}\n.toggle-track[_ngcontent-%COMP%] {\n  position: relative;\n  width: 28px;\n  height: 15px;\n  flex: 0 0 28px;\n  border-radius: 8px;\n  background: rgba(255, 255, 255, 0.12);\n}\n.toggle-track--on[_ngcontent-%COMP%] {\n  background: rgba(79, 163, 227, 0.45);\n}\n.toggle-thumb[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 2px;\n  left: 2px;\n  width: 11px;\n  height: 11px;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transition: transform 0.2s ease, background 0.2s ease;\n}\n.toggle-thumb--on[_ngcontent-%COMP%] {\n  transform: translateX(13px);\n  background: #4fa3e3;\n}\n.toggle-label[_ngcontent-%COMP%] {\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 10px;\n}\n.qn-box[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px;\n  border: 1px solid rgba(79, 163, 227, 0.12);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.qn-orbital[_ngcontent-%COMP%] {\n  margin-bottom: 8px;\n  font-size: 16px;\n  font-weight: 700;\n}\n.qn-row[_ngcontent-%COMP%], \n.info-row[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 5px;\n  font-size: 10px;\n}\n.qn-row[_ngcontent-%COMP%]:last-child, \n.info-row[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.qn-key[_ngcontent-%COMP%], \n.info-key[_ngcontent-%COMP%] {\n  color: rgba(79, 163, 227, 0.68);\n  font-weight: 600;\n}\n.qn-val[_ngcontent-%COMP%], \n.info-value[_ngcontent-%COMP%] {\n  color: rgba(255, 255, 255, 0.8);\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.phase-legend[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 6px;\n  margin-top: 12px;\n  padding-top: 10px;\n  border-top: 1px solid rgba(255, 255, 255, 0.06);\n  color: rgba(255, 255, 255, 0.36);\n  font-size: 9px;\n  line-height: 1.45;\n}\n.main-area[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.bottom-panels[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  min-width: 220px;\n  min-height: 0;\n  overflow-y: auto;\n  border-right: 1px solid rgba(255, 255, 255, 0.06);\n  scrollbar-width: thin;\n}\n.panel[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 0 170px;\n  flex-direction: column;\n  min-height: 0;\n  padding: 10px 14px;\n  border-bottom: 1px solid rgba(79, 163, 227, 0.1);\n}\n.panel-radial[_ngcontent-%COMP%], \n.panel-section[_ngcontent-%COMP%] {\n  min-height: 190px;\n}\n.panel-section[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 280px;\n}\n.panel-heading[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n}\n.offset-control[_ngcontent-%COMP%] {\n  display: grid;\n  align-items: center;\n  gap: 4px 8px;\n  margin: 2px 0 5px;\n  color: rgba(255, 255, 255, 0.6);\n  font-size: 9px;\n}\n.offset-control[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n}\n.offset-value[_ngcontent-%COMP%] {\n  align-items: center;\n  gap: 4px;\n}\n.offset-reset[_ngcontent-%COMP%] {\n  display: grid;\n  width: 20px;\n  height: 20px;\n  place-items: center;\n  padding: 0;\n  border: 0;\n  border-radius: 4px;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.65);\n  cursor: pointer;\n}\n.offset-reset[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background: rgba(79, 163, 227, 0.14);\n  color: #4fa3e3;\n}\n.offset-reset[_ngcontent-%COMP%]:disabled {\n  color: rgba(255, 255, 255, 0.25);\n  cursor: default;\n}\n.offset-reset[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 1px;\n}\n.offset-control[_ngcontent-%COMP%]   output[_ngcontent-%COMP%] {\n  color: #fff;\n  font-variant-numeric: tabular-nums;\n}\n.offset-control[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 3px;\n  accent-color: #4fa3e3;\n}\n.panel-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  min-height: 0;\n  flex: 1 1 auto;\n  border-radius: 4px;\n}\n.radial-canvas[_ngcontent-%COMP%] {\n  min-height: 125px;\n}\n.section-canvas[_ngcontent-%COMP%] {\n  width: min(100%, 160px);\n  height: auto;\n  min-height: 0;\n  flex: 0 0 auto;\n  align-self: center;\n  aspect-ratio: 1/1;\n  background: #07070f;\n  image-rendering: auto;\n  margin-top: 1rem;\n}\n.panel-desc[_ngcontent-%COMP%] {\n  margin: 5px 0 0;\n  color: rgba(255, 255, 255, 0.34);\n  font-size: 9px;\n  line-height: 1.4;\n}\n.plane-btns[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n}\n.plane-btn[_ngcontent-%COMP%] {\n  min-width: 32px;\n  padding: 3px 6px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 4px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.52);\n  cursor: pointer;\n  font: inherit;\n  font-size: 9px;\n}\n.plane-btn--active[_ngcontent-%COMP%] {\n  border-color: #4fa3e3;\n  background: rgba(79, 163, 227, 0.16);\n  color: #4fa3e3;\n}\n.panel-info[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 155px;\n}\n.info-card-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));\n  gap: 8px;\n  overflow-y: auto;\n}\n.info-card[_ngcontent-%COMP%] {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 5px;\n  padding: 9px 10px;\n  border: 1px solid rgba(79, 163, 227, 0.14);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.info-card[_ngcontent-%COMP%]   .info-key[_ngcontent-%COMP%] {\n  font-size: 9px;\n  letter-spacing: 0.04em;\n  text-align: left;\n}\n.info-card[_ngcontent-%COMP%]   .info-value[_ngcontent-%COMP%] {\n  font-size: 12px;\n  font-weight: 600;\n  overflow-wrap: anywhere;\n  text-align: left;\n}\n.canvas-wrap[_ngcontent-%COMP%] {\n  position: relative;\n  flex: 0 0 min(54%, 600px);\n  min-width: 300px;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n}\n.three-canvas[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n}\n.canvas-label[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 15px;\n  left: 50%;\n  transform: translateX(-50%);\n  color: color-mix(in srgb, var(--gc) 86%, white);\n  font-size: 15px;\n  font-weight: 700;\n  pointer-events: none;\n  text-shadow: 0 0 20px color-mix(in srgb, var(--gc) 25%, transparent);\n}\n.canvas-hint[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 12px;\n  bottom: 10px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  pointer-events: none;\n}\n.mode-btn[_ngcontent-%COMP%]:focus-visible, \n.toggle-row[_ngcontent-%COMP%]:focus-visible, \n.plane-btn[_ngcontent-%COMP%]:focus-visible, \n.slider[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 3px;\n}\n@media (max-width: 980px) {\n  .sidebar[_ngcontent-%COMP%] {\n    flex-basis: 210px;\n  }\n  .canvas-wrap[_ngcontent-%COMP%] {\n    flex-basis: 48%;\n    min-width: 260px;\n  }\n  .bottom-panels[_ngcontent-%COMP%] {\n    min-width: 190px;\n  }\n}\n@media (max-width: 720px) {\n  .orb-root[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .sidebar[_ngcontent-%COMP%] {\n    display: grid;\n    flex: 0 0 auto;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: 5px 12px;\n    max-height: 38%;\n    overflow-y: auto;\n    padding: 9px 12px;\n  }\n  .sidebar-header[_ngcontent-%COMP%], \n   .qn-box[_ngcontent-%COMP%], \n   .phase-legend[_ngcontent-%COMP%] {\n    grid-column: 1/-1;\n  }\n  .sidebar-header[_ngcontent-%COMP%] {\n    margin-bottom: 3px;\n  }\n  .section-label[_ngcontent-%COMP%], \n   .mt14[_ngcontent-%COMP%] {\n    margin-top: 0;\n  }\n  .phase-row[_ngcontent-%COMP%], \n   .toggle-row[_ngcontent-%COMP%], \n   .slider-wrap[_ngcontent-%COMP%], \n   .mode-btns[_ngcontent-%COMP%] {\n    margin: 0;\n  }\n  .qn-box[_ngcontent-%COMP%], \n   .phase-legend[_ngcontent-%COMP%] {\n    display: none;\n  }\n  .main-area[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .canvas-wrap[_ngcontent-%COMP%] {\n    order: 0;\n    flex: 1 1 55%;\n    min-width: 0;\n  }\n  .bottom-panels[_ngcontent-%COMP%] {\n    order: 1;\n    display: grid;\n    flex: 0 0 42%;\n    grid-template-columns: repeat(3, minmax(180px, 1fr));\n    grid-auto-rows: minmax(280px, auto);\n    min-width: 0;\n    overflow-x: auto;\n    overflow-y: auto;\n    border-top: 1px solid rgba(79, 163, 227, 0.1);\n  }\n  .panel[_ngcontent-%COMP%], \n   .panel-radial[_ngcontent-%COMP%], \n   .panel-section[_ngcontent-%COMP%], \n   .panel-info[_ngcontent-%COMP%] {\n    min-height: 0;\n    border-bottom: 0;\n    border-right: 1px solid rgba(255, 255, 255, 0.06);\n  }\n  .panel-canvas[_ngcontent-%COMP%] {\n    min-height: 80px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .mode-btn[_ngcontent-%COMP%], \n   .toggle-thumb[_ngcontent-%COMP%] {\n    transition: none;\n  }\n}\n/*# sourceMappingURL=orbital-surface-viewer.css.map */'], changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(OrbitalSurfaceViewerComponent, [{
@@ -28480,6 +28805,35 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       }\r
     </div>\r
 \r
+    <label class="slider-wrap">\r
+      <span class="slider-header">\r
+        <span>Probabilidade da superf\xEDcie</span>\r
+        <span class="slider-value">\r
+          <span class="slider-val">{{ probabilidadeSuperficie() }}%</span>\r
+          <button\r
+            type="button"\r
+            class="offset-reset"\r
+            aria-label="Resetar probabilidade para 90%"\r
+            title="Resetar para 90%"\r
+            [disabled]="probabilidadeSuperficie() === 90"\r
+            (click)="resetarProbabilidade()"\r
+          >\r
+            <span class="mdi mdi-restore" aria-hidden="true"></span>\r
+          </button>\r
+        </span>\r
+      </span>\r
+      <input\r
+        type="range"\r
+        class="slider"\r
+        min="50"\r
+        max="99"\r
+        step="1"\r
+        [value]="probabilidadeSuperficie()"\r
+        aria-label="Probabilidade contida na superf\xEDcie do orbital"\r
+        (change)="aoMudarProbabilidade($event)"\r
+      />\r
+    </label>\r
+\r
     @if (modo() === "densidade") {\r
       <label class="slider-wrap">\r
         <span class="slider-header"\r
@@ -28500,23 +28854,6 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
         />\r
       </label>\r
     }\r
-\r
-    <label class="slider-wrap">\r
-      <span class="slider-header"\r
-        ><span>N\xFAmero qu\xE2ntico N</span\r
-        ><span class="slider-val">{{ n() }}</span></span\r
-      >\r
-      <input\r
-        type="range"\r
-        class="slider"\r
-        [min]="nMin()"\r
-        max="7"\r
-        step="1"\r
-        [value]="n()"\r
-        aria-label="N\xFAmero qu\xE2ntico principal"\r
-        (input)="aoMudarN($event)"\r
-      />\r
-    </label>\r
 \r
     <div class="section-label mt14">Fase</div>\r
     <div class="phase-row">\r
@@ -28575,7 +28912,9 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
     </section>\r
 \r
     <div class="phase-legend">\r
-      <span>Superf\xEDcie com aproximadamente 90% da probabilidade.</span\r
+      <span\r
+        >Superf\xEDcie com aproximadamente {{ probabilidadeSuperficie() }}% da\r
+        probabilidade.</span\r
       ><span>Arraste para girar; use a roda para aproximar.</span>\r
     </div>\r
   </aside>\r
@@ -28583,14 +28922,21 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
   <main class="main-area">\r
     <section class="bottom-panels" aria-label="Distribui\xE7\xF5es do orbital">\r
       <div class="panel panel-radial">\r
-        <h2 class="panel-title">Distribui\xE7\xE3o radial P(r)</h2>\r
+        <h2 class="panel-title">Distribui\xE7\xE3o radial na se\xE7\xE3o</h2>\r
         <canvas\r
           #radialCanvas\r
           class="panel-canvas radial-canvas"\r
-          aria-label="Gr\xE1fico da probabilidade radial"\r
+          [attr.aria-label]="\r
+            'Distribui\xE7\xE3o radial da se\xE7\xE3o ' +\r
+            plano() +\r
+            ', offset ' +\r
+            offsetSecao().toFixed(1) +\r
+            ' a\u2080'\r
+          "\r
         ></canvas>\r
         <p class="panel-desc">\r
-          Probabilidade de encontrar o el\xE9tron \xE0 dist\xE2ncia r (a\u2080).\r
+          Distribui\xE7\xE3o normalizada em an\xE9is de raio \u03C1 no plano\r
+          {{ plano() }} (offset {{ offsetSecao().toFixed(1) }} a\u2080).\r
         </p>\r
       </div>\r
 \r
@@ -28632,8 +28978,8 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
           </span>\r
           <input\r
             type="range"\r
-            [attr.min]="-extensao()"\r
-            [attr.max]="extensao()"\r
+            [attr.min]="-limiteOffset()"\r
+            [attr.max]="limiteOffset()"\r
             [step]="passoOffset()"\r
             [value]="offsetSecao()"\r
             aria-label="Offset do plano de corte em a zero"\r
@@ -28652,15 +28998,9 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
 \r
       <div class="panel panel-info">\r
         <h2 class="panel-title">Sobre o orbital</h2>\r
-        <div class="info-list">\r
+        <div class="info-card-grid">\r
           @for (linha of linhasPrincipais(); track linha.rotulo) {\r
-            <div class="info-row">\r
-              <span class="info-key">{{ linha.rotulo }}</span\r
-              ><span class="info-value">{{ linha.valor }}</span>\r
-            </div>\r
-          }\r
-          @for (linha of linhasNos(); track linha.rotulo) {\r
-            <div class="info-row">\r
+            <div class="info-card">\r
               <span class="info-key">{{ linha.rotulo }}</span\r
               ><span class="info-value">{{ linha.valor }}</span>\r
             </div>\r
@@ -28677,37 +29017,15 @@ var OrbitalSurfaceViewerComponent = class _OrbitalSurfaceViewerComponent {
       <canvas #threeCanvas class="three-canvas"></canvas>\r
       <div class="canvas-label">{{ rotuloOrbital() }}</div>\r
       <div class="canvas-hint">Arraste \xB7 Scroll para zoom</div>\r
-      <div class="canvas-actions">\r
-        <button\r
-          type="button"\r
-          class="btn-circ"\r
-          aria-label="Voltar"\r
-          (click)="voltar.emit()"\r
-        >\r
-          <span aria-hidden="true">\u2039</span>\r
-        </button>\r
-        <button\r
-          type="button"\r
-          class="btn-circ"\r
-          aria-label="Fechar"\r
-          (click)="fechar.emit()"\r
-        >\r
-          <span aria-hidden="true">\xD7</span>\r
-        </button>\r
-      </div>\r
     </section>\r
   </main>\r
 </div>\r
-`, styles: ['@charset "UTF-8";\n\n/* src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-surface-viewer.scss */\n:host {\n  display: block;\n  width: 100%;\n  height: 100%;\n  min-height: 0;\n}\n.vo {\n  --fundo-modal: #12151d;\n  --fundo-topo: #1a1e28;\n  --fundo-cartao: #1a1f2b;\n  --texto: #eef2f8;\n  --texto-suave: #a9b3c6;\n  --linha: rgba(255, 255, 255, 0.09);\n  display: grid;\n  grid-template-columns: clamp(320px, 33%, 600px) minmax(0, 1fr);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  border-radius: 28px;\n  background: var(--fundo-modal);\n  color: var(--texto);\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.painel {\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  background: #0f121a;\n}\n.painel-topo {\n  display: flex;\n  align-items: center;\n  gap: 2.5rem;\n  padding: 0.9rem 3rem;\n  background: var(--fundo-topo);\n  border-bottom: 1px solid var(--linha);\n}\n.painel-letra {\n  font-size: 4rem;\n  font-weight: 800;\n  line-height: 1;\n  letter-spacing: -0.02em;\n}\n.painel-formula {\n  font-family:\n    "Cambria",\n    "Georgia",\n    serif;\n  font-style: italic;\n  font-size: 2rem;\n  line-height: 1;\n}\n.painel-formula sub,\n.painel-formula sup {\n  font-size: 0.6em;\n}\n.painel-corpo {\n  flex: 1 1 auto;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 3rem 3.1rem;\n  scrollbar-width: thin;\n  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;\n}\n.cartao {\n  padding: 1.1rem 1.5rem 0.6rem;\n  border-radius: 28px;\n  background: var(--fundo-cartao);\n}\n.linha {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.62rem 0;\n}\n.linha-rotulo {\n  font-size: 0.8rem;\n  font-weight: 600;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: var(--texto-suave);\n}\n.linha-valor {\n  font-size: 1.55rem;\n  font-weight: 700;\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.linha-valor--texto {\n  font-size: 1.35rem;\n}\n.divisor {\n  margin: 0.45rem 0;\n  border: 0;\n  height: 1px;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      var(--linha) 15%,\n      var(--linha) 85%,\n      transparent);\n}\n.acordeao {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.9rem 0.2rem;\n  border: 0;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.82rem;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  cursor: pointer;\n  border-radius: 12px;\n}\n.acordeao:hover {\n  color: var(--texto);\n}\n.acordeao-seta {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  transition: transform 0.25s ease;\n}\n.acordeao-seta--aberta {\n  transform: rotate(180deg);\n}\n.radial {\n  display: grid;\n  grid-template-rows: 0fr;\n  transition: grid-template-rows 0.28s ease;\n}\n.radial--aberto {\n  grid-template-rows: 1fr;\n}\n.radial-interno {\n  min-height: 0;\n  overflow: hidden;\n}\n.radial-canvas {\n  display: block;\n  width: 100%;\n  height: 150px;\n}\n.radial-legenda {\n  margin: 0.2rem 0 0.9rem;\n  font-size: 0.72rem;\n  line-height: 1.4;\n  color: rgba(255, 255, 255, 0.38);\n}\n.palco {\n  position: relative;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  background: #171b24;\n  transition: background 0.25s ease;\n}\n.palco--densidade {\n  background: #05050d;\n}\n.palco-canvas {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n  cursor: grab;\n}\n.palco-canvas:active {\n  cursor: grabbing;\n}\n.palco-medida {\n  position: absolute;\n  top: 18px;\n  left: 22px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.72rem;\n  color: rgba(120, 160, 210, 0.7);\n  pointer-events: none;\n}\n.palco-topo {\n  position: absolute;\n  top: 22px;\n  right: 24px;\n  display: flex;\n  gap: 10px;\n}\n.btn-circ {\n  display: grid;\n  place-items: center;\n  width: 50px;\n  height: 50px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 50%;\n  background: rgba(36, 41, 54, 0.85);\n  color: var(--texto);\n  font: inherit;\n  font-size: 1.35rem;\n  font-weight: 800;\n  cursor: pointer;\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n  transition: background 0.15s ease;\n}\n.btn-circ svg {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2.2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n}\n.btn-circ:hover {\n  background: rgba(56, 63, 82, 0.95);\n}\n.btn-ajuda {\n  position: absolute;\n  right: 24px;\n  bottom: 22px;\n}\n.ctrl-sliders {\n  position: absolute;\n  left: 34px;\n  bottom: 22px;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  width: 240px;\n  padding: 16px 18px;\n  border-radius: 26px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.ctrl-linha {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.ctrl-rotulo {\n  min-width: 36px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.82rem;\n  font-weight: 700;\n  color: var(--texto-suave);\n}\n.slider {\n  flex: 1;\n  height: 4px;\n  -webkit-appearance: none;\n  appearance: none;\n  border-radius: 2px;\n  background: rgba(255, 255, 255, 0.18);\n  outline: none;\n  cursor: pointer;\n}\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #f2f4f8;\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);\n}\n.slider::-moz-range-thumb {\n  width: 18px;\n  height: 18px;\n  border: 0;\n  border-radius: 50%;\n  background: #f2f4f8;\n}\n.slider:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 6px;\n}\n.ctrl-modos {\n  position: absolute;\n  left: 50%;\n  bottom: 22px;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  padding: 6px;\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.btn-pausa {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  border: 0;\n  border-radius: 50%;\n  background: none;\n  color: var(--texto-suave);\n  cursor: pointer;\n}\n.btn-pausa svg path {\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-linecap: round;\n  fill: none;\n}\n.btn-pausa svg path.cheio {\n  fill: currentColor;\n  stroke-linejoin: round;\n}\n.btn-pausa:hover {\n  color: var(--texto);\n}\n.segmentos {\n  display: flex;\n  gap: 4px;\n  padding: 4px;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.04);\n}\n.segmento {\n  padding: 0.65rem 1.25rem;\n  border: 0;\n  border-radius: 999px;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.98rem;\n  font-weight: 600;\n  cursor: pointer;\n  transition: background 0.15s ease, color 0.15s ease;\n}\n.segmento:hover {\n  color: var(--texto);\n}\n.segmento--ativo {\n  background: #333948;\n  color: #fff;\n}\n.btn-pausa:focus-visible,\n.segmento:focus-visible,\n.btn-circ:focus-visible,\n.acordeao:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 2px;\n}\n.ajuda {\n  position: absolute;\n  right: 24px;\n  bottom: 86px;\n  width: min(320px, 100% - 48px);\n  padding: 16px 18px;\n  border-radius: 20px;\n  border: 1px solid rgba(255, 255, 255, 0.09);\n  background: rgba(24, 28, 38, 0.96);\n  font-size: 0.85rem;\n  line-height: 1.5;\n  color: var(--texto-suave);\n}\n.ajuda p {\n  margin: 0 0 0.55rem;\n}\n.ajuda p:last-child {\n  margin-bottom: 0;\n}\n.ajuda b {\n  color: var(--texto);\n}\n.ajuda-fases {\n  display: flex;\n  gap: 18px;\n  margin-bottom: 0.7rem;\n  color: var(--texto);\n}\n.fase {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n.fase i {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n}\n@media (max-width: 820px) {\n  .vo {\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(0, 40%) minmax(0, 1fr);\n  }\n  .painel-topo {\n    padding: 0.5rem 1.4rem;\n    gap: 1.4rem;\n  }\n  .painel-letra {\n    font-size: 2.6rem;\n  }\n  .painel-corpo {\n    padding: 1rem 1.2rem;\n  }\n  .ctrl-sliders {\n    left: 12px;\n    bottom: 84px;\n    width: 200px;\n  }\n  .ctrl-modos {\n    bottom: 14px;\n  }\n  .segmento {\n    padding: 0.55rem 0.8rem;\n    font-size: 0.85rem;\n  }\n  .btn-ajuda {\n    right: 12px;\n    bottom: 84px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .radial,\n  .acordeao-seta,\n  .palco {\n    transition: none;\n  }\n}\n:host {\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.orb-root {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  border-radius: 6px;\n  background: #07070f;\n  color: #dde8f2;\n}\n.sidebar {\n  display: flex;\n  flex: 0 0 242px;\n  flex-direction: column;\n  gap: 0;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 14px 12px;\n  background: #0c0c18;\n  font-size: 12px;\n  scrollbar-color: rgba(79, 163, 227, 0.2) transparent;\n  scrollbar-width: thin;\n}\n.sidebar-header {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  margin-bottom: 18px;\n}\n.sidebar-header .mdi {\n  color: #4fa3e3;\n  font-size: 24px;\n}\n.sidebar-title {\n  color: #4fa3e3;\n  font-size: 12px;\n  font-weight: 700;\n}\n.sidebar-sub {\n  margin-top: 1px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n}\n.section-label,\n.panel-title {\n  margin: 0 0 6px;\n  color: rgba(79, 163, 227, 0.62);\n  font-size: 9px;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\n.mt14 {\n  margin-top: 14px;\n}\n.mode-btns {\n  display: flex;\n  gap: 5px;\n  margin-bottom: 10px;\n}\n.mode-btn {\n  flex: 1;\n  min-width: 0;\n  padding: 7px 4px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 5px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.55);\n  cursor: pointer;\n  font: inherit;\n  font-size: 10px;\n  transition: background 0.13s ease, color 0.13s ease;\n}\n.mode-btn:hover,\n.mode-btn--active {\n  border-color: var(--gc);\n  background: color-mix(in srgb, var(--gc) 16%, transparent);\n  color: var(--gc);\n}\n.slider-wrap {\n  display: block;\n  margin-bottom: 9px;\n}\n.slider-header {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 5px;\n  color: rgba(255, 255, 255, 0.48);\n  font-size: 10px;\n}\n.slider-val {\n  color: rgba(79, 163, 227, 0.8);\n  font-variant-numeric: tabular-nums;\n}\n.slider {\n  width: 100%;\n  height: 4px;\n  border-radius: 2px;\n  background: rgba(79, 163, 227, 0.2);\n}\n.slider::-webkit-slider-thumb {\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.slider::-moz-range-thumb {\n  width: 13px;\n  height: 13px;\n  border: 0;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.phase-row {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  margin-bottom: 12px;\n  color: rgba(255, 255, 255, 0.56);\n  font-size: 10px;\n}\n.phase-dot {\n  width: 9px;\n  height: 9px;\n  flex: 0 0 9px;\n  border-radius: 50%;\n}\n.ml8 {\n  margin-left: 7px;\n}\n.toggle-row {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin: 0 0 9px;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  text-align: left;\n}\n.toggle-track {\n  position: relative;\n  width: 28px;\n  height: 15px;\n  flex: 0 0 28px;\n  border-radius: 8px;\n  background: rgba(255, 255, 255, 0.12);\n}\n.toggle-track--on {\n  background: rgba(79, 163, 227, 0.45);\n}\n.toggle-thumb {\n  position: absolute;\n  top: 2px;\n  left: 2px;\n  width: 11px;\n  height: 11px;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transition: transform 0.2s ease, background 0.2s ease;\n}\n.toggle-thumb--on {\n  transform: translateX(13px);\n  background: #4fa3e3;\n}\n.toggle-label {\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 10px;\n}\n.qn-box {\n  margin-top: 10px;\n  padding: 10px;\n  border: 1px solid rgba(79, 163, 227, 0.12);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.qn-orbital {\n  margin-bottom: 8px;\n  font-size: 16px;\n  font-weight: 700;\n}\n.qn-row,\n.info-row {\n  display: flex;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 5px;\n  font-size: 10px;\n}\n.qn-row:last-child,\n.info-row:last-child {\n  margin-bottom: 0;\n}\n.qn-key,\n.info-key {\n  color: rgba(79, 163, 227, 0.68);\n  font-weight: 600;\n}\n.qn-val,\n.info-value {\n  color: rgba(255, 255, 255, 0.8);\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.phase-legend {\n  display: grid;\n  gap: 6px;\n  margin-top: 12px;\n  padding-top: 10px;\n  border-top: 1px solid rgba(255, 255, 255, 0.06);\n  color: rgba(255, 255, 255, 0.36);\n  font-size: 9px;\n  line-height: 1.45;\n}\n.main-area {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.bottom-panels {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  min-width: 220px;\n  min-height: 0;\n  overflow-y: auto;\n  border-right: 1px solid rgba(255, 255, 255, 0.06);\n  scrollbar-width: thin;\n}\n.panel {\n  display: flex;\n  flex: 1 0 170px;\n  flex-direction: column;\n  min-height: 0;\n  padding: 10px 14px;\n  border-bottom: 1px solid rgba(79, 163, 227, 0.1);\n}\n.panel-radial,\n.panel-section {\n  min-height: 190px;\n}\n.panel-section {\n  flex: 0 0 auto;\n  min-height: 280px;\n}\n.panel-heading {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n}\n.offset-control {\n  display: grid;\n  align-items: center;\n  gap: 4px 8px;\n  margin: 2px 0 5px;\n  color: rgba(255, 255, 255, 0.6);\n  font-size: 9px;\n}\n.offset-control span {\n  display: flex;\n  justify-content: space-between;\n}\n.offset-value {\n  align-items: center;\n  gap: 4px;\n}\n.offset-reset {\n  display: grid;\n  width: 20px;\n  height: 20px;\n  place-items: center;\n  padding: 0;\n  border: 0;\n  border-radius: 4px;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.65);\n  cursor: pointer;\n}\n.offset-reset:hover:not(:disabled) {\n  background: rgba(79, 163, 227, 0.14);\n  color: #4fa3e3;\n}\n.offset-reset:disabled {\n  color: rgba(255, 255, 255, 0.25);\n  cursor: default;\n}\n.offset-reset:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 1px;\n}\n.offset-control output {\n  color: #fff;\n  font-variant-numeric: tabular-nums;\n}\n.offset-control input {\n  width: 100%;\n  height: 3px;\n  accent-color: #4fa3e3;\n}\n.panel-canvas {\n  display: block;\n  width: 100%;\n  min-height: 0;\n  flex: 1 1 auto;\n  border-radius: 4px;\n}\n.radial-canvas {\n  min-height: 125px;\n}\n.section-canvas {\n  width: min(100%, 160px);\n  height: auto;\n  min-height: 0;\n  flex: 0 0 auto;\n  align-self: center;\n  aspect-ratio: 1/1;\n  background: #07070f;\n  image-rendering: auto;\n  margin-top: 1rem;\n}\n.panel-desc {\n  margin: 5px 0 0;\n  color: rgba(255, 255, 255, 0.34);\n  font-size: 9px;\n  line-height: 1.4;\n}\n.plane-btns {\n  display: flex;\n  gap: 4px;\n}\n.plane-btn {\n  min-width: 32px;\n  padding: 3px 6px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 4px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.52);\n  cursor: pointer;\n  font: inherit;\n  font-size: 9px;\n}\n.plane-btn--active {\n  border-color: #4fa3e3;\n  background: rgba(79, 163, 227, 0.16);\n  color: #4fa3e3;\n}\n.panel-info {\n  flex: 0 0 auto;\n  min-height: 155px;\n}\n.info-list {\n  display: grid;\n  gap: 5px;\n  overflow-y: auto;\n}\n.canvas-wrap {\n  position: relative;\n  flex: 0 0 min(54%, 600px);\n  min-width: 300px;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n}\n.three-canvas {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n}\n.canvas-label {\n  position: absolute;\n  top: 15px;\n  left: 50%;\n  transform: translateX(-50%);\n  color: color-mix(in srgb, var(--gc) 86%, white);\n  font-size: 15px;\n  font-weight: 700;\n  pointer-events: none;\n  text-shadow: 0 0 20px color-mix(in srgb, var(--gc) 25%, transparent);\n}\n.canvas-hint {\n  position: absolute;\n  right: 12px;\n  bottom: 10px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  pointer-events: none;\n}\n.canvas-actions {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  display: flex;\n  gap: 7px;\n}\n.btn-circ {\n  display: grid;\n  width: 34px;\n  height: 34px;\n  place-items: center;\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  border-radius: 50%;\n  background: rgba(12, 12, 24, 0.8);\n  color: #dde8f2;\n  cursor: pointer;\n  font: inherit;\n  font-size: 22px;\n  line-height: 1;\n}\n.btn-circ:hover {\n  border-color: #4fa3e3;\n  color: #4fa3e3;\n}\n.mode-btn:focus-visible,\n.toggle-row:focus-visible,\n.plane-btn:focus-visible,\n.btn-circ:focus-visible,\n.slider:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 3px;\n}\n@media (max-width: 980px) {\n  .sidebar {\n    flex-basis: 210px;\n  }\n  .canvas-wrap {\n    flex-basis: 48%;\n    min-width: 260px;\n  }\n  .bottom-panels {\n    min-width: 190px;\n  }\n}\n@media (max-width: 720px) {\n  .orb-root {\n    flex-direction: column;\n  }\n  .sidebar {\n    display: grid;\n    flex: 0 0 auto;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: 5px 12px;\n    max-height: 38%;\n    overflow-y: auto;\n    padding: 9px 12px;\n  }\n  .sidebar-header,\n  .qn-box,\n  .phase-legend {\n    grid-column: 1/-1;\n  }\n  .sidebar-header {\n    margin-bottom: 3px;\n  }\n  .section-label,\n  .mt14 {\n    margin-top: 0;\n  }\n  .phase-row,\n  .toggle-row,\n  .slider-wrap,\n  .mode-btns {\n    margin: 0;\n  }\n  .qn-box,\n  .phase-legend {\n    display: none;\n  }\n  .main-area {\n    flex-direction: column;\n  }\n  .canvas-wrap {\n    order: 0;\n    flex: 1 1 55%;\n    min-width: 0;\n  }\n  .bottom-panels {\n    order: 1;\n    display: grid;\n    flex: 0 0 42%;\n    grid-template-columns: repeat(3, minmax(180px, 1fr));\n    grid-auto-rows: minmax(280px, auto);\n    min-width: 0;\n    overflow-x: auto;\n    overflow-y: auto;\n    border-top: 1px solid rgba(79, 163, 227, 0.1);\n  }\n  .panel,\n  .panel-radial,\n  .panel-section,\n  .panel-info {\n    min-height: 0;\n    border-bottom: 0;\n    border-right: 1px solid rgba(255, 255, 255, 0.06);\n  }\n  .panel-canvas {\n    min-height: 80px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .mode-btn,\n  .toggle-thumb {\n    transition: none;\n  }\n}\n/*# sourceMappingURL=orbital-surface-viewer.css.map */\n'] }]
+`, styles: ['@charset "UTF-8";\n\n/* src/app/pages/periodic-table/modal-periodic-table/orbital-surface-viewer/orbital-surface-viewer.scss */\n:host {\n  display: block;\n  width: 100%;\n  height: 100%;\n  min-height: 0;\n}\n.vo {\n  --fundo-modal: #12151d;\n  --fundo-topo: #1a1e28;\n  --fundo-cartao: #1a1f2b;\n  --texto: #eef2f8;\n  --texto-suave: #a9b3c6;\n  --linha: rgba(255, 255, 255, 0.09);\n  display: grid;\n  grid-template-columns: clamp(320px, 33%, 600px) minmax(0, 1fr);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  border-radius: 28px;\n  background: var(--fundo-modal);\n  color: var(--texto);\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.painel {\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  background: #0f121a;\n}\n.painel-topo {\n  display: flex;\n  align-items: center;\n  gap: 2.5rem;\n  padding: 0.9rem 3rem;\n  background: var(--fundo-topo);\n  border-bottom: 1px solid var(--linha);\n}\n.painel-letra {\n  font-size: 4rem;\n  font-weight: 800;\n  line-height: 1;\n  letter-spacing: -0.02em;\n}\n.painel-formula {\n  font-family:\n    "Cambria",\n    "Georgia",\n    serif;\n  font-style: italic;\n  font-size: 2rem;\n  line-height: 1;\n}\n.painel-formula sub,\n.painel-formula sup {\n  font-size: 0.6em;\n}\n.painel-corpo {\n  flex: 1 1 auto;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 3rem 3.1rem;\n  scrollbar-width: thin;\n  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;\n}\n.cartao {\n  padding: 1.1rem 1.5rem 0.6rem;\n  border-radius: 28px;\n  background: var(--fundo-cartao);\n}\n.linha {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.62rem 0;\n}\n.linha-rotulo {\n  font-size: 0.8rem;\n  font-weight: 600;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: var(--texto-suave);\n}\n.linha-valor {\n  font-size: 1.55rem;\n  font-weight: 700;\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.linha-valor--texto {\n  font-size: 1.35rem;\n}\n.divisor {\n  margin: 0.45rem 0;\n  border: 0;\n  height: 1px;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      var(--linha) 15%,\n      var(--linha) 85%,\n      transparent);\n}\n.acordeao {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.9rem 0.2rem;\n  border: 0;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.82rem;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  cursor: pointer;\n  border-radius: 12px;\n}\n.acordeao:hover {\n  color: var(--texto);\n}\n.acordeao-seta {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  transition: transform 0.25s ease;\n}\n.acordeao-seta--aberta {\n  transform: rotate(180deg);\n}\n.radial {\n  display: grid;\n  grid-template-rows: 0fr;\n  transition: grid-template-rows 0.28s ease;\n}\n.radial--aberto {\n  grid-template-rows: 1fr;\n}\n.radial-interno {\n  min-height: 0;\n  overflow: hidden;\n}\n.radial-canvas {\n  display: block;\n  width: 100%;\n  height: 150px;\n}\n.radial-legenda {\n  margin: 0.2rem 0 0.9rem;\n  font-size: 0.72rem;\n  line-height: 1.4;\n  color: rgba(255, 255, 255, 0.38);\n}\n.palco {\n  position: relative;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n  transition: background 0.25s ease;\n}\n.palco--densidade {\n  background: #05050d;\n}\n.palco-canvas {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n  cursor: grab;\n}\n.palco-canvas:active {\n  cursor: grabbing;\n}\n.palco-medida {\n  position: absolute;\n  top: 18px;\n  left: 22px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.72rem;\n  color: rgba(120, 160, 210, 0.7);\n  pointer-events: none;\n}\n.palco-topo {\n  position: absolute;\n  top: 22px;\n  right: 24px;\n  display: flex;\n  gap: 10px;\n}\n.btn-circ {\n  display: grid;\n  place-items: center;\n  width: 50px;\n  height: 50px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 50%;\n  background: rgba(36, 41, 54, 0.85);\n  color: var(--texto);\n  font: inherit;\n  font-size: 1.35rem;\n  font-weight: 800;\n  cursor: pointer;\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n  transition: background 0.15s ease;\n}\n.btn-circ svg {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 2.2;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n}\n.btn-circ:hover {\n  background: rgba(56, 63, 82, 0.95);\n}\n.btn-ajuda {\n  position: absolute;\n  right: 24px;\n  bottom: 22px;\n}\n.ctrl-sliders {\n  position: absolute;\n  left: 34px;\n  bottom: 22px;\n  display: flex;\n  flex-direction: column;\n  gap: 14px;\n  width: 240px;\n  padding: 16px 18px;\n  border-radius: 26px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.ctrl-linha {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.ctrl-rotulo {\n  min-width: 36px;\n  font-family:\n    "IBM Plex Mono",\n    ui-monospace,\n    monospace;\n  font-size: 0.82rem;\n  font-weight: 700;\n  color: var(--texto-suave);\n}\n.slider {\n  flex: 1;\n  height: 4px;\n  -webkit-appearance: none;\n  appearance: none;\n  border-radius: 2px;\n  background: rgba(255, 255, 255, 0.18);\n  outline: none;\n  cursor: pointer;\n}\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #f2f4f8;\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);\n}\n.slider::-moz-range-thumb {\n  width: 18px;\n  height: 18px;\n  border: 0;\n  border-radius: 50%;\n  background: #f2f4f8;\n}\n.slider:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 6px;\n}\n.ctrl-modos {\n  position: absolute;\n  left: 50%;\n  bottom: 22px;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  padding: 6px;\n  border-radius: 999px;\n  border: 1px solid rgba(255, 255, 255, 0.07);\n  background: rgba(30, 34, 45, 0.85);\n  -webkit-backdrop-filter: blur(6px);\n  backdrop-filter: blur(6px);\n}\n.btn-pausa {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  border: 0;\n  border-radius: 50%;\n  background: none;\n  color: var(--texto-suave);\n  cursor: pointer;\n}\n.btn-pausa svg path {\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-linecap: round;\n  fill: none;\n}\n.btn-pausa svg path.cheio {\n  fill: currentColor;\n  stroke-linejoin: round;\n}\n.btn-pausa:hover {\n  color: var(--texto);\n}\n.segmentos {\n  display: flex;\n  gap: 4px;\n  padding: 4px;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.04);\n}\n.segmento {\n  padding: 0.65rem 1.25rem;\n  border: 0;\n  border-radius: 999px;\n  background: none;\n  color: var(--texto-suave);\n  font: inherit;\n  font-size: 0.98rem;\n  font-weight: 600;\n  cursor: pointer;\n  transition: background 0.15s ease, color 0.15s ease;\n}\n.segmento:hover {\n  color: var(--texto);\n}\n.segmento--ativo {\n  background: #333948;\n  color: #fff;\n}\n.btn-pausa:focus-visible,\n.segmento:focus-visible,\n.btn-circ:focus-visible,\n.acordeao:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 2px;\n}\n.ajuda {\n  position: absolute;\n  right: 24px;\n  bottom: 86px;\n  width: min(320px, 100% - 48px);\n  padding: 16px 18px;\n  border-radius: 20px;\n  border: 1px solid rgba(255, 255, 255, 0.09);\n  background: rgba(24, 28, 38, 0.96);\n  font-size: 0.85rem;\n  line-height: 1.5;\n  color: var(--texto-suave);\n}\n.ajuda p {\n  margin: 0 0 0.55rem;\n}\n.ajuda p:last-child {\n  margin-bottom: 0;\n}\n.ajuda b {\n  color: var(--texto);\n}\n.ajuda-fases {\n  display: flex;\n  gap: 18px;\n  margin-bottom: 0.7rem;\n  color: var(--texto);\n}\n.fase {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n.fase i {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n}\n@media (max-width: 820px) {\n  .vo {\n    grid-template-columns: 1fr;\n    grid-template-rows: minmax(0, 40%) minmax(0, 1fr);\n  }\n  .painel-topo {\n    padding: 0.5rem 1.4rem;\n    gap: 1.4rem;\n  }\n  .painel-letra {\n    font-size: 2.6rem;\n  }\n  .painel-corpo {\n    padding: 1rem 1.2rem;\n  }\n  .ctrl-sliders {\n    left: 12px;\n    bottom: 84px;\n    width: 200px;\n  }\n  .ctrl-modos {\n    bottom: 14px;\n  }\n  .segmento {\n    padding: 0.55rem 0.8rem;\n    font-size: 0.85rem;\n  }\n  .btn-ajuda {\n    right: 12px;\n    bottom: 84px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .radial,\n  .acordeao-seta,\n  .palco {\n    transition: none;\n  }\n}\n:host {\n  font-family:\n    "Inter",\n    "Segoe UI",\n    system-ui,\n    sans-serif;\n}\n.orb-root {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n  border-radius: 6px;\n  background: #07070f;\n  color: #dde8f2;\n}\n.sidebar {\n  display: flex;\n  flex: 0 0 242px;\n  flex-direction: column;\n  gap: 0;\n  min-height: 0;\n  overflow-y: auto;\n  padding: 14px 12px;\n  background: #0c0c18;\n  font-size: 12px;\n  scrollbar-color: rgba(79, 163, 227, 0.2) transparent;\n  scrollbar-width: thin;\n}\n.sidebar-header {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 12px;\n  width: 100%;\n  height: auto;\n  margin-bottom: 18px;\n  padding: 0;\n  background: transparent;\n}\n.sidebar-header .mdi {\n  flex: 0 0 auto;\n  color: #4fa3e3;\n  font-size: 24px;\n}\n.sidebar-title {\n  white-space: nowrap;\n  color: #4fa3e3;\n  font-size: 12px;\n  font-weight: 700;\n}\n.sidebar-sub {\n  margin-top: 1px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  white-space: nowrap;\n}\n.section-label,\n.panel-title {\n  margin: 0 0 6px;\n  color: rgba(79, 163, 227, 0.62);\n  font-size: 9px;\n  font-weight: 700;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\n.mt14 {\n  margin-top: 14px;\n}\n.mode-btns {\n  display: flex;\n  gap: 5px;\n  margin-bottom: 10px;\n}\n.mode-btn {\n  flex: 1;\n  min-width: 0;\n  padding: 7px 4px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 5px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.55);\n  cursor: pointer;\n  font: inherit;\n  font-size: 10px;\n  transition: background 0.13s ease, color 0.13s ease;\n}\n.mode-btn:hover,\n.mode-btn--active {\n  border-color: var(--gc);\n  background: color-mix(in srgb, var(--gc) 16%, transparent);\n  color: var(--gc);\n}\n.slider-wrap {\n  display: block;\n  margin-bottom: 9px;\n}\n.slider-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 5px;\n  color: rgba(255, 255, 255, 0.48);\n  font-size: 10px;\n}\n.slider-value {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n}\n.slider-val {\n  color: rgba(79, 163, 227, 0.8);\n  font-variant-numeric: tabular-nums;\n}\n.slider {\n  width: 100%;\n  height: 4px;\n  border-radius: 2px;\n  background: rgba(79, 163, 227, 0.2);\n}\n.slider::-webkit-slider-thumb {\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.slider::-moz-range-thumb {\n  width: 13px;\n  height: 13px;\n  border: 0;\n  border-radius: 50%;\n  background: #4fa3e3;\n}\n.phase-row {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  margin-bottom: 12px;\n  color: rgba(255, 255, 255, 0.56);\n  font-size: 10px;\n}\n.phase-dot {\n  width: 9px;\n  height: 9px;\n  flex: 0 0 9px;\n  border-radius: 50%;\n}\n.ml8 {\n  margin-left: 7px;\n}\n.toggle-row {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin: 0 0 9px;\n  padding: 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  text-align: left;\n}\n.toggle-track {\n  position: relative;\n  width: 28px;\n  height: 15px;\n  flex: 0 0 28px;\n  border-radius: 8px;\n  background: rgba(255, 255, 255, 0.12);\n}\n.toggle-track--on {\n  background: rgba(79, 163, 227, 0.45);\n}\n.toggle-thumb {\n  position: absolute;\n  top: 2px;\n  left: 2px;\n  width: 11px;\n  height: 11px;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.5);\n  transition: transform 0.2s ease, background 0.2s ease;\n}\n.toggle-thumb--on {\n  transform: translateX(13px);\n  background: #4fa3e3;\n}\n.toggle-label {\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 10px;\n}\n.qn-box {\n  margin-top: 10px;\n  padding: 10px;\n  border: 1px solid rgba(79, 163, 227, 0.12);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.qn-orbital {\n  margin-bottom: 8px;\n  font-size: 16px;\n  font-weight: 700;\n}\n.qn-row,\n.info-row {\n  display: flex;\n  justify-content: space-between;\n  gap: 8px;\n  margin-bottom: 5px;\n  font-size: 10px;\n}\n.qn-row:last-child,\n.info-row:last-child {\n  margin-bottom: 0;\n}\n.qn-key,\n.info-key {\n  color: rgba(79, 163, 227, 0.68);\n  font-weight: 600;\n}\n.qn-val,\n.info-value {\n  color: rgba(255, 255, 255, 0.8);\n  font-variant-numeric: tabular-nums;\n  text-align: right;\n}\n.phase-legend {\n  display: grid;\n  gap: 6px;\n  margin-top: 12px;\n  padding-top: 10px;\n  border-top: 1px solid rgba(255, 255, 255, 0.06);\n  color: rgba(255, 255, 255, 0.36);\n  font-size: 9px;\n  line-height: 1.45;\n}\n.main-area {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  min-width: 0;\n  min-height: 0;\n  overflow: hidden;\n}\n.bottom-panels {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  min-width: 220px;\n  min-height: 0;\n  overflow-y: auto;\n  border-right: 1px solid rgba(255, 255, 255, 0.06);\n  scrollbar-width: thin;\n}\n.panel {\n  display: flex;\n  flex: 1 0 170px;\n  flex-direction: column;\n  min-height: 0;\n  padding: 10px 14px;\n  border-bottom: 1px solid rgba(79, 163, 227, 0.1);\n}\n.panel-radial,\n.panel-section {\n  min-height: 190px;\n}\n.panel-section {\n  flex: 0 0 auto;\n  min-height: 280px;\n}\n.panel-heading {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n}\n.offset-control {\n  display: grid;\n  align-items: center;\n  gap: 4px 8px;\n  margin: 2px 0 5px;\n  color: rgba(255, 255, 255, 0.6);\n  font-size: 9px;\n}\n.offset-control span {\n  display: flex;\n  justify-content: space-between;\n}\n.offset-value {\n  align-items: center;\n  gap: 4px;\n}\n.offset-reset {\n  display: grid;\n  width: 20px;\n  height: 20px;\n  place-items: center;\n  padding: 0;\n  border: 0;\n  border-radius: 4px;\n  background: transparent;\n  color: rgba(255, 255, 255, 0.65);\n  cursor: pointer;\n}\n.offset-reset:hover:not(:disabled) {\n  background: rgba(79, 163, 227, 0.14);\n  color: #4fa3e3;\n}\n.offset-reset:disabled {\n  color: rgba(255, 255, 255, 0.25);\n  cursor: default;\n}\n.offset-reset:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 1px;\n}\n.offset-control output {\n  color: #fff;\n  font-variant-numeric: tabular-nums;\n}\n.offset-control input {\n  width: 100%;\n  height: 3px;\n  accent-color: #4fa3e3;\n}\n.panel-canvas {\n  display: block;\n  width: 100%;\n  min-height: 0;\n  flex: 1 1 auto;\n  border-radius: 4px;\n}\n.radial-canvas {\n  min-height: 125px;\n}\n.section-canvas {\n  width: min(100%, 160px);\n  height: auto;\n  min-height: 0;\n  flex: 0 0 auto;\n  align-self: center;\n  aspect-ratio: 1/1;\n  background: #07070f;\n  image-rendering: auto;\n  margin-top: 1rem;\n}\n.panel-desc {\n  margin: 5px 0 0;\n  color: rgba(255, 255, 255, 0.34);\n  font-size: 9px;\n  line-height: 1.4;\n}\n.plane-btns {\n  display: flex;\n  gap: 4px;\n}\n.plane-btn {\n  min-width: 32px;\n  padding: 3px 6px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  border-radius: 4px;\n  background: rgba(255, 255, 255, 0.04);\n  color: rgba(255, 255, 255, 0.52);\n  cursor: pointer;\n  font: inherit;\n  font-size: 9px;\n}\n.plane-btn--active {\n  border-color: #4fa3e3;\n  background: rgba(79, 163, 227, 0.16);\n  color: #4fa3e3;\n}\n.panel-info {\n  flex: 0 0 auto;\n  min-height: 155px;\n}\n.info-card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));\n  gap: 8px;\n  overflow-y: auto;\n}\n.info-card {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 5px;\n  padding: 9px 10px;\n  border: 1px solid rgba(79, 163, 227, 0.14);\n  border-radius: 6px;\n  background: rgba(79, 163, 227, 0.05);\n}\n.info-card .info-key {\n  font-size: 9px;\n  letter-spacing: 0.04em;\n  text-align: left;\n}\n.info-card .info-value {\n  font-size: 12px;\n  font-weight: 600;\n  overflow-wrap: anywhere;\n  text-align: left;\n}\n.canvas-wrap {\n  position: relative;\n  flex: 0 0 min(54%, 600px);\n  min-width: 300px;\n  min-height: 0;\n  overflow: hidden;\n  background: #07070f;\n}\n.three-canvas {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n}\n.canvas-label {\n  position: absolute;\n  top: 15px;\n  left: 50%;\n  transform: translateX(-50%);\n  color: color-mix(in srgb, var(--gc) 86%, white);\n  font-size: 15px;\n  font-weight: 700;\n  pointer-events: none;\n  text-shadow: 0 0 20px color-mix(in srgb, var(--gc) 25%, transparent);\n}\n.canvas-hint {\n  position: absolute;\n  right: 12px;\n  bottom: 10px;\n  color: rgba(255, 255, 255, 0.38);\n  font-size: 9px;\n  pointer-events: none;\n}\n.mode-btn:focus-visible,\n.toggle-row:focus-visible,\n.plane-btn:focus-visible,\n.slider:focus-visible {\n  outline: 2px solid #4fa3e3;\n  outline-offset: 3px;\n}\n@media (max-width: 980px) {\n  .sidebar {\n    flex-basis: 210px;\n  }\n  .canvas-wrap {\n    flex-basis: 48%;\n    min-width: 260px;\n  }\n  .bottom-panels {\n    min-width: 190px;\n  }\n}\n@media (max-width: 720px) {\n  .orb-root {\n    flex-direction: column;\n  }\n  .sidebar {\n    display: grid;\n    flex: 0 0 auto;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: 5px 12px;\n    max-height: 38%;\n    overflow-y: auto;\n    padding: 9px 12px;\n  }\n  .sidebar-header,\n  .qn-box,\n  .phase-legend {\n    grid-column: 1/-1;\n  }\n  .sidebar-header {\n    margin-bottom: 3px;\n  }\n  .section-label,\n  .mt14 {\n    margin-top: 0;\n  }\n  .phase-row,\n  .toggle-row,\n  .slider-wrap,\n  .mode-btns {\n    margin: 0;\n  }\n  .qn-box,\n  .phase-legend {\n    display: none;\n  }\n  .main-area {\n    flex-direction: column;\n  }\n  .canvas-wrap {\n    order: 0;\n    flex: 1 1 55%;\n    min-width: 0;\n  }\n  .bottom-panels {\n    order: 1;\n    display: grid;\n    flex: 0 0 42%;\n    grid-template-columns: repeat(3, minmax(180px, 1fr));\n    grid-auto-rows: minmax(280px, auto);\n    min-width: 0;\n    overflow-x: auto;\n    overflow-y: auto;\n    border-top: 1px solid rgba(79, 163, 227, 0.1);\n  }\n  .panel,\n  .panel-radial,\n  .panel-section,\n  .panel-info {\n    min-height: 0;\n    border-bottom: 0;\n    border-right: 1px solid rgba(255, 255, 255, 0.06);\n  }\n  .panel-canvas {\n    min-height: 80px;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .mode-btn,\n  .toggle-thumb {\n    transition: none;\n  }\n}\n/*# sourceMappingURL=orbital-surface-viewer.css.map */\n'] }]
   }], () => [{ type: NgZone }], { orbital: [{
     type: Input,
     args: [{ required: true }]
   }], zEff: [{
     type: Input
-  }], voltar: [{
-    type: Output
-  }], fechar: [{
-    type: Output
   }], palcoRef: [{
     type: ViewChild,
     args: ["palco", { static: true }]
@@ -28738,4 +29056,4 @@ three/build/three.module.js:
    * SPDX-License-Identifier: MIT
    *)
 */
-//# sourceMappingURL=chunk-VJQG4T2Z.js.map
+//# sourceMappingURL=chunk-K7F62WEH.js.map

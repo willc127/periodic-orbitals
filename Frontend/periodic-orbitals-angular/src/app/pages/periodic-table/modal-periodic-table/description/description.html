@@ -67,11 +67,28 @@
 
     <div class="element-image-container">
       @if (data.link_imagem) {
-        <img
-          [src]="data.link_imagem"
-          [alt]="data.nome || 'Elemento'"
-          class="element-image"
-        />
+        <a
+          [href]="data.link_imagem_fonte"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="
+            'Ver a página de origem da imagem de ' + (data.nome || 'elemento')
+          "
+        >
+          <img
+            [src]="data.link_imagem"
+            [alt]="data.nome || 'Elemento'"
+            class="element-image"
+          />
+        </a>
+        <a
+          class="element-image-credit"
+          [href]="data.link_imagem_fonte"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fonte: images-of-elements.com (CC BY 3.0)
+        </a>
       } @else {
         <div class="element-image-placeholder">
           <i class="mdi mdi-image-off-outline"></i>

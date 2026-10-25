@@ -222,6 +222,25 @@ Consultas por símbolo usam a mesma validação da listagem. A rota
 `POST /cache/clear` remove os arquivos derivados de elementos e isótopos e
 invalida os caches em memória, sem apagar os dados-fonte das linhas espectrais.
 
+### Imagens dos elementos
+
+As imagens são servidas localmente pela API em `/assets/elements/`. Para
+baixar as imagens ausentes em `elements-data/static/elements/`, execute na raiz
+do repositório:
+
+```powershell
+python Backend\elements-data\download_images.py
+```
+
+O download usa as URLs originais registradas pela configuração do serviço e é
+idempotente: arquivos existentes são preservados. As imagens de elementos com
+número atômico a partir de 104 compartilham o placeholder `transactinoid.png`.
+Thorium não é baixado porque a página identifica a fotografia como copyright
+de terceiro sem indicar uma licença compatível.
+As imagens são atribuídas à página do elemento em images-of-elements.com, sob
+a licença [Creative Commons Attribution 3.0 Unported](http://creativecommons.org/licenses/by/3.0/);
+o link de atribuição aparece junto à imagem.
+
 ## Estrutura atual
 
 ```text
@@ -229,7 +248,9 @@ Backend/
 ├── elements-data/
 │   ├── api/               # Rotas de elementos, espectros e limpeza de cache
 │   ├── data/              # Dados e metadados dos elementos
+│   ├── static/elements/   # Imagens dos elementos servidas pela API
 │   ├── services/          # Consulta e transformação de dados
+│   ├── download_images.py # Download local das imagens licenciadas
 │   ├── cache/             # Cache em disco dos isótopos
 │   ├── main.py            # Criação da aplicação FastAPI
 │   ├── router_isotopos.py # Rota de isótopos

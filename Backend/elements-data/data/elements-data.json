@@ -37,7 +37,8 @@
     "type": "Hydrogen",
     "link": "http://www.periodicvideos.com/videos/001.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=H&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/hydrogen.jpg"
+    "link_image": "/assets/elements/h.jpg",
+    "link_image_source": "https://images-of-elements.com/hydrogen.php"
   },
   {
     "symbol": "He",
@@ -77,7 +78,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/002.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=He&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/helium.jpg"
+    "link_image": "/assets/elements/he.jpg",
+    "link_image_source": "https://images-of-elements.com/helium.php"
   },
   {
     "symbol": "Li",
@@ -117,7 +119,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/003.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Li&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/lithium.jpg"
+    "link_image": "/assets/elements/li.jpg",
+    "link_image_source": "https://images-of-elements.com/lithium.php"
   },
   {
     "symbol": "Be",
@@ -157,7 +160,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/004.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Be&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/beryllium.jpg"
+    "link_image": "/assets/elements/be.jpg",
+    "link_image_source": "https://images-of-elements.com/beryllium.php"
   },
   {
     "symbol": "B",
@@ -197,7 +201,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/005.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=B&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/boron.jpg"
+    "link_image": "/assets/elements/b.jpg",
+    "link_image_source": "https://images-of-elements.com/boron.php"
   },
   {
     "symbol": "C",
@@ -237,7 +242,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/006.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=C&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/carbon.jpg"
+    "link_image": "/assets/elements/c.jpg",
+    "link_image_source": "https://images-of-elements.com/carbon.php"
   },
   {
     "symbol": "N",
@@ -277,7 +283,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/007.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=N&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/nitrogen.jpg"
+    "link_image": "/assets/elements/n.jpg",
+    "link_image_source": "https://images-of-elements.com/nitrogen.php"
   },
   {
     "symbol": "O",
@@ -317,7 +324,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/008.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=O&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/oxygen.jpg"
+    "link_image": "/assets/elements/o.jpg",
+    "link_image_source": "https://images-of-elements.com/oxygen.php"
   },
   {
     "symbol": "F",
@@ -357,7 +365,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/009.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=F&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/fluorine.jpg"
+    "link_image": "/assets/elements/f.jpg",
+    "link_image_source": "https://images-of-elements.com/fluorine.php"
   },
   {
     "symbol": "Ne",
@@ -397,7 +406,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/010.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ne&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/neon.jpg"
+    "link_image": "/assets/elements/ne.jpg",
+    "link_image_source": "https://images-of-elements.com/neon.php"
   },
   {
     "symbol": "Na",
@@ -437,7 +447,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/011.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Na&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/sodium.jpg"
+    "link_image": "/assets/elements/na.jpg",
+    "link_image_source": "https://images-of-elements.com/sodium.php"
   },
   {
     "symbol": "Mg",
@@ -477,7 +488,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/012.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Mg&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/magnesium.jpg"
+    "link_image": "/assets/elements/mg.jpg",
+    "link_image_source": "https://images-of-elements.com/magnesium.php"
   },
   {
     "symbol": "Al",
@@ -517,7 +529,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/013.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Al&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/aluminum.jpg"
+    "link_image": "/assets/elements/al.jpg",
+    "link_image_source": "https://images-of-elements.com/aluminium.php"
   },
   {
     "symbol": "Si",
@@ -557,7 +570,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/014.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Si&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/silicon.jpg"
+    "link_image": "/assets/elements/si.jpg",
+    "link_image_source": "https://images-of-elements.com/silicon.php"
   },
   {
     "symbol": "P",
@@ -597,7 +611,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/015.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=P&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/red-phosphorus.jpg"
+    "link_image": "/assets/elements/p.jpg",
+    "link_image_source": "https://images-of-elements.com/phosphorus.php"
   },
   {
     "symbol": "S",
@@ -637,7 +652,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/016.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=S&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/sulfur.jpg"
+    "link_image": "/assets/elements/s.jpg",
+    "link_image_source": "https://images-of-elements.com/sulfur.php"
   },
   {
     "symbol": "Cl",
@@ -677,7 +693,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/017.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cl&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/chlorine.jpg"
+    "link_image": "/assets/elements/cl.jpg",
+    "link_image_source": "https://images-of-elements.com/chlorine.php"
   },
   {
     "symbol": "Ar",
@@ -717,7 +734,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/018.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ar&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/argon.jpg"
+    "link_image": "/assets/elements/ar.jpg",
+    "link_image_source": "https://images-of-elements.com/argon.php"
   },
   {
     "symbol": "K",
@@ -757,7 +775,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/019.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=K&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/potassium.jpg"
+    "link_image": "/assets/elements/k.jpg",
+    "link_image_source": "https://images-of-elements.com/potassium.php"
   },
   {
     "symbol": "Ca",
@@ -797,7 +816,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/020.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ca&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/calcium.jpg"
+    "link_image": "/assets/elements/ca.jpg",
+    "link_image_source": "https://images-of-elements.com/calcium.php"
   },
   {
     "symbol": "Sc",
@@ -837,7 +857,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/021.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sc&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/scandium.jpg"
+    "link_image": "/assets/elements/sc.jpg",
+    "link_image_source": "https://images-of-elements.com/scandium.php"
   },
   {
     "symbol": "Ti",
@@ -877,7 +898,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/022.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ti&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/titanium.jpg"
+    "link_image": "/assets/elements/ti.jpg",
+    "link_image_source": "https://images-of-elements.com/titanium.php"
   },
   {
     "symbol": "V",
@@ -917,7 +939,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/023.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=V&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/vanadium.jpg"
+    "link_image": "/assets/elements/v.jpg",
+    "link_image_source": "https://images-of-elements.com/vanadium.php"
   },
   {
     "symbol": "Cr",
@@ -957,7 +980,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/024.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/chromium.jpg"
+    "link_image": "/assets/elements/cr.jpg",
+    "link_image_source": "https://images-of-elements.com/chromium.php"
   },
   {
     "symbol": "Mn",
@@ -997,7 +1021,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/025.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Mn&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/manganese.jpg"
+    "link_image": "/assets/elements/mn.jpg",
+    "link_image_source": "https://images-of-elements.com/manganese.php"
   },
   {
     "symbol": "Fe",
@@ -1037,7 +1062,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/026.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Fe&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/iron.jpg"
+    "link_image": "/assets/elements/fe.jpg",
+    "link_image_source": "https://images-of-elements.com/iron.php"
   },
   {
     "symbol": "Co",
@@ -1077,7 +1103,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/027.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Co&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/cobalt.jpg"
+    "link_image": "/assets/elements/co.jpg",
+    "link_image_source": "https://images-of-elements.com/cobalt.php"
   },
   {
     "symbol": "Ni",
@@ -1117,7 +1144,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/028.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ni&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/nickel.jpg"
+    "link_image": "/assets/elements/ni.jpg",
+    "link_image_source": "https://images-of-elements.com/nickel.php"
   },
   {
     "symbol": "Cu",
@@ -1157,7 +1185,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/029.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cu&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/copper.jpg"
+    "link_image": "/assets/elements/cu.jpg",
+    "link_image_source": "https://images-of-elements.com/copper.php"
   },
   {
     "symbol": "Zn",
@@ -1197,7 +1226,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/030.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Zn&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/zinc.jpg"
+    "link_image": "/assets/elements/zn.jpg",
+    "link_image_source": "https://images-of-elements.com/zinc.php"
   },
   {
     "symbol": "Ga",
@@ -1237,7 +1267,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/031.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ga&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/gallium.jpg"
+    "link_image": "/assets/elements/ga.jpg",
+    "link_image_source": "https://images-of-elements.com/gallium.php"
   },
   {
     "symbol": "Ge",
@@ -1277,7 +1308,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/032.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ge&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/germanium.jpg"
+    "link_image": "/assets/elements/ge.jpg",
+    "link_image_source": "https://images-of-elements.com/germanium.php"
   },
   {
     "symbol": "As",
@@ -1317,7 +1349,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/033.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=As&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/arsenic.jpg"
+    "link_image": "/assets/elements/as.jpg",
+    "link_image_source": "https://images-of-elements.com/arsenic.php"
   },
   {
     "symbol": "Se",
@@ -1357,7 +1390,8 @@
     "type": "Nonmetal",
     "link": "http://www.periodicvideos.com/videos/034.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Se&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/selenium.jpg"
+    "link_image": "/assets/elements/se.jpg",
+    "link_image_source": "https://images-of-elements.com/selenium.php"
   },
   {
     "symbol": "Br",
@@ -1397,7 +1431,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/035.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Br&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/bromine.jpg"
+    "link_image": "/assets/elements/br.jpg",
+    "link_image_source": "https://images-of-elements.com/bromine.php"
   },
   {
     "symbol": "Kr",
@@ -1437,7 +1472,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/036.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Kr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/krypton.jpg"
+    "link_image": "/assets/elements/kr.jpg",
+    "link_image_source": "https://images-of-elements.com/krypton.php"
   },
   {
     "symbol": "Rb",
@@ -1477,7 +1513,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/037.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Rb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/rubidium.jpg"
+    "link_image": "/assets/elements/rb.jpg",
+    "link_image_source": "https://images-of-elements.com/rubidium.php"
   },
   {
     "symbol": "Sr",
@@ -1517,7 +1554,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/038.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/strontium.jpg"
+    "link_image": "/assets/elements/sr.jpg",
+    "link_image_source": "https://images-of-elements.com/strontium.php"
   },
   {
     "symbol": "Y",
@@ -1557,7 +1595,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/039.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Y&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/yttrium.jpg"
+    "link_image": "/assets/elements/y.jpg",
+    "link_image_source": "https://images-of-elements.com/yttrium.php"
   },
   {
     "symbol": "Zr",
@@ -1597,7 +1636,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/040.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Zr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/zirconium.jpg"
+    "link_image": "/assets/elements/zr.jpg",
+    "link_image_source": "https://images-of-elements.com/zirconium.php"
   },
   {
     "symbol": "Nb",
@@ -1637,7 +1677,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/041.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Nb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/niobium.jpg"
+    "link_image": "/assets/elements/nb.jpg",
+    "link_image_source": "https://images-of-elements.com/niobium.php"
   },
   {
     "symbol": "Mo",
@@ -1677,7 +1718,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/042.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Mo&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/molybdenum.jpg"
+    "link_image": "/assets/elements/mo.jpg",
+    "link_image_source": "https://images-of-elements.com/molybdenum.php"
   },
   {
     "symbol": "Tc",
@@ -1717,7 +1759,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/043.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Tc&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/technetium.jpg"
+    "link_image": "/assets/elements/tc.jpg",
+    "link_image_source": "https://images-of-elements.com/technetium.php"
   },
   {
     "symbol": "Ru",
@@ -1757,7 +1800,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/044.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ru&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/ruthenium.jpg"
+    "link_image": "/assets/elements/ru.jpg",
+    "link_image_source": "https://images-of-elements.com/ruthenium.php"
   },
   {
     "symbol": "Rh",
@@ -1797,7 +1841,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/045.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Rh&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/rhodium.jpg"
+    "link_image": "/assets/elements/rh.jpg",
+    "link_image_source": "https://images-of-elements.com/rhodium.php"
   },
   {
     "symbol": "Pd",
@@ -1837,7 +1882,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/046.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pd&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/palladium.jpg"
+    "link_image": "/assets/elements/pd.jpg",
+    "link_image_source": "https://images-of-elements.com/palladium.php"
   },
   {
     "symbol": "Ag",
@@ -1877,7 +1923,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/047.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ag&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/silver.jpg"
+    "link_image": "/assets/elements/ag.jpg",
+    "link_image_source": "https://images-of-elements.com/silver.php"
   },
   {
     "symbol": "Cd",
@@ -1917,7 +1964,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/048.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cd&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/cadmium.jpg"
+    "link_image": "/assets/elements/cd.jpg",
+    "link_image_source": "https://images-of-elements.com/cadmium.php"
   },
   {
     "symbol": "In",
@@ -1957,7 +2005,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/049.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=In&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/indium.jpg"
+    "link_image": "/assets/elements/in.jpg",
+    "link_image_source": "https://images-of-elements.com/indium.php"
   },
   {
     "symbol": "Sn",
@@ -1997,7 +2046,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/050.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sn&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/tin-2.jpg"
+    "link_image": "/assets/elements/sn.jpg",
+    "link_image_source": "https://images-of-elements.com/tin.php"
   },
   {
     "symbol": "Sb",
@@ -2037,7 +2087,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/051.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/antimony.jpg"
+    "link_image": "/assets/elements/sb.jpg",
+    "link_image_source": "https://images-of-elements.com/antimony.php"
   },
   {
     "symbol": "Te",
@@ -2077,7 +2128,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/052.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Te&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/tellurium.jpg"
+    "link_image": "/assets/elements/te.jpg",
+    "link_image_source": "https://images-of-elements.com/tellurium.php"
   },
   {
     "symbol": "I",
@@ -2117,7 +2169,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/053.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=I&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/iodine-2.jpg"
+    "link_image": "/assets/elements/i.jpg",
+    "link_image_source": "https://images-of-elements.com/iodine.php"
   },
   {
     "symbol": "Xe",
@@ -2157,7 +2210,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/054.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Xe&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/xenon.jpg"
+    "link_image": "/assets/elements/xe.jpg",
+    "link_image_source": "https://images-of-elements.com/xenon.php"
   },
   {
     "symbol": "Cs",
@@ -2197,7 +2251,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/055.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cs&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/caesium-3.jpg"
+    "link_image": "/assets/elements/cs.jpg",
+    "link_image_source": "https://images-of-elements.com/caesium.php"
   },
   {
     "symbol": "Ba",
@@ -2237,7 +2292,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/056.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ba&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/barium.jpg"
+    "link_image": "/assets/elements/ba.jpg",
+    "link_image_source": "https://images-of-elements.com/barium.php"
   },
   {
     "symbol": "La",
@@ -2277,7 +2333,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/057.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=La&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/lanthanum.jpg"
+    "link_image": "/assets/elements/la.jpg",
+    "link_image_source": "https://images-of-elements.com/lanthanum.php"
   },
   {
     "symbol": "Ce",
@@ -2317,7 +2374,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/058.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ce&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/cerium.jpg"
+    "link_image": "/assets/elements/ce.jpg",
+    "link_image_source": "https://images-of-elements.com/cerium.php"
   },
   {
     "symbol": "Pr",
@@ -2357,7 +2415,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/059.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/praseodymium.jpg"
+    "link_image": "/assets/elements/pr.jpg",
+    "link_image_source": "https://images-of-elements.com/praseodymium.php"
   },
   {
     "symbol": "Nd",
@@ -2397,7 +2456,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/060.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Nd&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/neodymium.jpg"
+    "link_image": "/assets/elements/nd.jpg",
+    "link_image_source": "https://images-of-elements.com/neodymium.php"
   },
   {
     "symbol": "Pm",
@@ -2437,7 +2497,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/061.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pm&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/promethium.jpg"
+    "link_image": "/assets/elements/pm.jpg",
+    "link_image_source": "https://images-of-elements.com/promethium.php"
   },
   {
     "symbol": "Sm",
@@ -2477,7 +2538,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/062.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sm&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/samarium.jpg"
+    "link_image": "/assets/elements/sm.jpg",
+    "link_image_source": "https://images-of-elements.com/samarium.php"
   },
   {
     "symbol": "Eu",
@@ -2517,7 +2579,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/063.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Eu&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/europium.jpg"
+    "link_image": "/assets/elements/eu.jpg",
+    "link_image_source": "https://images-of-elements.com/europium.php"
   },
   {
     "symbol": "Gd",
@@ -2557,7 +2620,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/064.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Gd&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/gadolinium.jpg"
+    "link_image": "/assets/elements/gd.jpg",
+    "link_image_source": "https://images-of-elements.com/gadolinium.php"
   },
   {
     "symbol": "Tb",
@@ -2597,7 +2661,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/065.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Tb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/terbium.jpg"
+    "link_image": "/assets/elements/tb.jpg",
+    "link_image_source": "https://images-of-elements.com/terbium.php"
   },
   {
     "symbol": "Dy",
@@ -2637,7 +2702,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/066.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Dy&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/dysprosium.jpg"
+    "link_image": "/assets/elements/dy.jpg",
+    "link_image_source": "https://images-of-elements.com/dysprosium.php"
   },
   {
     "symbol": "Ho",
@@ -2677,7 +2743,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/067.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ho&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/holmium.jpg"
+    "link_image": "/assets/elements/ho.jpg",
+    "link_image_source": "https://images-of-elements.com/holmium.php"
   },
   {
     "symbol": "Er",
@@ -2717,7 +2784,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/068.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Er&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/erbium.jpg"
+    "link_image": "/assets/elements/er.jpg",
+    "link_image_source": "https://images-of-elements.com/erbium.php"
   },
   {
     "symbol": "Tm",
@@ -2757,7 +2825,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/069.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Tm&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/thulium.jpg"
+    "link_image": "/assets/elements/tm.jpg",
+    "link_image_source": "https://images-of-elements.com/thulium.php"
   },
   {
     "symbol": "Yb",
@@ -2797,7 +2866,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/070.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Yb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/ytterbium.jpg"
+    "link_image": "/assets/elements/yb.jpg",
+    "link_image_source": "https://images-of-elements.com/ytterbium.php"
   },
   {
     "symbol": "Lu",
@@ -2837,7 +2907,8 @@
     "type": "Lanthanide",
     "link": "http://www.periodicvideos.com/videos/071.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Lu&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/lutetium.jpg"
+    "link_image": "/assets/elements/lu.jpg",
+    "link_image_source": "https://images-of-elements.com/lutetium.php"
   },
   {
     "symbol": "Hf",
@@ -2877,7 +2948,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/072.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Hf&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/hafnium.jpg"
+    "link_image": "/assets/elements/hf.jpg",
+    "link_image_source": "https://images-of-elements.com/hafnium.php"
   },
   {
     "symbol": "Ta",
@@ -2917,7 +2989,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/073.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ta&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/tantalum.jpg"
+    "link_image": "/assets/elements/ta.jpg",
+    "link_image_source": "https://images-of-elements.com/tantalum.php"
   },
   {
     "symbol": "W",
@@ -2957,7 +3030,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/074.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=W&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/tungsten.jpg"
+    "link_image": "/assets/elements/w.jpg",
+    "link_image_source": "https://images-of-elements.com/tungsten.php"
   },
   {
     "symbol": "Re",
@@ -2997,7 +3071,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/075.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Re&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/rhenium.jpg"
+    "link_image": "/assets/elements/re.jpg",
+    "link_image_source": "https://images-of-elements.com/rhenium.php"
   },
   {
     "symbol": "Os",
@@ -3037,7 +3112,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/076.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Os&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/osmium.jpg"
+    "link_image": "/assets/elements/os.jpg",
+    "link_image_source": "https://images-of-elements.com/osmium.php"
   },
   {
     "symbol": "Ir",
@@ -3077,7 +3153,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/077.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ir&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/iridium.jpg"
+    "link_image": "/assets/elements/ir.jpg",
+    "link_image_source": "https://images-of-elements.com/iridium.php"
   },
   {
     "symbol": "Pt",
@@ -3117,7 +3194,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/078.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pt&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/platinum.jpg"
+    "link_image": "/assets/elements/pt.jpg",
+    "link_image_source": "https://images-of-elements.com/platinum.php"
   },
   {
     "symbol": "Au",
@@ -3157,7 +3235,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/079.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Au&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/gold.jpg"
+    "link_image": "/assets/elements/au.jpg",
+    "link_image_source": "https://images-of-elements.com/gold.php"
   },
   {
     "symbol": "Hg",
@@ -3197,7 +3276,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/080.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Hg&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/mercury.jpg"
+    "link_image": "/assets/elements/hg.jpg",
+    "link_image_source": "https://images-of-elements.com/mercury.php"
   },
   {
     "symbol": "Tl",
@@ -3237,7 +3317,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/081.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Tl&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/thallium.jpg"
+    "link_image": "/assets/elements/tl.jpg",
+    "link_image_source": "https://images-of-elements.com/thallium.php"
   },
   {
     "symbol": "Pb",
@@ -3277,7 +3358,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/082.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pb&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/lead.jpg"
+    "link_image": "/assets/elements/pb.jpg",
+    "link_image_source": "https://images-of-elements.com/lead.php"
   },
   {
     "symbol": "Bi",
@@ -3317,7 +3399,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/083.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Bi&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/bismuth.jpg"
+    "link_image": "/assets/elements/bi.jpg",
+    "link_image_source": "https://images-of-elements.com/bismuth.php"
   },
   {
     "symbol": "Po",
@@ -3357,7 +3440,8 @@
     "type": "Metalloid",
     "link": "http://www.periodicvideos.com/videos/084.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Po&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/polonium.jpg"
+    "link_image": "/assets/elements/po.jpg",
+    "link_image_source": "https://images-of-elements.com/polonium.php"
   },
   {
     "symbol": "At",
@@ -3397,7 +3481,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/085.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=At&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/astatine.jpg"
+    "link_image": "/assets/elements/at.jpg",
+    "link_image_source": "https://images-of-elements.com/astatine.php"
   },
   {
     "symbol": "Rn",
@@ -3437,7 +3522,8 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/086.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Rn&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/radon.jpg"
+    "link_image": "/assets/elements/rn.jpg",
+    "link_image_source": "https://images-of-elements.com/radon.php"
   },
   {
     "symbol": "Fr",
@@ -3477,7 +3563,8 @@
     "type": "Alkali-Metal",
     "link": "http://www.periodicvideos.com/videos/087.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Fr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/francium.jpg"
+    "link_image": "/assets/elements/fr.jpg",
+    "link_image_source": "https://images-of-elements.com/francium.php"
   },
   {
     "symbol": "Ra",
@@ -3517,7 +3604,8 @@
     "type": "Alkaline-Earth-Metal",
     "link": "http://www.periodicvideos.com/videos/088.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ra&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/radium.jpg"
+    "link_image": "/assets/elements/ra.jpg",
+    "link_image_source": "https://images-of-elements.com/radium.php"
   },
   {
     "symbol": "Ac",
@@ -3557,7 +3645,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/089.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ac&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/actinium.jpg"
+    "link_image": "/assets/elements/ac.jpg",
+    "link_image_source": "https://images-of-elements.com/actinium.php"
   },
   {
     "symbol": "Th",
@@ -3597,7 +3686,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/090.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Th&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/thorium.jpg"
+    "link_image": null,
+    "link_image_source": "https://images-of-elements.com/thorium.php"
   },
   {
     "symbol": "Pa",
@@ -3637,7 +3727,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/091.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pa&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/protactinium.jpg"
+    "link_image": "/assets/elements/pa.jpg",
+    "link_image_source": "https://images-of-elements.com/protactinium.php"
   },
   {
     "symbol": "U",
@@ -3677,7 +3768,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/092.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=U&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/uranium.jpg"
+    "link_image": "/assets/elements/u.jpg",
+    "link_image_source": "https://images-of-elements.com/uranium.php"
   },
   {
     "symbol": "Np",
@@ -3717,7 +3809,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/093.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Np&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/neptunium.jpg"
+    "link_image": "/assets/elements/np.jpg",
+    "link_image_source": "https://images-of-elements.com/neptunium.php"
   },
   {
     "symbol": "Pu",
@@ -3757,7 +3850,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/094.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Pu&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/plutonium.jpg"
+    "link_image": "/assets/elements/pu.jpg",
+    "link_image_source": "https://images-of-elements.com/plutonium.php"
   },
   {
     "symbol": "Am",
@@ -3797,7 +3891,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/095.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Am&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/americium.jpg"
+    "link_image": "/assets/elements/am.jpg",
+    "link_image_source": "https://images-of-elements.com/americium.php"
   },
   {
     "symbol": "Cm",
@@ -3837,7 +3932,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/096.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cm&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/curium.jpg"
+    "link_image": "/assets/elements/cm.jpg",
+    "link_image_source": "https://images-of-elements.com/curium.php"
   },
   {
     "symbol": "Bk",
@@ -3877,7 +3973,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/097.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Bk&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/berkelium.jpg"
+    "link_image": "/assets/elements/bk.jpg",
+    "link_image_source": "https://images-of-elements.com/berkelium.php"
   },
   {
     "symbol": "Cf",
@@ -3917,7 +4014,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/098.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cf&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/californium-disc.jpg"
+    "link_image": "/assets/elements/cf.jpg",
+    "link_image_source": "https://images-of-elements.com/californium.php"
   },
   {
     "symbol": "Es",
@@ -3957,7 +4055,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/099.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Es&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/einsteinium-235.jpg"
+    "link_image": "/assets/elements/es.jpg",
+    "link_image_source": "https://images-of-elements.com/einsteinium.php"
   },
   {
     "symbol": "Fm",
@@ -3997,7 +4096,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/100.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Fm&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/fermium.jpg"
+    "link_image": "/assets/elements/fm.jpg",
+    "link_image_source": "https://images-of-elements.com/fermium.php"
   },
   {
     "symbol": "Md",
@@ -4037,7 +4137,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/101.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Md&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/mendelevium.jpg"
+    "link_image": "/assets/elements/md.jpg",
+    "link_image_source": "https://images-of-elements.com/mendelevium.php"
   },
   {
     "symbol": "No",
@@ -4077,7 +4178,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/102.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=No&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/nobelium.jpg"
+    "link_image": "/assets/elements/no.jpg",
+    "link_image_source": "https://images-of-elements.com/nobelium.php"
   },
   {
     "symbol": "Lr",
@@ -4117,7 +4219,8 @@
     "type": "Actinide",
     "link": "http://www.periodicvideos.com/videos/103.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Lr&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/lawrencium.jpg"
+    "link_image": "/assets/elements/lr.jpg",
+    "link_image_source": "https://images-of-elements.com/lawrencium.php"
   },
   {
     "symbol": "Rf",
@@ -4157,7 +4260,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/104.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Rf&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/rutherfordium.php"
   },
   {
     "symbol": "Db",
@@ -4197,7 +4301,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/105.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Db&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/dubnium.php"
   },
   {
     "symbol": "Sg",
@@ -4237,7 +4342,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/106.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Sg&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/seaborgium.php"
   },
   {
     "symbol": "Bh",
@@ -4277,7 +4383,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/107.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Bh&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/bohrium.php"
   },
   {
     "symbol": "Hs",
@@ -4317,7 +4424,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/108.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Hs&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/hassium.php"
   },
   {
     "symbol": "Mt",
@@ -4357,7 +4465,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/109.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Mt&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/meitnerium.php"
   },
   {
     "symbol": "Ds",
@@ -4397,7 +4506,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/110.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ds&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/darmstadtium.php"
   },
   {
     "symbol": "Rg",
@@ -4437,7 +4547,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/111.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Rg&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/roentgenium.php"
   },
   {
     "symbol": "Cn",
@@ -4477,7 +4588,8 @@
     "type": "Transition-Metal",
     "link": "http://www.periodicvideos.com/videos/112.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Cn&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/copernicium.php"
   },
   {
     "symbol": "Nh",
@@ -4517,7 +4629,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/113.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Nh&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/nihonium.php"
   },
   {
     "symbol": "Fl",
@@ -4557,7 +4670,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/114.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Fl&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/flerovium.php"
   },
   {
     "symbol": "Mc",
@@ -4597,7 +4711,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/115.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Mc&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/moscovium.php"
   },
   {
     "symbol": "Lv",
@@ -4637,7 +4752,8 @@
     "type": "Poor-Metal",
     "link": "http://www.periodicvideos.com/videos/116.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Lv&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/livermorium.php"
   },
   {
     "symbol": "Ts",
@@ -4677,7 +4793,8 @@
     "type": "Halogen",
     "link": "http://www.periodicvideos.com/videos/117.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Ts&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/tennessine.php"
   },
   {
     "symbol": "Og",
@@ -4717,6 +4834,7 @@
     "type": "Noble-Gas",
     "link": "http://www.periodicvideos.com/videos/118.htm",
     "link_nist": "https://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=Og&output_type=0&low_w=&upp_w=&unit=1&submit=Retrieve+Data&de=0&plot_out=0&I_scale_type=1&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&unc_out=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=&conf_out=on&term_out=on&enrg_out=on&J_out=on",
-    "link_image": "https://images-of-elements.com/s/transactinoid.png"
+    "link_image": "/assets/elements/transactinoid.png",
+    "link_image_source": "https://images-of-elements.com/oganesson.php"
   }
 ]

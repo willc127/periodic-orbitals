@@ -50,9 +50,18 @@ $accent-border: rgba(79, 163, 227, 0.35);
   flex-shrink: 0;
   width: 300px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.element-image-credit {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .element-image {

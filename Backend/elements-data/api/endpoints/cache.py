@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from router_isotopos import clear_isotopes_cache
+from api.endpoints.isotopos import clear_isotopes_cache
 from services.elements import clear_elements_cache
 from services.spectra import clear_spectra_cache
 

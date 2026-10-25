@@ -51,6 +51,9 @@ images
 # Database
 orbitals.db
 
+# Generated isotope cache
+/Backend/elements-data/cache/isotopos/
+
 # Ambiente
 .env
 .env.example

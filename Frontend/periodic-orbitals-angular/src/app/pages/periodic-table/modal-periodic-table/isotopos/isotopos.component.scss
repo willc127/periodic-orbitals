@@ -1,32 +1,56 @@
 // Paleta provisória — trocar pelos tokens reais do tema M3 do projeto
 // (ex: var(--mat-sys-surface), var(--mat-sys-on-surface)) quando disponíveis.
 $cor-fundo: #14161a;
-$cor-fundo-card: #1e2126;
+$cor-fundo-card: #1b1e23;
 $cor-texto-principal: #f0eee6;
 $cor-texto-secundario: #9da3ac;
 $cor-texto-terciario: #6b7280;
 $cor-borda: #262a31;
+$cor-grade: rgba(255, 255, 255, 0.06);
 $cor-radioativo: #e08662;
+$cor-protons: #e5c07b;
+$cor-neutrons: #5b6677;
+
+// Espaço reservado acima e abaixo da área de plotagem (rótulo de abundância / número de massa).
+// Usado em conjunto pelo eixo Y, pela grade e pelos picos para que tudo fique alinhado.
+$topo-grafico: 22px;
+$base-grafico: 30px;
+$largura-detalhe: 320px;
 
 :host {
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
+  min-width: 0;
   width: 100%;
 }
 
 .isotopos-painel {
+  --cor-categoria: #5ea8d9;
+
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  gap: 20px;
   font-family:
     "Inter",
     -apple-system,
     sans-serif;
-  background: $cor-fundo;
+  color: $cor-texto-principal;
+  background:
+    radial-gradient(
+      110% 70% at 0% 0%,
+      color-mix(in srgb, var(--cor-categoria) 10%, transparent),
+      transparent 60%
+    ),
+    $cor-fundo;
+  border: 1px solid $cor-borda;
   border-radius: 14px;
   padding: 24px;
   min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
 
   &__carregando,
@@ -40,42 +64,155 @@ $cor-radioativo: #e08662;
   &__cabecalho {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 4px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
   &__titulo {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
-    color: #f0eee6;
+    color: $cor-texto-principal;
   }
 
-  &__contagem {
-    font-size: 12px;
+  &__subtitulo {
+    margin: 0;
+    font-size: 13px;
     color: $cor-texto-terciario;
   }
 
-  &__espectro {
-    display: flex;
+  &__corpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) $largura-detalhe;
+    gap: 20px;
     flex: 1 1 auto;
-    align-items: flex-end;
+    min-height: 0;
+  }
+}
+
+// ---------- Resumo ----------
+
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 14px;
+    background: $cor-fundo-card;
+    border: 1px solid $cor-borda;
+    border-radius: 10px;
+    min-width: 0;
+  }
+
+  &__valor {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: $cor-texto-principal;
+    font-variant-numeric: tabular-nums;
+
+    &--simbolo {
+      font-size: 20px;
+    }
+  }
+
+  &__rotulo {
+    font-size: 12px;
+    color: $cor-texto-terciario;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__item--estavel &__valor {
+    color: var(--cor-categoria);
+  }
+
+  &__item--radioativo &__valor {
+    color: $cor-radioativo;
+  }
+}
+
+// ---------- Gráfico ----------
+
+.grafico {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 300px;
+  min-width: 0;
+
+  &__eixo-y {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    margin: $topo-grafico 0 $base-grafico;
+  }
+
+  &__tick {
+    position: absolute;
+    right: 10px;
+    transform: translateY(50%);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    color: $cor-texto-terciario;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  &__corpo {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  &__grade {
+    position: absolute;
+    inset: $topo-grafico 0 $base-grafico 0;
+    pointer-events: none;
+  }
+
+  &__linha {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed $cor-grade;
+
+    &:first-child {
+      border-top: 1px solid $cor-borda;
+    }
+  }
+
+  &__picos {
+    position: relative;
+    display: flex;
+    align-items: stretch;
     gap: 6px;
+    height: 100%;
     overflow-x: auto;
-    padding: 8px 4px 4px;
-    border-bottom: 1px solid $cor-borda;
-    margin-bottom: 16px;
-    width: 100%;
-    min-height: 220px;
+    padding: 0 4px;
     box-sizing: border-box;
   }
 
-  &__legenda-icones {
+  &__rodape {
+    grid-column: 2;
+    grid-row: 2;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 14px;
-    font-size: 18px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding-top: 12px;
+  }
+
+  &__eixo-x {
+    font-size: 12px;
     color: $cor-texto-terciario;
   }
 }
@@ -83,41 +220,67 @@ $cor-radioativo: #e08662;
 .pico {
   --cor-pico: #5ea8d9;
 
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
   flex: 1 0 44px;
+  flex-direction: column;
   min-width: 44px;
-  height: 100%;
+  padding: 0;
   background: none;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 0;
-  opacity: 0.6;
+  opacity: 0.65;
   transition: opacity 120ms ease;
+
+  // Faixa vertical que destaca a coluna do isótopo ativo.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--cor-pico) 9%, transparent);
+    opacity: 0;
+    transition: opacity 120ms ease;
+    pointer-events: none;
+  }
 
   &:hover,
   &--ativo {
     opacity: 1;
+
+    &::before {
+      opacity: 1;
+    }
   }
 
-  &--ativo &__barra {
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 25%, transparent);
+  &:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--cor-pico) 70%, white);
+    outline-offset: 2px;
   }
 
-  &__abundancia {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10px;
-    color: $cor-texto-terciario;
-    margin-bottom: 4px;
-    font-variant-numeric: tabular-nums;
+  &__zona {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: $topo-grafico;
   }
 
   &__barra {
+    position: relative;
     width: 50px;
-    border-radius: 3px 3px 0 0;
-    background: var(--cor-pico);
+    max-width: 80%;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(
+      180deg,
+      var(--cor-pico),
+      color-mix(in srgb, var(--cor-pico) 55%, transparent)
+    );
+    // A altura final vem do estilo inline; a animação só define o ponto de partida.
+    animation: crescer 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--indice, 0) * 35ms);
 
     &--radioativo {
       background: repeating-linear-gradient(
@@ -128,88 +291,72 @@ $cor-radioativo: #e08662;
         transparent 6px
       );
       border: 1px solid var(--cor-pico);
+      box-sizing: border-box;
     }
   }
 
+  &--ativo &__barra {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--cor-pico) 25%, transparent),
+      0 0 18px color-mix(in srgb, var(--cor-pico) 35%, transparent);
+  }
+
+  &__abundancia {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    color: $cor-texto-secundario;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
   &__massa {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 $base-grafico;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11px;
     font-weight: 600;
     color: #e8e6e1;
-    margin-top: 6px;
   }
 }
 
-.detalhe {
-  --cor-detalhe: #5ea8d9;
+@keyframes crescer {
+  from {
+    height: 0;
+  }
+}
 
+// ---------- Legenda ----------
+
+.legenda {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 16px;
-  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);
-  border-left: 3px solid var(--cor-detalhe);
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: $cor-fundo-card;
-
-  &__simbolo {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 20px;
-    font-weight: 600;
-    color: #f0eee6;
-  }
-
-  &__subtitulo {
-    font-size: 12.5px;
-    color: $cor-texto-secundario;
-    margin-top: 2px;
-  }
-
-  &__metricas {
-    display: flex;
-    gap: 24px;
-  }
-}
-
-.metrica {
-  font-size: 12.5px;
+  font-size: 12px;
   color: $cor-texto-secundario;
 
-  &__rotulo {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: $cor-texto-terciario;
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-
-  &__valor {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 600;
-    color: #f0eee6;
-    font-size: 14px;
-
-    &--decaimento {
-      color: var(--cor-detalhe, $cor-radioativo);
-    }
-  }
-}
-
-.legenda-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
 
   &__marcador {
+    display: inline-block;
+    flex-shrink: 0;
     width: 12px;
     height: 12px;
-    flex-shrink: 0;
     border-radius: 2px;
-    display: inline-block;
 
     &--radioativo {
       border: 1px solid $cor-radioativo;
+      box-sizing: border-box;
       background: repeating-linear-gradient(
         45deg,
         $cor-radioativo,
@@ -218,5 +365,214 @@ $cor-radioativo: #e08662;
         transparent 4px
       );
     }
+  }
+}
+
+// ---------- Detalhe do isótopo ----------
+
+.detalhe {
+  --cor-detalhe: #5ea8d9;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+  box-sizing: border-box;
+  background: $cor-fundo-card;
+  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);
+  border-top: 3px solid var(--cor-detalhe);
+  border-radius: 12px;
+  min-width: 0;
+
+  &__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 3px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cor-detalhe);
+    background: color-mix(in srgb, var(--cor-detalhe) 14%, transparent);
+    border-radius: 999px;
+  }
+
+  &__ponto {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  &__selo--radioativo &__ponto {
+    animation: pulsar 2.2s ease-in-out infinite;
+  }
+
+  &__massa {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: $cor-texto-terciario;
+  }
+
+  &__simbolo {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: $cor-texto-principal;
+  }
+
+  &__nome {
+    margin-top: 4px;
+    font-size: 14px;
+    color: $cor-texto-secundario;
+  }
+
+  &__nota {
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid $cor-borda;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: $cor-texto-secundario;
+  }
+}
+
+@keyframes pulsar {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+// Composição do núcleo: prótons x nêutrons.
+.composicao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__barra {
+    height: 10px;
+    overflow: hidden;
+    background: $cor-neutrons;
+    border-radius: 999px;
+  }
+
+  &__protons {
+    display: block;
+    height: 100%;
+    background: $cor-protons;
+    border-radius: 999px;
+    transition: width 300ms ease;
+  }
+
+  &__legenda {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+    color: $cor-texto-secundario;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__ponto {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &--protons {
+      background: $cor-protons;
+    }
+
+    &--neutrons {
+      background: $cor-neutrons;
+    }
+  }
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  margin: 0;
+}
+
+.metrica {
+  min-width: 0;
+
+  &__rotulo {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    color: $cor-texto-terciario;
+  }
+
+  &__valor {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-weight: 600;
+    color: $cor-texto-principal;
+    overflow-wrap: anywhere;
+
+    &--decaimento {
+      color: var(--cor-detalhe, $cor-radioativo);
+    }
+  }
+}
+
+.medidor {
+  height: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+  background: $cor-borda;
+  border-radius: 999px;
+
+  &__preenchimento {
+    display: block;
+    height: 100%;
+    background: var(--cor-categoria);
+    border-radius: 999px;
+    transition: width 300ms ease;
+  }
+}
+
+// ---------- Responsividade ----------
+
+@media (max-width: 960px) {
+  .isotopos-painel__corpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .resumo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pico__barra,
+  .detalhe__selo--radioativo .detalhe__ponto {
+    animation: none;
+  }
+
+  .pico,
+  .pico::before,
+  .composicao__protons,
+  .medidor__preenchimento {
+    transition: none;
   }
 }

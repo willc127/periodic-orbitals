@@ -249,7 +249,7 @@ import {
   ɵɵtextInterpolate3,
   ɵɵviewQuery,
   ɵɵviewQuerySignal
-} from "./chunk-TUAFVZTS.js";
+} from "./chunk-RJBEOSQF.js";
 
 // node_modules/@angular/common/fesm2022/location.mjs
 var _DOM = null;
@@ -39576,7 +39576,7 @@ var ButtonToggleModal = class _ButtonToggleModal {
   static \u0275fac = function ButtonToggleModal_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ButtonToggleModal)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ButtonToggleModal, selectors: [["app-button-toggle-modal"]], outputs: { checkedChange: "checkedChange" }, decls: 20, vars: 2, consts: [[3, "change", "hideSingleSelectionIndicator", "value"], ["value", "descricao"], [1, "mdi", "mdi-text-box-outline", "mdi-24px"], ["value", "propriedades"], [1, "mdi", "mdi-circle-double", "mdi-24px"], ["value", "isotopos"], [1, "mdi", "mdi-swap-vertical", "mdi-24px"], ["value", "diagrama-config-eletronica"], ["value", "orbitais"], [1, "mdi", "mdi-atom-variant", "mdi-24px"], ["value", "espectro"], [1, "mdi", "mdi-reorder-vertical", "mdi-24px"]], template: function ButtonToggleModal_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ButtonToggleModal, selectors: [["app-button-toggle-modal"]], outputs: { checkedChange: "checkedChange" }, decls: 20, vars: 2, consts: [[3, "change", "hideSingleSelectionIndicator", "value"], ["value", "descricao"], [1, "mdi", "mdi-text-box-outline", "mdi-24px"], ["value", "propriedades"], [1, "mdi", "mdi-circle-double", "mdi-24px"], ["value", "isotopos"], ["aria-hidden", "true", 1, "mdi", "mdi-atom", "mdi-24px"], ["value", "diagrama-config-eletronica"], [1, "mdi", "mdi-swap-vertical", "mdi-24px"], ["value", "orbitais"], [1, "mdi", "mdi-atom-variant", "mdi-24px"], ["value", "espectro"], [1, "mdi", "mdi-reorder-vertical", "mdi-24px"]], template: function ButtonToggleModal_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "section")(1, "mat-button-toggle-group", 0);
       \u0275\u0275listener("change", function ButtonToggleModal_Template_mat_button_toggle_group_change_1_listener($event) {
@@ -39595,15 +39595,15 @@ var ButtonToggleModal = class _ButtonToggleModal {
       \u0275\u0275text(10, "Is\xF3topos");
       \u0275\u0275elementEnd();
       \u0275\u0275elementStart(11, "mat-button-toggle", 7);
-      \u0275\u0275element(12, "span", 6);
+      \u0275\u0275element(12, "span", 8);
       \u0275\u0275text(13, "Diagrama");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(14, "mat-button-toggle", 8);
-      \u0275\u0275element(15, "span", 9);
+      \u0275\u0275elementStart(14, "mat-button-toggle", 9);
+      \u0275\u0275element(15, "span", 10);
       \u0275\u0275text(16, "Orbitais");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(17, "mat-button-toggle", 10);
-      \u0275\u0275element(18, "span", 11);
+      \u0275\u0275elementStart(17, "mat-button-toggle", 11);
+      \u0275\u0275element(18, "span", 12);
       \u0275\u0275text(19, "Espectro");
       \u0275\u0275elementEnd()()();
     }
@@ -39616,7 +39616,7 @@ var ButtonToggleModal = class _ButtonToggleModal {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ButtonToggleModal, [{
     type: Component,
-    args: [{ selector: "app-button-toggle-modal", imports: [MatButtonToggleModule, MatCheckboxModule], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: '<section>\r\n  <mat-button-toggle-group\r\n    [hideSingleSelectionIndicator]="hideSingleSelectionIndicator()"\r\n    [value]="checked()"\r\n    (change)="onCheckedChange($event.value)"\r\n  >\r\n    <mat-button-toggle value="descricao"\r\n      ><span class="mdi mdi-text-box-outline mdi-24px"></span\r\n      >Descri\xE7\xE3o</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="propriedades"\r\n      ><span class="mdi mdi-circle-double mdi-24px"></span\r\n      >Propriedades</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="isotopos"\r\n      ><span class="mdi mdi-swap-vertical mdi-24px"></span\r\n      >Is\xF3topos</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="diagrama-config-eletronica"\r\n      ><span class="mdi mdi-swap-vertical mdi-24px"></span\r\n      >Diagrama</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="orbitais"\r\n      ><span class="mdi mdi-atom-variant mdi-24px"></span\r\n      >Orbitais</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="espectro"\r\n      ><span class="mdi mdi-reorder-vertical mdi-24px"></span\r\n      >Espectro</mat-button-toggle\r\n    >\r\n  </mat-button-toggle-group>\r\n</section>\r\n', styles: ['/* src/app/shared/button-toggle-modal/button-toggle-modal.scss */\napp-button-toggle-modal section {\n  background: transparent;\n  display: flex;\n  font-family: inherit;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 90%;\n}\napp-button-toggle-modal .mat-button-toggle-group {\n  width: 100%;\n  border: 1px solid rgba(217, 227, 252, 0.9019607843);\n  border-radius: 16px;\n  overflow: hidden;\n}\napp-button-toggle-modal .mat-button-toggle {\n  background-color: transparent;\n  color: #d9e3fc;\n  flex: 1;\n}\napp-button-toggle-modal .mat-button-toggle-checked {\n  background-color: #d9e3fc !important;\n  color: #161622 !important;\n}\napp-button-toggle-modal .mat-button-toggle-group {\n  border: 1px solid rgba(217, 227, 252, 0.9019607843);\n  border-radius: 16px;\n  overflow: hidden;\n}\napp-button-toggle-modal .mat-button-toggle-group .mat-button-toggle + .mat-button-toggle {\n  border-left: 1px solid rgba(217, 227, 252, 0.3764705882);\n}\napp-button-toggle-modal .mat-button-toggle-label-content {\n  font-family: "Inter", sans-serif;\n  font-size: 1rem;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n}\napp-button-toggle-modal .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {\n  display: flex;\n  gap: 4px;\n}\n/*# sourceMappingURL=button-toggle-modal.css.map */\n'] }]
+    args: [{ selector: "app-button-toggle-modal", imports: [MatButtonToggleModule, MatCheckboxModule], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: '<section>\r\n  <mat-button-toggle-group\r\n    [hideSingleSelectionIndicator]="hideSingleSelectionIndicator()"\r\n    [value]="checked()"\r\n    (change)="onCheckedChange($event.value)"\r\n  >\r\n    <mat-button-toggle value="descricao"\r\n      ><span class="mdi mdi-text-box-outline mdi-24px"></span\r\n      >Descri\xE7\xE3o</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="propriedades"\r\n      ><span class="mdi mdi-circle-double mdi-24px"></span\r\n      >Propriedades</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="isotopos"\r\n      ><span class="mdi mdi-atom mdi-24px" aria-hidden="true"></span\r\n      >Is\xF3topos</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="diagrama-config-eletronica"\r\n      ><span class="mdi mdi-swap-vertical mdi-24px"></span\r\n      >Diagrama</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="orbitais"\r\n      ><span class="mdi mdi-atom-variant mdi-24px"></span\r\n      >Orbitais</mat-button-toggle\r\n    >\r\n    <mat-button-toggle value="espectro"\r\n      ><span class="mdi mdi-reorder-vertical mdi-24px"></span\r\n      >Espectro</mat-button-toggle\r\n    >\r\n  </mat-button-toggle-group>\r\n</section>\r\n', styles: ['/* src/app/shared/button-toggle-modal/button-toggle-modal.scss */\napp-button-toggle-modal section {\n  background: transparent;\n  display: flex;\n  font-family: inherit;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 90%;\n}\napp-button-toggle-modal .mat-button-toggle-group {\n  width: 100%;\n  border: 1px solid rgba(217, 227, 252, 0.9019607843);\n  border-radius: 16px;\n  overflow: hidden;\n}\napp-button-toggle-modal .mat-button-toggle {\n  background-color: transparent;\n  color: #d9e3fc;\n  flex: 1;\n}\napp-button-toggle-modal .mat-button-toggle-checked {\n  background-color: #d9e3fc !important;\n  color: #161622 !important;\n}\napp-button-toggle-modal .mat-button-toggle-group {\n  border: 1px solid rgba(217, 227, 252, 0.9019607843);\n  border-radius: 16px;\n  overflow: hidden;\n}\napp-button-toggle-modal .mat-button-toggle-group .mat-button-toggle + .mat-button-toggle {\n  border-left: 1px solid rgba(217, 227, 252, 0.3764705882);\n}\napp-button-toggle-modal .mat-button-toggle-label-content {\n  font-family: "Inter", sans-serif;\n  font-size: 1rem;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n}\napp-button-toggle-modal .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {\n  display: flex;\n  gap: 4px;\n}\n/*# sourceMappingURL=button-toggle-modal.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -40161,7 +40161,7 @@ var PropertiesElements = class _PropertiesElements {
 // src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/wl-utils.ts
 var WL_MIN = 380;
 var WL_MAX = 780;
-function wlToRGB(wl) {
+function brutonFactors(wl) {
   let r = 0, g = 0, b = 0;
   if (wl >= 380 && wl < 440) {
     r = -(wl - 440) / 60;
@@ -40197,12 +40197,44 @@ function wlToRGB(wl) {
     f = 0.3 + 0.7 * (800 - wl) / 100;
   else
     f = 0;
+  return [r, g, b, f];
+}
+function wlToRGB(wl) {
+  const [r, g, b, f] = brutonFactors(wl);
   const gamma = 2;
   return [
     Math.round(255 * Math.pow(r * f, gamma)),
     Math.round(255 * Math.pow(g * f, gamma)),
     Math.round(255 * Math.pow(b * f, gamma))
   ];
+}
+var LINE_WEIGHT_EXPONENT = 3;
+function wlToLinearRGB(wl) {
+  const [r, g, b, f] = brutonFactors(wl);
+  return [r * f, g * f, b * f];
+}
+function srgbEncode(c) {
+  return c <= 31308e-7 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
+}
+function combineVisibleLines(lines) {
+  const visible = lines.filter(([wavelength, intensity]) => Number.isFinite(wavelength) && Number.isFinite(intensity) && wavelength >= WL_MIN && wavelength <= WL_MAX && intensity > 0);
+  if (visible.length === 0)
+    return null;
+  const maxIntensity = Math.max(...visible.map(([, intensity]) => intensity));
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+  for (const [wavelength, intensity] of visible) {
+    const weight = Math.pow(intensity / maxIntensity, LINE_WEIGHT_EXPONENT);
+    const [lineRed, lineGreen, lineBlue] = wlToLinearRGB(wavelength);
+    red += lineRed * weight;
+    green += lineGreen * weight;
+    blue += lineBlue * weight;
+  }
+  const max = Math.max(red, green, blue);
+  if (max <= 0)
+    return null;
+  return [red, green, blue].map((c) => Math.round(255 * srgbEncode(c / max)));
 }
 function rgbToHsl(r, g, b) {
   r /= 255;
@@ -40376,7 +40408,7 @@ var DadosElementosService = class _DadosElementosService {
 // src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.component.ts
 function EmissionSpectrumComponent_For_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "div", 17);
+    \u0275\u0275element(0, "div", 19);
   }
   if (rf & 2) {
     const wl_r1 = ctx.$implicit;
@@ -40386,7 +40418,7 @@ function EmissionSpectrumComponent_For_8_Template(rf, ctx) {
 }
 function EmissionSpectrumComponent_For_11_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 18);
+    \u0275\u0275elementStart(0, "div", 20);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -40398,16 +40430,46 @@ function EmissionSpectrumComponent_For_11_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", wl_r3, " ");
   }
 }
-function EmissionSpectrumComponent_Conditional_23_For_1_Template(rf, ctx) {
+function EmissionSpectrumComponent_Conditional_19_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 19);
-    \u0275\u0275element(1, "div", 19);
-    \u0275\u0275elementStart(2, "div")(3, "div", 19);
+    \u0275\u0275elementStart(0, "div", 13);
+    \u0275\u0275element(1, "span", 21);
+    \u0275\u0275elementStart(2, "div", 22)(3, "strong");
+    \u0275\u0275text(4, "Cor estimada do espectro vis\xEDvel");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "span");
+    \u0275\u0275text(6);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "span", 23);
+    \u0275\u0275text(8, " Mistura ponderada pelas intensidades (380\u2013780 nm) ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance();
+    \u0275\u0275styleProp("background-color", ctx_r1.totalColor);
+    \u0275\u0275attribute("aria-label", "Amostra da cor " + ctx_r1.totalColor);
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate(ctx_r1.totalColor);
+  }
+}
+function EmissionSpectrumComponent_Conditional_20_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 14);
+    \u0275\u0275text(1, " Sem linhas vis\xEDveis para estimar a cor total ");
+    \u0275\u0275elementEnd();
+  }
+}
+function EmissionSpectrumComponent_Conditional_25_For_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 24);
+    \u0275\u0275element(1, "div", 24);
+    \u0275\u0275elementStart(2, "div")(3, "div", 24);
     \u0275\u0275text(4);
-    \u0275\u0275elementStart(5, "span", 20);
+    \u0275\u0275elementStart(5, "span", 25);
     \u0275\u0275text(6, "nm");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(7, "div", 21);
+    \u0275\u0275elementStart(7, "div", 26);
     \u0275\u0275text(8);
     \u0275\u0275elementEnd()()();
   }
@@ -40427,18 +40489,18 @@ function EmissionSpectrumComponent_Conditional_23_For_1_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" I = ", line_r4[1].toFixed(0), "% ");
   }
 }
-function EmissionSpectrumComponent_Conditional_23_Template(rf, ctx) {
+function EmissionSpectrumComponent_Conditional_25_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, EmissionSpectrumComponent_Conditional_23_For_1_Template, 9, 6, "div", 19, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275repeaterCreate(0, EmissionSpectrumComponent_Conditional_25_For_1_Template, 9, 6, "div", 24, \u0275\u0275repeaterTrackByIdentity);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275repeater(ctx_r1.mainLines);
   }
 }
-function EmissionSpectrumComponent_Conditional_24_Template(rf, ctx) {
+function EmissionSpectrumComponent_Conditional_26_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 16);
+    \u0275\u0275elementStart(0, "div", 18);
     \u0275\u0275text(1, " Nenhuma linha espectral dispon\xEDvel ");
     \u0275\u0275elementEnd();
   }
@@ -40451,6 +40513,7 @@ var EmissionSpectrumComponent = class _EmissionSpectrumComponent {
   lines = [];
   mainLines = [];
   ticks = [];
+  totalColor = null;
   constructor(spectrumService, data) {
     this.spectrumService = spectrumService;
     this.data = data;
@@ -40462,8 +40525,14 @@ var EmissionSpectrumComponent = class _EmissionSpectrumComponent {
         Number(l.w),
         Number(l.i)
       ]);
-      this.mainLines = this.lines.sort((a2, b) => b[1] - a2[1]).slice(0, 20).sort((a2, b) => a2[0] - b[0]);
-      console.log("Main lines:", this.mainLines);
+      const rgb = combineVisibleLines(this.lines);
+      if (rgb) {
+        const hex2 = rgb.map((channel) => channel.toString(16).padStart(2, "0")).join("");
+        this.totalColor = `#${hex2}`.toUpperCase();
+      } else {
+        this.totalColor = null;
+      }
+      this.mainLines = [...this.lines].sort((a2, b) => b[1] - a2[1]).slice(0, 20).sort((a2, b) => a2[0] - b[0]);
     });
   }
   abrirLinkNist() {
@@ -40530,7 +40599,7 @@ var EmissionSpectrumComponent = class _EmissionSpectrumComponent {
   static \u0275fac = function EmissionSpectrumComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _EmissionSpectrumComponent)(\u0275\u0275directiveInject(DadosElementosService), \u0275\u0275directiveInject(MAT_DIALOG_DATA));
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EmissionSpectrumComponent, selectors: [["app-emission-spectrum"]], inputs: { symbol: "symbol" }, decls: 25, vars: 2, consts: [[1, "wrapper"], [1, "header-title"], [1, "spectrum-wrapper"], [1, "canvas-container", 2, "cursor", "pointer", 3, "click"], [3, "lines"], [1, "tick-marks"], [1, "tick-mark", 3, "left"], [1, "tick-labels"], [1, "tick-label", 3, "left"], [1, "axis-title"], [1, "range-labels"], [1, "range-uv"], [1, "range-ir"], [1, "line-table-title"], [1, "line-table"], [1, "line-cards"], [1, "no-data-placeholder"], [1, "tick-mark"], [1, "tick-label"], [3, "ngStyle"], [1, "nm-unit"], [1, "line-intensity", 3, "ngStyle"]], template: function EmissionSpectrumComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EmissionSpectrumComponent, selectors: [["app-emission-spectrum"]], inputs: { symbol: "symbol" }, decls: 27, vars: 3, consts: [[1, "wrapper"], [1, "header-title"], [1, "spectrum-wrapper"], [1, "canvas-container", 2, "cursor", "pointer", 3, "click"], [3, "lines"], [1, "tick-marks"], [1, "tick-mark", 3, "left"], [1, "tick-labels"], [1, "tick-label", 3, "left"], [1, "axis-title"], [1, "range-labels"], [1, "range-uv"], [1, "range-ir"], [1, "overall-color"], [1, "overall-color-empty"], [1, "line-table-title"], [1, "line-table"], [1, "line-cards"], [1, "no-data-placeholder"], [1, "tick-mark"], [1, "tick-label"], ["role", "img", 1, "overall-color-swatch"], [1, "overall-color-details"], [1, "overall-color-note"], [3, "ngStyle"], [1, "nm-unit"], [1, "line-intensity", 3, "ngStyle"]], template: function EmissionSpectrumComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1);
       \u0275\u0275text(2, "Espectro de Emiss\xE3o At\xF4mica");
@@ -40556,11 +40625,12 @@ var EmissionSpectrumComponent = class _EmissionSpectrumComponent {
       \u0275\u0275elementStart(17, "span", 12);
       \u0275\u0275text(18, "IV \u2192");
       \u0275\u0275elementEnd()()();
-      \u0275\u0275elementStart(19, "div", 13);
-      \u0275\u0275text(20, "Principais linhas espectrais");
+      \u0275\u0275conditionalCreate(19, EmissionSpectrumComponent_Conditional_19_Template, 9, 4, "div", 13)(20, EmissionSpectrumComponent_Conditional_20_Template, 2, 0, "div", 14);
+      \u0275\u0275elementStart(21, "div", 15);
+      \u0275\u0275text(22, "Principais linhas espectrais");
       \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(21, "div", 14)(22, "div", 15);
-      \u0275\u0275conditionalCreate(23, EmissionSpectrumComponent_Conditional_23_Template, 2, 0)(24, EmissionSpectrumComponent_Conditional_24_Template, 2, 0, "div", 16);
+      \u0275\u0275elementStart(23, "div", 16)(24, "div", 17);
+      \u0275\u0275conditionalCreate(25, EmissionSpectrumComponent_Conditional_25_Template, 2, 0)(26, EmissionSpectrumComponent_Conditional_26_Template, 2, 0, "div", 18);
       \u0275\u0275elementEnd()()();
     }
     if (rf & 2) {
@@ -40570,15 +40640,110 @@ var EmissionSpectrumComponent = class _EmissionSpectrumComponent {
       \u0275\u0275repeater(ctx.ticks);
       \u0275\u0275advance(3);
       \u0275\u0275repeater(ctx.ticks);
-      \u0275\u0275advance(13);
-      \u0275\u0275conditional(ctx.mainLines.length > 0 ? 23 : 24);
+      \u0275\u0275advance(9);
+      \u0275\u0275conditional(ctx.totalColor ? 19 : 20);
+      \u0275\u0275advance(6);
+      \u0275\u0275conditional(ctx.mainLines.length > 0 ? 25 : 26);
     }
-  }, dependencies: [CommonModule, NgStyle, SpectrumCanvasComponent], styles: ['@charset "UTF-8";\n\n\n\n[_nghost-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.wrapper[_ngcontent-%COMP%] {\n  align-items: flex-start;\n  background: #0c0c18;\n  border-radius: 6px;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  padding: 2.5rem 1.5rem;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n}\n.header-title[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n  font-weight: bold;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  margin-bottom: 0.5rem;\n  width: 100%;\n  flex-shrink: 0;\n}\n.spectrum-wrapper[_ngcontent-%COMP%] {\n  width: 100%;\n  max-width: 100%;\n  position: relative;\n  flex-shrink: 0;\n}\n.range-labels[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 0.5rem;\n  padding: 0 2px;\n}\n.range-uv[_ngcontent-%COMP%] {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #8d0fdb;\n}\n.range-ir[_ngcontent-%COMP%] {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #c51e3a;\n}\n.line-table[_ngcontent-%COMP%] {\n  margin-top: 1.5rem;\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  flex-shrink: 0;\n}\n.line-table-title[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  display: block;\n  justify-content: left;\n  width: 100%;\n  margin-top: 2.5rem;\n  flex-shrink: 0;\n}\n.line-cards[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.3rem;\n  justify-content: center;\n  width: 100%;\n}\n.nm-unit[_ngcontent-%COMP%] {\n  font-size: 0.85rem;\n  opacity: 0.6;\n}\n.line-intensity[_ngcontent-%COMP%] {\n  font-size: 0.65rem;\n}\n.tick-labels[_ngcontent-%COMP%] {\n  position: relative;\n  height: 20px;\n  margin-bottom: 4px;\n}\n.tick-label[_ngcontent-%COMP%] {\n  position: absolute;\n  transform: translateX(-50%);\n  font-size: 0.62rem;\n  color: #ededed;\n}\n.tick-marks[_ngcontent-%COMP%] {\n  position: relative;\n  height: 6px;\n  margin-bottom: 1px;\n}\n.tick-mark[_ngcontent-%COMP%] {\n  position: absolute;\n  transform: translateX(-50%);\n  width: 1px;\n  height: 6px;\n  background: #ededed;\n}\n.canvas-container[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 50px;\n  border: 1px solid #252538;\n  border-radius: 6px 6px 0 0;\n  overflow: hidden;\n  position: relative;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n.canvas-container[_ngcontent-%COMP%]:hover {\n  border: 1px solid #454563;\n}\n.axis-title[_ngcontent-%COMP%] {\n  text-align: center;\n  font-size: 0.65rem;\n  color: #ededed;\n  margin-top: 2px;\n}\n.no-data-placeholder[_ngcontent-%COMP%] {\n  margin-top: 2rem;\n  font-size: 2rem;\n  font-weight: bold;\n}\n/*# sourceMappingURL=emission-spectrum.css.map */'] });
+  }, dependencies: [CommonModule, NgStyle, SpectrumCanvasComponent], styles: ['@charset "UTF-8";\n\n\n\n[_nghost-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.wrapper[_ngcontent-%COMP%] {\n  align-items: flex-start;\n  background: #0c0c18;\n  border-radius: 6px;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  padding: 2.5rem 1.5rem;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n}\n.header-title[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n  font-weight: bold;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  margin-bottom: 0.5rem;\n  width: 100%;\n  flex-shrink: 0;\n}\n.spectrum-wrapper[_ngcontent-%COMP%] {\n  width: 100%;\n  max-width: 100%;\n  position: relative;\n  flex-shrink: 0;\n}\n.overall-color[_ngcontent-%COMP%] {\n  align-items: center;\n  align-self: center;\n  background: #151526;\n  border: 1px solid #252538;\n  border-radius: 6px;\n  display: flex;\n  gap: 0.75rem;\n  margin-top: 1.25rem;\n  max-width: 100%;\n  padding: 0.75rem 1rem;\n}\n.overall-color-swatch[_ngcontent-%COMP%] {\n  border: 1px solid rgba(255, 255, 255, 0.5019607843);\n  border-radius: 4px;\n  flex-shrink: 0;\n  height: 2.5rem;\n  width: 2.5rem;\n}\n.overall-color-details[_ngcontent-%COMP%] {\n  color: #d9e3fc;\n  display: flex;\n  flex-direction: column;\n  gap: 0.2rem;\n}\n.overall-color-note[_ngcontent-%COMP%], \n.overall-color-empty[_ngcontent-%COMP%] {\n  color: #a7a9bd;\n  font-size: 0.75rem;\n}\n.overall-color-empty[_ngcontent-%COMP%] {\n  margin-top: 1.25rem;\n  text-align: center;\n  width: 100%;\n}\n.range-labels[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 0.5rem;\n  padding: 0 2px;\n}\n.range-uv[_ngcontent-%COMP%] {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #8d0fdb;\n}\n.range-ir[_ngcontent-%COMP%] {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #c51e3a;\n}\n.line-table[_ngcontent-%COMP%] {\n  margin-top: 1.5rem;\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  flex-shrink: 0;\n}\n.line-table-title[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  display: block;\n  justify-content: left;\n  width: 100%;\n  margin-top: 2.5rem;\n  flex-shrink: 0;\n}\n.line-cards[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.3rem;\n  justify-content: center;\n  width: 100%;\n}\n.nm-unit[_ngcontent-%COMP%] {\n  font-size: 0.85rem;\n  opacity: 0.6;\n}\n.line-intensity[_ngcontent-%COMP%] {\n  font-size: 0.65rem;\n}\n.tick-labels[_ngcontent-%COMP%] {\n  position: relative;\n  height: 20px;\n  margin-bottom: 4px;\n}\n.tick-label[_ngcontent-%COMP%] {\n  position: absolute;\n  transform: translateX(-50%);\n  font-size: 0.62rem;\n  color: #ededed;\n}\n.tick-marks[_ngcontent-%COMP%] {\n  position: relative;\n  height: 6px;\n  margin-bottom: 1px;\n}\n.tick-mark[_ngcontent-%COMP%] {\n  position: absolute;\n  transform: translateX(-50%);\n  width: 1px;\n  height: 6px;\n  background: #ededed;\n}\n.canvas-container[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 50px;\n  border: 1px solid #252538;\n  border-radius: 6px 6px 0 0;\n  overflow: hidden;\n  position: relative;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n.canvas-container[_ngcontent-%COMP%]:hover {\n  border: 1px solid #454563;\n}\n.axis-title[_ngcontent-%COMP%] {\n  text-align: center;\n  font-size: 0.65rem;\n  color: #ededed;\n  margin-top: 2px;\n}\n.no-data-placeholder[_ngcontent-%COMP%] {\n  margin-top: 2rem;\n  font-size: 2rem;\n  font-weight: bold;\n}\n/*# sourceMappingURL=emission-spectrum.css.map */'] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EmissionSpectrumComponent, [{
     type: Component,
-    args: [{ selector: "app-emission-spectrum", standalone: true, imports: [CommonModule, SpectrumCanvasComponent], template: '<div class="wrapper">\n  <div class="header-title">Espectro de Emiss\xE3o At\xF4mica</div>\n\n  <!-- \u2500\u2500 Spectrum display \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->\n  <div class="spectrum-wrapper">\n    <div\n      class="canvas-container"\n      (click)="abrirLinkNist()"\n      style="cursor: pointer"\n    >\n      <app-spectrum-canvas [lines]="lines"></app-spectrum-canvas>\n    </div>\n\n    <!-- Tick marks (bottom) -->\n    <div class="tick-marks">\n      @for (wl of ticks; track wl) {\n        <div class="tick-mark" [style.left.%]="pct(wl)"></div>\n      }\n    </div>\n\n    <!-- Wavelength labels (bottom) -->\n    <div class="tick-labels">\n      @for (wl of ticks; track wl) {\n        <div class="tick-label" [style.left.%]="pct(wl)">\n          {{ wl }}\n        </div>\n      }\n    </div>\n\n    <!-- Axis title -->\n    <div class="axis-title">COMPRIMENTO DE ONDA (nm)</div>\n\n    <!-- UV / VIS / IR range labels -->\n    <div class="range-labels">\n      <span class="range-uv">\u2190 UV</span>\n      <span class="range-ir">IV \u2192</span>\n    </div>\n  </div>\n\n  <!-- \u2500\u2500 Spectral line table \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->\n  <div class="line-table-title">Principais linhas espectrais</div>\n  <div class="line-table">\n    <div class="line-cards">\n      @if(mainLines.length > 0) {\n        @for (line of mainLines; track line) {\n          <div [ngStyle]="lineCardStyle(line[0])">\n            <!-- Color bar -->\n            <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>\n\n            <!-- Values -->\n            <div>\n              <div [ngStyle]="lineWlStyle(line[0])">\n                {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>\n              </div>\n              <div\n                class="line-intensity"\n                [ngStyle]="lineWlStyleIntensity(line[0])"\n              >\n                I = {{ line[1].toFixed(0) }}%\n              </div>\n            </div>\n          </div>\n        }\n      } @else {\n        <div class="no-data-placeholder">\n          Nenhuma linha espectral dispon\xEDvel\n        </div>\n      }\n    </div>\n  </div>\n</div>\n', styles: ['@charset "UTF-8";\n\n/* src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.scss */\n:host {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.wrapper {\n  align-items: flex-start;\n  background: #0c0c18;\n  border-radius: 6px;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  padding: 2.5rem 1.5rem;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n}\n.header-title {\n  text-align: center;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n  font-weight: bold;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  margin-bottom: 0.5rem;\n  width: 100%;\n  flex-shrink: 0;\n}\n.spectrum-wrapper {\n  width: 100%;\n  max-width: 100%;\n  position: relative;\n  flex-shrink: 0;\n}\n.range-labels {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 0.5rem;\n  padding: 0 2px;\n}\n.range-uv {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #8d0fdb;\n}\n.range-ir {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #c51e3a;\n}\n.line-table {\n  margin-top: 1.5rem;\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  flex-shrink: 0;\n}\n.line-table-title {\n  font-size: 1rem;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  display: block;\n  justify-content: left;\n  width: 100%;\n  margin-top: 2.5rem;\n  flex-shrink: 0;\n}\n.line-cards {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.3rem;\n  justify-content: center;\n  width: 100%;\n}\n.nm-unit {\n  font-size: 0.85rem;\n  opacity: 0.6;\n}\n.line-intensity {\n  font-size: 0.65rem;\n}\n.tick-labels {\n  position: relative;\n  height: 20px;\n  margin-bottom: 4px;\n}\n.tick-label {\n  position: absolute;\n  transform: translateX(-50%);\n  font-size: 0.62rem;\n  color: #ededed;\n}\n.tick-marks {\n  position: relative;\n  height: 6px;\n  margin-bottom: 1px;\n}\n.tick-mark {\n  position: absolute;\n  transform: translateX(-50%);\n  width: 1px;\n  height: 6px;\n  background: #ededed;\n}\n.canvas-container {\n  width: 100%;\n  height: 50px;\n  border: 1px solid #252538;\n  border-radius: 6px 6px 0 0;\n  overflow: hidden;\n  position: relative;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n.canvas-container:hover {\n  border: 1px solid #454563;\n}\n.axis-title {\n  text-align: center;\n  font-size: 0.65rem;\n  color: #ededed;\n  margin-top: 2px;\n}\n.no-data-placeholder {\n  margin-top: 2rem;\n  font-size: 2rem;\n  font-weight: bold;\n}\n/*# sourceMappingURL=emission-spectrum.css.map */\n'] }]
+    args: [{ selector: "app-emission-spectrum", standalone: true, imports: [CommonModule, SpectrumCanvasComponent], template: `<div class="wrapper">
+  <div class="header-title">Espectro de Emiss\xE3o At\xF4mica</div>
+
+  <!-- \u2500\u2500 Spectrum display \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+  <div class="spectrum-wrapper">
+    <div
+      class="canvas-container"
+      (click)="abrirLinkNist()"
+      style="cursor: pointer"
+    >
+      <app-spectrum-canvas [lines]="lines"></app-spectrum-canvas>
+    </div>
+
+    <!-- Tick marks (bottom) -->
+    <div class="tick-marks">
+      @for (wl of ticks; track wl) {
+        <div class="tick-mark" [style.left.%]="pct(wl)"></div>
+      }
+    </div>
+
+    <!-- Wavelength labels (bottom) -->
+    <div class="tick-labels">
+      @for (wl of ticks; track wl) {
+        <div class="tick-label" [style.left.%]="pct(wl)">
+          {{ wl }}
+        </div>
+      }
+    </div>
+
+    <!-- Axis title -->
+    <div class="axis-title">COMPRIMENTO DE ONDA (nm)</div>
+
+    <!-- UV / VIS / IR range labels -->
+    <div class="range-labels">
+      <span class="range-uv">\u2190 UV</span>
+      <span class="range-ir">IV \u2192</span>
+    </div>
+  </div>
+
+  @if (totalColor) {
+    <div class="overall-color">
+      <span
+        class="overall-color-swatch"
+        [style.backgroundColor]="totalColor"
+        role="img"
+        [attr.aria-label]="'Amostra da cor ' + totalColor"
+      ></span>
+      <div class="overall-color-details">
+        <strong>Cor estimada do espectro vis\xEDvel</strong>
+        <span>{{ totalColor }}</span>
+        <span class="overall-color-note">
+          Mistura ponderada pelas intensidades (380\u2013780 nm)
+        </span>
+      </div>
+    </div>
+  } @else {
+    <div class="overall-color-empty">
+      Sem linhas vis\xEDveis para estimar a cor total
+    </div>
+  }
+
+  <!-- \u2500\u2500 Spectral line table \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+  <div class="line-table-title">Principais linhas espectrais</div>
+  <div class="line-table">
+    <div class="line-cards">
+      @if(mainLines.length > 0) {
+        @for (line of mainLines; track line) {
+          <div [ngStyle]="lineCardStyle(line[0])">
+            <!-- Color bar -->
+            <div [ngStyle]="lineBarStyle(line[0], line[1])"></div>
+
+            <!-- Values -->
+            <div>
+              <div [ngStyle]="lineWlStyle(line[0])">
+                {{ line[0].toFixed(2) }}&nbsp;<span class="nm-unit">nm</span>
+              </div>
+              <div
+                class="line-intensity"
+                [ngStyle]="lineWlStyleIntensity(line[0])"
+              >
+                I = {{ line[1].toFixed(0) }}%
+              </div>
+            </div>
+          </div>
+        }
+      } @else {
+        <div class="no-data-placeholder">
+          Nenhuma linha espectral dispon\xEDvel
+        </div>
+      }
+    </div>
+  </div>
+</div>
+`, styles: ['@charset "UTF-8";\n\n/* src/app/pages/periodic-table/modal-periodic-table/emission-spectrum/emission-spectrum.scss */\n:host {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.wrapper {\n  align-items: flex-start;\n  background: #0c0c18;\n  border-radius: 6px;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  padding: 2.5rem 1.5rem;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n}\n.header-title {\n  text-align: center;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n  font-weight: bold;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  margin-bottom: 0.5rem;\n  width: 100%;\n  flex-shrink: 0;\n}\n.spectrum-wrapper {\n  width: 100%;\n  max-width: 100%;\n  position: relative;\n  flex-shrink: 0;\n}\n.overall-color {\n  align-items: center;\n  align-self: center;\n  background: #151526;\n  border: 1px solid #252538;\n  border-radius: 6px;\n  display: flex;\n  gap: 0.75rem;\n  margin-top: 1.25rem;\n  max-width: 100%;\n  padding: 0.75rem 1rem;\n}\n.overall-color-swatch {\n  border: 1px solid rgba(255, 255, 255, 0.5019607843);\n  border-radius: 4px;\n  flex-shrink: 0;\n  height: 2.5rem;\n  width: 2.5rem;\n}\n.overall-color-details {\n  color: #d9e3fc;\n  display: flex;\n  flex-direction: column;\n  gap: 0.2rem;\n}\n.overall-color-note,\n.overall-color-empty {\n  color: #a7a9bd;\n  font-size: 0.75rem;\n}\n.overall-color-empty {\n  margin-top: 1.25rem;\n  text-align: center;\n  width: 100%;\n}\n.range-labels {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 0.5rem;\n  padding: 0 2px;\n}\n.range-uv {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #8d0fdb;\n}\n.range-ir {\n  font-size: 0.75rem;\n  font-weight: bold;\n  color: #c51e3a;\n}\n.line-table {\n  margin-top: 1.5rem;\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  flex-shrink: 0;\n}\n.line-table-title {\n  font-size: 1rem;\n  color: #d9e3fc;\n  text-transform: uppercase;\n  display: block;\n  justify-content: left;\n  width: 100%;\n  margin-top: 2.5rem;\n  flex-shrink: 0;\n}\n.line-cards {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.3rem;\n  justify-content: center;\n  width: 100%;\n}\n.nm-unit {\n  font-size: 0.85rem;\n  opacity: 0.6;\n}\n.line-intensity {\n  font-size: 0.65rem;\n}\n.tick-labels {\n  position: relative;\n  height: 20px;\n  margin-bottom: 4px;\n}\n.tick-label {\n  position: absolute;\n  transform: translateX(-50%);\n  font-size: 0.62rem;\n  color: #ededed;\n}\n.tick-marks {\n  position: relative;\n  height: 6px;\n  margin-bottom: 1px;\n}\n.tick-mark {\n  position: absolute;\n  transform: translateX(-50%);\n  width: 1px;\n  height: 6px;\n  background: #ededed;\n}\n.canvas-container {\n  width: 100%;\n  height: 50px;\n  border: 1px solid #252538;\n  border-radius: 6px 6px 0 0;\n  overflow: hidden;\n  position: relative;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n.canvas-container:hover {\n  border: 1px solid #454563;\n}\n.axis-title {\n  text-align: center;\n  font-size: 0.65rem;\n  color: #ededed;\n  margin-top: 2px;\n}\n.no-data-placeholder {\n  margin-top: 2rem;\n  font-size: 2rem;\n  font-weight: bold;\n}\n/*# sourceMappingURL=emission-spectrum.css.map */\n'] }]
   }], () => [{ type: DadosElementosService }, { type: void 0, decorators: [{
     type: Inject,
     args: [MAT_DIALOG_DATA]
@@ -40676,17 +40841,27 @@ function Description_Conditional_33_Template(rf, ctx) {
 }
 function Description_Conditional_35_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275domElement(0, "img", 14);
+    \u0275\u0275domElementStart(0, "a", 23);
+    \u0275\u0275domElement(1, "img", 24);
+    \u0275\u0275domElementEnd();
+    \u0275\u0275domElementStart(2, "a", 25);
+    \u0275\u0275text(3, " Fonte: images-of-elements.com (CC BY 3.0) ");
+    \u0275\u0275domElementEnd();
   }
   if (rf & 2) {
     const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275domProperty("href", ctx_r0.data.link_imagem_fonte, \u0275\u0275sanitizeUrl);
+    \u0275\u0275attribute("aria-label", "Ver a p\xE1gina de origem da imagem de " + (ctx_r0.data.nome || "elemento"));
+    \u0275\u0275advance();
     \u0275\u0275domProperty("src", ctx_r0.data.link_imagem, \u0275\u0275sanitizeUrl)("alt", ctx_r0.data.nome || "Elemento");
+    \u0275\u0275advance();
+    \u0275\u0275domProperty("href", ctx_r0.data.link_imagem_fonte, \u0275\u0275sanitizeUrl);
   }
 }
 function Description_Conditional_36_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275domElementStart(0, "div", 15);
-    \u0275\u0275domElement(1, "i", 24);
+    \u0275\u0275domElementStart(0, "div", 14);
+    \u0275\u0275domElement(1, "i", 26);
     \u0275\u0275domElementEnd();
   }
 }
@@ -40695,7 +40870,7 @@ var Description = class _Description {
   static \u0275fac = function Description_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Description)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Description, selectors: [["app-description"]], decls: 66, vars: 10, consts: [[1, "info-panel"], [1, "info-container"], [1, "info-content"], [1, "description-block"], [1, "description-block", "description-block--empty"], [1, "meta-grid"], [1, "meta-card"], [1, "meta-label"], [1, "mdi", "mdi-account-circle-outline"], [1, "meta-value"], [1, "meta-value--empty"], [1, "mdi", "mdi-calendar-outline"], [1, "mdi", "mdi-map-marker-outline"], [1, "element-image-container"], [1, "element-image", 3, "src", "alt"], [1, "element-image-placeholder"], [1, "info-section"], [1, "section-label"], [1, "mdi", "mdi-lightbulb-outline"], [1, "uses-list"], [1, "section-value"], [1, "divider"], [1, "mdi", "mdi-book-open-variant"], [1, "mdi", "mdi-book-outline"], [1, "mdi", "mdi-image-off-outline"]], template: function Description_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Description, selectors: [["app-description"]], decls: 66, vars: 10, consts: [[1, "info-panel"], [1, "info-container"], [1, "info-content"], [1, "description-block"], [1, "description-block", "description-block--empty"], [1, "meta-grid"], [1, "meta-card"], [1, "meta-label"], [1, "mdi", "mdi-account-circle-outline"], [1, "meta-value"], [1, "meta-value--empty"], [1, "mdi", "mdi-calendar-outline"], [1, "mdi", "mdi-map-marker-outline"], [1, "element-image-container"], [1, "element-image-placeholder"], [1, "info-section"], [1, "section-label"], [1, "mdi", "mdi-lightbulb-outline"], [1, "uses-list"], [1, "section-value"], [1, "divider"], [1, "mdi", "mdi-book-open-variant"], [1, "mdi", "mdi-book-outline"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"], [1, "element-image", 3, "src", "alt"], ["target", "_blank", "rel", "noopener noreferrer", 1, "element-image-credit", 3, "href"], [1, "mdi", "mdi-image-off-outline"]], template: function Description_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "div", 2);
       \u0275\u0275conditionalCreate(3, Description_Conditional_3_Template, 2, 1, "div", 3)(4, Description_Conditional_4_Template, 2, 0, "div", 4);
@@ -40728,37 +40903,37 @@ var Description = class _Description {
       \u0275\u0275conditionalCreate(32, Description_Conditional_32_Template, 1, 1)(33, Description_Conditional_33_Template, 2, 0, "span", 10);
       \u0275\u0275domElementEnd()()()();
       \u0275\u0275domElementStart(34, "div", 13);
-      \u0275\u0275conditionalCreate(35, Description_Conditional_35_Template, 1, 2, "img", 14)(36, Description_Conditional_36_Template, 2, 0, "div", 15);
+      \u0275\u0275conditionalCreate(35, Description_Conditional_35_Template, 4, 5)(36, Description_Conditional_36_Template, 2, 0, "div", 14);
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(37, "div", 16)(38, "div", 17);
-      \u0275\u0275domElement(39, "i", 18);
+      \u0275\u0275domElementStart(37, "div", 15)(38, "div", 16);
+      \u0275\u0275domElement(39, "i", 17);
       \u0275\u0275text(40, " Usos ");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(41, "div", 19)(42, "span", 20);
+      \u0275\u0275domElementStart(41, "div", 18)(42, "span", 19);
       \u0275\u0275text(43);
       \u0275\u0275domElementEnd()()();
-      \u0275\u0275domElement(44, "div", 21);
-      \u0275\u0275domElementStart(45, "div", 16)(46, "div", 17);
-      \u0275\u0275domElement(47, "i", 18);
+      \u0275\u0275domElement(44, "div", 20);
+      \u0275\u0275domElementStart(45, "div", 15)(46, "div", 16);
+      \u0275\u0275domElement(47, "i", 17);
       \u0275\u0275text(48, " Classe Geoqu\xEDmica ");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(49, "div", 19)(50, "span", 20);
+      \u0275\u0275domElementStart(49, "div", 18)(50, "span", 19);
       \u0275\u0275text(51);
       \u0275\u0275domElementEnd()()();
-      \u0275\u0275domElement(52, "div", 21);
-      \u0275\u0275domElementStart(53, "div", 16)(54, "div", 17);
-      \u0275\u0275domElement(55, "i", 22);
+      \u0275\u0275domElement(52, "div", 20);
+      \u0275\u0275domElementStart(53, "div", 15)(54, "div", 16);
+      \u0275\u0275domElement(55, "i", 21);
       \u0275\u0275text(56, " Origem do nome ");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(57, "p", 20);
+      \u0275\u0275domElementStart(57, "p", 19);
       \u0275\u0275text(58);
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElement(59, "div", 21);
-      \u0275\u0275domElementStart(60, "div", 16)(61, "div", 17);
-      \u0275\u0275domElement(62, "i", 23);
+      \u0275\u0275domElement(59, "div", 20);
+      \u0275\u0275domElementStart(60, "div", 15)(61, "div", 16);
+      \u0275\u0275domElement(62, "i", 22);
       \u0275\u0275text(63, " Fontes");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(64, "p", 20);
+      \u0275\u0275domElementStart(64, "p", 19);
       \u0275\u0275text(65);
       \u0275\u0275domElementEnd()()();
     }
@@ -40784,7 +40959,7 @@ var Description = class _Description {
       \u0275\u0275advance(7);
       \u0275\u0275textInterpolate(ctx.data.fontes);
     }
-  }, styles: ["\n\n[_nghost-%COMP%] {\n  display: block;\n  height: 100%;\n}\n.info-panel[_ngcontent-%COMP%] {\n  font-family: var(--font-sans, sans-serif);\n  height: 100%;\n  max-height: 60vh;\n  overflow-y: auto;\n  padding: 16px;\n  border-radius: 6px;\n  background: #0c0c18;\n}\n.info-container[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n  align-items: stretch;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar {\n  width: 4px;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background: rgba(79, 163, 227, 0.25);\n  border-radius: 4px;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background: rgba(79, 163, 227, 0.5);\n}\n.info-content[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n}\n.element-image-container[_ngcontent-%COMP%] {\n  flex-shrink: 0;\n  width: 300px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.element-image[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  border-radius: 32px;\n}\n.element-image-placeholder[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: rgba(79, 163, 227, 0.4);\n  font-size: 48px;\n}\n.description-block[_ngcontent-%COMP%] {\n  background: rgba(79, 163, 227, 0.12);\n  border-left: 2px solid rgba(79, 163, 227, 0.35);\n  border-radius: 0 6px 6px 0;\n  padding: 10px 14px;\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.72);\n  line-height: 1.7;\n  margin-bottom: 1.5rem;\n}\n.meta-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n  margin-bottom: 1.25rem;\n}\n.meta-card[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.04);\n  border: 0.5px solid rgba(255, 255, 255, 0.08);\n  border-radius: 8px;\n  padding: 10px 12px;\n}\n.meta-card--full[_ngcontent-%COMP%] {\n  grid-column: 1/-1;\n}\n.meta-label[_ngcontent-%COMP%] {\n  font-size: 14px;\n  font-weight: 600;\n  letter-spacing: 0.07em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 4px;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.meta-label[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.7;\n}\n.meta-value[_ngcontent-%COMP%] {\n  font-size: 14px;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.88);\n}\n.info-section[_ngcontent-%COMP%] {\n  margin-bottom: 1.25rem;\n}\n.info-section[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.section-label[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  font-size: 12px;\n  font-weight: 500;\n  letter-spacing: 0.09em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 8px;\n}\n.section-label[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.75;\n}\n.uses-list[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.section-value[_ngcontent-%COMP%] {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.65);\n  line-height: 1.65;\n  margin: 0;\n}\n.divider[_ngcontent-%COMP%] {\n  height: 1px;\n  background: rgba(237, 237, 237, 0.1019607843);\n  margin: 1.25rem 0;\n}\n/*# sourceMappingURL=description.css.map */"] });
+  }, styles: ["\n\n[_nghost-%COMP%] {\n  display: block;\n  height: 100%;\n}\n.info-panel[_ngcontent-%COMP%] {\n  font-family: var(--font-sans, sans-serif);\n  height: 100%;\n  max-height: 60vh;\n  overflow-y: auto;\n  padding: 16px;\n  border-radius: 6px;\n  background: #0c0c18;\n}\n.info-container[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n  align-items: stretch;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar {\n  width: 4px;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background: rgba(79, 163, 227, 0.25);\n  border-radius: 4px;\n}\n.info-container[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background: rgba(79, 163, 227, 0.5);\n}\n.info-content[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n}\n.element-image-container[_ngcontent-%COMP%] {\n  flex-shrink: 0;\n  width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.element-image-credit[_ngcontent-%COMP%] {\n  margin-top: 8px;\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 11px;\n  text-align: center;\n  text-decoration: underline;\n}\n.element-image[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  border-radius: 32px;\n}\n.element-image-placeholder[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: rgba(79, 163, 227, 0.4);\n  font-size: 48px;\n}\n.description-block[_ngcontent-%COMP%] {\n  background: rgba(79, 163, 227, 0.12);\n  border-left: 2px solid rgba(79, 163, 227, 0.35);\n  border-radius: 0 6px 6px 0;\n  padding: 10px 14px;\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.72);\n  line-height: 1.7;\n  margin-bottom: 1.5rem;\n}\n.meta-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n  margin-bottom: 1.25rem;\n}\n.meta-card[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.04);\n  border: 0.5px solid rgba(255, 255, 255, 0.08);\n  border-radius: 8px;\n  padding: 10px 12px;\n}\n.meta-card--full[_ngcontent-%COMP%] {\n  grid-column: 1/-1;\n}\n.meta-label[_ngcontent-%COMP%] {\n  font-size: 14px;\n  font-weight: 600;\n  letter-spacing: 0.07em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 4px;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.meta-label[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.7;\n}\n.meta-value[_ngcontent-%COMP%] {\n  font-size: 14px;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.88);\n}\n.info-section[_ngcontent-%COMP%] {\n  margin-bottom: 1.25rem;\n}\n.info-section[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.section-label[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  font-size: 12px;\n  font-weight: 500;\n  letter-spacing: 0.09em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 8px;\n}\n.section-label[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.75;\n}\n.uses-list[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.section-value[_ngcontent-%COMP%] {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.65);\n  line-height: 1.65;\n  margin: 0;\n}\n.divider[_ngcontent-%COMP%] {\n  height: 1px;\n  background: rgba(237, 237, 237, 0.1019607843);\n  margin: 1.25rem 0;\n}\n/*# sourceMappingURL=description.css.map */"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Description, [{
@@ -40858,11 +41033,28 @@ var Description = class _Description {
 \r
     <div class="element-image-container">\r
       @if (data.link_imagem) {\r
-        <img\r
-          [src]="data.link_imagem"\r
-          [alt]="data.nome || 'Elemento'"\r
-          class="element-image"\r
-        />\r
+        <a\r
+          [href]="data.link_imagem_fonte"\r
+          target="_blank"\r
+          rel="noopener noreferrer"\r
+          [attr.aria-label]="\r
+            'Ver a p\xE1gina de origem da imagem de ' + (data.nome || 'elemento')\r
+          "\r
+        >\r
+          <img\r
+            [src]="data.link_imagem"\r
+            [alt]="data.nome || 'Elemento'"\r
+            class="element-image"\r
+          />\r
+        </a>\r
+        <a\r
+          class="element-image-credit"\r
+          [href]="data.link_imagem_fonte"\r
+          target="_blank"\r
+          rel="noopener noreferrer"\r
+        >\r
+          Fonte: images-of-elements.com (CC BY 3.0)\r
+        </a>\r
       } @else {\r
         <div class="element-image-placeholder">\r
           <i class="mdi mdi-image-off-outline"></i>\r
@@ -40906,7 +41098,7 @@ var Description = class _Description {
     <p class="section-value">{{ data.fontes }}</p>\r
   </div>\r
 </div>\r
-`, styles: ["/* src/app/pages/periodic-table/modal-periodic-table/description/description.scss */\n:host {\n  display: block;\n  height: 100%;\n}\n.info-panel {\n  font-family: var(--font-sans, sans-serif);\n  height: 100%;\n  max-height: 60vh;\n  overflow-y: auto;\n  padding: 16px;\n  border-radius: 6px;\n  background: #0c0c18;\n}\n.info-container {\n  display: flex;\n  gap: 20px;\n  align-items: stretch;\n}\n.info-container::-webkit-scrollbar {\n  width: 4px;\n}\n.info-container::-webkit-scrollbar-track {\n  background: transparent;\n}\n.info-container::-webkit-scrollbar-thumb {\n  background: rgba(79, 163, 227, 0.25);\n  border-radius: 4px;\n}\n.info-container::-webkit-scrollbar-thumb:hover {\n  background: rgba(79, 163, 227, 0.5);\n}\n.info-content {\n  flex: 1;\n  min-width: 0;\n}\n.element-image-container {\n  flex-shrink: 0;\n  width: 300px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.element-image {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  border-radius: 32px;\n}\n.element-image-placeholder {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: rgba(79, 163, 227, 0.4);\n  font-size: 48px;\n}\n.description-block {\n  background: rgba(79, 163, 227, 0.12);\n  border-left: 2px solid rgba(79, 163, 227, 0.35);\n  border-radius: 0 6px 6px 0;\n  padding: 10px 14px;\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.72);\n  line-height: 1.7;\n  margin-bottom: 1.5rem;\n}\n.meta-grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n  margin-bottom: 1.25rem;\n}\n.meta-card {\n  background: rgba(255, 255, 255, 0.04);\n  border: 0.5px solid rgba(255, 255, 255, 0.08);\n  border-radius: 8px;\n  padding: 10px 12px;\n}\n.meta-card--full {\n  grid-column: 1/-1;\n}\n.meta-label {\n  font-size: 14px;\n  font-weight: 600;\n  letter-spacing: 0.07em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 4px;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.meta-label i {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.7;\n}\n.meta-value {\n  font-size: 14px;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.88);\n}\n.info-section {\n  margin-bottom: 1.25rem;\n}\n.info-section:last-child {\n  margin-bottom: 0;\n}\n.section-label {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  font-size: 12px;\n  font-weight: 500;\n  letter-spacing: 0.09em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 8px;\n}\n.section-label i {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.75;\n}\n.uses-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.section-value {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.65);\n  line-height: 1.65;\n  margin: 0;\n}\n.divider {\n  height: 1px;\n  background: rgba(237, 237, 237, 0.1019607843);\n  margin: 1.25rem 0;\n}\n/*# sourceMappingURL=description.css.map */\n"] }]
+`, styles: ["/* src/app/pages/periodic-table/modal-periodic-table/description/description.scss */\n:host {\n  display: block;\n  height: 100%;\n}\n.info-panel {\n  font-family: var(--font-sans, sans-serif);\n  height: 100%;\n  max-height: 60vh;\n  overflow-y: auto;\n  padding: 16px;\n  border-radius: 6px;\n  background: #0c0c18;\n}\n.info-container {\n  display: flex;\n  gap: 20px;\n  align-items: stretch;\n}\n.info-container::-webkit-scrollbar {\n  width: 4px;\n}\n.info-container::-webkit-scrollbar-track {\n  background: transparent;\n}\n.info-container::-webkit-scrollbar-thumb {\n  background: rgba(79, 163, 227, 0.25);\n  border-radius: 4px;\n}\n.info-container::-webkit-scrollbar-thumb:hover {\n  background: rgba(79, 163, 227, 0.5);\n}\n.info-content {\n  flex: 1;\n  min-width: 0;\n}\n.element-image-container {\n  flex-shrink: 0;\n  width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.element-image-credit {\n  margin-top: 8px;\n  color: rgba(255, 255, 255, 0.55);\n  font-size: 11px;\n  text-align: center;\n  text-decoration: underline;\n}\n.element-image {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  border-radius: 32px;\n}\n.element-image-placeholder {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: rgba(79, 163, 227, 0.4);\n  font-size: 48px;\n}\n.description-block {\n  background: rgba(79, 163, 227, 0.12);\n  border-left: 2px solid rgba(79, 163, 227, 0.35);\n  border-radius: 0 6px 6px 0;\n  padding: 10px 14px;\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.72);\n  line-height: 1.7;\n  margin-bottom: 1.5rem;\n}\n.meta-grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n  margin-bottom: 1.25rem;\n}\n.meta-card {\n  background: rgba(255, 255, 255, 0.04);\n  border: 0.5px solid rgba(255, 255, 255, 0.08);\n  border-radius: 8px;\n  padding: 10px 12px;\n}\n.meta-card--full {\n  grid-column: 1/-1;\n}\n.meta-label {\n  font-size: 14px;\n  font-weight: 600;\n  letter-spacing: 0.07em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 4px;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.meta-label i {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.7;\n}\n.meta-value {\n  font-size: 14px;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.88);\n}\n.info-section {\n  margin-bottom: 1.25rem;\n}\n.info-section:last-child {\n  margin-bottom: 0;\n}\n.section-label {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  font-size: 12px;\n  font-weight: 500;\n  letter-spacing: 0.09em;\n  text-transform: uppercase;\n  color: rgba(255, 255, 255, 0.35);\n  margin-bottom: 8px;\n}\n.section-label i {\n  font-size: 13px;\n  color: #4fa3e3;\n  opacity: 0.75;\n}\n.uses-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.section-value {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.65);\n  line-height: 1.65;\n  margin: 0;\n}\n.divider {\n  height: 1px;\n  background: rgba(237, 237, 237, 0.1019607843);\n  margin: 1.25rem 0;\n}\n/*# sourceMappingURL=description.css.map */\n"] }]
   }], null, null);
 })();
 (() => {
@@ -43498,7 +43690,7 @@ function ordenarPorMassa(isotopos) {
 // src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.service.ts
 var IsotoposService = class _IsotoposService {
   http = inject(HttpClient);
-  baseUrl = "/api/elementos";
+  baseUrl = "http://localhost:8000/api/elementos";
   // Cache por elemento — evita refetch ao trocar de aba/reabrir o modal para o mesmo elemento.
   cachePorElemento = /* @__PURE__ */ new Map();
   buscarIsotopos(numeroAtomico) {
@@ -43533,24 +43725,31 @@ function IsotoposComponent_Conditional_1_Template(rf, ctx) {
 function IsotoposComponent_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 2);
-    \u0275\u0275text(1, "Nenhum dado de is\xF3topo dispon\xEDvel para este elemento.");
+    \u0275\u0275text(1, " N\xE3o foi poss\xEDvel carregar os dados de is\xF3topos. ");
     \u0275\u0275elementEnd();
   }
 }
-function IsotoposComponent_Conditional_3_For_9_Template(rf, ctx) {
+function IsotoposComponent_Conditional_3_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 2);
+    \u0275\u0275text(1, " Nenhum dado de is\xF3topo dispon\xEDvel para este elemento. ");
+    \u0275\u0275elementEnd();
+  }
+}
+function IsotoposComponent_Conditional_4_For_14_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 14);
-    \u0275\u0275listener("click", function IsotoposComponent_Conditional_3_For_9_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 19);
+    \u0275\u0275listener("click", function IsotoposComponent_Conditional_4_For_14_Template_button_click_0_listener() {
       const isotopo_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r2.selecionarIsotopo(isotopo_r2));
     });
-    \u0275\u0275elementStart(1, "span", 15);
+    \u0275\u0275elementStart(1, "span", 20);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275element(3, "span", 16);
-    \u0275\u0275elementStart(4, "span", 17);
+    \u0275\u0275element(3, "span", 21);
+    \u0275\u0275elementStart(4, "span", 22);
     \u0275\u0275text(5);
     \u0275\u0275elementEnd()();
   }
@@ -43560,8 +43759,10 @@ function IsotoposComponent_Conditional_3_For_9_Template(rf, ctx) {
     \u0275\u0275styleProp("--cor-pico", ctx_r2.corDoIsotopo(isotopo_r2));
     \u0275\u0275classProp("pico--ativo", ctx_r2.isotopoSelecionado() === isotopo_r2);
     \u0275\u0275property("matTooltip", isotopo_r2.simboloIsotopo);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r2.abundanciaFormatada(isotopo_r2));
+    \u0275\u0275advance();
+    \u0275\u0275classProp("pico__abundancia--traco", isotopo_r2.abundanciaNatural === 0);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", ctx_r2.abundanciaFormatada(isotopo_r2), " ");
     \u0275\u0275advance();
     \u0275\u0275styleProp("height", ctx_r2.alturaBarra(isotopo_r2), "%");
     \u0275\u0275classProp("pico__barra--radioativo", !isotopo_r2.estavel);
@@ -43569,18 +43770,18 @@ function IsotoposComponent_Conditional_3_For_9_Template(rf, ctx) {
     \u0275\u0275textInterpolate(isotopo_r2.numeroMassa);
   }
 }
-function IsotoposComponent_Conditional_3_Conditional_10_Conditional_12_Template(rf, ctx) {
+function IsotoposComponent_Conditional_4_Conditional_16_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 23)(1, "span", 24);
+    \u0275\u0275elementStart(0, "div", 28)(1, "span", 29);
     \u0275\u0275text(2, "Meia-vida");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "span", 25);
+    \u0275\u0275elementStart(3, "span", 30);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(5, "div", 23)(6, "span", 24);
+    \u0275\u0275elementStart(5, "div", 28)(6, "span", 29);
     \u0275\u0275text(7, "Decaimento");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "span", 26);
+    \u0275\u0275elementStart(8, "span", 31);
     \u0275\u0275text(9);
     \u0275\u0275elementEnd()();
   }
@@ -43592,21 +43793,21 @@ function IsotoposComponent_Conditional_3_Conditional_10_Conditional_12_Template(
     \u0275\u0275textInterpolate(ativo_r4.modoDecaimento);
   }
 }
-function IsotoposComponent_Conditional_3_Conditional_10_Template(rf, ctx) {
+function IsotoposComponent_Conditional_4_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 18)(1, "div", 19)(2, "div", 20);
+    \u0275\u0275elementStart(0, "div", 23)(1, "div", 24)(2, "div", 25);
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "div", 21);
+    \u0275\u0275elementStart(4, "div", 26);
     \u0275\u0275text(5);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 22)(7, "div", 23)(8, "span", 24);
+    \u0275\u0275elementStart(6, "div", 27)(7, "div", 28)(8, "span", 29);
     \u0275\u0275text(9, "Abund\xE2ncia");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "span", 25);
+    \u0275\u0275elementStart(10, "span", 30);
     \u0275\u0275text(11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275conditionalCreate(12, IsotoposComponent_Conditional_3_Conditional_10_Conditional_12_Template, 10, 2);
+    \u0275\u0275conditionalCreate(12, IsotoposComponent_Conditional_4_Conditional_16_Conditional_12_Template, 10, 2);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
@@ -43623,39 +43824,51 @@ function IsotoposComponent_Conditional_3_Conditional_10_Template(rf, ctx) {
     \u0275\u0275conditional(!ativo_r4.estavel ? 12 : -1);
   }
 }
-function IsotoposComponent_Conditional_3_Template(rf, ctx) {
+function IsotoposComponent_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 3)(1, "h3", 4);
     \u0275\u0275text(2, "Is\xF3topos");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "span", 5);
-    \u0275\u0275text(4);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(5, "p", 6);
-    \u0275\u0275text(6, " Barra s\xF3lida = est\xE1vel \xB7 tracejada = radioativo. Altura representa abund\xE2ncia natural. ");
+    \u0275\u0275elementStart(3, "div", 5)(4, "span", 6);
+    \u0275\u0275text(5);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 7);
-    \u0275\u0275repeaterCreate(8, IsotoposComponent_Conditional_3_For_9_Template, 6, 11, "button", 8, _forTrack03);
+    \u0275\u0275elementStart(6, "span", 7);
+    \u0275\u0275element(7, "span", 8);
+    \u0275\u0275text(8);
     \u0275\u0275elementEnd();
-    \u0275\u0275conditionalCreate(10, IsotoposComponent_Conditional_3_Conditional_10_Template, 13, 7, "div", 9);
-    \u0275\u0275elementStart(11, "div", 10)(12, "span", 11);
-    \u0275\u0275element(13, "span", 12);
-    \u0275\u0275text(14, " est\xE1vel ");
+    \u0275\u0275elementStart(9, "span", 9);
+    \u0275\u0275element(10, "span", 8);
+    \u0275\u0275text(11);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(12, "div", 10);
+    \u0275\u0275repeaterCreate(13, IsotoposComponent_Conditional_4_For_14_Template, 6, 13, "button", 11, _forTrack03);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(15, "span", 11);
-    \u0275\u0275element(16, "span", 13);
-    \u0275\u0275text(17, " radioativo ");
-    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(15, "div", 12);
+    \u0275\u0275conditionalCreate(16, IsotoposComponent_Conditional_4_Conditional_16_Template, 13, 7, "div", 13);
+    \u0275\u0275elementStart(17, "div", 14)(18, "span", 15);
+    \u0275\u0275element(19, "span", 16);
+    \u0275\u0275text(20, " est\xE1vel ");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(21, "span", 17);
+    \u0275\u0275element(22, "span", 18);
+    \u0275\u0275text(23, " radioativo ");
+    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    let tmp_3_0;
+    let tmp_6_0;
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate3(" ", ctx_r2.isotoposOrdenados().length, " is\xF3topo", ctx_r2.isotoposOrdenados().length > 1 ? "s" : "", " conhecido", ctx_r2.isotoposOrdenados().length > 1 ? "s" : "", " ");
-    \u0275\u0275advance(4);
-    \u0275\u0275repeater(ctx_r2.isotoposOrdenados());
+    \u0275\u0275advance(5);
+    \u0275\u0275textInterpolate3(" ", ctx_r2.isotoposOrdenados().length, " is\xF3topo", ctx_r2.isotoposOrdenados().length !== 1 ? "s" : "", " conhecido", ctx_r2.isotoposOrdenados().length !== 1 ? "s" : "", " ");
     \u0275\u0275advance(2);
-    \u0275\u0275conditional((tmp_3_0 = ctx_r2.isotopoSelecionado()) ? 10 : -1, tmp_3_0);
+    \u0275\u0275styleProp("background", ctx_r2.corCategoria());
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate2(" ", ctx_r2.isotoposEstaveis(), " ", ctx_r2.isotoposEstaveis() === 1 ? "est\xE1vel" : "est\xE1veis", " ");
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate2(" ", ctx_r2.isotoposRadioativos(), " ", ctx_r2.isotoposRadioativos() === 1 ? "radioativo" : "radioativos", " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275repeater(ctx_r2.isotoposOrdenados());
+    \u0275\u0275advance(3);
+    \u0275\u0275conditional((tmp_6_0 = ctx_r2.isotopoSelecionado()) ? 16 : -1, tmp_6_0);
     \u0275\u0275advance(3);
     \u0275\u0275styleProp("background", ctx_r2.corCategoria());
   }
@@ -43665,14 +43878,24 @@ var IsotoposComponent = class _IsotoposComponent {
   // Recebidos do componente pai (o modal de detalhes do elemento)
   numeroAtomico = input.required(...ngDevMode ? [{ debugName: "numeroAtomico" }] : []);
   corCategoria = input("#5EA8D9", ...ngDevMode ? [{ debugName: "corCategoria" }] : []);
+  erroCarregamento = signal(false, ...ngDevMode ? [{ debugName: "erroCarregamento" }] : []);
   // Refaz a requisição sempre que numeroAtomico mudar (ex: navegação entre elementos sem fechar o modal)
-  dadosSignal = toSignal(toObservable2(this.numeroAtomico).pipe(switchMap((numeroAtomico) => this.isotoposService.buscarIsotopos(numeroAtomico))));
+  dadosSignal = toSignal(toObservable2(this.numeroAtomico).pipe(switchMap((numeroAtomico) => {
+    this.erroCarregamento.set(false);
+    return this.isotoposService.buscarIsotopos(numeroAtomico).pipe(catchError((error) => {
+      this.erroCarregamento.set(true);
+      console.error("N\xE3o foi poss\xEDvel carregar os is\xF3topos.", error);
+      return of(null);
+    }), startWith(void 0));
+  })));
   carregando = computed(() => this.dadosSignal() === void 0, ...ngDevMode ? [{ debugName: "carregando" }] : []);
   isotopoAtivo = signal(null, ...ngDevMode ? [{ debugName: "isotopoAtivo" }] : []);
   isotoposOrdenados = computed(() => {
     const dados = this.dadosSignal();
     return dados ? ordenarPorMassa(dados.isotopos) : [];
   }, ...ngDevMode ? [{ debugName: "isotoposOrdenados" }] : []);
+  isotoposEstaveis = computed(() => this.isotoposOrdenados().filter((isotopo) => isotopo.estavel).length, ...ngDevMode ? [{ debugName: "isotoposEstaveis" }] : []);
+  isotoposRadioativos = computed(() => this.isotoposOrdenados().filter((isotopo) => !isotopo.estavel).length, ...ngDevMode ? [{ debugName: "isotoposRadioativos" }] : []);
   abundanciaMaxima = computed(() => calcularAbundanciaMaxima(this.isotoposOrdenados()), ...ngDevMode ? [{ debugName: "abundanciaMaxima" }] : []);
   isotopoSelecionado = computed(() => {
     const ativo = this.isotopoAtivo();
@@ -43696,101 +43919,22 @@ var IsotoposComponent = class _IsotoposComponent {
   static \u0275fac = function IsotoposComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _IsotoposComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _IsotoposComponent, selectors: [["app-isotopos"]], inputs: { numeroAtomico: [1, "numeroAtomico"], corCategoria: [1, "corCategoria"] }, decls: 4, vars: 1, consts: [[1, "isotopos-painel"], [1, "isotopos-painel__carregando"], [1, "isotopos-painel__vazio"], [1, "isotopos-painel__cabecalho"], [1, "isotopos-painel__titulo"], [1, "isotopos-painel__contagem"], [1, "isotopos-painel__legenda-texto"], [1, "isotopos-painel__espectro"], ["type", "button", 1, "pico", 3, "pico--ativo", "--cor-pico", "matTooltip"], [1, "detalhe", 3, "--cor-detalhe"], [1, "isotopos-painel__legenda-icones"], [1, "legenda-item"], [1, "legenda-item__marcador"], [1, "legenda-item__marcador", "legenda-item__marcador--radioativo"], ["type", "button", 1, "pico", 3, "click", "matTooltip"], [1, "pico__abundancia"], [1, "pico__barra"], [1, "pico__massa"], [1, "detalhe"], [1, "detalhe__principal"], [1, "detalhe__simbolo"], [1, "detalhe__subtitulo"], [1, "detalhe__metricas"], [1, "metrica"], [1, "metrica__rotulo"], [1, "metrica__valor"], [1, "metrica__valor", "metrica__valor--decaimento"]], template: function IsotoposComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _IsotoposComponent, selectors: [["app-isotopos"]], inputs: { numeroAtomico: [1, "numeroAtomico"], corCategoria: [1, "corCategoria"] }, decls: 5, vars: 1, consts: [[1, "isotopos-painel"], [1, "isotopos-painel__carregando"], [1, "isotopos-painel__vazio"], [1, "isotopos-painel__cabecalho"], [1, "isotopos-painel__titulo"], [1, "isotopos-painel__resumo"], [1, "isotopos-painel__contagem"], [1, "resumo-isotopos", "resumo-isotopos--estavel"], [1, "resumo-isotopos__marcador"], [1, "resumo-isotopos", "resumo-isotopos--radioativo"], [1, "isotopos-painel__espectro"], ["type", "button", 1, "pico", 3, "pico--ativo", "--cor-pico", "matTooltip"], [1, "isotopos-painel__rodape"], [1, "detalhe", 3, "--cor-detalhe"], [1, "isotopos-painel__legenda-icones"], [1, "legenda-item", "legenda-item--estavel"], [1, "legenda-item__marcador"], [1, "legenda-item", "legenda-item--radioativo"], [1, "legenda-item__marcador", "legenda-item__marcador--radioativo"], ["type", "button", 1, "pico", 3, "click", "matTooltip"], [1, "pico__abundancia"], [1, "pico__barra"], [1, "pico__massa"], [1, "detalhe"], [1, "detalhe__principal"], [1, "detalhe__simbolo"], [1, "detalhe__subtitulo"], [1, "detalhe__metricas"], [1, "metrica"], [1, "metrica__rotulo"], [1, "metrica__valor"], [1, "metrica__valor", "metrica__valor--decaimento"]], template: function IsotoposComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0);
-      \u0275\u0275conditionalCreate(1, IsotoposComponent_Conditional_1_Template, 2, 0, "div", 1)(2, IsotoposComponent_Conditional_2_Template, 2, 0, "div", 2)(3, IsotoposComponent_Conditional_3_Template, 18, 6);
+      \u0275\u0275conditionalCreate(1, IsotoposComponent_Conditional_1_Template, 2, 0, "div", 1)(2, IsotoposComponent_Conditional_2_Template, 2, 0, "div", 2)(3, IsotoposComponent_Conditional_3_Template, 2, 0, "div", 2)(4, IsotoposComponent_Conditional_4_Template, 24, 12);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.carregando() ? 1 : ctx.isotoposOrdenados().length === 0 ? 2 : 3);
+      \u0275\u0275conditional(ctx.carregando() ? 1 : ctx.erroCarregamento() ? 2 : ctx.isotoposOrdenados().length === 0 ? 3 : 4);
     }
-  }, dependencies: [CommonModule, MatTooltipModule, MatTooltip], styles: ['\n\n.isotopos-painel[_ngcontent-%COMP%] {\n  font-family:\n    "Inter",\n    -apple-system,\n    sans-serif;\n  background: #14161a;\n  border-radius: 14px;\n  padding: 24px;\n}\n.isotopos-painel__carregando[_ngcontent-%COMP%], \n.isotopos-painel__vazio[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #9da3ac;\n  padding: 24px 0;\n  text-align: center;\n}\n.isotopos-painel__cabecalho[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  margin-bottom: 4px;\n}\n.isotopos-painel__titulo[_ngcontent-%COMP%] {\n  margin: 0;\n  font-size: 18px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.isotopos-painel__contagem[_ngcontent-%COMP%] {\n  font-size: 12px;\n  color: #6b7280;\n}\n.isotopos-painel__legenda-texto[_ngcontent-%COMP%] {\n  margin: 0 0 18px;\n  font-size: 12.5px;\n  color: #8a9099;\n}\n.isotopos-painel__espectro[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 6px;\n  overflow-x: auto;\n  padding: 8px 4px 4px;\n  border-bottom: 1px solid #262a31;\n  margin-bottom: 16px;\n}\n.isotopos-painel__legenda-icones[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 16px;\n  margin-top: 14px;\n  font-size: 11.5px;\n  color: #6b7280;\n}\n.pico[_ngcontent-%COMP%] {\n  --cor-pico: #5ea8d9;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-end;\n  width: 34px;\n  height: 128px;\n  flex-shrink: 0;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 0;\n  opacity: 0.6;\n  transition: opacity 120ms ease;\n}\n.pico[_ngcontent-%COMP%]:hover, \n.pico--ativo[_ngcontent-%COMP%] {\n  opacity: 1;\n}\n.pico--ativo[_ngcontent-%COMP%]   .pico__barra[_ngcontent-%COMP%] {\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 25%, transparent);\n}\n.pico__abundancia[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 10px;\n  color: #6b7280;\n  margin-bottom: 4px;\n  font-variant-numeric: tabular-nums;\n}\n.pico__barra[_ngcontent-%COMP%] {\n  width: 10px;\n  border-radius: 3px 3px 0 0;\n  background: var(--cor-pico);\n}\n.pico__barra--radioativo[_ngcontent-%COMP%] {\n  background:\n    repeating-linear-gradient(\n      45deg,\n      var(--cor-pico),\n      var(--cor-pico) 3px,\n      transparent 3px,\n      transparent 6px);\n  border: 1px solid var(--cor-pico);\n}\n.pico__massa[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 11px;\n  font-weight: 600;\n  color: #e8e6e1;\n  margin-top: 6px;\n}\n.detalhe[_ngcontent-%COMP%] {\n  --cor-detalhe: #5ea8d9;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 16px;\n  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);\n  border-left: 3px solid var(--cor-detalhe);\n  border-radius: 8px;\n  padding: 14px 16px;\n  background: #1e2126;\n}\n.detalhe__simbolo[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 20px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.detalhe__subtitulo[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  color: #9da3ac;\n  margin-top: 2px;\n}\n.detalhe__metricas[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 24px;\n}\n.metrica[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  color: #9da3ac;\n}\n.metrica__rotulo[_ngcontent-%COMP%] {\n  display: block;\n  font-size: 10px;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.metrica__valor[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-weight: 600;\n  color: #f0eee6;\n  font-size: 14px;\n}\n.metrica__valor--decaimento[_ngcontent-%COMP%] {\n  color: var(--cor-detalhe, #e08662);\n}\n.legenda-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.legenda-item__marcador[_ngcontent-%COMP%] {\n  width: 8px;\n  height: 8px;\n  border-radius: 2px;\n  display: inline-block;\n}\n.legenda-item__marcador--radioativo[_ngcontent-%COMP%] {\n  border: 1px solid #e08662;\n  background:\n    repeating-linear-gradient(\n      45deg,\n      #e08662,\n      #e08662 2px,\n      transparent 2px,\n      transparent 4px);\n}\n/*# sourceMappingURL=isotopos.component.css.map */'], changeDetection: 0 });
+  }, dependencies: [CommonModule, MatTooltipModule, MatTooltip], styles: ['\n\n[_nghost-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n}\n.isotopos-painel[_ngcontent-%COMP%] {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  font-family:\n    "Inter",\n    -apple-system,\n    sans-serif;\n  background: #14161a;\n  border-radius: 14px;\n  padding: 24px;\n  min-height: 0;\n  box-sizing: border-box;\n}\n.isotopos-painel__carregando[_ngcontent-%COMP%], \n.isotopos-painel__vazio[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: #9da3ac;\n  padding: 24px 0;\n  text-align: center;\n}\n.isotopos-painel__cabecalho[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  margin-bottom: 12px;\n}\n.isotopos-painel__titulo[_ngcontent-%COMP%] {\n  margin: 0;\n  font-size: 18px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.isotopos-painel__contagem[_ngcontent-%COMP%] {\n  font-size: 12px;\n  color: #6b7280;\n  white-space: nowrap;\n}\n.isotopos-painel__resumo[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.isotopos-painel__espectro[_ngcontent-%COMP%] {\n  display: flex;\n  position: relative;\n  flex: 0 1 auto;\n  align-items: flex-end;\n  gap: 6px;\n  overflow-x: auto;\n  height: clamp(190px, 32vh, 280px);\n  min-height: 190px;\n  padding: 8px 4px 4px;\n  border-bottom: 1px solid #262a31;\n  margin-bottom: 14px;\n  width: 100%;\n  box-sizing: border-box;\n  background:\n    repeating-linear-gradient(\n      to top,\n      transparent 0,\n      transparent calc(25% - 1px),\n      rgba(255, 255, 255, 0.045) calc(25% - 1px),\n      rgba(255, 255, 255, 0.045) 25%);\n}\n.isotopos-painel__rodape[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.isotopos-painel__legenda-icones[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.resumo-isotopos[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 5px 9px;\n  border: 1px solid #262a31;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.025);\n  color: #9da3ac;\n  font-size: 11px;\n  white-space: nowrap;\n}\n.resumo-isotopos__marcador[_ngcontent-%COMP%] {\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: var(--cor-categoria, #5ea8d9);\n}\n.resumo-isotopos--radioativo[_ngcontent-%COMP%]   .resumo-isotopos__marcador[_ngcontent-%COMP%] {\n  background: #e08662;\n}\n.pico[_ngcontent-%COMP%] {\n  --cor-pico: #5ea8d9;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-end;\n  flex: 1 0 44px;\n  min-width: 44px;\n  height: 100%;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 0;\n  opacity: 0.6;\n  transition: opacity 120ms ease;\n  position: relative;\n  z-index: 1;\n}\n.pico[_ngcontent-%COMP%]:hover, \n.pico--ativo[_ngcontent-%COMP%] {\n  opacity: 1;\n}\n.pico[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid var(--cor-pico);\n  outline-offset: 3px;\n  border-radius: 4px;\n}\n.pico--ativo[_ngcontent-%COMP%]   .pico__barra[_ngcontent-%COMP%] {\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 30%, transparent), 0 0 16px color-mix(in srgb, var(--cor-pico) 45%, transparent);\n  transform: scaleX(1.08);\n}\n.pico--ativo[_ngcontent-%COMP%]   .pico__massa[_ngcontent-%COMP%] {\n  color: var(--cor-pico);\n}\n.pico__abundancia[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 10px;\n  color: #6b7280;\n  margin-bottom: 4px;\n  font-variant-numeric: tabular-nums;\n}\n.pico__abundancia--traco[_ngcontent-%COMP%] {\n  padding: 2px 5px;\n  border: 1px solid color-mix(in srgb, #6b7280 35%, transparent);\n  border-radius: 999px;\n  color: #9da3ac;\n  background: #1e2126;\n  font-size: 9px;\n  letter-spacing: 0.03em;\n}\n.pico__barra[_ngcontent-%COMP%] {\n  width: 50px;\n  border-radius: 3px 3px 0 0;\n  background: var(--cor-pico);\n}\n.pico__barra--radioativo[_ngcontent-%COMP%] {\n  background:\n    repeating-linear-gradient(\n      45deg,\n      var(--cor-pico),\n      var(--cor-pico) 3px,\n      transparent 3px,\n      transparent 6px);\n  border: 1px solid var(--cor-pico);\n}\n.pico__massa[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 11px;\n  font-weight: 600;\n  color: #e8e6e1;\n  margin-top: 6px;\n}\n.detalhe[_ngcontent-%COMP%] {\n  --cor-detalhe: #5ea8d9;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  gap: 16px;\n  width: fit-content;\n  max-width: 100%;\n  box-sizing: border-box;\n  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);\n  border-left: 3px solid var(--cor-detalhe);\n  border-radius: 8px;\n  padding: 14px 16px;\n  background: #1e2126;\n}\n.detalhe__simbolo[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 20px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.detalhe__subtitulo[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  color: #9da3ac;\n  margin-top: 2px;\n}\n.detalhe__metricas[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 16px;\n}\n.metrica[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  color: #9da3ac;\n}\n.metrica__rotulo[_ngcontent-%COMP%] {\n  display: block;\n  font-size: 10px;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.metrica__valor[_ngcontent-%COMP%] {\n  font-family: "IBM Plex Mono", monospace;\n  font-weight: 600;\n  color: #f0eee6;\n  font-size: 14px;\n}\n.metrica__valor--decaimento[_ngcontent-%COMP%] {\n  color: var(--cor-detalhe, #e08662);\n}\n.legenda-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  padding: 6px 10px;\n  border: 1px solid #262a31;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.025);\n  color: #9da3ac;\n  font-size: 12px;\n  line-height: 1;\n}\n.legenda-item--estavel[_ngcontent-%COMP%] {\n  --cor-categoria: #5ea8d9;\n}\n.legenda-item__marcador[_ngcontent-%COMP%] {\n  width: 12px;\n  height: 12px;\n  flex-shrink: 0;\n  border-radius: 2px;\n  display: inline-block;\n}\n.legenda-item__marcador--radioativo[_ngcontent-%COMP%] {\n  border: 1px solid #e08662;\n  background:\n    repeating-linear-gradient(\n      45deg,\n      #e08662,\n      #e08662 2px,\n      transparent 2px,\n      transparent 4px);\n}\n@media (max-width: 600px) {\n  .legenda-item[_ngcontent-%COMP%]   .isotopos-painel__cabecalho[_ngcontent-%COMP%] {\n    align-items: flex-start;\n    flex-direction: column;\n    gap: 8px;\n  }\n  .legenda-item[_ngcontent-%COMP%]   .isotopos-painel__resumo[_ngcontent-%COMP%] {\n    justify-content: flex-start;\n  }\n}\n/*# sourceMappingURL=isotopos.component.css.map */'], changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(IsotoposComponent, [{
     type: Component,
-    args: [{ selector: "app-isotopos", standalone: true, imports: [CommonModule, MatTooltipModule], changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="isotopos-painel">
-  @if (carregando()) {
-    <div class="isotopos-painel__carregando">Carregando is\xF3topos\u2026</div>
-  } @else if (isotoposOrdenados().length === 0) {
-    <div class="isotopos-painel__vazio">Nenhum dado de is\xF3topo dispon\xEDvel para este elemento.</div>
-  } @else {
-    <div class="isotopos-painel__cabecalho">
-      <h3 class="isotopos-painel__titulo">Is\xF3topos</h3>
-      <span class="isotopos-painel__contagem">
-        {{ isotoposOrdenados().length }} is\xF3topo{{ isotoposOrdenados().length > 1 ? 's' : '' }} conhecido{{ isotoposOrdenados().length > 1 ? 's' : '' }}
-      </span>
-    </div>
-
-    <p class="isotopos-painel__legenda-texto">
-      Barra s\xF3lida = est\xE1vel \xB7 tracejada = radioativo. Altura representa abund\xE2ncia natural.
-    </p>
-
-    <div class="isotopos-painel__espectro">
-      @for (isotopo of isotoposOrdenados(); track isotopo.numeroMassa) {
-        <button
-          type="button"
-          class="pico"
-          [class.pico--ativo]="isotopoSelecionado() === isotopo"
-          [style.--cor-pico]="corDoIsotopo(isotopo)"
-          [matTooltip]="isotopo.simboloIsotopo"
-          (click)="selecionarIsotopo(isotopo)"
-        >
-          <span class="pico__abundancia">{{ abundanciaFormatada(isotopo) }}</span>
-          <span
-            class="pico__barra"
-            [class.pico__barra--radioativo]="!isotopo.estavel"
-            [style.height.%]="alturaBarra(isotopo)"
-          ></span>
-          <span class="pico__massa">{{ isotopo.numeroMassa }}</span>
-        </button>
-      }
-    </div>
-
-    @if (isotopoSelecionado(); as ativo) {
-      <div class="detalhe" [style.--cor-detalhe]="corDoIsotopo(ativo)">
-        <div class="detalhe__principal">
-          <div class="detalhe__simbolo">{{ ativo.simboloIsotopo }}</div>
-          <div class="detalhe__subtitulo">
-            {{ ativo.estavel ? 'Is\xF3topo est\xE1vel' : 'Is\xF3topo radioativo' }} \xB7 massa {{ ativo.numeroMassa }}
-          </div>
-        </div>
-
-        <div class="detalhe__metricas">
-          <div class="metrica">
-            <span class="metrica__rotulo">Abund\xE2ncia</span>
-            <span class="metrica__valor">{{ abundanciaFormatada(ativo) }}</span>
-          </div>
-
-          @if (!ativo.estavel) {
-            <div class="metrica">
-              <span class="metrica__rotulo">Meia-vida</span>
-              <span class="metrica__valor">{{ ativo.meiaVida }}</span>
-            </div>
-            <div class="metrica">
-              <span class="metrica__rotulo">Decaimento</span>
-              <span class="metrica__valor metrica__valor--decaimento">{{ ativo.modoDecaimento }}</span>
-            </div>
-          }
-        </div>
-      </div>
-    }
-
-    <div class="isotopos-painel__legenda-icones">
-      <span class="legenda-item">
-        <span class="legenda-item__marcador" [style.background]="corCategoria()"></span>
-        est\xE1vel
-      </span>
-      <span class="legenda-item">
-        <span class="legenda-item__marcador legenda-item__marcador--radioativo"></span>
-        radioativo
-      </span>
-    </div>
-  }
-</div>
-`, styles: ['/* src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.component.scss */\n.isotopos-painel {\n  font-family:\n    "Inter",\n    -apple-system,\n    sans-serif;\n  background: #14161a;\n  border-radius: 14px;\n  padding: 24px;\n}\n.isotopos-painel__carregando,\n.isotopos-painel__vazio {\n  font-size: 13px;\n  color: #9da3ac;\n  padding: 24px 0;\n  text-align: center;\n}\n.isotopos-painel__cabecalho {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  margin-bottom: 4px;\n}\n.isotopos-painel__titulo {\n  margin: 0;\n  font-size: 18px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.isotopos-painel__contagem {\n  font-size: 12px;\n  color: #6b7280;\n}\n.isotopos-painel__legenda-texto {\n  margin: 0 0 18px;\n  font-size: 12.5px;\n  color: #8a9099;\n}\n.isotopos-painel__espectro {\n  display: flex;\n  gap: 6px;\n  overflow-x: auto;\n  padding: 8px 4px 4px;\n  border-bottom: 1px solid #262a31;\n  margin-bottom: 16px;\n}\n.isotopos-painel__legenda-icones {\n  display: flex;\n  gap: 16px;\n  margin-top: 14px;\n  font-size: 11.5px;\n  color: #6b7280;\n}\n.pico {\n  --cor-pico: #5ea8d9;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-end;\n  width: 34px;\n  height: 128px;\n  flex-shrink: 0;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 0;\n  opacity: 0.6;\n  transition: opacity 120ms ease;\n}\n.pico:hover,\n.pico--ativo {\n  opacity: 1;\n}\n.pico--ativo .pico__barra {\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 25%, transparent);\n}\n.pico__abundancia {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 10px;\n  color: #6b7280;\n  margin-bottom: 4px;\n  font-variant-numeric: tabular-nums;\n}\n.pico__barra {\n  width: 10px;\n  border-radius: 3px 3px 0 0;\n  background: var(--cor-pico);\n}\n.pico__barra--radioativo {\n  background:\n    repeating-linear-gradient(\n      45deg,\n      var(--cor-pico),\n      var(--cor-pico) 3px,\n      transparent 3px,\n      transparent 6px);\n  border: 1px solid var(--cor-pico);\n}\n.pico__massa {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 11px;\n  font-weight: 600;\n  color: #e8e6e1;\n  margin-top: 6px;\n}\n.detalhe {\n  --cor-detalhe: #5ea8d9;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 16px;\n  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);\n  border-left: 3px solid var(--cor-detalhe);\n  border-radius: 8px;\n  padding: 14px 16px;\n  background: #1e2126;\n}\n.detalhe__simbolo {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 20px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.detalhe__subtitulo {\n  font-size: 12.5px;\n  color: #9da3ac;\n  margin-top: 2px;\n}\n.detalhe__metricas {\n  display: flex;\n  gap: 24px;\n}\n.metrica {\n  font-size: 12.5px;\n  color: #9da3ac;\n}\n.metrica__rotulo {\n  display: block;\n  font-size: 10px;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.metrica__valor {\n  font-family: "IBM Plex Mono", monospace;\n  font-weight: 600;\n  color: #f0eee6;\n  font-size: 14px;\n}\n.metrica__valor--decaimento {\n  color: var(--cor-detalhe, #e08662);\n}\n.legenda-item {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.legenda-item__marcador {\n  width: 8px;\n  height: 8px;\n  border-radius: 2px;\n  display: inline-block;\n}\n.legenda-item__marcador--radioativo {\n  border: 1px solid #e08662;\n  background:\n    repeating-linear-gradient(\n      45deg,\n      #e08662,\n      #e08662 2px,\n      transparent 2px,\n      transparent 4px);\n}\n/*# sourceMappingURL=isotopos.component.css.map */\n'] }]
+    args: [{ selector: "app-isotopos", standalone: true, imports: [CommonModule, MatTooltipModule], changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="isotopos-painel">\n  @if (carregando()) {\n    <div class="isotopos-painel__carregando">Carregando is\xF3topos\u2026</div>\n  } @else if (erroCarregamento()) {\n    <div class="isotopos-painel__vazio">\n      N\xE3o foi poss\xEDvel carregar os dados de is\xF3topos.\n    </div>\n  } @else if (isotoposOrdenados().length === 0) {\n    <div class="isotopos-painel__vazio">\n      Nenhum dado de is\xF3topo dispon\xEDvel para este elemento.\n    </div>\n  } @else {\n    <div class="isotopos-painel__cabecalho">\n      <h3 class="isotopos-painel__titulo">Is\xF3topos</h3>\n      <div class="isotopos-painel__resumo">\n        <span class="isotopos-painel__contagem">\n          {{ isotoposOrdenados().length }} is\xF3topo{{\n            isotoposOrdenados().length !== 1 ? "s" : ""\n          }}\n          conhecido{{ isotoposOrdenados().length !== 1 ? "s" : "" }}\n        </span>\n        <span class="resumo-isotopos resumo-isotopos--estavel">\n          <span\n            class="resumo-isotopos__marcador"\n            [style.background]="corCategoria()"\n          ></span>\n          {{ isotoposEstaveis() }}\n          {{ isotoposEstaveis() === 1 ? "est\xE1vel" : "est\xE1veis" }}\n        </span>\n        <span class="resumo-isotopos resumo-isotopos--radioativo">\n          <span class="resumo-isotopos__marcador"></span>\n          {{ isotoposRadioativos() }}\n          {{ isotoposRadioativos() === 1 ? "radioativo" : "radioativos" }}\n        </span>\n      </div>\n    </div>\n\n    <div class="isotopos-painel__espectro">\n      @for (isotopo of isotoposOrdenados(); track isotopo.numeroMassa) {\n        <button\n          type="button"\n          class="pico"\n          [class.pico--ativo]="isotopoSelecionado() === isotopo"\n          [style.--cor-pico]="corDoIsotopo(isotopo)"\n          [matTooltip]="isotopo.simboloIsotopo"\n          (click)="selecionarIsotopo(isotopo)"\n        >\n          <span\n            class="pico__abundancia"\n            [class.pico__abundancia--traco]="isotopo.abundanciaNatural === 0"\n          >\n            {{ abundanciaFormatada(isotopo) }}\n          </span>\n          <span\n            class="pico__barra"\n            [class.pico__barra--radioativo]="!isotopo.estavel"\n            [style.height.%]="alturaBarra(isotopo)"\n          ></span>\n          <span class="pico__massa">{{ isotopo.numeroMassa }}</span>\n        </button>\n      }\n    </div>\n\n    <div class="isotopos-painel__rodape">\n      @if (isotopoSelecionado(); as ativo) {\n        <div class="detalhe" [style.--cor-detalhe]="corDoIsotopo(ativo)">\n          <div class="detalhe__principal">\n            <div class="detalhe__simbolo">{{ ativo.simboloIsotopo }}</div>\n            <div class="detalhe__subtitulo">\n              {{ ativo.estavel ? "Is\xF3topo est\xE1vel" : "Is\xF3topo radioativo" }} \xB7\n              massa {{ ativo.numeroMassa }}\n            </div>\n          </div>\n\n          <div class="detalhe__metricas">\n            <div class="metrica">\n              <span class="metrica__rotulo">Abund\xE2ncia</span>\n              <span class="metrica__valor">{{ abundanciaFormatada(ativo) }}</span>\n            </div>\n\n            @if (!ativo.estavel) {\n              <div class="metrica">\n                <span class="metrica__rotulo">Meia-vida</span>\n                <span class="metrica__valor">{{ ativo.meiaVida }}</span>\n              </div>\n              <div class="metrica">\n                <span class="metrica__rotulo">Decaimento</span>\n                <span class="metrica__valor metrica__valor--decaimento">{{\n                  ativo.modoDecaimento\n                }}</span>\n              </div>\n            }\n          </div>\n        </div>\n      }\n\n      <div class="isotopos-painel__legenda-icones">\n        <span class="legenda-item legenda-item--estavel">\n          <span\n            class="legenda-item__marcador"\n            [style.background]="corCategoria()"\n          ></span>\n          est\xE1vel\n        </span>\n        <span class="legenda-item legenda-item--radioativo">\n          <span\n            class="legenda-item__marcador legenda-item__marcador--radioativo"\n          ></span>\n          radioativo\n        </span>\n      </div>\n    </div>\n  }\n</div>\n', styles: ['/* src/app/pages/periodic-table/modal-periodic-table/isotopos/isotopos.component.scss */\n:host {\n  display: flex;\n  flex: 1 1 auto;\n  min-height: 0;\n  width: 100%;\n}\n.isotopos-painel {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: column;\n  font-family:\n    "Inter",\n    -apple-system,\n    sans-serif;\n  background: #14161a;\n  border-radius: 14px;\n  padding: 24px;\n  min-height: 0;\n  box-sizing: border-box;\n}\n.isotopos-painel__carregando,\n.isotopos-painel__vazio {\n  font-size: 13px;\n  color: #9da3ac;\n  padding: 24px 0;\n  text-align: center;\n}\n.isotopos-painel__cabecalho {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  margin-bottom: 12px;\n}\n.isotopos-painel__titulo {\n  margin: 0;\n  font-size: 18px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.isotopos-painel__contagem {\n  font-size: 12px;\n  color: #6b7280;\n  white-space: nowrap;\n}\n.isotopos-painel__resumo {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.isotopos-painel__espectro {\n  display: flex;\n  position: relative;\n  flex: 0 1 auto;\n  align-items: flex-end;\n  gap: 6px;\n  overflow-x: auto;\n  height: clamp(190px, 32vh, 280px);\n  min-height: 190px;\n  padding: 8px 4px 4px;\n  border-bottom: 1px solid #262a31;\n  margin-bottom: 14px;\n  width: 100%;\n  box-sizing: border-box;\n  background:\n    repeating-linear-gradient(\n      to top,\n      transparent 0,\n      transparent calc(25% - 1px),\n      rgba(255, 255, 255, 0.045) calc(25% - 1px),\n      rgba(255, 255, 255, 0.045) 25%);\n}\n.isotopos-painel__rodape {\n  display: flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.isotopos-painel__legenda-icones {\n  display: flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.resumo-isotopos {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 5px 9px;\n  border: 1px solid #262a31;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.025);\n  color: #9da3ac;\n  font-size: 11px;\n  white-space: nowrap;\n}\n.resumo-isotopos__marcador {\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: var(--cor-categoria, #5ea8d9);\n}\n.resumo-isotopos--radioativo .resumo-isotopos__marcador {\n  background: #e08662;\n}\n.pico {\n  --cor-pico: #5ea8d9;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-end;\n  flex: 1 0 44px;\n  min-width: 44px;\n  height: 100%;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 0;\n  opacity: 0.6;\n  transition: opacity 120ms ease;\n  position: relative;\n  z-index: 1;\n}\n.pico:hover,\n.pico--ativo {\n  opacity: 1;\n}\n.pico:focus-visible {\n  outline: 2px solid var(--cor-pico);\n  outline-offset: 3px;\n  border-radius: 4px;\n}\n.pico--ativo .pico__barra {\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-pico) 30%, transparent), 0 0 16px color-mix(in srgb, var(--cor-pico) 45%, transparent);\n  transform: scaleX(1.08);\n}\n.pico--ativo .pico__massa {\n  color: var(--cor-pico);\n}\n.pico__abundancia {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 10px;\n  color: #6b7280;\n  margin-bottom: 4px;\n  font-variant-numeric: tabular-nums;\n}\n.pico__abundancia--traco {\n  padding: 2px 5px;\n  border: 1px solid color-mix(in srgb, #6b7280 35%, transparent);\n  border-radius: 999px;\n  color: #9da3ac;\n  background: #1e2126;\n  font-size: 9px;\n  letter-spacing: 0.03em;\n}\n.pico__barra {\n  width: 50px;\n  border-radius: 3px 3px 0 0;\n  background: var(--cor-pico);\n}\n.pico__barra--radioativo {\n  background:\n    repeating-linear-gradient(\n      45deg,\n      var(--cor-pico),\n      var(--cor-pico) 3px,\n      transparent 3px,\n      transparent 6px);\n  border: 1px solid var(--cor-pico);\n}\n.pico__massa {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 11px;\n  font-weight: 600;\n  color: #e8e6e1;\n  margin-top: 6px;\n}\n.detalhe {\n  --cor-detalhe: #5ea8d9;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  gap: 16px;\n  width: fit-content;\n  max-width: 100%;\n  box-sizing: border-box;\n  border: 1px solid color-mix(in srgb, var(--cor-detalhe) 27%, transparent);\n  border-left: 3px solid var(--cor-detalhe);\n  border-radius: 8px;\n  padding: 14px 16px;\n  background: #1e2126;\n}\n.detalhe__simbolo {\n  font-family: "IBM Plex Mono", monospace;\n  font-size: 20px;\n  font-weight: 600;\n  color: #f0eee6;\n}\n.detalhe__subtitulo {\n  font-size: 12.5px;\n  color: #9da3ac;\n  margin-top: 2px;\n}\n.detalhe__metricas {\n  display: flex;\n  gap: 16px;\n}\n.metrica {\n  font-size: 12.5px;\n  color: #9da3ac;\n}\n.metrica__rotulo {\n  display: block;\n  font-size: 10px;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: #6b7280;\n}\n.metrica__valor {\n  font-family: "IBM Plex Mono", monospace;\n  font-weight: 600;\n  color: #f0eee6;\n  font-size: 14px;\n}\n.metrica__valor--decaimento {\n  color: var(--cor-detalhe, #e08662);\n}\n.legenda-item {\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  padding: 6px 10px;\n  border: 1px solid #262a31;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.025);\n  color: #9da3ac;\n  font-size: 12px;\n  line-height: 1;\n}\n.legenda-item--estavel {\n  --cor-categoria: #5ea8d9;\n}\n.legenda-item__marcador {\n  width: 12px;\n  height: 12px;\n  flex-shrink: 0;\n  border-radius: 2px;\n  display: inline-block;\n}\n.legenda-item__marcador--radioativo {\n  border: 1px solid #e08662;\n  background:\n    repeating-linear-gradient(\n      45deg,\n      #e08662,\n      #e08662 2px,\n      transparent 2px,\n      transparent 4px);\n}\n@media (max-width: 600px) {\n  .legenda-item .isotopos-painel__cabecalho {\n    align-items: flex-start;\n    flex-direction: column;\n    gap: 8px;\n  }\n  .legenda-item .isotopos-painel__resumo {\n    justify-content: flex-start;\n  }\n}\n/*# sourceMappingURL=isotopos.component.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -43862,110 +44006,72 @@ var OrbitalSelectionService = class _OrbitalSelectionService {
 })();
 
 // src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.component.ts
-var ModalPeriodicTable_Conditional_2_Defer_2_DepsFn = () => [import("./chunk-VJQG4T2Z.js").then((m) => m.OrbitalSurfaceViewerComponent)];
-function ModalPeriodicTable_Conditional_1_Template(rf, ctx) {
+var ModalPeriodicTable_Conditional_9_Defer_2_DepsFn = () => [import("./chunk-K7F62WEH.js").then((m) => m.OrbitalSurfaceViewerComponent)];
+function ModalPeriodicTable_Conditional_9_Defer_0_Template(rf, ctx) {
   if (rf & 1) {
-    const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 3)(1, "mat-icon");
-    \u0275\u0275text(2, "close");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(3, "div", 4)(4, "a", 5)(5, "h1");
-    \u0275\u0275text(6);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(7, "app-button-toggle-modal", 6);
-    \u0275\u0275listener("checkedChange", function ModalPeriodicTable_Conditional_1_Template_app_button_toggle_modal_checkedChange_7_listener($event) {
-      \u0275\u0275restoreView(_r1);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.onViewChange($event));
-    });
-    \u0275\u0275elementEnd()();
+    \u0275\u0275element(0, "app-orbital-surface-viewer", 7);
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275advance(4);
-    \u0275\u0275property("href", \u0275\u0275interpolate(ctx_r1.data.link), \u0275\u0275sanitizeUrl);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r1.data.nome);
+    const ctx_r0 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("orbital", ctx_r0.orbitalSelecionado())("zEff", 1);
   }
 }
-function ModalPeriodicTable_Conditional_2_Defer_0_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "app-orbital-surface-viewer", 7);
-    \u0275\u0275listener("voltar", function ModalPeriodicTable_Conditional_2_Defer_0_Template_app_orbital_surface_viewer_voltar_0_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.voltarDosOrbitais());
-    })("fechar", function ModalPeriodicTable_Conditional_2_Defer_0_Template_app_orbital_surface_viewer_fechar_0_listener() {
-      \u0275\u0275restoreView(_r3);
-      const ctx_r1 = \u0275\u0275nextContext(2);
-      return \u0275\u0275resetView(ctx_r1.fecharModal());
-    });
-    \u0275\u0275elementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext(2);
-    \u0275\u0275property("orbital", ctx_r1.orbitalSelecionado())("zEff", 1);
-  }
-}
-function ModalPeriodicTable_Conditional_2_DeferPlaceholder_1_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_9_DeferPlaceholder_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275element(0, "div", 8);
   }
 }
-function ModalPeriodicTable_Conditional_2_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_9_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275domTemplate(0, ModalPeriodicTable_Conditional_2_Defer_0_Template, 1, 2)(1, ModalPeriodicTable_Conditional_2_DeferPlaceholder_1_Template, 1, 0);
-    \u0275\u0275defer(2, 0, ModalPeriodicTable_Conditional_2_Defer_2_DepsFn, null, 1);
+    \u0275\u0275domTemplate(0, ModalPeriodicTable_Conditional_9_Defer_0_Template, 1, 2)(1, ModalPeriodicTable_Conditional_9_DeferPlaceholder_1_Template, 1, 0);
+    \u0275\u0275defer(2, 0, ModalPeriodicTable_Conditional_9_Defer_2_DepsFn, null, 1);
     \u0275\u0275deferOnIdle();
   }
 }
-function ModalPeriodicTable_Conditional_3_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_10_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275element(0, "app-description");
   }
 }
-function ModalPeriodicTable_Conditional_4_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_11_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275element(0, "app-properties-elements");
   }
 }
-function ModalPeriodicTable_Conditional_5_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-isotopos", 1);
+    \u0275\u0275element(0, "app-isotopos", 5);
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("numeroAtomico", ctx_r1.data.numeroAtomico);
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("numeroAtomico", ctx_r0.data.numeroAtomico);
   }
 }
-function ModalPeriodicTable_Conditional_6_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_13_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-diagrama-configuracao-eletronica", 1);
+    \u0275\u0275element(0, "app-diagrama-configuracao-eletronica", 5);
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("numeroAtomico", ctx_r1.data.numeroAtomico);
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("numeroAtomico", ctx_r0.data.numeroAtomico);
   }
 }
-function ModalPeriodicTable_Conditional_7_Template(rf, ctx) {
+function ModalPeriodicTable_Conditional_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-emission-spectrum", 2);
+    \u0275\u0275element(0, "app-emission-spectrum", 6);
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("symbol", ctx_r1.data.simbolo);
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("symbol", ctx_r0.data.simbolo);
   }
 }
 var ModalPeriodicTable = class _ModalPeriodicTable {
   data;
-  dialogRef;
   orbitalSelection;
   selectedView = signal("propriedades", ...ngDevMode ? [{ debugName: "selectedView" }] : []);
   orbitalSelecionado = signal(ORBITALS[0], ...ngDevMode ? [{ debugName: "orbitalSelecionado" }] : []);
-  constructor(data, dialogRef, orbitalSelection) {
+  constructor(data, orbitalSelection) {
     this.data = data;
-    this.dialogRef = dialogRef;
     this.orbitalSelection = orbitalSelection;
     void this.carregarOrbital();
   }
@@ -43979,42 +44085,48 @@ var ModalPeriodicTable = class _ModalPeriodicTable {
   onViewChange(newView) {
     this.selectedView.set(newView);
   }
-  voltarDosOrbitais() {
-    this.selectedView.set("propriedades");
-  }
-  fecharModal() {
-    this.dialogRef.close();
-  }
   static \u0275fac = function ModalPeriodicTable_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ModalPeriodicTable)(\u0275\u0275directiveInject(MAT_DIALOG_DATA), \u0275\u0275directiveInject(MatDialogRef), \u0275\u0275directiveInject(OrbitalSelectionService));
+    return new (__ngFactoryType__ || _ModalPeriodicTable)(\u0275\u0275directiveInject(MAT_DIALOG_DATA), \u0275\u0275directiveInject(OrbitalSelectionService));
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ModalPeriodicTable, selectors: [["app-modal-periodic-table"]], decls: 8, vars: 7, consts: [[1, "modal_container"], [3, "numeroAtomico"], [3, "symbol"], ["mat-icon-button", "", "mat-dialog-close", "", "aria-label", "Fechar", 1, "close-button"], [1, "header_modal"], ["target", "_blank", 1, "link", 3, "href"], [3, "checkedChange"], [3, "voltar", "fechar", "orbital", "zEff"], [1, "orbital-viewer-placeholder"]], template: function ModalPeriodicTable_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ModalPeriodicTable, selectors: [["app-modal-periodic-table"]], decls: 15, vars: 11, consts: [[1, "modal_container"], ["mat-icon-button", "", "mat-dialog-close", "", "aria-label", "Fechar", 1, "close-button"], [1, "header_modal"], ["target", "_blank", 1, "link", 3, "href"], [3, "checkedChange"], [3, "numeroAtomico"], [3, "symbol"], [3, "orbital", "zEff"], [1, "orbital-viewer-placeholder"]], template: function ModalPeriodicTable_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "div", 0);
-      \u0275\u0275conditionalCreate(1, ModalPeriodicTable_Conditional_1_Template, 8, 3);
-      \u0275\u0275conditionalCreate(2, ModalPeriodicTable_Conditional_2_Template, 4, 0);
-      \u0275\u0275conditionalCreate(3, ModalPeriodicTable_Conditional_3_Template, 1, 0, "app-description");
-      \u0275\u0275conditionalCreate(4, ModalPeriodicTable_Conditional_4_Template, 1, 0, "app-properties-elements");
-      \u0275\u0275conditionalCreate(5, ModalPeriodicTable_Conditional_5_Template, 1, 1, "app-isotopos", 1);
-      \u0275\u0275conditionalCreate(6, ModalPeriodicTable_Conditional_6_Template, 1, 1, "app-diagrama-configuracao-eletronica", 1);
-      \u0275\u0275conditionalCreate(7, ModalPeriodicTable_Conditional_7_Template, 1, 1, "app-emission-spectrum", 2);
+      \u0275\u0275elementStart(0, "div", 0)(1, "button", 1)(2, "mat-icon");
+      \u0275\u0275text(3, "close");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(4, "div", 2)(5, "a", 3)(6, "h1");
+      \u0275\u0275text(7);
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(8, "app-button-toggle-modal", 4);
+      \u0275\u0275listener("checkedChange", function ModalPeriodicTable_Template_app_button_toggle_modal_checkedChange_8_listener($event) {
+        return ctx.onViewChange($event);
+      });
+      \u0275\u0275elementEnd()();
+      \u0275\u0275conditionalCreate(9, ModalPeriodicTable_Conditional_9_Template, 4, 0);
+      \u0275\u0275conditionalCreate(10, ModalPeriodicTable_Conditional_10_Template, 1, 0, "app-description");
+      \u0275\u0275conditionalCreate(11, ModalPeriodicTable_Conditional_11_Template, 1, 0, "app-properties-elements");
+      \u0275\u0275conditionalCreate(12, ModalPeriodicTable_Conditional_12_Template, 1, 1, "app-isotopos", 5);
+      \u0275\u0275conditionalCreate(13, ModalPeriodicTable_Conditional_13_Template, 1, 1, "app-diagrama-configuracao-eletronica", 5);
+      \u0275\u0275conditionalCreate(14, ModalPeriodicTable_Conditional_14_Template, 1, 1, "app-emission-spectrum", 6);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
+      \u0275\u0275classProp("modal_container--orbitais", ctx.selectedView() === "orbitais");
+      \u0275\u0275advance(5);
+      \u0275\u0275property("href", \u0275\u0275interpolate(ctx.data.link), \u0275\u0275sanitizeUrl);
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate(ctx.data.nome);
+      \u0275\u0275advance(2);
+      \u0275\u0275conditional(ctx.selectedView() === "orbitais" ? 9 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() !== "orbitais" ? 1 : -1);
+      \u0275\u0275conditional(ctx.selectedView() === "descricao" ? 10 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "orbitais" ? 2 : -1);
+      \u0275\u0275conditional(ctx.selectedView() === "propriedades" ? 11 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "descricao" ? 3 : -1);
+      \u0275\u0275conditional(ctx.selectedView() === "isotopos" && ctx.data.numeroAtomico !== null ? 12 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "propriedades" ? 4 : -1);
+      \u0275\u0275conditional(ctx.selectedView() === "diagrama-config-eletronica" && ctx.data.numeroAtomico !== null ? 13 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "isotopos" && ctx.data.numeroAtomico !== null ? 5 : -1);
-      \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "diagrama-config-eletronica" && ctx.data.numeroAtomico !== null ? 6 : -1);
-      \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.selectedView() === "espectro" ? 7 : -1);
+      \u0275\u0275conditional(ctx.selectedView() === "espectro" ? 14 : -1);
     }
   }, dependencies: [
     ButtonToggleModal,
@@ -44026,10 +44138,10 @@ var ModalPeriodicTable = class _ModalPeriodicTable {
     MatDialogModule,
     MatDialogClose,
     IsotoposComponent
-  ], styles: ["\n\n.modal_container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  background: #161622;\n  border: 5px solid #252538;\n  border-radius: 30px !important;\n  color: #ededed;\n  height: 100%;\n  min-height: 0;\n  padding: 30px;\n  width: 100%;\n  overflow: hidden;\n  box-sizing: border-box;\n  position: relative;\n}\n.header_modal[_ngcontent-%COMP%] {\n  align-items: center;\n  color: #ededed;\n  display: flex;\n  justify-content: space-between;\n  font-size: larger;\n  margin-bottom: 32px;\n  margin-top: 32px;\n  padding-right: 40px;\n}\n.header_modal[_ngcontent-%COMP%]   app-button-toggle-modal[_ngcontent-%COMP%] {\n  flex: 0 1 75%;\n  display: flex;\n  justify-content: center;\n}\n.close-button[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 24px;\n  right: 24px;\n  z-index: 10;\n  background: transparent;\n  color: #ededed;\n  border: none;\n  outline: none;\n  cursor: pointer;\n}\n.close-button[_ngcontent-%COMP%]:hover {\n  color: #88bff2;\n}\n.link[_ngcontent-%COMP%] {\n  color: inherit;\n  display: inline-flex;\n  width: fit-content;\n  text-decoration: none;\n  outline: none;\n  border: none;\n}\n.link[_ngcontent-%COMP%]:focus, \n.link[_ngcontent-%COMP%]:focus-visible {\n  outline: none;\n}\n.link[_ngcontent-%COMP%]:hover, \n.link[_ngcontent-%COMP%]:hover   *[_ngcontent-%COMP%] {\n  color: #4fa3e3 !important;\n}\n.espectro__titulo[_ngcontent-%COMP%] {\n  margin-top: 16px;\n}\n  .mat-mdc-dialog-container .mdc-dialog__content {\n  flex: 1 1 auto;\n  overflow: hidden;\n  padding: 0;\n}\n/*# sourceMappingURL=modal-periodic-table.css.map */"] });
+  ], styles: ["\n\n.modal_container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  background: #161622;\n  border: 5px solid #252538;\n  border-radius: 30px !important;\n  color: #ededed;\n  height: 100%;\n  min-height: 0;\n  padding: 30px;\n  width: 100%;\n  overflow: hidden;\n  box-sizing: border-box;\n  position: relative;\n}\n.header_modal[_ngcontent-%COMP%] {\n  align-items: center;\n  color: #ededed;\n  display: flex;\n  justify-content: space-between;\n  font-size: larger;\n  margin-bottom: 32px;\n  margin-top: 32px;\n  padding-right: 40px;\n}\n.header_modal[_ngcontent-%COMP%]   app-button-toggle-modal[_ngcontent-%COMP%] {\n  flex: 0 1 75%;\n  display: flex;\n  justify-content: center;\n}\n.modal_container--orbitais[_ngcontent-%COMP%]   .header_modal[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.modal_container--orbitais[_ngcontent-%COMP%]   app-orbital-surface-viewer[_ngcontent-%COMP%] {\n  flex: 1 1 auto;\n  height: auto;\n  min-height: 0;\n}\n.close-button[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 24px;\n  right: 24px;\n  z-index: 10;\n  background: transparent;\n  color: #ededed;\n  border: none;\n  outline: none;\n  cursor: pointer;\n}\n.close-button[_ngcontent-%COMP%]:hover {\n  color: #88bff2;\n}\n.link[_ngcontent-%COMP%] {\n  color: inherit;\n  display: inline-flex;\n  width: fit-content;\n  text-decoration: none;\n  outline: none;\n  border: none;\n}\n.link[_ngcontent-%COMP%]:focus, \n.link[_ngcontent-%COMP%]:focus-visible {\n  outline: none;\n}\n.link[_ngcontent-%COMP%]:hover, \n.link[_ngcontent-%COMP%]:hover   *[_ngcontent-%COMP%] {\n  color: #4fa3e3 !important;\n}\n.espectro__titulo[_ngcontent-%COMP%] {\n  margin-top: 16px;\n}\n  .mat-mdc-dialog-container .mdc-dialog__content {\n  flex: 1 1 auto;\n  overflow: hidden;\n  padding: 0;\n}\n/*# sourceMappingURL=modal-periodic-table.css.map */"] });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadataAsync(ModalPeriodicTable, () => [import("./chunk-VJQG4T2Z.js").then((m) => m.OrbitalSurfaceViewerComponent)], (OrbitalSurfaceViewerComponent) => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadataAsync(ModalPeriodicTable, () => [import("./chunk-K7F62WEH.js").then((m) => m.OrbitalSurfaceViewerComponent)], (OrbitalSurfaceViewerComponent) => {
     setClassMetadata(ModalPeriodicTable, [{
       type: Component,
       args: [{ selector: "app-modal-periodic-table", standalone: true, imports: [
@@ -44042,15 +44154,71 @@ var ModalPeriodicTable = class _ModalPeriodicTable {
         MatIcon,
         MatDialogModule,
         IsotoposComponent
-      ], template: '<div class="modal_container">\r\n  @if (selectedView() !== "orbitais") {\r\n    <button\r\n      mat-icon-button\r\n      mat-dialog-close\r\n      class="close-button"\r\n      aria-label="Fechar"\r\n    >\r\n      <mat-icon>close</mat-icon>\r\n    </button>\r\n    <div class="header_modal">\r\n      <a class="link" href="{{ data.link }}" target="_blank">\r\n        <h1>{{ data.nome }}</h1>\r\n      </a>\r\n      <app-button-toggle-modal\r\n        (checkedChange)="onViewChange($event)"\r\n      ></app-button-toggle-modal>\r\n    </div>\r\n  }\r\n\r\n  @if (selectedView() === "orbitais") {\r\n    @defer {\r\n      <app-orbital-surface-viewer\r\n        [orbital]="orbitalSelecionado()"\r\n        [zEff]="1"\r\n        (voltar)="voltarDosOrbitais()"\r\n        (fechar)="fecharModal()"\r\n      />\r\n    } @placeholder {\r\n      <div class="orbital-viewer-placeholder"></div>\r\n    }\r\n  }\r\n\r\n  @if (selectedView() === "descricao") {\r\n    <app-description></app-description>\r\n  }\r\n\r\n  @if (selectedView() === "propriedades") {\r\n    <app-properties-elements></app-properties-elements>\r\n  }\r\n  @if (selectedView() === "isotopos" && data.numeroAtomico !== null) {\r\n    <app-isotopos [numeroAtomico]="data.numeroAtomico"></app-isotopos>\r\n  }\r\n\r\n  @if (\r\n    selectedView() === "diagrama-config-eletronica" &&\r\n    data.numeroAtomico !== null\r\n  ) {\r\n    <app-diagrama-configuracao-eletronica\r\n      [numeroAtomico]="data.numeroAtomico"\r\n    ></app-diagrama-configuracao-eletronica>\r\n  }\r\n\r\n  @if (selectedView() === "espectro") {\r\n    <app-emission-spectrum [symbol]="data.simbolo"> </app-emission-spectrum>\r\n  }\r\n</div>\r\n', styles: ["/* src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.scss */\n.modal_container {\n  display: flex;\n  flex-direction: column;\n  background: #161622;\n  border: 5px solid #252538;\n  border-radius: 30px !important;\n  color: #ededed;\n  height: 100%;\n  min-height: 0;\n  padding: 30px;\n  width: 100%;\n  overflow: hidden;\n  box-sizing: border-box;\n  position: relative;\n}\n.header_modal {\n  align-items: center;\n  color: #ededed;\n  display: flex;\n  justify-content: space-between;\n  font-size: larger;\n  margin-bottom: 32px;\n  margin-top: 32px;\n  padding-right: 40px;\n}\n.header_modal app-button-toggle-modal {\n  flex: 0 1 75%;\n  display: flex;\n  justify-content: center;\n}\n.close-button {\n  position: absolute;\n  top: 24px;\n  right: 24px;\n  z-index: 10;\n  background: transparent;\n  color: #ededed;\n  border: none;\n  outline: none;\n  cursor: pointer;\n}\n.close-button:hover {\n  color: #88bff2;\n}\n.link {\n  color: inherit;\n  display: inline-flex;\n  width: fit-content;\n  text-decoration: none;\n  outline: none;\n  border: none;\n}\n.link:focus,\n.link:focus-visible {\n  outline: none;\n}\n.link:hover,\n.link:hover * {\n  color: #4fa3e3 !important;\n}\n.espectro__titulo {\n  margin-top: 16px;\n}\n::ng-deep .mat-mdc-dialog-container .mdc-dialog__content {\n  flex: 1 1 auto;\n  overflow: hidden;\n  padding: 0;\n}\n/*# sourceMappingURL=modal-periodic-table.css.map */\n"] }]
+      ], template: `<div\r
+  class="modal_container"\r
+  [class.modal_container--orbitais]="selectedView() === 'orbitais'"\r
+>\r
+  <button\r
+    mat-icon-button\r
+    mat-dialog-close\r
+    class="close-button"\r
+    aria-label="Fechar"\r
+  >\r
+    <mat-icon>close</mat-icon>\r
+  </button>\r
+  <div class="header_modal">\r
+    <a class="link" href="{{ data.link }}" target="_blank">\r
+      <h1>{{ data.nome }}</h1>\r
+    </a>\r
+    <app-button-toggle-modal\r
+      (checkedChange)="onViewChange($event)"\r
+    ></app-button-toggle-modal>\r
+  </div>\r
+\r
+  @if (selectedView() === "orbitais") {\r
+    @defer {\r
+      <app-orbital-surface-viewer\r
+        [orbital]="orbitalSelecionado()"\r
+        [zEff]="1"\r
+      />\r
+    } @placeholder {\r
+      <div class="orbital-viewer-placeholder"></div>\r
+    }\r
+  }\r
+\r
+  @if (selectedView() === "descricao") {\r
+    <app-description></app-description>\r
+  }\r
+\r
+  @if (selectedView() === "propriedades") {\r
+    <app-properties-elements></app-properties-elements>\r
+  }\r
+  @if (selectedView() === "isotopos" && data.numeroAtomico !== null) {\r
+    <app-isotopos [numeroAtomico]="data.numeroAtomico"></app-isotopos>\r
+  }\r
+\r
+  @if (\r
+    selectedView() === "diagrama-config-eletronica" &&\r
+    data.numeroAtomico !== null\r
+  ) {\r
+    <app-diagrama-configuracao-eletronica\r
+      [numeroAtomico]="data.numeroAtomico"\r
+    ></app-diagrama-configuracao-eletronica>\r
+  }\r
+\r
+  @if (selectedView() === "espectro") {\r
+    <app-emission-spectrum [symbol]="data.simbolo"> </app-emission-spectrum>\r
+  }\r
+</div>\r
+`, styles: ["/* src/app/pages/periodic-table/modal-periodic-table/modal-periodic-table.scss */\n.modal_container {\n  display: flex;\n  flex-direction: column;\n  background: #161622;\n  border: 5px solid #252538;\n  border-radius: 30px !important;\n  color: #ededed;\n  height: 100%;\n  min-height: 0;\n  padding: 30px;\n  width: 100%;\n  overflow: hidden;\n  box-sizing: border-box;\n  position: relative;\n}\n.header_modal {\n  align-items: center;\n  color: #ededed;\n  display: flex;\n  justify-content: space-between;\n  font-size: larger;\n  margin-bottom: 32px;\n  margin-top: 32px;\n  padding-right: 40px;\n}\n.header_modal app-button-toggle-modal {\n  flex: 0 1 75%;\n  display: flex;\n  justify-content: center;\n}\n.modal_container--orbitais .header_modal {\n  flex: 0 0 auto;\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.modal_container--orbitais app-orbital-surface-viewer {\n  flex: 1 1 auto;\n  height: auto;\n  min-height: 0;\n}\n.close-button {\n  position: absolute;\n  top: 24px;\n  right: 24px;\n  z-index: 10;\n  background: transparent;\n  color: #ededed;\n  border: none;\n  outline: none;\n  cursor: pointer;\n}\n.close-button:hover {\n  color: #88bff2;\n}\n.link {\n  color: inherit;\n  display: inline-flex;\n  width: fit-content;\n  text-decoration: none;\n  outline: none;\n  border: none;\n}\n.link:focus,\n.link:focus-visible {\n  outline: none;\n}\n.link:hover,\n.link:hover * {\n  color: #4fa3e3 !important;\n}\n.espectro__titulo {\n  margin-top: 16px;\n}\n::ng-deep .mat-mdc-dialog-container .mdc-dialog__content {\n  flex: 1 1 auto;\n  overflow: hidden;\n  padding: 0;\n}\n/*# sourceMappingURL=modal-periodic-table.css.map */\n"] }]
     }], () => [{ type: void 0, decorators: [{
       type: Inject,
       args: [MAT_DIALOG_DATA]
-    }] }, { type: MatDialogRef }, { type: OrbitalSelectionService }], null);
+    }] }, { type: OrbitalSelectionService }], null);
   });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ModalPeriodicTable, { className: "ModalPeriodicTable", filePath: "app/pages/periodic-table/modal-periodic-table/modal-periodic-table.component.ts", lineNumber: 38 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ModalPeriodicTable, { className: "ModalPeriodicTable", filePath: "app/pages/periodic-table/modal-periodic-table/modal-periodic-table.component.ts", lineNumber: 37 });
 })();
 
 // node_modules/@angular/material/fesm2022/slider.mjs
@@ -47177,7 +47345,8 @@ var PeriodicTable = class _PeriodicTable {
       spectral_lines: item.spectral_lines,
       protons: item.protons,
       neutrons: item.neutrons,
-      link_imagem: item.link_image
+      link_imagem: item.link_image,
+      link_imagem_fonte: item.link_image_source
     }));
   }
   carregarDados() {

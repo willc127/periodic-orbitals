@@ -3,7 +3,7 @@ import sys
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 ELEMENTS_DIR = Path(__file__).resolve().parent
 REPO_ROOT = ELEMENTS_DIR.parents[1]
@@ -12,7 +12,6 @@ for import_path in (ELEMENTS_DIR, REPO_ROOT):
         sys.path.insert(0, str(import_path))
 
 from api.router import api_router
-from router_isotopos import router as isotopos_router
 
 app = FastAPI(
     title="Periodic Table API",
@@ -20,12 +19,11 @@ app = FastAPI(
     version="1.0.0",
 )
 app.include_router(api_router)
-app.include_router(isotopos_router)
-
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon() -> FileResponse:
-    return FileResponse("favicon.ico")
+app.mount(
+    "/assets",
+    StaticFiles(directory=ELEMENTS_DIR / "static"),
+    name="assets",
+)
 
 
 app.add_middleware(

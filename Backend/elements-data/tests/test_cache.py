@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from pytest import MonkeyPatch
 
-import router_isotopos
+from api.endpoints import isotopos as router_isotopos
 from services import elements
 
 
