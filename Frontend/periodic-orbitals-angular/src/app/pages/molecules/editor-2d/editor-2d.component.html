@@ -1,0 +1,60 @@
+<svg
+  #svg
+  [class]="'editor ferramenta-' + ferramenta()"
+  role="img"
+  aria-label="Área de desenho da molécula"
+  (pointerdown)="aoPressionar($event)"
+  (pointermove)="aoMover($event)"
+  (pointerup)="aoSoltar($event)"
+  (pointercancel)="aoCancelar()"
+  (pointerleave)="aoSair()"
+  (contextmenu)="$event.preventDefault()"
+>
+  <defs>
+    @for (g of gradientes; track g.simbolo) {
+      <radialGradient [attr.id]="'bola-' + g.simbolo" cx="0.35" cy="0.3" r="0.8">
+        <stop offset="0" [attr.stop-color]="g.claro" />
+        <stop offset="0.55" [attr.stop-color]="g.base" />
+        <stop offset="1" [attr.stop-color]="g.escuro" />
+      </radialGradient>
+    }
+  </defs>
+
+  @if (atomosDesenho().length === 0) {
+    <text class="dica" x="50%" y="50%" text-anchor="middle">Clique aqui para colocar o primeiro átomo</text>
+  }
+
+  @for (l of ligacoesDesenho(); track l.id) {
+    <g class="ligacao">
+      @for (s of l.segmentos; track $index) {
+        <line class="traco" [attr.x1]="s.x1" [attr.y1]="s.y1" [attr.x2]="s.x2" [attr.y2]="s.y2" />
+      }
+      <line class="area-clique" [attr.x1]="l.alvo.x1" [attr.y1]="l.alvo.y1" [attr.x2]="l.alvo.x2" [attr.y2]="l.alvo.y2" />
+    </g>
+  }
+
+  @if (previa(); as p) {
+    <line class="previa" [attr.x1]="p.x1" [attr.y1]="p.y1" [attr.x2]="p.x2" [attr.y2]="p.y2" />
+    @if (p.novo; as n) {
+      <g class="fantasma" [attr.transform]="'translate(' + n.x + ' ' + n.y + ')'">
+        <circle [attr.r]="raioAtomo" [attr.fill]="'url(#bola-' + n.simbolo + ')'" />
+        <text [attr.fill]="n.corTexto" text-anchor="middle" dominant-baseline="central">{{ n.simbolo }}</text>
+      </g>
+    }
+  }
+
+  @for (a of atomosDesenho(); track a.id) {
+    <g
+      class="atomo"
+      [class.sobre]="a.id === atomoSobre() || a.id === previa()?.alvoId"
+      [attr.transform]="'translate(' + a.x + ' ' + a.y + ')'"
+    >
+      @if (a.aberta > 0) {
+        <circle class="anel-aberto" [attr.r]="raioAnelAberto" />
+      }
+      <circle class="corpo" [attr.r]="raioAtomo" [attr.fill]="'url(#bola-' + a.simbolo + ')'" />
+      <text [attr.fill]="a.corTexto" text-anchor="middle" dominant-baseline="central">{{ a.simbolo }}</text>
+      <title>{{ a.dica }}</title>
+    </g>
+  }
+</svg>

@@ -1,0 +1,103 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.editor {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+  background-size: 30px 30px;
+  font-family: 'Inter', system-ui, sans-serif;
+
+  &.ferramenta-desenhar {
+    cursor: crosshair;
+  }
+  &.ferramenta-mover {
+    cursor: grab;
+  }
+  &.ferramenta-apagar {
+    cursor: not-allowed;
+  }
+}
+
+.dica {
+  fill: #6f7690;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.ligacao {
+  .traco {
+    stroke: #aeb6cc;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+  }
+  .area-clique {
+    stroke: transparent;
+    stroke-width: 14;
+    stroke-linecap: round;
+  }
+  &:hover .traco {
+    stroke: #4fa3e3;
+  }
+}
+
+.previa {
+  stroke: #4fa3e3;
+  stroke-width: 2.4;
+  stroke-dasharray: 5 5;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.fantasma {
+  opacity: 0.55;
+  pointer-events: none;
+
+  circle {
+    stroke: #4fa3e3;
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+  }
+  text {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.atomo {
+  .corpo {
+    stroke: rgba(255, 255, 255, 0.4);
+    stroke-width: 1.4;
+  }
+  text {
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .anel-aberto {
+    fill: none;
+    stroke: #f0b429;
+    stroke-width: 1.6;
+    stroke-dasharray: 3 3;
+  }
+  &.sobre .corpo {
+    stroke: #4fa3e3;
+    stroke-width: 2.4;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ligacao .traco,
+  .atomo .corpo {
+    transition: stroke 120ms ease;
+  }
+}

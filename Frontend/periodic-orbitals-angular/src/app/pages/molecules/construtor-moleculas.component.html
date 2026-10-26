@@ -1,0 +1,227 @@
+<section class="pagina">
+  <header class="topo">
+    <div class="titulo">
+      <h1>Construtor de moléculas</h1>
+      <p>Escolha os átomos, ligue-os respeitando a valência e veja o resultado em 2D ou 3D.</p>
+    </div>
+
+    <div class="alternador" role="group" aria-label="Modo de visualização">
+      <button type="button" [class.ativo]="modo() === '2d'" [attr.aria-pressed]="modo() === '2d'" (click)="modo.set('2d')">
+        2D
+      </button>
+      <button type="button" [class.ativo]="modo() === '3d'" [attr.aria-pressed]="modo() === '3d'" (click)="modo.set('3d')">
+        3D
+      </button>
+    </div>
+  </header>
+
+  <div class="corpo">
+    <aside class="barra" aria-label="Ferramentas">
+      @if (modo() === '2d') {
+        <section class="grupo">
+          <h2>Elemento</h2>
+          <div class="paleta">
+            @for (e of elementos; track e.simbolo) {
+              <button
+                type="button"
+                class="elemento"
+                [class.ativo]="elementoSelecionado() === e.simbolo"
+                [attr.aria-pressed]="elementoSelecionado() === e.simbolo"
+                [attr.aria-label]="e.nome"
+                [title]="e.nome"
+                [style.background]="gradienteCss(e.cor)"
+                [style.color]="corTextoSobre(e.cor)"
+                (click)="elementoSelecionado.set(e.simbolo)"
+              >
+                {{ e.simbolo }}
+              </button>
+            }
+          </div>
+          <p class="legenda">{{ nomeElemento() }}</p>
+        </section>
+
+        <section class="grupo">
+          <h2>Nova ligação</h2>
+          <div class="segmentado" role="group" aria-label="Ordem da ligação">
+            @for (o of ordens; track o.valor) {
+              <button
+                type="button"
+                [class.ativo]="ordemSelecionada() === o.valor"
+                [attr.aria-pressed]="ordemSelecionada() === o.valor"
+                [title]="o.rotulo + ' (tecla ' + o.valor + ')'"
+                (click)="ordemSelecionada.set(o.valor)"
+              >
+                <svg viewBox="0 0 28 18" width="28" height="18" aria-hidden="true">
+                  @switch (o.valor) {
+                    @case (1) {
+                      <line x1="3" y1="9" x2="25" y2="9" />
+                    }
+                    @case (2) {
+                      <line x1="3" y1="6" x2="25" y2="6" />
+                      <line x1="3" y1="12" x2="25" y2="12" />
+                    }
+                    @default {
+                      <line x1="3" y1="4" x2="25" y2="4" />
+                      <line x1="3" y1="9" x2="25" y2="9" />
+                      <line x1="3" y1="14" x2="25" y2="14" />
+                    }
+                  }
+                </svg>
+                <span class="so-leitor">{{ o.rotulo }}</span>
+              </button>
+            }
+          </div>
+        </section>
+
+        <section class="grupo">
+          <h2>Ferramenta</h2>
+          <div class="lista-botoes" role="group" aria-label="Ferramenta">
+            @for (f of ferramentas; track f.valor) {
+              <button
+                type="button"
+                [class.ativo]="ferramenta() === f.valor"
+                [attr.aria-pressed]="ferramenta() === f.valor"
+                (click)="ferramenta.set(f.valor)"
+              >
+                {{ f.rotulo }}<kbd>{{ f.tecla }}</kbd>
+              </button>
+            }
+          </div>
+        </section>
+
+        <section class="grupo">
+          <h2>Molécula</h2>
+          <div class="lista-botoes">
+            <button type="button" (click)="completarH()" [disabled]="resumo().hidrogeniosFaltantes === 0">
+              Completar com H
+            </button>
+            <button type="button" (click)="removerH()" [disabled]="vazia()">Remover H</button>
+            <div class="par">
+              <button type="button" (click)="desfazer()" [disabled]="!podeDesfazer()" title="Desfazer (Ctrl+Z)">
+                Desfazer
+              </button>
+              <button type="button" (click)="refazer()" [disabled]="!podeRefazer()" title="Refazer (Ctrl+Shift+Z)">
+                Refazer
+              </button>
+            </div>
+            <button type="button" class="perigo" (click)="limpar()" [disabled]="vazia()">Limpar tudo</button>
+          </div>
+        </section>
+      } @else {
+        <section class="grupo">
+          <h2>Estilo</h2>
+          <div class="lista-botoes" role="group" aria-label="Estilo de renderização">
+            @for (s of estilos; track s.valor) {
+              <button
+                type="button"
+                [class.ativo]="estilo() === s.valor"
+                [attr.aria-pressed]="estilo() === s.valor"
+                (click)="estilo.set(s.valor)"
+              >
+                {{ s.rotulo }}
+              </button>
+            }
+          </div>
+        </section>
+
+        <section class="grupo">
+          <h2>Exibição</h2>
+          <label class="opcao">
+            <input
+              type="checkbox"
+              [checked]="mostrarHidrogenios()"
+              (change)="mostrarHidrogenios.set($any($event.target).checked)"
+            />
+            Mostrar hidrogênios
+          </label>
+          <button type="button" class="largo" (click)="enquadrar()">Enquadrar molécula</button>
+        </section>
+      }
+    </aside>
+
+    <div class="palco">
+      @if (modo() === '2d') {
+        <app-editor-2d
+          [molecula]="molecula()"
+          [ferramenta]="ferramenta()"
+          [elementoSelecionado]="elementoSelecionado()"
+          [ordemSelecionada]="ordemSelecionada()"
+          (inicioEdicao)="registrarHistorico()"
+          (moleculaChange)="aoAlterar($event)"
+          (aviso)="avisar($event)"
+        />
+      } @else {
+        <app-visualizador-3d
+          [molecula]="molecula()"
+          [geometria]="geometria()"
+          [estilo]="estilo()"
+          [mostrarHidrogenios]="mostrarHidrogenios()"
+        />
+      }
+
+      @if (aviso(); as mensagem) {
+        <p class="aviso" role="status">{{ mensagem }}</p>
+      }
+    </div>
+
+    <aside class="info" aria-label="Dados da molécula">
+      <section class="grupo">
+        <h2>Fórmula</h2>
+        @if (vazia()) {
+          <p class="vazio">Sem átomos</p>
+        } @else {
+          <p class="formula">
+            @for (item of composicao(); track item.simbolo) {
+              <span>{{ item.simbolo }}@if (item.quantidade > 1) {<sub>{{ item.quantidade }}</sub>}</span>
+            }
+          </p>
+        }
+      </section>
+
+      <dl class="dados">
+        <div>
+          <dt>Massa molar</dt>
+          <dd>{{ massa().toFixed(3) }} g/mol</dd>
+        </div>
+        <div>
+          <dt>Átomos</dt>
+          <dd>{{ molecula().atomos.length }}</dd>
+        </div>
+        <div>
+          <dt>Ligações</dt>
+          <dd>{{ molecula().ligacoes.length }}</dd>
+        </div>
+      </dl>
+
+      <section class="grupo">
+        <h2>Valências</h2>
+        @if (vazia()) {
+          <p class="legenda">Adicione átomos para verificar.</p>
+        } @else if (resumo().atomosComValenciaAberta === 0) {
+          <p class="estado completo">Todas as valências estão completas.</p>
+        } @else {
+          <p class="estado aberto">
+            {{ resumo().atomosComValenciaAberta }}
+            {{ resumo().atomosComValenciaAberta === 1 ? 'átomo com valência aberta' : 'átomos com valência aberta' }}.
+            @if (resumo().hidrogeniosFaltantes > 0) {
+              Faltam {{ resumo().hidrogeniosFaltantes }} H para completar.
+            }
+          </p>
+        }
+      </section>
+
+      @if (modo() === '2d') {
+        <section class="grupo dicas">
+          <h2>Como desenhar</h2>
+          <ul>
+            <li>Clique no vazio para colocar um átomo.</li>
+            <li>Arraste de um átomo para outro, ou para o vazio, para ligar.</li>
+            <li>Clique em uma ligação para alternar simples, dupla e tripla.</li>
+            <li>Clique em um átomo para trocar o elemento.</li>
+            <li>Botão direito apaga o que estiver sob o cursor.</li>
+          </ul>
+        </section>
+      }
+    </aside>
+  </div>
+</section>

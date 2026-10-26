@@ -3,10 +3,10 @@ import { Header } from './shared/header/header.component';
 import { Footer } from './shared/footer/footer.component';
 import { PeriodicTable } from './pages/periodic-table/periodic-table.component';
 import { GraphicsComponent } from './pages/graphics/graphics.component';
-import { Molecules } from './pages/molecules/molecules.component';
+import { ConstrutorMoleculasComponent } from './pages/molecules/construtor-moleculas.component';
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, PeriodicTable, GraphicsComponent, Molecules],
+  imports: [Header, Footer, PeriodicTable, GraphicsComponent, ConstrutorMoleculasComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

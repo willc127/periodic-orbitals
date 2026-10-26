@@ -1,0 +1,6 @@
+<div class="recipiente" #recipiente>
+  <canvas #tela aria-label="Visualização 3D da molécula. Arraste para girar, role para aproximar."></canvas>
+  @if (molecula().atomos.length === 0) {
+    <p class="vazio">Nenhum átomo ainda. Monte a molécula na visão 2D para vê-la aqui.</p>
+  }
+</div>
